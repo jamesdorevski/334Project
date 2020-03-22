@@ -1,0 +1,32 @@
+@font-face
+{
+    font-family: 'lato';
+    src: url('/resources/fonts/Lato-Black.woff');
+}
+html
+{
+  	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after 
+{
+  box-sizing: inherit;
+}
+
+body
+{
+	position: relative;
+	margin: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#pageBody
+{
+	min-height: 58vh;
+	width: 100%;
+	margin-top: 70px;
+	padding: 50px;
+}

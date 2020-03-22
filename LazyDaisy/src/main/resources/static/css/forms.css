@@ -1,0 +1,76 @@
+input[type=text],
+input[type=email],
+input[type=date],
+input[type=password],
+input[type=number],
+textarea,
+select
+{
+    width: 100%;
+    padding:15px;
+    outline:none;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    border:1px solid #A3A3A3;
+    resize: vertical;
+    font-family:Montserrat;
+    font-size:16px;
+    background:white;
+    position:relative;
+    color:black;
+}
+
+input[type=date]
+{
+    resize:none;
+}
+
+select
+{
+    padding:15px;
+    border:1px solid #A3A3A3;
+    background-color:white;
+    background-image:url("/svg/selectArrow.svg");
+    background-position: right 20px center;
+    background-repeat: no-repeat;
+    -webkit-appearance:none;
+}
+
+/* Hide the default dropdown arrow */
+select
+{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Hide the default dropdown arrow */
+select::-ms-expand
+{
+    display: none;
+}
+
+input[type=submit],
+.submitButton
+{
+    background-color:#2A6529;
+    color: white;
+    padding: 20px 20px;
+    border: none;
+    cursor: pointer;
+    font-size:18px;
+    letter-spacing:1px;
+    font-family:Montserrat;
+    width:100%;
+}
+
+input[type=submit]:hover,
+.submitButton:hover
+{
+    background-color:#50c608;
+}
+
+.error
+{
+    font-weight:600;
+    color:red;
+}

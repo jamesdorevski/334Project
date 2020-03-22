@@ -1,0 +1,60 @@
+@font-face
+{
+    font-family: 'bebasneue';
+    src: url('/resources/fonts/bebasneue_bold-webfont.woff');
+}
+
+#pageFooter
+{
+	z-index:1;
+	background-color:white;
+	border-top: 1px solid #89cff0;
+	height: 320px;
+}
+
+#pageFooter p
+{
+	font-family: bebasneue;
+    font-size: 1.25em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+#pageFooter table
+{
+    margin:30px auto;
+}
+
+#pageFooter td
+{
+    width: 15vw;
+    vertical-align: top;
+    text-align: center;
+}
+
+#pageFooter a
+{
+    text-align: center;
+    display: inline-block;
+    margin-top: 0px;
+    text-decoration: none;
+    
+    font-size: 0.9em;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    padding: 6px 0;
+    color: black;
+}
+
+.copyright
+{
+	font-family: 'bebasneue';
+    text-align:center;
+    padding-bottom: 10px;
+}
+
+/* Hover-2: Bold */
+.hover-2 a:hover
+{
+	font-weight:bold;
+}
