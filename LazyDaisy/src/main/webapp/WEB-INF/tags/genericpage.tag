@@ -1,6 +1,9 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8"%>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
+
+<link rel='icon' href='/resources/favicon/lazy-daisy-pink.ico'/>
+<link rel="stylesheet" type="text/css" href='/resources/css/wrapper.css'/>
 <html>
 <body>
     <div id="pageheader">

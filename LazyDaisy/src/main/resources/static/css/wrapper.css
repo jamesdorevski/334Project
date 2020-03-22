@@ -3,6 +3,7 @@
     font-family: 'lato';
     src: url('/resources/fonts/Lato-Black.woff');
 }
+
 html
 {
   	box-sizing: border-box;
@@ -17,6 +18,7 @@ html
 
 body
 {
+	font-family: lato;
 	position: relative;
 	margin: 0;
 	overflow-y: auto;
@@ -24,9 +26,9 @@ body
 }
 
 #pageBody
-{
+{	
 	min-height: 58vh;
 	width: 100%;
 	margin-top: 70px;
-	padding: 50px;
+	padding: 50px; 
 }

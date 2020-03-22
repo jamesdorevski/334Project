@@ -1,28 +1,30 @@
-<link rel="stylesheet" href="/resources/css/forms.css">
-<script type="text/javascript" src="/resources/js/app.js"></script>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <html>
 <head><title>LasyDaisy</title></head>
 
 <link rel='icon' href='/resources/favicon/lazy-daisy-pink.ico'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/wrapper.css'/>
+<link rel="stylesheet" type="text/css" href="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageHeader.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageFooter.css'/>
-
+<link rel="stylesheet" type="text/css" href='/resources/css/myStyles/buttons.css'/>
+<link rel="stylesheet" type="text/css" href='/resources/css/myStyles/hovers.css'/>
 
 <body>
 	<div id="pageHeader">
 		<div id="headerLeft">
-		    <a href="/"><img src="resources/png/lazy-daisy-logo.png"/></a>
+		    <a href="/"><img src="/resources/png/lazy-daisy-logo.png"/></a>
 		</div>
 		<div id="headerRight" class="hover-1">
 			<a href="/encyclopedia">Currency</a>
-			<c:if test="">	
+			<c:if test="${loggedIn}">	
 				<a href="/">Create event</a>
 				<a href="/">Contact Us</a>
 				<a href="/">Help</a>
+				<a hred="/">Log Out</a>
 			</c:if>
-			<c:if test="!">	
+			<c:if test="${!loggedIn}">	
 				<a href="/">About</a>
 				<a href="/register">Sign Up</a>
 				<a href="/">Log in</a>
@@ -47,12 +49,12 @@
 				</td>
 				<td class="hover-2">
 					<p>Quick Links</p>
-					<c:if test="">
+					<c:if test="${loggedIn}">
 						<a href="/account">Account</a><br/>
 						<a href="/account/settings">Settings</a><br/>
 						<a href="/account/login">Log Out</a><br/>
 					</c:if>
-					<c:if test="!">
+					<c:if test="${!loggedIn}">
 						<a href="/encyclopedia">Encyclopedia</a><br/>
 						<a href="/register">Register</a><br/>
 					</c:if>
@@ -68,4 +70,6 @@
 		<p class="copyright">&copy; 2020 Lazy Daisy</p>
 	</div>
 </body>
+
+<script type="text/javascript" src="/resources/js/app.js"></script>
 </html>

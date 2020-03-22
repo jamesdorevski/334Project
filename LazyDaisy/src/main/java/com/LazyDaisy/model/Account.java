@@ -7,14 +7,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
 import lombok.Setter;
 
-@Document
+@Document(collection="Users")
+@Getter 
+@Setter
 public class Account 
 {
 	@Id private ObjectId _id;
-	@Getter @Setter private String firstname;
-	@Getter @Setter private String lastname;
-	@Getter @Setter private String username;
-	@Getter @Setter private String email;
+	private String firstname;
+	private String lastname;
+	private String username;
+	private String email;
 	
 	public Account(){this._id = new ObjectId();}
 	
@@ -31,7 +33,7 @@ public class Account
 	@Override
 	public String toString()
 	{
-		return "Account {" +
+		return "{" +
                 "id='" + _id + "\'" +
                 ", firstname='" + firstname + "\'" +
                 ", lastname='" + lastname + "\'" +

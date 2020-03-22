@@ -11,12 +11,12 @@ public class TestController
 	@GetMapping("/simple")
 	public String loadTestPage()
 	{
-		return "simple-test";
+		return "samples/simple-test";
 	}
 	
 	@GetMapping("/generic")
 	public String loadGenericPage()
 	{
-		return "generic-page";
+		return "samples/generic-page";
 	}
 }
