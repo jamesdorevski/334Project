@@ -10,6 +10,7 @@ import lombok.Setter;
 @Document(collection="Users")
 @Getter 
 @Setter
+@NonNull
 public class Account 
 {
 	@Id private ObjectId _id;
@@ -17,15 +18,19 @@ public class Account
 	private String lastname;
 	private String username;
 	private String email;
+	private String phoneNumber;
+	private ArrayList<String> languagesSpoken;
 	
 	public Account(){this._id = new ObjectId();}
 	
-	public Account(String firstname, String lastname, String username, String email)
+	public Account(String firstname, String lastname, String username, String email, String phoneNumber, ArrayList<String> languagesSpoken)
 	{
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.languagesSpoken = languagesSpoken;
 	}
 	
 	public void setId(ObjectId id) {this._id = id;}
@@ -38,6 +43,8 @@ public class Account
                 ", firstname='" + firstname + "\'" +
                 ", lastname='" + lastname + "\'" +
                 ", username='" + username + "\'" +
-                ", email='" + email + "\'}";
+				", email='" + email + "\'" +
+				", phoneNumber='" + phoneNumber + "\'" +
+                ", languagesSpoken='" + languagesSpoken + "\'}";
 	}
 }
