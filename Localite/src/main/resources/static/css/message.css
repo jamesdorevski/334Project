@@ -1,0 +1,13 @@
+#pageBody
+{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+#pageBody table,
+#pageBody td
+{
+	margin:auto;
+	text-align: center;
+}
