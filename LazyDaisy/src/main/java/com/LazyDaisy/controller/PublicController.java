@@ -16,6 +16,7 @@ public class PublicController
 	@GetMapping("/")
 	public String homePage(Model model)
 	{
+		model.addAttribute("loggedIn", true);
 		return "common/home";
 	}
 	

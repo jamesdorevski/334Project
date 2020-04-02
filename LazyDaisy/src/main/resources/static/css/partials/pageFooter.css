@@ -9,11 +9,12 @@
 	z-index: 1;
 	background-color: white;
 	border-top: 1px solid #89cff0;
-	height: 320px;
+	height: 100px;
 }
 
 #pageFooter p
 {
+	color: #5d5d5d;
 	font-family: bebasneue;
     font-size: 1.25em;
     font-weight: 500;
@@ -23,32 +24,33 @@
 
 #pageFooter table
 {
-    margin:30px auto;
+    margin:30px;
 }
 
 #pageFooter td
 {
-    width: 15vw;
+    width: 20vw;
     vertical-align: top;
-    text-align: center;
+    text-align: left;
 }
 
-#pageFooter a
+#pageFooter a,
+#pageFooter span
 {
-    text-align: center;
+    text-align: left;
     display: inline-block;
     margin-top: 0px;
     text-decoration: none;
     
     font-size: 0.9em;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    padding: 6px 0;
+    padding: 2px 0;
     color: black;
 }
 
 .copyright
 {
 	font-family: 'bebasneue';
-    text-align: center;
-    padding-bottom: 10px;
+    text-align: left;
+    padding: 0 30px 10px;
 }

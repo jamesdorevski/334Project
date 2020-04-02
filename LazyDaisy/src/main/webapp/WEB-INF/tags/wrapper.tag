@@ -2,8 +2,7 @@
 
 <html>
 <head><title>LasyDaisy</title></head>
-
-<link rel='icon' href='/resources/favicon/lazy-daisy-pink.ico'/>
+<link rel="shortcut icon" type="image/x-icon" href='/resources/favicon/lazy-daisy-pink.ico'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/wrapper.css'/>
 <link rel="stylesheet" type="text/css" href="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageHeader.css'/>
@@ -17,17 +16,14 @@
 		    <a href="/"><img src="/resources/png/lazy-daisy-logo.png"/></a>
 		</div>
 		<div id="headerRight" class="hover-1">
-			<a href="/encyclopedia">Currency</a>
-			<c:if test="${loggedIn}">	
-				<a href="/">Create event</a>
-				<a href="/">Contact Us</a>
-				<a href="/">Help</a>
-				<a hred="/">Log Out</a>
-			</c:if>
 			<c:if test="${!loggedIn}">	
-				<a href="/">About</a>
+				<a href="/">About Us</a>
 				<a href="/register">Sign Up</a>
 				<a href="/">Log in</a>
+			</c:if>
+			<c:if test="${loggedIn}">	
+				<a href="/">Create event</a>
+				<a href="/">Log Out</a>
 			</c:if>
 		</div>	
 	</div>
@@ -40,30 +36,26 @@
 		<table>
 			<tr>
 				<td class="hover-2">
-					<p>Information</p>
-					<a href="/about">About</a><br/>
-					<a href="/about#sponsorLink">Sponsors</a><br/>
-					<a href="/contact">Contact</a><br/>
-					<a href="/faq">FAQs</a><br/>
-					<a href="https://www.facebook.com/edkaustralia/"target="_blank">Facebook</a>
-				</td>
-				<td class="hover-2">
-					<p>Quick Links</p>
-					<c:if test="${loggedIn}">
-						<a href="/account">Account</a><br/>
-						<a href="/account/settings">Settings</a><br/>
-						<a href="/account/login">Log Out</a><br/>
-					</c:if>
-					<c:if test="${!loggedIn}">
-						<a href="/encyclopedia">Encyclopedia</a><br/>
-						<a href="/register">Register</a><br/>
-					</c:if>
+					<p>Contact Us</p>
+					<span>Phone: XXXX-XXX-XXX</span><br/>
+					<span>Email: lazydaisy@support.com</span>
 				</td>
 				<td class="hover-2">
 					<p>Legal</p>
-					<a href="/privacy">Privacy Policy</a><br/>
+					<a href="/privacy">Cancellation Policy</a><br/>
 					<a href="/tnc">Terms and Conditions</a><br/>
-					<a href="/security">Security</a><br/>
+				</td>
+				<td class="hover-2">
+					<p>Quick Links</p>
+					<c:if test="${!loggedIn}">
+						<a href="/about">About Us</a><br/>
+						<a href="/register">Register</a><br/>
+					</c:if>
+					<c:if test="${loggedIn}">
+						<a href="/account">Account</a><br/>
+						<a href="/account/settings">Settings</a><br/>
+						<a href="/account/logout">Log Out</a><br/>
+					</c:if>
 				</td>
 			</tr>
 		</table>
