@@ -14,7 +14,7 @@
 <body>
 	<div id="pageHeader">
 		<div id="headerLeft">
-		    <a href="/"><img src="/resources/png/lazy-daisy-logo.png"/></a>
+		    <a href="/"><img src="/resources/png/localite-logo.png"/></a>
 		</div>
 		<div id="headerRight" class="hover-1">
 			<c:if test="${!loggedIn}">	
