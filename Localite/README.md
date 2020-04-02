@@ -1,23 +1,37 @@
 # 334Project
 
-Downloads
+Installation
 ==========
-IDE: Eclipse https://www.eclipse.org/downloads/packages/
+Windows:
+Download Maven: https://maven.apache.org/download.cgi
+Download "Binary zip archive": apache-maven-3.6.3-bin.zip
+Unzip into Downloads folder and copy the directory of "bin"; mine was "D:\Downloads\apache-maven-3.6.3-bin\apache-maven-3.6.3\bin"
+Type in search bar "env" and find "Edit the system environment variable"
+Bottom right, click environment variables
+Click row for variable "path" 
+Add the copied directory
+Save it and move on to =Run= 
 
-Opening Project on Eclipse
-==========================
-File >> Switch Workspace >> 334Project
-File >> Open Projects From File System >> 334Project >> Localite (Select Folder)
+Mac:
+Download homebrew
+brew install maven
+move on to =Run= 
 
 Run
 ===
-Open src/main/java/com/Localite/Localite.java >> Run As >> Java Application
+Windows:
+cd 334Project/Localite
+mvn compile - for first time only or if there are issues
+mvn org.springframework.boot:spring-boot-maven-plugin:run
 
-Commit to Github
-===============
-Right-click project >> Team 
->> Commit >> Drag Unstaged Changed to Staged Changes >> Add Commit Message 
->> Commit and Push
+Linux:
+cd 334Project/Localite
+mvn compile
+mvn spring-boot:run
+
+Mac:
+cd 334Project/Localite
+mvn spring-boot:run
 
 Others
 ======
