@@ -13,6 +13,14 @@ Run
 ===
 Open src/main/java/com/Localite/Localite.java >> Run As >> Java Application
 
+Commit to Github
+===============
+Right-click project >> Team 
+>> Commit >> Drag Unstaged Changed to Staged Changes >> Add Commit Message 
+>> Commit and Push
+
+Others
+======
 SPRING
 =====
 // starting spring mvc
