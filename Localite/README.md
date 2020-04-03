@@ -22,7 +22,7 @@ Run
 Windows:
 cd 334Project/Localite
 mvn compile - for first time only or if there are issues
-mvn org.springframework.boot:spring-boot-maven-plugin:run
+mvn spring-boot:run
 
 Linux:
 cd 334Project/Localite
@@ -32,6 +32,11 @@ mvn spring-boot:run
 Mac:
 cd 334Project/Localite
 mvn spring-boot:run
+
+Refresh Dependencies
+===
+mvn clean eclipse:eclipse
+mvn clean install -U
 
 Others
 ======

@@ -2,14 +2,24 @@
 
 <html>
 <head><title>Localite</title></head>
-
 <link rel='icon' href='/resources/favicon/lazy-daisy-pink.ico'/>
+
+<!-- Layout -->
 <link rel="stylesheet" type="text/css" href='/resources/css/wrapper.css'/>
-<link rel="stylesheet" type="text/css" href="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageHeader.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageFooter.css'/>
+<!-- UI -->
 <link rel="stylesheet" type="text/css" href='/resources/css/myStyles/buttons.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/myStyles/hovers.css'/>
+<link rel="stylesheet" type="text/css" href='/resources/css/myStyles/dropdowns.css'/>
+<link rel="stylesheet" type="text/css" href='/resources/css/myStyles/boxes.css'/>
+
+<!-- Forms -->
+<link rel="stylesheet" type="text/css" href="/resources/css/forms.css"/>
+<script type="text/javascript" src="/resources/js/formValidation.js"></script>
+
+<!-- Scripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <body>
 	<div id="pageHeader">
@@ -63,6 +73,4 @@
 		<p class="copyright">&copy; 2020 Localite</p>
 	</div>
 </body>
-
-<script type="text/javascript" src="/resources/js/app.js"></script>
 </html>
