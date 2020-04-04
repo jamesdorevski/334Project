@@ -2,7 +2,7 @@
 
 <html>
 <head><title>Localite</title></head>
-<link rel='icon' href='/resources/favicon/lazy-daisy-pink.ico'/>
+<link rel='icon' href='/resources/favicon/localite-logo.ico'/>
 
 <!-- Layout -->
 <link rel="stylesheet" type="text/css" href='/resources/css/wrapper.css'/>
@@ -53,7 +53,7 @@
 				<td class="hover-2">
 					<p>Contact Us</p>
 					<span>Phone: XXXX-XXX-XXX</span><br/>
-					<span>Email: lazydaisy@support.com</span>
+					<span>Email: localite@support.com</span>
 				</td>
 				<td class="hover-2">
 					<p>Legal</p>
