@@ -7,20 +7,21 @@ textarea,
 select
 {
     width: 320px;
-    padding:15px;
+    padding: 15px;
     
     margin-top: 8px;
     margin-bottom: 0px;
-    border:1px solid #A3A3A3;
+    border: 1px solid #A3A3A3;
     border-radius: 10px;
     resize: vertical;
     
-    background:white;
-    position:relative;
+    background: white;
+    position: relative;
     
-    outline:none;
+    outline: none;
     font-size: 1em;
-    color:black;
+    font-family: Arial;
+    color: #717171;
 }
 
 input[type=date]

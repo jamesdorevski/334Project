@@ -3,9 +3,8 @@ package com.Localite.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
 
 import com.Localite.model.Account;
 import com.Localite.repository.AccountRepository;
@@ -16,18 +15,26 @@ public class PublicController
 	@GetMapping("/")
 	public String homePage(Model model)
 	{
-		model.addAttribute("loggedIn", true);
-		return "common/home";
+		return "home/home";
+	}
+
+	@PostMapping("/findTour")
+	public String findTour(@RequestBody String name)
+	{
+		System.out.println(name);
+		return "home/home";
 	}
 	
+	
+	// ------- Account Repository -------
+	@Autowired
+	private AccountRepository repository;
+
 	@GetMapping("/register")
 	public String register()
 	{
 		return "account/register";
 	}
-	
-	@Autowired
-	private AccountRepository repository;
 	
 	@PostMapping("/createAccount")
 	public String createAccount(@ModelAttribute Account account, Model model) 
@@ -44,7 +51,7 @@ public class PublicController
 		return "message";
    }
 	
-	// pageTests
+	// ------- pageTests -------
 	@GetMapping("/message")
 	public String messagePage(Model model)
 	{

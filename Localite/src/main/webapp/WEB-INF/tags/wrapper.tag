@@ -8,11 +8,15 @@
 <link rel="stylesheet" type="text/css" href='/resources/css/wrapper.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageHeader.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/partials/pageFooter.css'/>
+
 <!-- UI -->
 <link rel="stylesheet" type="text/css" href='/resources/css/myStyles/buttons.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/myStyles/hovers.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/myStyles/dropdowns.css'/>
 <link rel="stylesheet" type="text/css" href='/resources/css/myStyles/boxes.css'/>
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <!-- Forms -->
 <link rel="stylesheet" type="text/css" href="/resources/css/forms.css"/>
