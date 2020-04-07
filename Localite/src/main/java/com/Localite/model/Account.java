@@ -1,5 +1,6 @@
 package com.Localite.model;
 
+import lombok.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,25 +8,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Document(collection="Users")
 @Getter 
 @Setter
-public class Account 
+@NonNull
+public abstract class Account
 {
 	@Id private ObjectId _id;
-	private String firstname;
-	private String lastname;
-	private String username;
+	private String firstName;
+	private String lastName;
 	private String email;
+	private String phoneNumber;
+	private ArrayList<String> languagesSpoken;
 	
 	public Account(){this._id = new ObjectId();}
 	
-	public Account(String firstname, String lastname, String username, String email)
+	public Account(String firstName, String lastName, String email, String phoneNumber, ArrayList<String> languagesSpoken)
 	{
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.email = email;
+		this.firstName = firstName.trim();
+		this.lastName = lastName.trim();
+		this.email = email.trim();
+		this.phoneNumber = phoneNumber;
+		this.languagesSpoken = languagesSpoken;
 	}
 	
 	public void setId(ObjectId id) {this._id = id;}
@@ -35,9 +41,10 @@ public class Account
 	{
 		return "{" +
                 "id='" + _id + "\'" +
-                ", firstname='" + firstname + "\'" +
-                ", lastname='" + lastname + "\'" +
-                ", username='" + username + "\'" +
-                ", email='" + email + "\'}";
+                ", firstName='" + firstName + "\'" +
+                ", lastName='" + lastName + "\'" +
+				", email='" + email + "\'" +
+				", phoneNumber='" + phoneNumber + "\'" +
+                ", languagesSpoken='" + languagesSpoken + "\'}";
 	}
 }

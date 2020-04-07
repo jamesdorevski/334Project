@@ -8,10 +8,13 @@ import lombok.Setter;
 import java.util.*;
 
 @Builder
+@Getter
+@NonNull
 public class Review 
 {
-    @Getter @NonNull private Tourist reviewer;
-    @Getter @NonNull private Date dateUploaded;
-    @Getter @Setter @NonNull private Date dateUpdated;
-    @Getter private String review;
+    private Tourist reviewer;
+    private Date dateUploaded;
+    @Setter private Date dateUpdated;
+    private double rating;
+    private String review;
 }

@@ -4,7 +4,7 @@ import lombok.Builder;
 
 import java.util.*;
 
-public class Tourist extends User
+public class Tourist extends Account
 {
 
     @Builder
@@ -13,7 +13,7 @@ public class Tourist extends User
         super(firstName, lastName, email, phoneNumber, languages);
     }
 
-//    public static void main(String[] args) 
+//    public static void main(String[] args)
 //    {
 //        //test guide
 //        ArrayList<String> langs = new ArrayList<String>();
@@ -28,9 +28,6 @@ public class Tourist extends User
 //                .languages(langs)
 //                .build();
 //
-//        System.out.println(t1.getFirstName());
-//        System.out.println(t1.getEmail());
-//        System.out.println(t1.getPhoneNumber());
-//        System.out.println(t1.getLanguages());
+//        System.out.println(t1.toString());
 //    }
 }

@@ -7,18 +7,20 @@ import lombok.Setter;
 import java.util.*;
 
 @Builder
+@Getter @Setter
 public class Tour 
 {
 
-    @Getter @Setter @NonNull private String TourName;
-    @Getter @Setter @NonNull private TourGuide tourGuide;
-    @Getter @Setter private double duration; //in hours
-    @Getter @Setter @NonNull private String description;
-    @Getter @Setter @NonNull private double basePrice;
-    @Getter @Setter @NonNull private boolean autoApprove;
-    @Getter @Setter private int maxSize;
-    @Getter @Setter @NonNull private ArrayList<String> tags;
-    @Getter @Setter @NonNull private ArrayList<Review> reviews;
+     @NonNull private String tourName;
+     @NonNull private TourGuide tourGuide;
+     @NonNull private String location; //better way than String?
+     private double duration; //in hours
+     private String description;
+     @NonNull private double basePrice;
+     @NonNull private boolean autoApprove;
+     private int maxSize;
+     @NonNull private ArrayList<String> tags;
+     @NonNull private ArrayList<Review> reviews;
     
 //    public static void main(String[] args) {
 //        //test tour

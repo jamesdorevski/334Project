@@ -3,10 +3,14 @@ package com.Localite.model;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Date;
+
 @Builder
+@Getter
 public class Booking 
 {
-    @Getter private Tourist tourist;
-    @Getter private TourGuide tourGuide;
-    @Getter private Tour tour;
+    private Tourist tourist;
+    private TourGuide tourGuide;
+    private Tour tour;
+    private Date date;
 }

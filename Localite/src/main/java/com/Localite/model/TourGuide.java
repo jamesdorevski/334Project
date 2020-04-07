@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.util.*;
 
-public class TourGuide extends User
+public class TourGuide extends Account
 {
     @Getter @Setter
     private double rating = 5.0;
@@ -18,7 +18,20 @@ public class TourGuide extends User
 
     }
 
-//    public static void main(String[] args) 
+    @Override
+    public String toString()
+    {
+        return "{" +
+                "id='" + get_id() + "\'" +
+                ", firstName='" + getFirstName() + "\'" +
+                ", lastName='" + getLastName() + "\'" +
+                ", email='" + getEmail() + "\'" +
+                ", phoneNumber='" + getPhoneNumber() + "\'" +
+                ", rating='" + getRating() + "\'" +
+                ", languagesSpoken='" + getLanguagesSpoken() + "\'}";
+    }
+
+//    public static void main(String[] args)
 //    {
 //        //test tour guide
 //        ArrayList<String> langs = new ArrayList<String>();
@@ -33,10 +46,6 @@ public class TourGuide extends User
 //                .languages(langs)
 //                .build();
 //
-//        System.out.println(t1.getFirstName());
-//        System.out.println(t1.getEmail());
-//        System.out.println(t1.getPhoneNumber());
-//        System.out.println(t1.getLanguages());
-//        System.out.println(t1.getRating());
+//        System.out.println(t1.toString());
 //    }
 }
