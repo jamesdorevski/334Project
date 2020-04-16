@@ -13,10 +13,17 @@ import com.Localite.repository.AccountRepository;
 @Controller
 public class PublicController 
 {
+
 	@GetMapping("/")
 	public String homePage(Model model)
 	{
 		return "home/home";
+	}
+
+	@GetMapping("/testpage")
+	public String testpage(Model model)
+	{
+		return "testpage";
 	}
 
 	@PostMapping("/findTour")
@@ -37,6 +44,46 @@ public class PublicController
 		return "account/register";
 	}
 	
+	@PostMapping("/findAccountByEmail")
+	public String findAccountByEmail(String email, Model model)
+	{
+  String script = "<script>"
+                  +"function alertFunc(){"
+                  +"alert('Josh hasnt done this yet');"
+                  +"}"
+                  +"</script>";
+  //collate results
+  String tableHeader = "<table>"; //<tr><th>FirstName</th><th>LastName</th><th>Email</th><th>Options</th></tr>
+  String tableContents = "";
+  String tableFooter = "</table>";
+    for (Account tourist : repository.findByEmail(email)) {
+      tableContents +=
+                      "<tr>"
+                          + "<td>"+tourist.getFirstName()+"<td>"
+                          + "<td>"+tourist.getLastName()+"<td>"
+                          + "<td>"+tourist.getEmail()+"<td>"
+                          + "<button type='button' onclick='alertFunc()'>Delete</button>"
+                     +"<tr>"
+                     ;
+    }
+
+    String message = tableHeader+tableContents+tableFooter;
+
+		// load page
+		model.addAttribute("title", "Search Results");
+		model.addAttribute("message", script + message );
+		model.addAttribute("redirect", true);
+		model.addAttribute("redirectLink", "/");
+		model.addAttribute("redirectText", "Home");
+		return "message";
+   }
+
+   public void alertFunc(){
+
+      System.out.println("yeet");
+
+   }
+
 	@PostMapping("/createAccount")
 	public String createAccount(@ModelAttribute Tourist tourist, Model model) 
 	{
