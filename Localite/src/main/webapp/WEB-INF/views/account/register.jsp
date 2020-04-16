@@ -12,12 +12,12 @@
 		<table>
 			<tr><td>
 				<span>First Name</span><br/>
-				<input type="text" name="firstname" value="Poppy">
+				<input type="text" name="firstName" value="Poppy">
 			</td></tr>
 			
 			<tr><td>
 				<span>Last Name</span><br/>
-				<input type="text" name="lastname" value="White">
+				<input type="text" name="lastName" value="White">
 			</td></tr>
 
 			<tr><td>

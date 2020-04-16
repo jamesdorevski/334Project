@@ -21,14 +21,15 @@ public class TourGuide extends Account
     @Override
     public String toString()
     {
-        return "{" +
-                "id='" + get_id() + "\'" +
-                ", firstName='" + getFirstName() + "\'" +
-                ", lastName='" + getLastName() + "\'" +
-                ", email='" + getEmail() + "\'" +
-                ", phoneNumber='" + getPhoneNumber() + "\'" +
-                ", rating='" + getRating() + "\'" +
-                ", languagesSpoken='" + getLanguagesSpoken() + "\'}";
+        return "{"
+                + "id='" + get_id() + "\'"
+                + ", firstName='" + getFirstName() + "\'"
+                + ", lastName='" + getLastName() + "\'"
+                + ", email='" + getEmail() + "\'"
+                + ", phoneNumber='" + getPhoneNumber() + "\'"
+                + ", rating='" + getRating() + "\'"
+                + ", languagesSpoken='" + getLanguagesSpoken() + "\'"
+                + "}";
     }
 
 //    public static void main(String[] args)

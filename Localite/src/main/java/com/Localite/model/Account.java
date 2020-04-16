@@ -40,11 +40,12 @@ public abstract class Account
 	public String toString()
 	{
 		return "{" +
-                "id='" + _id + "\'" +
-                ", firstName='" + firstName + "\'" +
-                ", lastName='" + lastName + "\'" +
-				", email='" + email + "\'" +
-				", phoneNumber='" + phoneNumber + "\'" +
-                ", languagesSpoken='" + languagesSpoken + "\'}";
+                "id='" + _id + "\'"
+                + ", firstName='" + firstName + "\'"
+                + ", lastName='" + lastName + "\'"
+				+ ", email='" + email + "\'"
+				+ ", phoneNumber='" + phoneNumber + "\'"
+                + ", languagesSpoken='" + languagesSpoken
+                + "}";
 	}
 }

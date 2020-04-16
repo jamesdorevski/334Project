@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 import com.Localite.model.Account;
+import com.Localite.model.Tourist;
 import com.Localite.repository.AccountRepository;
 
 @Controller
@@ -37,10 +38,10 @@ public class PublicController
 	}
 	
 	@PostMapping("/createAccount")
-	public String createAccount(@ModelAttribute Account account, Model model) 
+	public String createAccount(@ModelAttribute Tourist tourist, Model model) 
 	{
 		// insert into mongo
-		repository.insert(account);
+		repository.insert(tourist);
 		
 		// load page
 		model.addAttribute("title", "Sign Up Complete");
