@@ -78,6 +78,40 @@ public class PublicController
 		return "message";
    }
 
+	@PostMapping("/findAccountByFirstName")
+	public String findAccountByFirstName(String firstName, Model model)
+	{
+  String script = "<script>"
+                  +"function alertFunc(){"
+                  +"alert('Josh hasnt done this yet');"
+                  +"}"
+                  +"</script>";
+  //collate results
+  String tableHeader = "<table>"; //<tr><th>FirstName</th><th>LastName</th><th>Email</th><th>Options</th></tr>
+  String tableContents = "";
+  String tableFooter = "</table>";
+    for (Account tourist : repository.findByFirstName(firstName)) {
+      tableContents +=
+                      "<tr>"
+                          + "<td>"+tourist.getFirstName()+"<td>"
+                          + "<td>"+tourist.getLastName()+"<td>"
+                          + "<td>"+tourist.getEmail()+"<td>"
+                          + "<button type='button' onclick='alertFunc()'>Delete</button>"
+                     +"<tr>"
+                     ;
+    }
+
+    String message = tableHeader+tableContents+tableFooter;
+
+		// load page
+		model.addAttribute("title", "Search Results");
+		model.addAttribute("message", script + message );
+		model.addAttribute("redirect", true);
+		model.addAttribute("redirectLink", "/");
+		model.addAttribute("redirectText", "Home");
+		return "message";
+   }
+
    public void alertFunc(){
 
       System.out.println("yeet");

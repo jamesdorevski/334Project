@@ -10,4 +10,5 @@ import com.Localite.model.Account;
 public interface AccountRepository extends MongoRepository<Account, String>
 {
   public List<Account> findByEmail(String email);
+  public List<Account> findByFirstName(String firstName);
 }
