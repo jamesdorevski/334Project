@@ -43,8 +43,8 @@ public abstract class Account
                 "id='" + _id + "\'"
                 + ", firstName='" + firstName + "\'"
                 + ", lastName='" + lastName + "\'"
-				+ ", email='" + email + "\'"
-				+ ", phoneNumber='" + phoneNumber + "\'"
+				        + ", email='" + email + "\'"
+				        + ", phoneNumber='" + phoneNumber + "\'"
                 + ", languagesSpoken='" + languagesSpoken
                 + "}";
 	}

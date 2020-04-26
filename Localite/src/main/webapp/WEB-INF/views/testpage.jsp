@@ -21,6 +21,13 @@ table, th, td {
 					<input type="text" name="firstName" value="Poppy">
 					<input type="submit" value="Submit">
 				</form>
+			</td>			
+			<td>
+				<form action="deleteById" method="get">
+					<span>delete Accounts By ID</span><br/>
+					<input type="text" name="id" value="id">
+					<input type="submit" value="Submit">
+				</form>
 			</td>
 		</tr>
 	</table>

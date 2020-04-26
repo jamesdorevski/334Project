@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import org.bson.types.ObjectId;
 
 import com.Localite.model.Account;
 import com.Localite.model.Tourist;
@@ -47,11 +48,6 @@ public class PublicController
 	@PostMapping("/findAccountByEmail")
 	public String findAccountByEmail(String email, Model model)
 	{
-  String script = "<script>"
-                  +"function alertFunc(){"
-                  +"alert('Josh hasnt done this yet');"
-                  +"}"
-                  +"</script>";
   //collate results
   String tableHeader = "<table>"; //<tr><th>FirstName</th><th>LastName</th><th>Email</th><th>Options</th></tr>
   String tableContents = "";
@@ -62,7 +58,8 @@ public class PublicController
                           + "<td>"+tourist.getFirstName()+"<td>"
                           + "<td>"+tourist.getLastName()+"<td>"
                           + "<td>"+tourist.getEmail()+"<td>"
-                          + "<button type='button' onclick='alertFunc()'>Delete</button>"
+                          + "<td>"+tourist.get_id()+"<td>"
+                          + "<td><a href='/deleteById?id="+tourist.get_id()+"'><button>Delete Account</button></a><td>"
                      +"<tr>"
                      ;
     }
@@ -71,7 +68,7 @@ public class PublicController
 
 		// load page
 		model.addAttribute("title", "Search Results");
-		model.addAttribute("message", script + message );
+		model.addAttribute("message", message );
 		model.addAttribute("redirect", true);
 		model.addAttribute("redirectLink", "/");
 		model.addAttribute("redirectText", "Home");
@@ -90,13 +87,14 @@ public class PublicController
   String tableHeader = "<table>"; //<tr><th>FirstName</th><th>LastName</th><th>Email</th><th>Options</th></tr>
   String tableContents = "";
   String tableFooter = "</table>";
-    for (Account tourist : repository.findByFirstName(firstName)) {
+    for (Account tourist : repository.findByEmail(email)) {
       tableContents +=
                       "<tr>"
                           + "<td>"+tourist.getFirstName()+"<td>"
                           + "<td>"+tourist.getLastName()+"<td>"
                           + "<td>"+tourist.getEmail()+"<td>"
-                          + "<button type='button' onclick='alertFunc()'>Delete</button>"
+                          + "<td>"+tourist.get_id()+"<td>"
+                          + "<td><a href='/deleteById?id="+tourist.get_id()+"'><button>Delete Account</button></a><td>"
                      +"<tr>"
                      ;
     }
@@ -112,12 +110,6 @@ public class PublicController
 		return "message";
    }
 
-   public void alertFunc(){
-
-      System.out.println("yeet");
-
-   }
-
 	@PostMapping("/createAccount")
 	public String createAccount(@ModelAttribute Tourist tourist, Model model) 
 	{
@@ -127,6 +119,24 @@ public class PublicController
 		// load page
 		model.addAttribute("title", "Sign Up Complete");
 		model.addAttribute("message", "Please check your email for a verification link.");
+		model.addAttribute("redirect", true);
+		model.addAttribute("redirectLink", "/");
+		model.addAttribute("redirectText", "Home");
+		return "message";
+   }
+	
+	// ------- pageTests -------
+
+	@GetMapping("/deleteById")
+	public String deleteById(String id, Model model) 
+	{
+	  ObjectId identifier = new ObjectId(id);
+    String message = "";
+      repository.deleteBy_id(identifier);
+
+		// load page
+		model.addAttribute("title", "Sign Up Complete");
+		model.addAttribute("message", "account "+id+ "has been deleted");
 		model.addAttribute("redirect", true);
 		model.addAttribute("redirectLink", "/");
 		model.addAttribute("redirectText", "Home");
