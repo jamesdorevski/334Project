@@ -87,7 +87,7 @@ public class PublicController
   String tableHeader = "<table>"; //<tr><th>FirstName</th><th>LastName</th><th>Email</th><th>Options</th></tr>
   String tableContents = "";
   String tableFooter = "</table>";
-    for (Account tourist : repository.findByEmail(email)) {
+    for (Account tourist : repository.findByFirstName(firstName)) {
       tableContents +=
                       "<tr>"
                           + "<td>"+tourist.getFirstName()+"<td>"

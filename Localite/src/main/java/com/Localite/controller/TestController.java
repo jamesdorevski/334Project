@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("test")
 public class TestController 
 {
+
 	@GetMapping("/simple")
 	public String loadTestPage()
 	{
