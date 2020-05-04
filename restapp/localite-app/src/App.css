@@ -1,0 +1,90 @@
+.masthead {
+  height: 80vh;
+  min-height: 500px;
+  background-image: url('./images/plane.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-top:-90px;
+}
+.header-btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.header-btn:hover {
+  color: #fff;
+  background-color: transparent;
+  border-color: transparent; /*set the color you want here*/
+}
+
+.header-btn:not(:disabled):not(.disabled).active, .header-btn-primary, .header-btn:not(:disabled):not(.disabled):active, .show>.header-btn.dropdown-toggle {
+  color: #fff;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.header-link {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.header-link:hover {
+  color: #fff;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background-color: #222222;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
