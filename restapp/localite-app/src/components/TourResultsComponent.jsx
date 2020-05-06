@@ -57,7 +57,7 @@ class TourResultsComponent extends Component {
         <h1>TOURS</h1>
         <div>
           {this.state.tours.map((tour) => (
-            <div key={tour.id}>
+            <div key={tour._id.timestamp}>
               <Card>
                 <Card.Body>
                   <Card.Title>{tour.tourName}</Card.Title>
@@ -66,7 +66,7 @@ class TourResultsComponent extends Component {
                     <br/>
                     {tour.description}
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Button onClick={() => this.props.history.push(`/tours/${tour._id.timestamp}`)} variant="primary" >More Info</Button>
                 </Card.Body>
               </Card>
               <hr />

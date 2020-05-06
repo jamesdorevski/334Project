@@ -4,6 +4,10 @@ import AccountService from "../api/AccountService";
 
 class SignUpComponent extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   onSubmit = () => {
     AccountService.createUser("tourist", "Andrea", "Burazor", "aburazor@gmail.com", "5551114444", [])
     .then(() => { this.props.history.push("/home") })

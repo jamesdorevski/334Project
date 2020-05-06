@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Modal, Button, Form, Nav, Dropdown, Image } from "react-bootstrap";
+import { Modal, Button, Form, Dropdown, Image } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import logo from "../images/localite.png";
-import profile from "../images/profile.jpg"
+import profile from "../images/profile.jpg";
 import AuthenticationService from "./AuthenticationService";
 
 class HeaderComponent extends Component {
@@ -110,7 +110,7 @@ class HeaderComponent extends Component {
             </div>
             <ul className="navbar-nav navbar-collapse justify-content-end">
               <li>
-                <Link className="nav-link header-link" to="/">
+              <Link className="nav-link header-link" to="/signup/guide">
                   BECOME A GUIDE
                 </Link>
               </li>
@@ -122,11 +122,35 @@ class HeaderComponent extends Component {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">My Account</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      Another action
+                    {/* This will end up getting the id from session storage*/}
+                    <Dropdown.Item onClick={() => this.props.history.push(`/account/${this.state.loginFailed}`)}>
+                      Account Information
+                    </Dropdown.Item>
+
+                    {/* If they are logged in as Tour Guide*/}
+                    <Dropdown.Item>
+                      View Profile
+                    </Dropdown.Item>
+
+                    <Dropdown.Item onClick={() => this.props.history.push(`/account/${this.state.loginFailed}/upcoming`)}>
+                      Upcoming Tours
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.props.history.push(`/account/${this.state.loginFailed}/past`)}>
+                      Past Tours
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      Messages
                     </Dropdown.Item>
                     <div className="dropdown-divider"></div>
+                    {/* if they are on Tourist view and a Tour Guide*/}
+                    <Dropdown.Item style={{fontWeight: "bold", color: "green"}} href="/" onClick={AuthenticationService.logout}>
+                      Switch to Tour Guide View
+                    </Dropdown.Item>
+
+                    {/* if they are on Tour Guide view and a Tourist*/}
+                    <Dropdown.Item style={{fontWeight: "bold", color: "green"}} href="/" onClick={AuthenticationService.logout}>
+                      Switch to Tourist View
+                    </Dropdown.Item>
                     <Dropdown.Item style={{fontWeight: "bold"}} href="/" onClick={AuthenticationService.logout}>
                       Log Out
                     </Dropdown.Item>
@@ -156,14 +180,6 @@ class HeaderComponent extends Component {
             <Modal.Title>LOG IN</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Nav variant="tabs" defaultActiveKey="tourist">
-              <Nav.Item>
-                <Nav.Link eventKey="tourist">Tourist</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="tourGuide">Tour Guide</Nav.Link>
-              </Nav.Item>
-            </Nav>
             {this.state.loginFailed && (
               <div
                 className="alert alert-warning"
@@ -187,5 +203,6 @@ class HeaderComponent extends Component {
     );
   }
 }
+
 
 export default withRouter(HeaderComponent);
