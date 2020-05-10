@@ -13,7 +13,7 @@ public class Tour
 {
 
      @NonNull private String tourName;
-     @NonNull private TourGuide tourGuide;
+     @NonNull private Account tourGuide;
      @NonNull private Location location;
      private double duration; //in hours
      private String description;

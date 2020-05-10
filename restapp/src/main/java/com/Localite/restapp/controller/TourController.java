@@ -1,8 +1,8 @@
 package com.Localite.restapp.controller;
 
+import com.Localite.restapp.model.Account;
 import com.Localite.restapp.model.Location;
 import com.Localite.restapp.model.Tour;
-import com.Localite.restapp.model.TourGuide;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,12 +26,12 @@ public class TourController {
         ArrayList<String> langs = new ArrayList<String>();
         langs.add("English");
 
-        TourGuide guide1 = TourGuide.builder()
+        Account guide1 = Account.builder()
                 .firstName("James")
                 .lastName("Dorevski")
                 .email("jdorevski@gmail.com")
                 .phoneNumber("5555555555")
-                .languages(langs)
+                .languagesSpoken(langs)
                 .build();
 
         //use database to query tours for given location

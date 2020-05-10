@@ -1,61 +1,65 @@
 package com.Localite.restapp.controller;
 
-
 import com.Localite.restapp.model.Account;
-import com.Localite.restapp.model.TourGuide;
-import com.Localite.restapp.model.Tourist;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.Localite.restapp.repository.AccountRepository;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
-import java.util.ArrayList;
+import java.io.IOException;
+
 
 @RestController
-@CrossOrigin(origins="http://localhost:3000")
-@RequestMapping(value = "/account", method = RequestMethod.GET)
-public class AccountController
-{
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping(value = "/account")
+public class AccountController {
     @Autowired
+    private PasswordEncoder bcrypt;
     private AccountRepository repository;
 
-    @GetMapping(path="/login") //THIS WILL END UP BEING SECURE W SPRING SECURITY AND AUTHENTICATION
-    public Account loginUser(@RequestParam String email, @RequestParam String password){
+    @PostMapping("/create")
+    public Object createUser(@RequestBody Account newAccount) throws Exception {
+//        ======== SAMPLE ========
+//        account = {"type":"null","firstName":Poppy","lastName":White","email":pops@gmail.com","password":asfdg", "phoneNumber":046812","languagesSpoken":[]"}
+//        ======== SAMPLE ========
+        JSONObject result = new JSONObject();
+        try {
 
-        //authenticate user login using database
+            // hashing password
+            newAccount.setHashbrown(bcrypt.encode(newAccount.getHashbrown()));
 
-        //if successful, return user's account info
-        //hardcoded bc idk how to get info from mongo
-        ArrayList<String> langs = new ArrayList<String>();
-        langs.add("English");
-        langs.add("Spanish");
+            // storing in database
+            repository.insert(newAccount);
 
-        Tourist test = new Tourist(
-                "Emily",
-                "Cruz",
-                "eruz@gmail.com",
-                "+1 (623) 555-5555",
-                langs
-
-        );
-
-        return test;
+            // returning results
+            result.put("message", "Account created");
+            result.put("success", true);
+        } catch (Exception e) {
+            result.put("message", "Email already exists");
+            result.put("success", false);
+        } finally {
+            return result;
+        }
     }
 
-//    //get a specific Account's information - by email or by ID?
-////    public Account getUserInfo(String email){
-////        return null;
-////    }
+    @GetMapping(path = "/login")
+    public Account loginUser(@RequestParam("email") String email,
+                             @RequestParam("password") String password) throws IOException {
+        System.out.println(email + " | " + password);
 
-    //IDK what this should return - either ResponseEntity or the user info
-    @PostMapping("/create")
-    public void createUser(@RequestBody Account account){
-        System.out.println(account);
+        // getting user from database
+        //Account user = repository.findByEmail(email);
+
+        //authenticate user login using database
+//        boolean authenticate = bcrypt.matches(password, user.getHashbrown());
+//        System.out.println(authenticate);
+        return new Account();
+    }
+
+        // NOTE: I don't need this if I'm given an object as shown in SAMPLE ~ Le Anne
         //create the new account and add it to the database
 //        Account newAccount;
 //        if (type.equals("tour guide")){
@@ -83,8 +87,6 @@ public class AccountController
 //                .buildAndExpand(newAccount.get_id()).toUri();
 //
 //        return ResponseEntity.created(uri).build();
-    }
-
 
 //    @DeleteMapping(path="/delete")
 //    public ResponseEntity<Void> delete(){

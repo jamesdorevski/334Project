@@ -18,32 +18,36 @@ public class Account
     private String firstName;
     private String lastName;
     private String email;
+    private String hashbrown;
     private String phoneNumber;
     private ArrayList<String> languagesSpoken;
 
-    public Account(){this._id = new ObjectId();}
+    public Account() {}
 
-    public Account(String type, String firstName, String lastName, String email, String phoneNumber, ArrayList<String> languagesSpoken)
+    @Builder
+    public Account(String type, String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
     {
         this.type = type;
         this.firstName = firstName.trim();
         this.lastName = lastName.trim();
         this.email = email.trim();
+        this.hashbrown = hashbrown;
         this.phoneNumber = phoneNumber;
         this.languagesSpoken = languagesSpoken;
     }
-
-    public void setId(ObjectId id) {this._id = id;}
 
     @Override
     public String toString()
     {
         return "{" +
-                "id='" + _id + "\'" +
-                ", firstName='" + firstName + "\'" +
-                ", lastName='" + lastName + "\'" +
-                ", email='" + email + "\'" +
-                ", phoneNumber='" + phoneNumber + "\'" +
-                ", languagesSpoken='" + languagesSpoken + "\'}";
+                "\"_id\":" + _id + "\"" +
+                ",\"type\":" + type + "\"" +
+                ",\"firstName\":" + firstName + "\"" +
+                ",\"lastName\":" + lastName + "\"" +
+                ",\"email\":" + email + "\"" +
+                ",\"hashbrown\":" + hashbrown + "\"" +
+                ",\"phoneNumber\":" + phoneNumber + "\"" +
+                ",\"languagesSpoken\":" + languagesSpoken + "\"" +
+                "}";
     }
 }
