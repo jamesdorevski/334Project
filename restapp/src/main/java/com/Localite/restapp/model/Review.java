@@ -12,7 +12,7 @@ import java.util.Date;
 @NonNull
 public class Review 
 {
-    private Account reviewer;
+    private Tourist reviewer;
     private Date dateUploaded;
     @Setter private Date dateUpdated;
     private double rating;

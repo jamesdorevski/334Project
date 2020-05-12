@@ -4,13 +4,14 @@ import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 
+@Getter @Setter @NonNull
 @Document(collection="Users")
-@Getter
-@Setter
-@NonNull
+@Component @SessionScope
 public class Account
 {
     @Id private ObjectId _id;
@@ -22,9 +23,8 @@ public class Account
     private String phoneNumber;
     private ArrayList<String> languagesSpoken;
 
-    public Account() {}
+    public Account(){}
 
-    @Builder
     public Account(String type, String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
     {
         this.type = type;

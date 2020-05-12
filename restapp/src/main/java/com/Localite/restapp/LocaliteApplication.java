@@ -9,5 +9,4 @@ public class LocaliteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LocaliteApplication.class, args);
 	}
-
 }

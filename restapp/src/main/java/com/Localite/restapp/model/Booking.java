@@ -9,8 +9,8 @@ import java.util.Date;
 @Getter
 public class Booking 
 {
-    private Account tourist;
-    private Account tourGuide;
+    private Tourist tourist;
+    private TourGuide tourGuide;
     private Tour tour;
     private Date date;
 }
