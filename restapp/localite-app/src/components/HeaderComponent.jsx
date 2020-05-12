@@ -29,6 +29,10 @@ class HeaderComponent extends Component {
     console.log(this.state.modalOpen);
   };
 
+  login = () => {
+    this.props.history.push("/login")
+  };
+
   signUpClicked = () => {
     this.setState({ modalOpen: false });
   }
@@ -58,7 +62,7 @@ class HeaderComponent extends Component {
     console.log(isUserLoggedIn);
     console.log(this.state.user);
 
-    //maybe make new component?
+    //will be replaced by Login Component
     const form = (
       <div>
         <Form>
@@ -164,7 +168,7 @@ class HeaderComponent extends Component {
                     type="button"
                     className="btn btn-link header-link"
                     style={{ textDecoration: "none" }}
-                    onClick={this.handleShow}
+                    onClick={this.login}
                   >
                     SIGN UP/LOG IN
                   </button>
