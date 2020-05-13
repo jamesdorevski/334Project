@@ -1,15 +1,13 @@
 package com.Localite.restapp.controller;
 
-import com.Localite.restapp.model.Account;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import com.Localite.restapp.repository.AccountRepository;
-
 import java.io.IOException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.json.JSONObject;
 
+import com.Localite.restapp.model.Account;
+import com.Localite.restapp.repository.AccountRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,57 +16,80 @@ public class AccountController {
     @Autowired private PasswordEncoder bcrypt;
     @Autowired private AccountRepository repository;
     @Autowired private Account sessionUser;
+    private boolean debug = true;
 
     @PostMapping("/create")
-    public Object createUser(@RequestBody Account newAccount) {
-//        ======== SAMPLE ========
-//        account = {"type":"null","firstName":Poppy","lastName":White","email":pops@gmail.com","password":asfdg", "phoneNumber":046812","languagesSpoken":[]"}
-//        ======== SAMPLE ========
+    public Object createUser(@RequestBody Account newAccount) throws Exception
+    {
         JSONObject result = new JSONObject();
-        try {
-            // hashing password
-            newAccount.setHashbrown(bcrypt.encode(newAccount.getHashbrown()));
+        try
+        {
+            newAccount.setHashbrown(bcrypt.encode(newAccount.getHashbrown())); // hashing password
+            repository.insert(newAccount); // storing in database
+            if (debug) System.out.println("Account created");
 
-            // storing in database
-            repository.insert(newAccount);
-            System.out.println("Account created");
-
-            // returning results
             result.put("message", "Account created");
             result.put("success", true);
-        } catch (Exception e) {
-            result.put("message", "Email already exists");
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Error creating new account");
             result.put("success", false);
-        } finally {
+        }
+        finally
+        {
             return result;
         }
     }
 
     @GetMapping(path = "/login")
-    public Account loginUser(@RequestParam("email") String email,
-                             @RequestParam("password") String password) throws IOException {
+    public Object loginUser(@RequestParam("email") String email,
+                            @RequestParam("password") String password) throws Exception
+    {
 
-        // getting user from database
-        Account user = repository.findByEmail(email);
-
-        if(user != null)
+        JSONObject result = new JSONObject();
+        try
         {
-            //authenticate user login using database
-            boolean authenticate = bcrypt.matches(password, user.getHashbrown());
+            Account user = repository.findByEmail(email); // getting user from database
 
-            if (authenticate)
+            if(user != null) // user exists
             {
-                sessionUser = user;
-                System.out.println("User has logged in");
-                return user;
+                boolean authenticate = bcrypt.matches(password, user.getHashbrown()); //authenticate user login using database
+
+                if (authenticate)
+                {
+                    if (debug) System.out.println("User has logged in");
+                    sessionUser = user; // adding user to session??
+
+                    result.put("message", "User has logged in");
+                    result.put("success", true);
+                    return result;
+                }
+                else
+                {
+                    if (debug) System.out.println("Invalid login");
+                    result.put("message", "Invalid login");
+                }
             }
             else
-                System.out.println("Invalid login");
-        }
-        else
-            System.out.println("User does not exist");
+            {
+                if (debug) System.out.println("User does not exist");
+                result.put("message", "User does not exist");
+            }
 
-        return new Account();
+            result.put("success", false);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Error with login");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result;
+        }
     }
 }
 
