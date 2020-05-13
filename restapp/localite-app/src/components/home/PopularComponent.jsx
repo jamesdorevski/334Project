@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import Card from "react-bootstrap/Card"
-import CardDeck from "react-bootstrap/CardDeck"
-import wine from "../../images/wine.jpg"
-import art from "../../images/art.jpg"
-import horses from "../../images/horses.jpg"
+import React, { Component } from "react";
+import Card from "react-bootstrap/Card";
+import CardDeck from "react-bootstrap/CardDeck";
+import wine from "../../images/wine.jpg";
+import art from "../../images/art.jpg";
+import horses from "../../images/horses.jpg";
 
 class PopularComponent extends Component {
   render() {
@@ -15,9 +15,9 @@ class PopularComponent extends Component {
           </center>
           <CardDeck>
             <Card
-            hoverable="true"
-            //we will eventually onclick to go to the page with that specific Tour info
-            onClick={() => alert("Wine Tasting")}
+              hoverable="true"
+              //we will eventually onclick to go to the page with that specific Tour info
+              onClick={() => alert("Wine Tasting")}
             >
               <Card.Img variant="top" src={wine} />
               <Card.Body>
@@ -33,10 +33,7 @@ class PopularComponent extends Component {
                 </Card.Text>
               </Card.Body>
             </Card>
-            <Card
-            hoverable="true"
-            onClick={() => alert("Street Art")}
-            >
+            <Card hoverable="true" onClick={() => alert("Street Art")}>
               <Card.Img variant="top" src={art} />
               <Card.Body>
                 <Card.Title>
@@ -53,10 +50,7 @@ class PopularComponent extends Component {
                 </Card.Text>
               </Card.Body>
             </Card>
-            <Card
-            hoverable="true"
-            onClick={() => alert("Horseback Riding")}
-            >
+            <Card hoverable="true" onClick={() => alert("Horseback Riding")}>
               <Card.Img variant="top" src={horses} />
               <Card.Body>
                 <Card.Title>

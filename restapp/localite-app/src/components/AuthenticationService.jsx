@@ -1,6 +1,8 @@
 import axios from "axios";
 
 class AuthenticationService {
+  //will be replaced by AccountService.js
+  
   registerSuccessfulLogin(username, password) {
     console.log("registerSuccessfulLogin");
     const response = axios.get('http://localhost:8080/login')

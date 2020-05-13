@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.boot:spring-boot-starter-aop:2.3.0.BUILD-SNAPSHOT">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-aop/2.3.0.BUILD-SNAPSHOT/spring-boot-starter-aop-2.3.0.BUILD-20200512.221538-688.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -8,6 +9,15 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-aop/2.3.0.BUILD-SNAPSHOT/spring-boot-starter-aop-2.3.0.BUILD-20200512.221538-688-sources.jar!/" />
+=======
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-aop/2.3.0.BUILD-SNAPSHOT/spring-boot-starter-aop-2.3.0.BUILD-20200511.211338-674.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-aop/2.3.0.BUILD-SNAPSHOT/spring-boot-starter-aop-2.3.0.BUILD-20200511.211338-674-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-aop/2.3.0.BUILD-SNAPSHOT/spring-boot-starter-aop-2.3.0.BUILD-20200511.211338-674-sources.jar!/" />
+>>>>>>> a0570ac6dc08ea508a239b183766bebb15056bfc
     </SOURCES>
   </library>
 </component>

@@ -1,18 +1,17 @@
-import React, { Component } from "react"
-import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
-import Col from "react-bootstrap/Col"
-import { withRouter } from "react-router"
+import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import { withRouter } from "react-router";
 
 class SearchComponent extends Component {
+  searchClicked = () => {
+    this.props.history.push("/search");
+  };
 
-    searchClicked = () => {
-        this.props.history.push("/search");
-    }
-    
   render() {
     return (
-      <div className="container h-100" style={{paddingTop: "200px"}}>
+      <div className="container h-100" style={{ paddingTop: "200px" }}>
         <div className="row h-100 align-items-center">
           <div className="col-12 text-center">
             <div>
@@ -31,9 +30,9 @@ class SearchComponent extends Component {
                   </Form.Group>
                 </Form.Row>
                 <Form.Row className="justify-content-end">
-                <Button size="md" onClick={this.searchClicked}>
-                  Find a tour
-                </Button>
+                  <Button size="md" onClick={this.searchClicked}>
+                    Find a tour
+                  </Button>
                 </Form.Row>
               </Form>
             </div>

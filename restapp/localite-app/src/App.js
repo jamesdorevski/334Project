@@ -16,6 +16,7 @@ import AccountComponent from "./components/AccountComponent"
 import UpcomingToursComponent from "./components/UpcomingToursComponent"
 import PastToursComponent from "./components/PastToursComponent"
 import ProfileComponent from "./components/ProfileComponent"
+import LoginComponent from "./components/LoginComponent"
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={HomeComponent} />
             <Route path="/home" component={HomeComponent} />
+            <Route path="/login" component={LoginComponent} />
             <Route path="/search" component={TourResultsComponent} />
             <Route path="/signup/guide" component={BecomeAGuideComponent} />
             <Route path="/signup" component={SignUpComponent} />
