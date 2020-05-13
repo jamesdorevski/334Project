@@ -37,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-dates": "^21.8.0",
+    "rsuite-daterangepicker": "^3.0.5"
   }
 }

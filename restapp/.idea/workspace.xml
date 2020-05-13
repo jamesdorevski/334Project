@@ -20,17 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_3_0_RELEASE2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_3_0_BUILD_SNAPSHOT.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_3_0_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/LocaliteApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/LocaliteApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/localite-app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/localite-app/src/Utilities/DatePicker.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,14 +216,14 @@
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
     <state x="2261" y="23" key="SettingsEditor/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589094272148" />
-    <state x="2466" y="-22" width="587" height="801" key="find.popup" timestamp="1589096032637">
+    <state x="2466" y="-22" width="587" height="801" key="find.popup" timestamp="1589338843228">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
-    <state x="2466" y="-22" width="587" height="801" key="find.popup/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589096032637" />
-    <state x="2423" y="91" width="672" height="678" key="search.everywhere.popup" timestamp="1589115317420">
+    <state x="2466" y="-22" width="587" height="801" key="find.popup/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589338843228" />
+    <state x="2423" y="91" width="672" height="678" key="search.everywhere.popup" timestamp="1589338774924">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
-    <state x="2423" y="91" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589115317420" />
+    <state x="2423" y="91" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589338774924" />
   </component>
   <component name="masterDetails">
     <states>
