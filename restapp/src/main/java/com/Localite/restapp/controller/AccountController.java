@@ -3,6 +3,8 @@ package com.Localite.restapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
+import java.util.Map;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.json.JSONObject;
 
@@ -43,19 +45,18 @@ public class AccountController {
         }
     }
 
-    @GetMapping(path = "/login")
-    public Object loginUser(@RequestParam("email") String email,
-                            @RequestParam("password") String password) throws Exception
+    @PostMapping(path = "/login")
+    public Object loginUser(@RequestBody String input) throws Exception
     {
-
+        JSONObject login = new JSONObject(input);
         JSONObject result = new JSONObject();
         try
         {
-            Account user = repository.findByEmail(email); // getting user from database
+            Account user = repository.findByEmail(login.getString("email")); // getting user from database
 
             if(user != null) // user exists
             {
-                boolean authenticate = bcrypt.matches(password, user.getHashbrown()); //authenticate user login using database
+                boolean authenticate = bcrypt.matches(login.getString("password"), user.getHashbrown()); //authenticate user login using database
 
                 if (authenticate)
                 {
