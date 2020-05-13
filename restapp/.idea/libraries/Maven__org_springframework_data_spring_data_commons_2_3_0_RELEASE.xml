@@ -1,5 +1,4 @@
 <component name="libraryTable">
-<<<<<<< HEAD:restapp/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_3_0_RELEASE.xml
   <library name="Maven: org.springframework.data:spring-data-commons:2.3.0.RELEASE">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.3.0.RELEASE/spring-data-commons-2.3.0.RELEASE.jar!/" />
@@ -9,17 +8,6 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.3.0.RELEASE/spring-data-commons-2.3.0.RELEASE-sources.jar!/" />
-=======
-  <library name="Maven: org.springframework.data:spring-data-commons:2.3.0.BUILD-SNAPSHOT">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.3.0.BUILD-SNAPSHOT/spring-data-commons-2.3.0.BUILD-20200511.215406-376.jar!/" />
-    </CLASSES>
-    <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.3.0.BUILD-SNAPSHOT/spring-data-commons-2.3.0.BUILD-20200511.215406-376-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.3.0.BUILD-SNAPSHOT/spring-data-commons-2.3.0.BUILD-20200511.215406-376-sources.jar!/" />
->>>>>>> a0570ac6dc08ea508a239b183766bebb15056bfc:restapp/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_3_0_BUILD_SNAPSHOT.xml
     </SOURCES>
   </library>
 </component>
