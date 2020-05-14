@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/AccountController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +40,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="733" />
-  </component>
   <component name="ProjectId" id="1bhgT3QkNHDoAfNkqPGrn7H6pFl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -53,6 +47,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/334Project/restapp" />
     <property name="project.structure.last.edited" value="Problems" />
@@ -186,22 +182,22 @@
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
     <state x="2540" y="133" key="FileChooserDialogImpl/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589115616604" />
-    <state width="1637" height="271" key="GridCell.Tab.0.bottom" timestamp="1589490169239">
+    <state width="1637" height="271" key="GridCell.Tab.0.bottom" timestamp="1589490555547">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
-    <state width="1637" height="271" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490169239" />
-    <state width="1637" height="271" key="GridCell.Tab.0.center" timestamp="1589490169238">
+    <state width="1637" height="271" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490555547" />
+    <state width="1637" height="271" key="GridCell.Tab.0.center" timestamp="1589490555547">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
-    <state width="1637" height="271" key="GridCell.Tab.0.center/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490169238" />
-    <state width="1637" height="271" key="GridCell.Tab.0.left" timestamp="1589490169238">
+    <state width="1637" height="271" key="GridCell.Tab.0.center/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490555547" />
+    <state width="1637" height="271" key="GridCell.Tab.0.left" timestamp="1589490555546">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
-    <state width="1637" height="271" key="GridCell.Tab.0.left/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490169238" />
-    <state width="1637" height="271" key="GridCell.Tab.0.right" timestamp="1589490169238">
+    <state width="1637" height="271" key="GridCell.Tab.0.left/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490555546" />
+    <state width="1637" height="271" key="GridCell.Tab.0.right" timestamp="1589490555547">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
-    <state width="1637" height="271" key="GridCell.Tab.0.right/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490169238" />
+    <state width="1637" height="271" key="GridCell.Tab.0.right/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589490555547" />
     <state x="2290" y="33" key="Maven.ArtifactSearchDialog" timestamp="1589115173744">
       <screen x="1920" y="-126" width="1680" height="1010" />
     </state>
