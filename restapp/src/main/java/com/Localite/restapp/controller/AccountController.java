@@ -1,5 +1,6 @@
 package com.Localite.restapp.controller;
 
+import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class AccountController {
     private boolean debug = true;
 
     @PostMapping("/create")
-    public Object createUser(@RequestBody Account newAccount) throws Exception
+    public String createUser(@RequestBody Account newAccount) throws Exception
     {
         JSONObject result = new JSONObject();
         try
@@ -41,12 +42,12 @@ public class AccountController {
         }
         finally
         {
-            return result;
+            return result.toString();
         }
     }
 
     @PostMapping(path = "/login")
-    public Object loginUser(@RequestBody String input) throws Exception
+    public String loginUser(@RequestBody String input) throws Exception
     {
         JSONObject login = new JSONObject(input);
         JSONObject result = new JSONObject();
@@ -65,7 +66,7 @@ public class AccountController {
 
                     result.put("message", "User has logged in");
                     result.put("success", true);
-                    return result;
+                    return result.toString();
                 }
                 else
                 {
@@ -89,7 +90,7 @@ public class AccountController {
         }
         finally
         {
-            return result;
+            return result.toString();
         }
     }
 }
