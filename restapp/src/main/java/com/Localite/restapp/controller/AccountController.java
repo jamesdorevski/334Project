@@ -71,12 +71,9 @@ public class AccountController {
                 }
                 else
                 {
-                    if (debug) System.out.println("Invalid login");
-                    result.put("message", "Invalid login");
-                    result.put("success", false);
-
                     if (debug) System.out.println("Incorrect email or password");
                     result.put("message", "Incorrect email or password");
+                    result.put("success", false);
                 }
             }
             else
