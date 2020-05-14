@@ -42,6 +42,7 @@ class SignUpComponent extends Component {
           // alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
           // find a way to pass fields as an object so we can extract the params in AuthService
           AccountService.createUser(
+            "tourist",
             fields.firstName,
             fields.lastName,
             fields.email,

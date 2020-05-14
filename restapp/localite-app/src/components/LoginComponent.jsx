@@ -37,7 +37,7 @@ class Login extends Component {
             (response) => {
               console.log(response);
               if (response.data.success) {
-                this.props.history.push("/login");
+                this.props.history.push("/home");
               } else {
                 setSubmitting(false);
                 this.setState({
@@ -66,7 +66,6 @@ class Login extends Component {
       >
         {({ errors, touched, isSubmitting }) => (
           <Form>
-            <h3 className="card-header">Login</h3>
             <div className="card-body">
               <div className="form-group">
                 <label>Email</label>
@@ -100,6 +99,13 @@ class Login extends Component {
                   className="invalid-feedback"
                 />
               </div>
+              {this.state.message && (
+                <div className="form-group">
+                  <div className="alert alert-danger" role="alert">
+                    {this.state.message}
+                  </div>
+                </div>
+              )}
               <div className="form-row">
                 <div className="form-group col">
                   <button
@@ -119,20 +125,16 @@ class Login extends Component {
                     </Link>
                   </p>
                 </div>
-                <div className="form-group col text-right">
-                  <Link to="forgot-password" className="btn btn-link pr-0">
+                <div className="form-group col">
+                  <Link
+                    to="forgot-password"
+                    className="btn btn-link pr-0"
+                    style={{ fontSize: "14px" }}
+                  >
                     Forgot Password?
                   </Link>
                 </div>
               </div>
-
-              {this.state.message && (
-                <div className="form-group">
-                  <div className="alert alert-danger" role="alert">
-                    {this.state.message}
-                  </div>
-                </div>
-              )}
             </div>
           </Form>
         )}

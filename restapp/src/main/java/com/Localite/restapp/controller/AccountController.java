@@ -49,6 +49,8 @@ public class AccountController {
     @PostMapping(path = "/login")
     public String loginUser(@RequestBody String input) throws Exception
     {
+        //can test with email: popo@gmail.com, password: admin
+
         JSONObject login = new JSONObject(input);
         JSONObject result = new JSONObject();
         try
@@ -64,14 +66,14 @@ public class AccountController {
                     if (debug) System.out.println("User has logged in");
                     sessionUser = user; // adding user to session??
 
-                    result.put("message", "User has logged in");
+                    result.put("user", user.toString());
                     result.put("success", true);
                     return result.toString();
                 }
                 else
                 {
-                    if (debug) System.out.println("Invalid login");
-                    result.put("message", "Invalid login");
+                    if (debug) System.out.println("Incorrect email or password");
+                    result.put("message", "Incorrect email or password");
                 }
             }
             else
