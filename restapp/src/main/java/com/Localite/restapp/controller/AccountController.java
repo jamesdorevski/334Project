@@ -87,7 +87,7 @@ public class AccountController {
         catch(Exception e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "Error with login");
+            result.put("message", "Network Error");
             result.put("success", false);
         }
         finally

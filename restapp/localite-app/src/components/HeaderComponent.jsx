@@ -87,6 +87,7 @@ class HeaderComponent extends Component {
                     >
                       <Image src={profile} height="50px" roundedCircle />{" "}
                       Name
+                      
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>

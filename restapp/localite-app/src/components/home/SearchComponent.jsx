@@ -5,8 +5,8 @@ import Col from "react-bootstrap/Col";
 import { withRouter } from "react-router";
 import DatePicker from "../../Utilities/DatePicker";
 
-export const SearchComponent = () => {
-  const [state, setState] = useState([
+export const SearchComponent = ({ ...props }) => {
+  const [ state, setState] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -16,7 +16,10 @@ export const SearchComponent = () => {
   ]);
 
   const searchClicked = () => {
-    this.props.history.push("/search");
+    //these are printing undefined right now -- how are these being updated?
+    console.log(state.startDate)
+    console.log(state.endDate)
+    props.history.push("/search");
   };
 
   return (
