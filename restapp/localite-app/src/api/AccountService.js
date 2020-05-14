@@ -10,11 +10,15 @@ class AccountService {
         password,
       })
       .then((response) => {
-        if (response.data) {
-          sessionStorage.setItem("user", JSON.stringify(response.data));
+        // console.log(response.data)
+
+        if (response.data.success) {
+          // console.log(response.data.user)
+          // console.log(JSON.parse(response.data.user))
+          sessionStorage.setItem("user", (response.data.user));
         }
 
-        return response.data;
+      return response;
       });
   }
 
@@ -22,7 +26,7 @@ class AccountService {
     sessionStorage.removeItem("user");
   }
 
-  createUser(type, firstName, lastName, email, phoneNumber, languagesSpoken) {
+  createUser(type, firstName, lastName, email, password) {
     return axios.post(API_URL + "create", {
       type: type,
       firstName: firstName,
