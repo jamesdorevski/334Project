@@ -40,14 +40,14 @@ public class Account
     public String toString()
     {
         return "{" +
-                "\"_id\":" + _id + "\"" +
-                ",\"type\":" + type + "\"" +
-                ",\"firstName\":" + firstName + "\"" +
-                ",\"lastName\":" + lastName + "\"" +
-                ",\"email\":" + email + "\"" +
-                ",\"hashbrown\":" + hashbrown + "\"" +
-                ",\"phoneNumber\":" + phoneNumber + "\"" +
-                ",\"languagesSpoken\":" + languagesSpoken + "\"" +
+                "\"_id\":\"" + _id + "\"" +
+                ",\"type\":\"" + type + "\"" +
+                ",\"firstName\":\"" + firstName + "\"" +
+                ",\"lastName\":\"" + lastName + "\"" +
+                ",\"email\":\"" + email + "\"" +
+                ",\"hashbrown\":\"" + hashbrown + "\"" +
+                ",\"phoneNumber\":\"" + phoneNumber + "\"" +
+                ",\"languagesSpoken\":" + languagesSpoken +
                 "}";
     }
 }

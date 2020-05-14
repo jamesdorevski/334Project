@@ -66,26 +66,25 @@ public class AccountController {
 
                     result.put("message", "User has logged in");
                     result.put("success", true);
-                    return result.toString();
                 }
                 else
                 {
                     if (debug) System.out.println("Invalid login");
                     result.put("message", "Invalid login");
+                    result.put("success", false);
                 }
             }
             else
             {
                 if (debug) System.out.println("User does not exist");
                 result.put("message", "User does not exist");
+                result.put("success", false);
             }
-
-            result.put("success", false);
         }
         catch(Exception e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "Error with login");
+            result.put("message", "Error with login/mongo");
             result.put("success", false);
         }
         finally

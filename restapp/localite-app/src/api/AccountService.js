@@ -28,6 +28,7 @@ class AccountService {
       firstName: firstName,
       lastName: lastName,
       email: email,
+      hashbrown: password,
       phoneNumber: phoneNumber,
       languagesSpoken: languagesSpoken,
     });
