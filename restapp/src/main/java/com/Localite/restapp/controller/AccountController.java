@@ -1,13 +1,11 @@
 package com.Localite.restapp.controller;
 
-import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.io.IOException;
-import java.util.Map;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.json.JSONObject;
+
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.Localite.restapp.model.Account;
 import com.Localite.restapp.repository.AccountRepository;
@@ -34,10 +32,16 @@ public class AccountController {
             result.put("message", "Account created");
             result.put("success", true);
         }
+        catch (DataIntegrityViolationException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Email already exist!");
+            result.put("success", false);
+        }
         catch (Exception e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "Error creating new account");
+            result.put("message", "Network Error");
             result.put("success", false);
         }
         finally
