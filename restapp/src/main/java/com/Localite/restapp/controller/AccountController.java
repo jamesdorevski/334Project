@@ -13,7 +13,8 @@ import com.Localite.restapp.repository.AccountRepository;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/account")
-public class AccountController {
+public class AccountController
+{
     @Autowired private PasswordEncoder bcrypt;
     @Autowired private AccountRepository repository;
     @Autowired private Account sessionUser;
@@ -25,6 +26,7 @@ public class AccountController {
         JSONObject result = new JSONObject();
         try
         {
+            // TODO - receive name="type" then building Tourist/Tourguide
             newAccount.setHashbrown(bcrypt.encode(newAccount.getHashbrown())); // hashing password
             repository.insert(newAccount); // storing in database
             if (debug) System.out.println("Account created");

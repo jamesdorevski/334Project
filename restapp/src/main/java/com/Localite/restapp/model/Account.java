@@ -2,6 +2,7 @@ package com.Localite.restapp.model;
 
 import lombok.*;
 import org.bson.types.ObjectId;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 public class Account
 {
     @Id private ObjectId _id;
-    private String type;
     private String firstName;
     private String lastName;
     private String email;
@@ -23,11 +23,13 @@ public class Account
     private String phoneNumber;
     private ArrayList<String> languagesSpoken;
 
+    // admin stuff
+    private Long banUntil = null;
+
     public Account(){}
 
-    public Account(String type, String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
+    public Account(String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
     {
-        this.type = type;
         this.firstName = firstName.trim();
         this.lastName = lastName.trim();
         this.email = email.trim();
@@ -36,12 +38,20 @@ public class Account
         this.languagesSpoken = languagesSpoken;
     }
 
+    public String getSimpleUser()
+    {
+        JSONObject simple = new JSONObject();
+        simple.put("firstName", firstName);
+        simple.put("lastName", lastName);
+        simple.put("email", email);
+        return simple.toString();
+    }
+
     @Override
     public String toString()
     {
         return "{" +
                 "\"_id\":\"" + _id + "\"" +
-                ",\"type\":\"" + type + "\"" +
                 ",\"firstName\":\"" + firstName + "\"" +
                 ",\"lastName\":\"" + lastName + "\"" +
                 ",\"email\":\"" + email + "\"" +

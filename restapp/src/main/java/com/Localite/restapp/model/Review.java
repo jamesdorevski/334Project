@@ -4,17 +4,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Builder
-@Getter
-@NonNull
+@Setter @Getter @NonNull
+@Document(collection="Reviews")
 public class Review 
 {
-    private Tourist reviewer;
-    private Date dateUploaded;
-    @Setter private Date dateUpdated;
+    private Account reviewer; // GetSimpleUser()
+    private Long dateCreated; // timestamp
     private double rating;
-    private String review;
+    private String description;
+
+    private Long dateUpdated; // timestamp
+
+    @Builder
+    public Review(Account reviewer, Long dateCreated, double rating, String description)
+    {
+        this.reviewer = reviewer;
+        this.dateCreated = dateCreated;
+        this.rating = rating;
+        this.description = description;
+    }
 }

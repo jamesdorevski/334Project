@@ -1,5 +1,4 @@
-package com.Localite.repository;
-
+package com.Localite.restapp.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

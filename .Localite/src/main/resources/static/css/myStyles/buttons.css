@@ -1,0 +1,57 @@
+img.addButton
+{
+    content: url("/resources/png/addButton.png");
+    height: 20px;
+}
+
+img.reduceButton
+{
+    content: url("/resources/png/reduceButton.png");
+    height: 20px;
+}
+
+.button-1
+{
+    cursor: pointer;
+    display: inline-block;
+    width: 320px;
+    
+    background-color:#105a7e;
+    color: white;
+    
+    padding: 20px 20px;
+    margin-top: 20px;
+    border: 2px solid #105a7e;
+    
+    font-size: 1em;
+    font-weight: bold;
+    
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing:1px;    
+}
+
+.button-1:hover
+{
+    background-color: white;
+    color: black;
+}
+
+/* smaller submit button - Homepage*/
+.button-2
+{
+    width: 130px !important;
+    height: 40px;
+
+    padding: 5px !important;
+    
+    background-color:#105a7e;
+    color: green;
+    
+    font-size: 0.85em !important;
+    font-weight: bold;
+    
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;    
+}
