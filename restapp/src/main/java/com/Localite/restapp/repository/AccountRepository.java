@@ -9,4 +9,7 @@ import com.Localite.restapp.model.Account;
 public interface AccountRepository extends MongoRepository<Account, String>
 {
     public Account findByEmail(String email);
+    public List<Account> findByFirstName(String firstName);
+    public void deleteBy_id(ObjectId _id);    //maybe have it return bool instead of void?
+    public void deleteByEmail(String email);  //maybe have it return bool instead of void?
 }

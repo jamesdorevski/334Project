@@ -33,8 +33,8 @@ class AccountService {
       lastName: lastName,
       email: email,
       hashbrown: password,
-      phoneNumber: phoneNumber,
-      languagesSpoken: languagesSpoken,
+      //phoneNumber: phoneNumber, //currently undefined, throws error
+      //languagesSpoken: languagesSpoken, //currently undefined, throws error
     });
   }
 
