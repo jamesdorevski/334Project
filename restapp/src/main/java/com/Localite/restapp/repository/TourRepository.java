@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import org.bson.types.ObjectId;
 
-import com.Localite.model.Tour;
+import com.Localite.restapp.model.Tour;
 
 @Repository
 public interface TourRepository extends MongoRepository<Tour, String>
