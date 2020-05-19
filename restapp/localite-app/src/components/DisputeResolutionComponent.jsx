@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 
 class DisputeResolutionComponent extends Component {
-
-  componentDidMount = () => {
-  };
+  componentWillMount = () => {};
 
   render() {
     return (
       <>
-        <h1>DISPUTE RESOLUTION</h1>
+        <header></header>
+        <section className="py-1">
+          <h2 style={{ padding: "20px" }}>Dispute Resolution</h2>
+          <div
+            style={{ textAlign: "left" }}
+            className="container"
+            background-color="transparent"
+          ></div>
+        </section>
       </>
     );
   }

@@ -60,7 +60,7 @@ class HeaderComponent extends Component {
     return (
       <>
         <header>
-          <nav className="navbar navbar-expand-md transparent">
+          <nav className="navbar navbar-expand-md transparent" style={{background: "linear-gradient(rgba(0, 0, 0, 0.5), transparent)"}}>
             <div>
               <a href="/" className="navbar-brand">
                 <img
