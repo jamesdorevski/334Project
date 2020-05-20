@@ -1,3 +1,4 @@
 node_modules
 .mvn
-.idea
+/.idea/
+.idea/workspace.xml

@@ -26,7 +26,6 @@ public class AccountController
         JSONObject result = new JSONObject();
         try
         {
-            // TODO - receive name="type" then building Tourist/Tourguide
             newAccount.setHashbrown(bcrypt.encode(newAccount.getHashbrown())); // hashing password
             repository.insert(newAccount); // storing in database
             if (debug) System.out.println("Account created");
@@ -55,7 +54,7 @@ public class AccountController
     @PostMapping(path = "/login")
     public String loginUser(@RequestBody String input) throws Exception
     {
-        //can test with email: popo@gmail.com, password: admin
+        //test with email: pops@gmail.com, password: admin
 
         JSONObject login = new JSONObject(input);
         JSONObject result = new JSONObject();
