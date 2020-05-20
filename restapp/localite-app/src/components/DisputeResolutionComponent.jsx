@@ -7,6 +7,11 @@ class DisputeResolutionComponent extends Component {
     return (
       <>
         <header></header>
+        <hr
+          style={{
+            margin: "-2px",
+          }}
+        />
         <section className="py-1">
           <h2 style={{ padding: "20px" }}>Dispute Resolution</h2>
           <div

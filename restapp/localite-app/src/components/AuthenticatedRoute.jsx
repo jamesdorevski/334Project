@@ -1,13 +1,13 @@
 import React, { Component } from "react"
-import AuthenticationService from "./AuthenticationService.jsx"
+import AccountService from "../api/AccountService"
 import { Route, Redirect } from "react-router-dom"
 
 class AuthenticatedRoute extends Component {
   render() {
-    if (AuthenticationService.isUserLoggedIn()) {
+    if (AccountService.isUserLoggedIn()) {
       return <Route {...this.props} />;
     } else {
-      return <Redirect to="/login" />;
+      return <Redirect to="/" />;
     }
   }
 }
