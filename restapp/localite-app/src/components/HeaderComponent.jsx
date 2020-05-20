@@ -31,8 +31,8 @@ class HeaderComponent extends Component {
   };
 
   login = () => {
-    this.props.history.push("/login")
-  }
+    this.props.history.push("/login");
+  };
 
   // loginClicked = () => {
   //   //currently hardcoded
@@ -60,7 +60,7 @@ class HeaderComponent extends Component {
     return (
       <>
         <header>
-          <nav className="navbar navbar-expand-md transparent" style={{background: "linear-gradient(rgba(0, 0, 0, 0.5), transparent)"}}>
+          <nav className="navbar navbar-expand-md transparent">
             <div>
               <a href="/" className="navbar-brand">
                 <img
@@ -85,9 +85,7 @@ class HeaderComponent extends Component {
                       className="header-link header-btn"
                       id="dropdown-basic"
                     >
-                      <Image src={profile} height="50px" roundedCircle />{" "}
-                      Name
-                      
+                      <Image src={profile} height="50px" roundedCircle /> Name
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
