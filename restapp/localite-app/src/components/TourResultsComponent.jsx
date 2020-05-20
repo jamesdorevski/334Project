@@ -78,9 +78,6 @@ class TourResultsComponent extends Component {
       <>
         <hr
           style={{
-            color: "black",
-            backgroundColor: "black",
-            height: 0,
             margin: "-2px",
           }}
         />
