@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Figure } from "react-bootstrap";
+import { Container, Row, Col, Figure, Button } from "react-bootstrap";
 import AccountService from "../api/AccountService";
 import { Link } from "react-router-dom";
 
@@ -31,10 +31,11 @@ class ProfileComponent extends Component {
               </Col>
               <Col>
                 <h1>Hi, I'm {user.firstName}</h1>
+                <p>Languages Spoken:</p>
                 {id === user._id && (
                   <Link
                     className="nav-link"
-                    to={{ pathname: `/account/${user._id}` }}
+                    to={{ pathname: `/account/info` }}
                   >
                     Edit Profile
                   </Link>
@@ -44,6 +45,10 @@ class ProfileComponent extends Component {
             <hr />
             <Row>
               <h3>Current Tours</h3>
+              
+            </Row>
+            <Row>
+            <Button className="float-right">Create New Tour</Button>
             </Row>
             <hr />
             <Row>
