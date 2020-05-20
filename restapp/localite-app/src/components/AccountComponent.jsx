@@ -123,8 +123,8 @@ class AccountComponent extends Component {
             <h5>Phone Number</h5>
             <p>{user.phoneNumber}</p>
 
-            {/* <h5>Languages Spoken</h5>
-        <p>{user.languagesSpoken}</p> */}
+            <h5>Languages Spoken</h5>
+            <p>{user.languagesSpoken.join(", ")}</p>
 
             <Button style={{ margin: "5px" }}>Update Account Info</Button>
             <Button

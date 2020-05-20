@@ -50,8 +50,8 @@ class AccountService {
   }
 
   deleteUser(id) {
-    return {"success": false, "message": "Network Error"}
-    // return axios.delete(API_URL + `delete/${id}`);
+    // return {"success": false, "message": "Network Error"}
+    return axios.delete(API_URL + `delete/${id}`);
   }
 
   isUserLoggedIn() {
