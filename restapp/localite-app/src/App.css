@@ -13,6 +13,16 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
+.masthead-tour {
+  height: 80vh;
+  min-height: 500px;
+  background-image: url('./images/blue-mountains.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-top:-90px;
+}
 .header-btn {
   display: inline-block;
   text-align: center;
