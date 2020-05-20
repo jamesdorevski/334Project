@@ -4,15 +4,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
 @Builder
 @Getter @Setter
-@Document(collection="Tours")
+//@Document(collection="Tours")
 public class Tour 
 {
+     @Id private ObjectId _id;
      private Account tourGuide; // owner of tour
      private Location location;
      private String tourName;
