@@ -10,18 +10,25 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 
-@Getter @Setter @NonNull
+@Getter @Setter
 @Document(collection="Users")
 @Component @SessionScope
 public class Account
 {
     @Id private ObjectId _id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String hashbrown;
-    private String phoneNumber;
-    private ArrayList<String> languagesSpoken;
+    @NonNull private String type; // tourist || tourguide || both || admin
+    @NonNull private String firstName;
+    @NonNull private String lastName;
+    @NonNull private String email;
+    @NonNull private String hashbrown;
+    @NonNull private String phoneNumber;
+    @NonNull private ArrayList<String> languagesSpoken;
+
+    // Tourist
+
+    // Tourguide
+    private String licence;
+
 
     // admin stuff
     private Long banUntil = null;
@@ -41,6 +48,7 @@ public class Account
     public String getSimpleUser()
     {
         JSONObject simple = new JSONObject();
+        simple.put("_id", _id);
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
@@ -50,14 +58,14 @@ public class Account
     @Override
     public String toString()
     {
-        return "{" +
-                "\"_id\":\"" + _id + "\"" +
-                ",\"firstName\":\"" + firstName + "\"" +
-                ",\"lastName\":\"" + lastName + "\"" +
-                ",\"email\":\"" + email + "\"" +
-                ",\"hashbrown\":\"" + hashbrown + "\"" +
-                ",\"phoneNumber\":\"" + phoneNumber + "\"" +
-                ",\"languagesSpoken\":" + languagesSpoken +
-                "}";
+        JSONObject user = new JSONObject();
+        user.put("_id", _id);
+        user.put("firstName", firstName);
+        user.put("lastName", lastName);
+        user.put("email", email);
+        user.put("hashbrown", hashbrown);
+        user.put("phoneNumber", phoneNumber);
+        user.put("languagesSpoken", languagesSpoken);
+        return user.toString();
     }
 }
