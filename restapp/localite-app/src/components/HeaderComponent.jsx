@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import logo from "../images/localite.png";
 import profile from "../images/profile.jpg";
-import AuthenticationService from "./AuthenticationService";
 import LoginComponent from "./LoginComponent";
 import AccountService from "../api/AccountService";
 
@@ -15,6 +14,7 @@ class HeaderComponent extends Component {
     this.state = {
       modalOpen: false,
       user: null,
+      currentView: "tourist"
     };
   }
 
@@ -73,11 +73,11 @@ class HeaderComponent extends Component {
               </a>
             </div>
             <ul className="navbar-nav navbar-collapse justify-content-end">
-              <li>
+              {user.type === "tourist" && <li>
                 <Link className="nav-link header-link" to="/signup/guide">
                   BECOME A GUIDE
                 </Link>
-              </li>
+              </li>}
 
               {isUserLoggedIn && (
                 <li>
@@ -97,14 +97,14 @@ class HeaderComponent extends Component {
                         Account Information
                       </Dropdown.Item>
 
-                      {/* If they are logged in as Tour Guide*/}
-                      <Dropdown.Item
+                      {/* If they are a Tour Guide and View is Tour Guide*/}
+                      {user.type === "both" && this.state.view === "tourguide" && <Dropdown.Item
                         onClick={() =>
                           this.props.history.push(`/account/show/${user._id}`)
                         }
                       >
                         View Profile
-                      </Dropdown.Item>
+                      </Dropdown.Item>}
 
                       <Dropdown.Item
                         onClick={() =>
@@ -127,22 +127,22 @@ class HeaderComponent extends Component {
                       <Dropdown.Item>Messages</Dropdown.Item>
                       <div className="dropdown-divider"></div>
                       {/* if they are on Tourist view and a Tour Guide*/}
-                      <Dropdown.Item
+                      {user.type === "both" && this.state.currentView === "tourist" && <Dropdown.Item
                         style={{ fontWeight: "bold", color: "green" }}
                         href="/"
-                        onClick={AuthenticationService.logout}
+                        onClick={this.setState({currentView: "tourguide"})}
                       >
                         Switch to Tour Guide View
-                      </Dropdown.Item>
+                      </Dropdown.Item>}
 
                       {/* if they are on Tour Guide view and a Tourist*/}
-                      <Dropdown.Item
+                      {user.type === "both" && this.state.currentView === "tourguide" && <Dropdown.Item
                         style={{ fontWeight: "bold", color: "green" }}
                         href="/"
-                        onClick={AuthenticationService.logout}
+                        onClick={this.setState({currentView: "tourist"})}
                       >
                         Switch to Tourist View
-                      </Dropdown.Item>
+                      </Dropdown.Item>}
                       <Dropdown.Item
                         style={{ fontWeight: "bold" }}
                         href="/"

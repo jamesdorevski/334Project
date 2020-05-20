@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AccountService from "../api/AccountService.js";
 import { Figure, Button } from "react-bootstrap";
-import { confirmAlert, onClose } from "react-confirm-alert";
+import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 class AccountComponent extends Component {

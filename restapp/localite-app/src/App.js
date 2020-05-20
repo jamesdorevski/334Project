@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import AuthenticatedRoute from "./components/AuthenticatedRoute"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
@@ -38,6 +39,7 @@ class App extends Component {
             <AuthenticatedRoute path="/account/:id/upcoming" component={UpcomingToursComponent} />
             <AuthenticatedRoute path="/account/:id/past" component={PastToursComponent} />
             <AuthenticatedRoute path="/account/info" component={AccountComponent} />
+            <Route render={() => <Redirect to={{pathname: "/"}} />} />
           </Switch>
           <FooterComponent />
         </Router>

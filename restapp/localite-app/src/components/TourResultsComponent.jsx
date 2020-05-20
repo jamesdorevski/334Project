@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
 import TourService from "../api/TourService";
 import Tour from "./TourComponent";
 

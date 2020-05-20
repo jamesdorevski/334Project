@@ -35,7 +35,7 @@ export default function TourComponent(props) {
                 <Typography gutterBottom variant="subtitle1">
                   {props.tour.tourName}
                 </Typography>
-                <Typography zeroMinWidth variant="body2" gutterBottom>
+                <Typography zerominwidth="true" variant="body2" gutterBottom>
                   {props.tour.description}
                 </Typography>
                 {props.tour.tags.map((tag) => (
@@ -43,6 +43,7 @@ export default function TourComponent(props) {
                     gutterBottom
                     variant="body2"
                     color="textSecondary"
+                    key={tag}
                   >
                     {tag}
                   </Typography>
@@ -69,6 +70,7 @@ export default function TourComponent(props) {
                     marginLeft: "5px",
                   }}
                   src={require("../images/star.png")}
+                  alt={props.tour.tourName}
                 />
               </Typography>
               <Typography variant="body2" color="textSecondary">
