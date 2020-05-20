@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AccountService from "../api/AccountService";
+import { Multiselect } from "multiselect-react-dropdown";
 
 class SignUpComponent extends Component {
   constructor(props) {
@@ -10,7 +11,34 @@ class SignUpComponent extends Component {
     this.state = {
       message: "",
       success: false,
+      langArray: [
+        { lang: "English" },
+        { lang: "Spanish"},
+        { lang: "French"},
+        { lang: "Arabic"},
+        { lang: "Chinese"},
+        { lang: "Greek" },
+        { lang: "Italian"}
+      ],
+      selectedValues: [
+      ]
     };
+  }
+
+  onSelect = (selectedList, selectedItem) => {
+    this.setState({selectedValues: selectedList})
+    // const list = this.state.selectedValues
+    // list.concat(selectedItem)
+    // this.setState({selectedValues: list})
+    console.log(this.state.selectedValues)
+  }
+
+  onRemove = (selectedList, removedItem) => {
+    this.setState({selectedValues: selectedList})
+    // const list = this.state.selectedValues
+    // list.concat(selectedItem)
+    // this.setState({selectedValues: list})
+    console.log(this.state.selectedValues)
   }
 
   render() {
@@ -22,6 +50,7 @@ class SignUpComponent extends Component {
           email: "",
           password: "",
           confirmPassword: "",
+          phoneNumber: ""
         }}
 
         validationSchema={Yup.object().shape({
@@ -36,6 +65,7 @@ class SignUpComponent extends Component {
           confirmPassword: Yup.string()
             .oneOf([Yup.ref("password"), null], "Passwords must match")
             .required("Confirm Password is required"),
+          phoneNumber: Yup.string().required("Phone Number is required")
         })}
 
         onSubmit={(fields) => {
@@ -45,7 +75,9 @@ class SignUpComponent extends Component {
             fields.firstName,
             fields.lastName,
             fields.email,
-            fields.password
+            fields.password,
+            fields.phoneNumber,
+            this.state.langArray
           ).then(
             (response) => {
               console.log(response);
@@ -160,6 +192,32 @@ class SignUpComponent extends Component {
                 component="div"
                 className="invalid-feedback"
               />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <Field
+                name="phoneNumber"
+                type="text"
+                className={
+                  "form-control" +
+                  (errors.phoneNumber && touched.phoneNumber ? " is-invalid" : "")
+                }
+              />
+              <ErrorMessage
+                name="phoneNumber"
+                component="div"
+                className="invalid-feedback"
+              />
+            </div>
+            <div className="form-group">
+            <label htmlFor="languagesSpoken">Languages Spoken</label>
+            <Multiselect
+              options={this.state.langArray}
+              displayValue="lang"
+              showCheckbox={true}
+              onRemove={this.onRemove}
+              onSelect={this.onSelect}
+            />
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary mr-2">
