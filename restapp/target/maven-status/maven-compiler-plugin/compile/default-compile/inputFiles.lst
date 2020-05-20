@@ -1,12 +1,12 @@
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/controller/AccountController.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/TourGuide.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/Location.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/repository/AccountRepository.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/Tour.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/Booking.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/LocaliteApplication.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/AppConfig.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/Tourist.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/controller/TourController.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/Account.java
-/home/antvena/Documents/Git Repos/334Project/restapp/src/main/java/com/Localite/restapp/model/Review.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/repository/TourRepository.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/model/Review.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/controller/TourController.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/AppConfig.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/model/Booking.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/model/Account.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/controller/PublicController.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/controller/AccountController.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/repository/AccountRepository.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/LocaliteApplication.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/model/Tour.java
+/Users/jamesdorevski/Workspace/334Project/restapp/src/main/java/com/Localite/restapp/model/Location.java
