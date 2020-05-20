@@ -38,7 +38,7 @@ public class PublicController
     }
 
     @PostMapping(value="faq/addMultiple")
-    public String addOneQuestion(@RequestBody ArrayList<FAQ> questions)
+    public String addMultipleQuestions(@RequestBody ArrayList<FAQ> questions)
     {
         JSONObject result = new JSONObject();
         try
@@ -91,7 +91,7 @@ public class PublicController
         }
     }
 
-    @PostMapping(value="faq/delete/{faqID}")
+    @DeleteMapping(value="faq/delete/{faqID}")
     public String deleteQuestion(@PathVariable ObjectId faqID)
     {
         JSONObject result = new JSONObject();

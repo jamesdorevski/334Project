@@ -14,7 +14,7 @@ public interface AccountRepository extends MongoRepository<Account, String>
     public Account findBy_id(ObjectId id);
     public List<Account> findByFirstName(String firstName);
 
-    public void deleteBy_id(ObjectId _id);
+    public void deleteBy_id(ObjectId id);
     public void deleteByEmail(String email);
 }
 

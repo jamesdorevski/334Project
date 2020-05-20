@@ -1,5 +1,6 @@
 package com.Localite.restapp.model;
 
+import com.mongodb.BasicDBObject;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,8 +17,8 @@ import java.util.Date;
 public class Booking 
 {
     @Id private ObjectId _id;
-    private JSONObject tourGuide;
-    private JSONObject tourist;
+    private BasicDBObject tourGuide;
+    private BasicDBObject tourist;
     private Tour tour;
     private Long date; // timestamp
     private String dietaryStuff;

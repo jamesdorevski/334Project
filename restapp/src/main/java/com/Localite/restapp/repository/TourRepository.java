@@ -2,7 +2,6 @@ package com.Localite.restapp.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 import org.bson.types.ObjectId;
 
 import com.Localite.restapp.model.Tour;
@@ -10,5 +9,6 @@ import com.Localite.restapp.model.Tour;
 @Repository
 public interface TourRepository extends MongoRepository<Tour, String>
 {
-  public void deleteBy_id(ObjectId _id);
+  public Tour findBy_id(ObjectId id);
+  public void deleteBy_id(ObjectId id);
 }
