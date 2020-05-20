@@ -24,6 +24,12 @@
   margin-top:-90px;
 }
 
+.tour-img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+}
+
 .header-btn {
   display: inline-block;
   text-align: center;
