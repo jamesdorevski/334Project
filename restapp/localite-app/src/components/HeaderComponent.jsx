@@ -56,6 +56,7 @@ class HeaderComponent extends Component {
 
   render() {
     const isUserLoggedIn = AccountService.isUserLoggedIn();
+    const user = AccountService.getCurrentUser();
 
     return (
       <>
@@ -85,28 +86,30 @@ class HeaderComponent extends Component {
                       className="header-link header-btn"
                       id="dropdown-basic"
                     >
-                      <Image src={profile} height="50px" roundedCircle /> Name
+                      <Image src={profile} height="50px" roundedCircle />{" "}
+                      {user.firstName}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      {/* This will end up getting the id from session storage*/}
                       <Dropdown.Item
-                        onClick={() =>
-                          this.props.history.push(
-                            `/account/${AccountService.getCurrentUser._id}`
-                          )
-                        }
+                        onClick={() => this.props.history.push(`/account/info`)}
                       >
                         Account Information
                       </Dropdown.Item>
 
                       {/* If they are logged in as Tour Guide*/}
-                      <Dropdown.Item>View Profile</Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() =>
+                          this.props.history.push(`/account/show/${user._id}`)
+                        }
+                      >
+                        View Profile
+                      </Dropdown.Item>
 
                       <Dropdown.Item
                         onClick={() =>
                           this.props.history.push(
-                            `/account/${AccountService.getCurrentUser._id}/upcoming`
+                            `/account/${user._id}/upcoming`
                           )
                         }
                       >

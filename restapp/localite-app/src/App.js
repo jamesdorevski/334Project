@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import AuthenticatedRoute from "./components/AuthenticatedRoute"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import HeaderComponent from "./components/HeaderComponent.jsx"
@@ -10,7 +11,6 @@ import SignUpComponent from "./components/SignUpComponent.jsx"
 import AboutUsComponent from "./components/AboutUsComponent.jsx"
 import FAQComponent from "./components/FAQComponent.jsx"
 import DisputeResolutionComponent from "./components/DisputeResolutionComponent.jsx"
-import TourComponent from "./components/TourComponent.jsx"
 import BecomeAGuideComponent from "./components/BecomeAGuideComponent.jsx"
 import AccountComponent from "./components/AccountComponent"
 import UpcomingToursComponent from "./components/UpcomingToursComponent"
@@ -34,11 +34,10 @@ class App extends Component {
             <Route path="/about" component={AboutUsComponent} />
             <Route path="/faq" component={FAQComponent} />
             <Route path="/disputes" component={DisputeResolutionComponent} />
-            <Route path="/tours/:id" component={TourComponent} />
             <Route path="/account/show/:id" component={ProfileComponent} />
-            <Route path="/account/:id/upcoming" component={UpcomingToursComponent} />
-            <Route path="/account/:id/past" component={PastToursComponent} />
-            <Route path="/account/:id" component={AccountComponent} />
+            <AuthenticatedRoute path="/account/:id/upcoming" component={UpcomingToursComponent} />
+            <AuthenticatedRoute path="/account/:id/past" component={PastToursComponent} />
+            <AuthenticatedRoute path="/account/info" component={AccountComponent} />
           </Switch>
           <FooterComponent />
         </Router>
