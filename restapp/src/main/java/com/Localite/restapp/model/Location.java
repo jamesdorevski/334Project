@@ -10,7 +10,8 @@ import org.springframework.data.annotation.Id;
 @Getter
 @Setter
 @NonNull
-public class Location {
+public class Location
+{
     @Id private ObjectId _id;
     private String city;
     private String country;
