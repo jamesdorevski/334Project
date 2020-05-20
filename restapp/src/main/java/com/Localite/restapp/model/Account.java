@@ -24,7 +24,9 @@ public class Account
     private String hashbrown;
     private String phoneNumber;
     private ArrayList<String> languagesSpoken;
+    private String gender;
     private String img; // https://blahblah.com
+    private double rating = 5.0; // holds average that being calculated upon profile being viewed
 
     // Tourist
 
@@ -36,14 +38,19 @@ public class Account
 
     public Account(){}
 
-    public Account(String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
+    public Account(String type, String firstName, String lastName, String email, String hashbrown,
+                   String phoneNumber, ArrayList<String> languagesSpoken,
+                   String gender, String img)
     {
+        this.type = type;
         this.firstName = firstName.trim();
         this.lastName = lastName.trim();
         this.email = email.trim();
         this.hashbrown = hashbrown;
         this.phoneNumber = phoneNumber;
         this.languagesSpoken = languagesSpoken;
+        this.gender = gender;
+        this.img = img;
     }
 
     public BasicDBObject getSimpleUser()
@@ -53,6 +60,7 @@ public class Account
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
+        simple.put("gender", gender);
         simple.put("img", img);
         return simple;
     }

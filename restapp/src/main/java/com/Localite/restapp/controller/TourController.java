@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import com.Localite.restapp.repository.AccountRepository;
 import com.Localite.restapp.repository.TourRepository;
+import com.Localite.restapp.repository.BookingRepository;
 
 @RestController
 @CrossOrigin(origins="http://localhost:3000")
@@ -19,27 +20,35 @@ public class TourController
     private boolean debug = true;
     @Autowired private Account sessionUser;
     @Autowired private TourRepository tourRepository;
+    @Autowired private BookingRepository bookingRepository;
     @Autowired private AccountRepository accountRepository;
 
+    // =================== TOUR ===================
     @GetMapping(value="/{tourID}")
     public String getTour(@PathVariable("tourID") ObjectId tourID)
     {
-        JSONObject results = new JSONObject();
+        JSONObject result = new JSONObject();
         try
         {
             Tour tour = tourRepository.findBy_id(tourID);
-            results.put("tour", tour);
-            results.put("success", true);
+            result.put("tour", tour);
+            result.put("success", true);
+        }
+        catch (NullPointerException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to find tour");
+            result.put("success", false);
         }
         catch(Exception e)
         {
             if (debug) System.out.println(e);
-            results.put("message", "Tour does not exist");
-            results.put("success", false);
+            result.put("message", "Tour does not exist");
+            result.put("success", false);
         }
         finally
         {
-            return results.toString();
+            return result.toString();
         }
     }
 
@@ -53,46 +62,46 @@ public class TourController
     @PostMapping(value = "/create/{guideID}")
     public String createTour(@PathVariable("guideID") ObjectId guideID, @RequestBody Tour newTour)
     {
-        JSONObject results = new JSONObject();
+        JSONObject result = new JSONObject();
         try 
         {
             BasicDBObject tourguide = (accountRepository.findBy_id(guideID)).getSimpleUser();
             newTour.setTourGuide(tourguide);
             tourRepository.insert(newTour);
 
-            results.put("message", "Tour created");
-            results.put("success", true);
+            result.put("message", "Tour created");
+            result.put("success", true);
         }
         catch (Exception e)
         {
             if (debug) System.out.println(e);
-            results.put("message", "Tour creation unsuccessful");
-            results.put("success", false);
+            result.put("message", "Tour creation unsuccessful");
+            result.put("success", false);
         }
         finally
         {
-            return results.toString();
+            return result.toString();
         }
     }
 
     @DeleteMapping(value = "/delete/{tourID}")
     public String deleteTour(@PathVariable("tourID") ObjectId tourID)
     {
-        JSONObject results = new JSONObject();
+        JSONObject result = new JSONObject();
         try
         {
             tourRepository.deleteBy_id(tourID);
-            results.put("message", "Tour deleted");
-            results.put("success", true);
+            result.put("message", "Tour deleted");
+            result.put("success", true);
         }
         catch(Exception e)
         {
-            results.put("message", "Tour deletion unsuccessful");
-            results.put("success", false);
+            result.put("message", "Tour deletion unsuccessful");
+            result.put("success", false);
         }
         finally
         {
-            return results.toString();
+            return result.toString();
         }
     }
 
@@ -115,4 +124,58 @@ public class TourController
         return new ArrayList<Tour>();
     }
 
+    // =================== BOOKING ===================
+    @PostMapping(value="/booking/{tourID}/{userID}")
+    public String makeBooking(@PathVariable("tourID") ObjectId tourID, @PathVariable("userID") ObjectId userID,
+                              @RequestBody Booking booking)
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            BasicDBObject tourist = (accountRepository.findBy_id(userID)).getSimpleUser();
+            Tour tour = tourRepository.findBy_id(tourID);
+            booking.setTour(tour);
+            booking.setTourist(tourist);
+            bookingRepository.insert(booking);
+            result.put("success", true);
+        }
+        catch (NullPointerException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to find tour");
+            result.put("success", false);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Booking unsuccessful");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @GetMapping(value="/bookingList")
+    public String getBookings()
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            // find bookings
+            // check if bookings exist. return no bookings else ....
+            // sort them by past and current bookings
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to load bookings");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
 }

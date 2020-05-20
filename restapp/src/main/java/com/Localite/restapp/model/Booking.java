@@ -17,7 +17,6 @@ import java.util.Date;
 public class Booking 
 {
     @Id private ObjectId _id;
-    private BasicDBObject tourGuide;
     private BasicDBObject tourist;
     private Tour tour;
     private Long date; // timestamp

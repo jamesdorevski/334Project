@@ -1,0 +1,44 @@
+createUser
+{
+	"type": "tourist",
+    "firstName": "Poppy",
+    "lastName": "White",
+    "email": "pops@gmail.com",
+    "hashbrown": "admin",
+    "phoneNumber": "046812",
+    "img":"https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
+	"languagesSpoken":[{"lang":"English"}, {"lang":"Spanish"}]
+}
+{
+	"type": "tourguide",
+    "firstName": "Daniel",
+    "lastName": "Potter",
+    "email": "dandan@gmail.com",
+    "hashbrown": "admin",
+    "phoneNumber": "046812",
+    "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.plantbasednews.org%2F.image%2Ft_share%2FMTY1NTk1NzkyNDMxMTI5ODg3%2Fimage-placeholder-title.jpg&f=1&nofb=1",
+	"languagesSpoken":[{"lang":"English"}, {"lang":"Spanish"}]
+}
+
+login
+{
+	"email": "pops@gmail.com",
+	"password": "admin"
+}
+
+createTour
+{
+  "name": "Taronga Zoo visit",
+  "location": {"city":"Wollongong", "country":"Australia"},
+  "startTour": 1590198300000,
+  "endTour": 1590216300000,
+  "description":"See some animals",
+  "basePrice": 20.5,
+  "groupLimit": 20
+}
+
+makeBooking
+{
+  "date":1590005775937,
+  "dietaryRequirement":"Vegan"
+}
