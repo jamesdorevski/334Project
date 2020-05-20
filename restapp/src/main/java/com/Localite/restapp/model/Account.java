@@ -22,7 +22,7 @@ public class Account
     private String email;
     private String hashbrown;
     private String phoneNumber;
-    private ArrayList<Object> languagesSpoken;
+    private ArrayList<String> languagesSpoken;
     private String img; // https://blahblah.com
 
     // Tourist
@@ -35,7 +35,7 @@ public class Account
 
     public Account(){}
 
-    public Account(String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<Object> languagesSpoken)
+    public Account(String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
     {
         this.firstName = firstName.trim();
         this.lastName = lastName.trim();
@@ -61,6 +61,7 @@ public class Account
     {
         JSONObject user = new JSONObject();
         user.put("_id", _id);
+        user.put("type", type);
         user.put("firstName", firstName);
         user.put("lastName", lastName);
         user.put("email", email);

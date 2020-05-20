@@ -43,7 +43,7 @@ public class AccountController
         catch (Exception e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "Network Error");
+            result.put("message", "Account creation unsuccessful");
             result.put("success", false);
         }
         finally

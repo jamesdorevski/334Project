@@ -1,13 +1,13 @@
 package com.Localite.restapp.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import com.Localite.restapp.model.*;
-import com.Localite.restapp.repository.AccountRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import net.minidev.json.JSONObject;
+import org.json.JSONObject;
+
+import com.Localite.restapp.repository.AccountRepository;
 import com.Localite.restapp.repository.TourRepository;
 
 @RestController
@@ -82,9 +82,12 @@ public class TourController
      * @return ArrayList of Tours matching the query criteria
      * 
      */
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public ArrayList<Tour> queryTours(String city, String country, Date startDate, Date endDate) 
+    @PostMapping(value = "/search")
+    public ArrayList<Tour> findTours(@RequestBody String str) throws Exception
     {
+        JSONObject input = new JSONObject(str);
+        //String city, String country, Date startDate, Date endDate
+
         // TODO: create search query class
         return new ArrayList<Tour>();
     }
