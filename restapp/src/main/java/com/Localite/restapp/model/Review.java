@@ -1,5 +1,6 @@
 package com.Localite.restapp.model;
 
+import com.mongodb.BasicDBObject;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
@@ -16,7 +17,7 @@ import java.util.Date;
 public class Review 
 {
     @Id private ObjectId _id;
-    private JSONObject reviewer; // GetSimpleUser()
+    private BasicDBObject reviewer; // GetSimpleUser()
     private Long dateCreated; // timestamp
     private double rating;
     private String description;
@@ -24,10 +25,10 @@ public class Review
     // OPTIONAL
     private Long dateUpdated; // timestamp
     private ObjectId tourID; // if a tour review
-    private JSONObject reviewee; // if a tourguide review GetSimpleUser()
+    private BasicDBObject reviewee; // if a tourguide review GetSimpleUser()
 
     @Builder
-    public Review(JSONObject reviewer, Long dateCreated, double rating, String description)
+    public Review(BasicDBObject reviewer, Long dateCreated, double rating, String description)
     {
         this.reviewer = reviewer;
         this.dateCreated = dateCreated;

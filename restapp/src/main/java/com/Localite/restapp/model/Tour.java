@@ -1,5 +1,6 @@
 package com.Localite.restapp.model;
 
+import com.mongodb.BasicDBObject;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -12,16 +13,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Tour 
 {
      @Id private ObjectId _id;
-     private JSONObject tourGuide; // owner of tour
+     private BasicDBObject tourGuide; // owner of tour
      private String name;
-     private Object location;
+     private BasicDBObject location;
      private Long startTour;
      private Long endTour;
      private String description;
      private double basePrice;
      private int groupLimit;
 
-     public Tour(JSONObject tourGuide, String name, Object location,
+     public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
                  String description, double basePrice, int groupLimit)
      {

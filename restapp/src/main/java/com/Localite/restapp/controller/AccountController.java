@@ -128,7 +128,7 @@ public class AccountController
         }
     }
 
-    @PostMapping(path="delete/{userID}")
+    @DeleteMapping(path="delete/{userID}")
     public String deleteUser(@PathVariable ObjectId userID) throws Exception
     {
         JSONObject result = new JSONObject();

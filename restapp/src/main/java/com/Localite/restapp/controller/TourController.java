@@ -2,6 +2,7 @@ package com.Localite.restapp.controller;
 
 import java.util.ArrayList;
 import com.Localite.restapp.model.*;
+import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,32 @@ import com.Localite.restapp.repository.TourRepository;
 @RequestMapping(value = "/tour")
 public class TourController 
 {
-    private boolean debug = false;
+    private boolean debug = true;
     @Autowired private Account sessionUser;
     @Autowired private TourRepository tourRepository;
     @Autowired private AccountRepository accountRepository;
+
+    @GetMapping(value="/{tourID}")
+    public String getTour(@PathVariable("tourID") ObjectId tourID)
+    {
+        JSONObject results = new JSONObject();
+        try
+        {
+            Tour tour = tourRepository.findBy_id(tourID);
+            results.put("tour", tour);
+            results.put("success", true);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            results.put("message", "Tour does not exist");
+            results.put("success", false);
+        }
+        finally
+        {
+            return results.toString();
+        }
+    }
 
     /*
      * Allows tour guide Account type to create a new Tour object
@@ -33,7 +56,7 @@ public class TourController
         JSONObject results = new JSONObject();
         try 
         {
-            org.json.JSONObject tourguide = (accountRepository.findBy_id(guideID)).getSimpleUser();
+            BasicDBObject tourguide = (accountRepository.findBy_id(guideID)).getSimpleUser();
             newTour.setTourGuide(tourguide);
             tourRepository.insert(newTour);
 
@@ -52,8 +75,8 @@ public class TourController
         }
     }
 
-    @PostMapping(value = "/delete/{tourID}")
-    public String createTour(@PathVariable("tourID") ObjectId tourID)
+    @DeleteMapping(value = "/delete/{tourID}")
+    public String deleteTour(@PathVariable("tourID") ObjectId tourID)
     {
         JSONObject results = new JSONObject();
         try

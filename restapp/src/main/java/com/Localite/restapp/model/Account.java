@@ -1,5 +1,6 @@
 package com.Localite.restapp.model;
 
+import com.mongodb.BasicDBObject;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -45,9 +46,9 @@ public class Account
         this.languagesSpoken = languagesSpoken;
     }
 
-    public JSONObject getSimpleUser()
+    public BasicDBObject getSimpleUser()
     {
-        JSONObject simple = new JSONObject();
+        BasicDBObject simple = new BasicDBObject();
         simple.put("_id", _id);
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
