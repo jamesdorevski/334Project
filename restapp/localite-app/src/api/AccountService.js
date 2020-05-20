@@ -26,15 +26,15 @@ class AccountService {
     sessionStorage.removeItem("user");
   }
 
-  createUser(type, firstName, lastName, email, password) {
+  createUser(type, firstName, lastName, email, password, phoneNumber, languagesSpoken) {
     return axios.post(API_URL + "create", {
       type: type,
       firstName: firstName,
       lastName: lastName,
       email: email,
       hashbrown: password,
-      //phoneNumber: phoneNumber, //currently undefined, throws error
-      //languagesSpoken: languagesSpoken, //currently undefined, throws error
+      phoneNumber: phoneNumber,
+      languagesSpoken: languagesSpoken
     });
   }
 
