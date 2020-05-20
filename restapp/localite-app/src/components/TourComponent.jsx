@@ -21,7 +21,7 @@ export default function TourComponent(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div key={props.tour._id} className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>

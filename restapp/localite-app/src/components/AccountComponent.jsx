@@ -48,6 +48,7 @@ class AccountComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
+          this.props.history.push('/')
           AccountService.logout();
           this.setState({
             message: response.data.message,
@@ -123,8 +124,8 @@ class AccountComponent extends Component {
             <h5>Phone Number</h5>
             <p>{user.phoneNumber}</p>
 
-            {/* <h5>Languages Spoken</h5>
-        <p>{user.languagesSpoken}</p> */}
+            <h5>Languages Spoken</h5>
+            <p>{user.languagesSpoken.join(", ")}</p>
 
             <Button style={{ margin: "5px" }}>Update Account Info</Button>
             <Button
