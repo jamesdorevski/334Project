@@ -3,6 +3,8 @@ package com.Localite.restapp.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import com.Localite.restapp.model.*;
+import com.Localite.restapp.repository.AccountRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import net.minidev.json.JSONObject;
@@ -12,9 +14,11 @@ import com.Localite.restapp.repository.TourRepository;
 @CrossOrigin(origins="http://localhost:3000")
 @RequestMapping(value = "/tour")
 public class TourController 
-{    
+{
+    private boolean debug = false;
     @Autowired private Account sessionUser;
     @Autowired private TourRepository tourRepository;
+    @Autowired private AccountRepository accountRepository;
 
     /*
      * Allows tour guide Account type to create a new Tour object
@@ -23,27 +27,50 @@ public class TourController
      * @param Tour object 
      * @return String outlining the new tour's status
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createTour(@RequestBody Tour newTour) 
+    @PostMapping(value = "/create/{guideID}")
+    public String createTour(@PathVariable("guideID") ObjectId guideID, @RequestBody Tour newTour)
     {
-        JSONObject newTourStatus = new JSONObject();
-
+        JSONObject results = new JSONObject();
         try 
         {
-            // attempt to add the Tour argument into the Tours collection
-            tourRepository.insert(newTour); 
+            org.json.JSONObject tourguide = (accountRepository.findBy_id(guideID)).getSimpleUser();
+            newTour.setTourGuide(tourguide);
+            tourRepository.insert(newTour);
 
-            newTourStatus.put("message", "Tour created");
-            newTourStatus.put("success", true);
-        } catch (Exception e) 
+            results.put("message", "Tour created");
+            results.put("success", true);
+        }
+        catch (Exception e)
         {
-            System.out.println(e);
+            if (debug) System.out.println(e);
+            results.put("message", "Tour creation unsuccessful");
+            results.put("success", false);
+        }
+        finally
+        {
+            return results.toString();
+        }
+    }
 
-            newTourStatus.put("message", "An unknown error has occured");
-            newTourStatus.put("success", false);
-        } 
-
-        return newTourStatus.toString();
+    @PostMapping(value = "/delete/{tourID}")
+    public String createTour(@PathVariable("tourID") ObjectId tourID)
+    {
+        JSONObject results = new JSONObject();
+        try
+        {
+            tourRepository.deleteBy_id(tourID);
+            results.put("message", "Tour deleted");
+            results.put("success", true);
+        }
+        catch(Exception e)
+        {
+            results.put("message", "Tour deletion unsuccessful");
+            results.put("success", false);
+        }
+        finally
+        {
+            return results.toString();
+        }
     }
 
     /*

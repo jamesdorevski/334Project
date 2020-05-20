@@ -10,32 +10,32 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 
-@Getter @Setter
+@Getter @Setter @NonNull
 @Document(collection="Users")
 @Component @SessionScope
 public class Account
 {
     @Id private ObjectId _id;
-    @NonNull private String type; // tourist || tourguide || both || admin
-    @NonNull private String firstName;
-    @NonNull private String lastName;
-    @NonNull private String email;
-    @NonNull private String hashbrown;
-    @NonNull private String phoneNumber;
-    @NonNull private ArrayList<String> languagesSpoken;
+    private String type; // tourist || tourguide || both || admin
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String hashbrown;
+    private String phoneNumber;
+    private ArrayList<Object> languagesSpoken;
+    private String img; // https://blahblah.com
 
     // Tourist
 
     // Tourguide
     private String licence;
 
-
     // admin stuff
     private Long banUntil = null;
 
     public Account(){}
 
-    public Account(String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<String> languagesSpoken)
+    public Account(String firstName, String lastName, String email, String hashbrown, String phoneNumber, ArrayList<Object> languagesSpoken)
     {
         this.firstName = firstName.trim();
         this.lastName = lastName.trim();
@@ -45,14 +45,15 @@ public class Account
         this.languagesSpoken = languagesSpoken;
     }
 
-    public String getSimpleUser()
+    public JSONObject getSimpleUser()
     {
         JSONObject simple = new JSONObject();
         simple.put("_id", _id);
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
-        return simple.toString();
+        simple.put("img", img);
+        return simple;
     }
 
     @Override
@@ -66,6 +67,7 @@ public class Account
         user.put("hashbrown", hashbrown);
         user.put("phoneNumber", phoneNumber);
         user.put("languagesSpoken", languagesSpoken);
+        user.put("img", img);
         return user.toString();
     }
 }

@@ -1,5 +1,6 @@
 package com.Localite.restapp.controller;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
@@ -15,10 +16,10 @@ import com.Localite.restapp.repository.AccountRepository;
 @RequestMapping(value = "/account")
 public class AccountController
 {
+    private boolean debug = false;
     @Autowired private PasswordEncoder bcrypt;
-    @Autowired private AccountRepository repository;
+    @Autowired private AccountRepository accountRepository;
     @Autowired private Account sessionUser;
-    private boolean debug = true;
 
     @PostMapping("/create")
     public String createUser(@RequestBody Account newAccount) throws Exception
@@ -27,7 +28,7 @@ public class AccountController
         try
         {
             newAccount.setHashbrown(bcrypt.encode(newAccount.getHashbrown())); // hashing password
-            repository.insert(newAccount); // storing in database
+            accountRepository.insert(newAccount); // storing in database
             if (debug) System.out.println("Account created");
 
             result.put("message", "Account created");
@@ -54,13 +55,11 @@ public class AccountController
     @PostMapping(path = "/login")
     public String loginUser(@RequestBody String input) throws Exception
     {
-        //test with email: pops@gmail.com, password: admin
-
         JSONObject login = new JSONObject(input);
         JSONObject result = new JSONObject();
         try
         {
-            Account user = repository.findByEmail(login.getString("email")); // getting user from database
+            Account user = accountRepository.findByEmail(login.getString("email")); // getting user from database
 
             if(user != null) // user exists
             {
@@ -99,45 +98,55 @@ public class AccountController
             return result.toString();
         }
     }
+
+    @PostMapping(path="update/{id}")
+    public String updateUser(@PathVariable("id") ObjectId userID, @RequestBody Account newInfo) throws Exception
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            newInfo.set_id(userID);
+            accountRepository.save(newInfo);
+            result.put("message", "Account updated");
+            result.put("success", true);
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Account update unsuccessful");
+            result.put("success", false);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Network Error");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @PostMapping(path="delete/{userID}")
+    public String deleteUser(@PathVariable ObjectId userID) throws Exception
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            accountRepository.deleteBy_id(userID);
+            result.put("message", "Account deleted");
+            result.put("success", true);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Network Error");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
 }
-
-//    @DeleteMapping(path="/delete")
-//    public ResponseEntity<Void> delete(){
-//        //find account in the database by ID and delete
-//
-//        //if delete was successful
-//        if(){
-//
-//            return ResponseEntity.noContent().build();
-//        }
-//        //not found status
-//        return ResponseEntity.notFound().build();
-//    }
-
-//create the new account and add it to the database
-//        Account newAccount;
-//        if (type.equals("tour guide")){
-//            newAccount = TourGuide.builder()
-//                    .firstName(firstName)
-//                    .lastName(lastName)
-//                    .phoneNumber(phoneNumber)
-//                    .email(email)
-//                    .languages(languagesSpoken)
-//                    .build();
-//
-//        } else {
-//            newAccount = Tourist.builder().firstName(firstName)
-//                    .lastName(lastName)
-//                    .phoneNumber(phoneNumber)
-//                    .email(email)
-//                    .languages(languagesSpoken)
-//                    .build();
-//        }
-
-//return location of created entity
-//get current resource url
-//        URI uri = ServletUriComponentsBuilder
-//                .fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(newAccount.get_id()).toUri();
-//
-//        return ResponseEntity.created(uri).build();

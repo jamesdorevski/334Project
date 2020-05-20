@@ -10,6 +10,6 @@ import com.Localite.restapp.model.Tour;
 @Repository
 public interface TourRepository extends MongoRepository<Tour, String>
 {
-  public List<Tour> findByTourName(String tourName);
+  public List<Tour> findByName(String tourName);
   public void deleteBy_id(ObjectId _id);
 }
