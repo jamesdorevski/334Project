@@ -48,6 +48,7 @@ class AccountComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
+          this.props.history.push('/')
           AccountService.logout();
           this.setState({
             message: response.data.message,

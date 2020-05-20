@@ -31,7 +31,7 @@ class ProfileComponent extends Component {
               </Col>
               <Col>
                 <h1>Hi, I'm {user.firstName}</h1>
-                <p>Languages Spoken:</p>
+                <p>Languages Spoken: {user.languagesSpoken.join(", ")}</p>
                 {id === user._id && (
                   <Link
                     className="nav-link"
@@ -47,9 +47,11 @@ class ProfileComponent extends Component {
               <h3>Current Tours</h3>
               
             </Row>
-            <Row>
-            <Button className="float-right">Create New Tour</Button>
-            </Row>
+           
+            {id === user._id && (<Row>
+            <Button style={{"margin-right": 20, "margin-left": "auto"}} size="sm">Create New Tour</Button>
+            </Row>)}
+            
             <hr />
             <Row>
               <h3>Reviews</h3>
