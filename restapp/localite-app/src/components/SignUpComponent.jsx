@@ -27,18 +27,12 @@ class SignUpComponent extends Component {
 
   onSelect = (selectedList, selectedItem) => {
     this.setState({selectedValues: selectedList})
-    // const list = this.state.selectedValues
-    // list.concat(selectedItem)
-    // this.setState({selectedValues: list})
-    console.log(this.state.selectedValues)
+    // console.log(this.state.selectedValues)
   }
 
   onRemove = (selectedList, removedItem) => {
     this.setState({selectedValues: selectedList})
-    // const list = this.state.selectedValues
-    // list.concat(selectedItem)
-    // this.setState({selectedValues: list})
-    console.log(this.state.selectedValues)
+    // console.log(this.state.selectedValues)
   }
 
   render() {
@@ -77,7 +71,7 @@ class SignUpComponent extends Component {
             fields.email,
             fields.password,
             fields.phoneNumber,
-            this.state.langArray
+            this.state.selectedValues
           ).then(
             (response) => {
               console.log(response);

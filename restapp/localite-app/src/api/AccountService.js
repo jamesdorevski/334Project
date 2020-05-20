@@ -26,7 +26,18 @@ class AccountService {
     sessionStorage.removeItem("user");
   }
 
+  convertLangs(languagesSpokenArray){
+    var languages = []
+
+    for (var l in languagesSpokenArray) {
+      languages.push(languagesSpokenArray[l].lang)
+    }
+
+    return languages
+  }
+
   createUser(type, firstName, lastName, email, password, phoneNumber, languagesSpoken) {
+
     return axios.post(API_URL + "create", {
       type: type,
       firstName: firstName,
@@ -34,12 +45,13 @@ class AccountService {
       email: email,
       hashbrown: password,
       phoneNumber: phoneNumber,
-      languagesSpoken: languagesSpoken
+      languagesSpoken: this.convertLangs(languagesSpoken)
     });
   }
 
   deleteUser(id) {
-    return axios.delete(API_URL + `delete/${id}`);
+    return {"success": false, "message": "Network Error"}
+    // return axios.delete(API_URL + `delete/${id}`);
   }
 
   isUserLoggedIn() {
