@@ -82,9 +82,11 @@ class HeaderComponent extends Component {
 
                       {user.type === "tourguide" && view === "tourguide" && (
                         <Dropdown.Item
-                          onClick={() =>
+                          onClick={() =>{
                             this.props.history.push(`/account/show/${user._id}`)
-                          }
+                            this.forceUpdate()
+                            window.location.reload(false)
+                          }}
                         >
                           View Profile
                         </Dropdown.Item>
@@ -116,6 +118,7 @@ class HeaderComponent extends Component {
                           onClick={() => {
                             sessionStorage.setItem("currentView", "tourguide");
                             this.forceUpdate();
+                            window.location.reload(false);
                           }}
                         >
                           Switch to Tour Guide View
@@ -128,6 +131,7 @@ class HeaderComponent extends Component {
                           onClick={() => {
                             sessionStorage.setItem("currentView", "tourist");
                             this.forceUpdate();
+                            window.location.reload(false);
                           }}
                         >
                           Switch to Tourist View

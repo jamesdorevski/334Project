@@ -31,6 +31,8 @@ class ProfileComponent extends Component {
 
   render() {
     const id = this.props.match.params.id;
+    console.log(id)
+    const loggedIn = JSON.parse(sessionStorage.getItem("user"))
 
     return (
       <>
@@ -58,7 +60,7 @@ class ProfileComponent extends Component {
               <Col>
                 <h1>Hi, I'm {this.state.user.firstName}</h1>
                 {/* <p>Languages Spoken: {user.languagesSpoken.join(", ")}</p> */}
-                {id === this.state.user._id && (
+                {id === loggedIn._id && (
                   <Link
                     className="nav-link"
                     to={{ pathname: `/account/info` }}
@@ -74,8 +76,8 @@ class ProfileComponent extends Component {
               
             </Row>
            
-            {id === this.state.user._id && (<Row>
-            <Button style={{"margin-right": 20, "margin-left": "auto"}} size="sm">Create New Tour</Button>
+            {id === loggedIn._id && (<Row>
+            <Button style={{"marginRight": 20, "marginLeft": "auto"}} size="sm">Create New Tour</Button>
             </Row>)}
             
             <hr />
