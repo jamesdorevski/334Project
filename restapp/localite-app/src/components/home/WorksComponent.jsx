@@ -6,6 +6,7 @@ import experience from "../../images/experience.png";
 
 class WorksComponent extends Component {
   render() {
+    const h = "125px"
     return (
       <section className="py-1">
         <div className="container" background-color="transparent">
@@ -16,7 +17,7 @@ class WorksComponent extends Component {
               <div className="col">
                 <img
                   src={search}
-                  height="150px"
+                  height={h}
                   className="d-inline-block align-top"
                   alt="search"
                 />
@@ -26,7 +27,7 @@ class WorksComponent extends Component {
               <div className="col">
                 <img
                   src={connect}
-                  height="150px"
+                  height={h}
                   className="d-inline-block align-top"
                   alt="connect"
                 />
@@ -36,7 +37,7 @@ class WorksComponent extends Component {
               <div className="col">
                 <img
                   src={book}
-                  height="150px"
+                  height={h}
                   className="d-inline-block align-top"
                   alt="book"
                 />
@@ -46,7 +47,7 @@ class WorksComponent extends Component {
               <div className="col">
                 <img
                   src={experience}
-                  height="150px"
+                  height={h}
                   className="d-inline-block align-top"
                   alt="experience"
                 />
