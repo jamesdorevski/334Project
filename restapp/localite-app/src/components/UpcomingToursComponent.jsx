@@ -8,7 +8,12 @@ class UpcomingToursComponent extends Component {
   render() {
     return (
       <>
-        <h1>MY UPCOMING TOURS</h1>
+      <hr
+          style={{
+            margin: "-2px",
+          }}
+        />
+        <h1>My Upcoming Tours</h1>
       </>
     );
   }

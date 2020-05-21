@@ -8,7 +8,12 @@ class PastToursComponent extends Component {
   render() {
     return (
       <>
-        <h1>MY PAST TOURS</h1>
+      <hr
+          style={{
+            margin: "-2px",
+          }}
+        />
+        <h1>My Past Tours</h1>
       </>
     );
   }
