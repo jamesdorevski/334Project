@@ -11,7 +11,7 @@ class HomeComponent extends Component {
       <>
         <header
           className="masthead"
-          style={{ backgroundImage: `url(${plane})`, height: "80vh" }}
+          style={{ backgroundImage: `url(${plane})`, height: "80vh"}}
         >
           <SearchComponent />
         </header>

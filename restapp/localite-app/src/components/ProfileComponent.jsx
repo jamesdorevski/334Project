@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Figure, Button } from "react-bootstrap";
 import PublicService from "../api/PublicService";
 import { Link } from "react-router-dom";
+import AccountService from "../api/AccountService";
 
 class ProfileComponent extends Component {
   constructor(props){
@@ -31,8 +32,7 @@ class ProfileComponent extends Component {
 
   render() {
     const id = this.props.match.params.id;
-    console.log(id)
-    const loggedIn = JSON.parse(sessionStorage.getItem("user"))
+    const loggedIn = AccountService.getCurrentUser();
 
     return (
       <>
@@ -59,8 +59,8 @@ class ProfileComponent extends Component {
               </Col>
               <Col>
                 <h1>Hi, I'm {this.state.user.firstName}</h1>
-                {/* <p>Languages Spoken: {user.languagesSpoken.join(", ")}</p> */}
-                {id === loggedIn._id && (
+                <p>Languages Spoken: {this.state.user.languagesSpoken.join(", ")}</p>
+                {loggedIn && (id === loggedIn._id) && (
                   <Link
                     className="nav-link"
                     to={{ pathname: `/account/info` }}
@@ -76,7 +76,7 @@ class ProfileComponent extends Component {
               
             </Row>
            
-            {id === loggedIn._id && (<Row>
+            {loggedIn && (id === loggedIn._id) && (<Row>
             <Button style={{"marginRight": 20, "marginLeft": "auto"}} size="sm">Create New Tour</Button>
             </Row>)}
             
