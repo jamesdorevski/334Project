@@ -23,18 +23,19 @@ public class Account
     private String email;
     private String hashbrown;
     private String phoneNumber;
+
     private ArrayList<String> languagesSpoken;
     private String gender;
     private String img; // https://blahblah.com
-    private double rating = 5.0; // holds average that being calculated upon profile being viewed
+
+    private ArrayList<Review> allReviews = new ArrayList<>();
+    private double rating;
 
     // Tourist
+    private ArrayList<Booking> allBookings = new ArrayList<>();
 
     // Tourguide
     private String licence;
-
-    // admin stuff
-    private Long banUntil = null;
 
     public Account(){}
 
@@ -56,11 +57,10 @@ public class Account
     public BasicDBObject getBasicUser() // placed in tours
     {
         BasicDBObject simple = new BasicDBObject();
-        simple.put("_id", (ObjectId) _id);
+        simple.put("_id", _id.toString());
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
-        simple.put("gender", gender);
         simple.put("img", img);
         return simple;
     }
@@ -68,13 +68,28 @@ public class Account
     public BasicDBObject getProfileUser() // view user profile
     {
         BasicDBObject simple = new BasicDBObject();
-        simple.put("_id", (ObjectId) _id);
+        simple.put("_id", _id.toString());
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("gender", gender);
         simple.put("languagesSpoken", languagesSpoken);
         simple.put("img", img);
         return simple;
+    }
+
+    public void calcAvgRating()
+    {
+        double totalRating = 5.0;
+        for (int i=0; i<allReviews.size(); i++)
+        {
+            totalRating += allReviews.get(i).getRating();
+        }
+        this.rating = Math.round((totalRating/allReviews.size()) * 10) / 10.0;
+    }
+
+    public void addReview(Review newReview)
+    {
+        this.allReviews.add(newReview);
     }
 
     @Override

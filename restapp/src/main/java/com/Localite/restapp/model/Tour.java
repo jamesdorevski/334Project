@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+
 @Getter @Setter
 @Document(collection="Tours")
 public class Tour 
@@ -18,9 +20,13 @@ public class Tour
      private BasicDBObject location;
      private Long startTour;
      private Long endTour;
+
      private String description;
      private double basePrice;
      private int groupLimit;
+
+     private ArrayList<Review> allReviews = new ArrayList<>();
+     private double rating;
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
@@ -39,6 +45,21 @@ public class Tour
      public int getDurationInHours()
      {
           return (int) Math.ceil((startTour-endTour)/3600000);
+     }
+
+     public void calcAvgRating()
+     {
+          double totalRating = 5.0;
+          for (int i=0; i<allReviews.size(); i++)
+          {
+               totalRating += allReviews.get(i).getRating();
+          }
+          this.rating = Math.round((totalRating/allReviews.size()) * 10) / 10.0;
+     }
+
+     public void addReview(Review newReview)
+     {
+          this.allReviews.add(newReview);
      }
 
      @Override

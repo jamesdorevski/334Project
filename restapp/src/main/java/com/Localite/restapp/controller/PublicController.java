@@ -1,9 +1,10 @@
 package com.Localite.restapp.controller;
 
+import com.Localite.restapp.model.Account;
 import com.Localite.restapp.model.FAQ;
+import com.Localite.restapp.model.Review;
 import com.Localite.restapp.repository.AccountRepository;
 import com.Localite.restapp.repository.FAQRepository;
-import com.Localite.restapp.repository.ReviewRepository;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -19,7 +20,6 @@ public class PublicController
     private boolean debug = true;
     @Autowired private FAQRepository faqRepository;
     @Autowired private AccountRepository accountRepository;
-    @Autowired private ReviewRepository reviewRepository;
 
     // =================== General ===================
     @GetMapping(value="user/{userID}")
@@ -29,8 +29,7 @@ public class PublicController
         try
         {
             BasicDBObject user = (accountRepository.findBy_id(userID)).getProfileUser();
-
-            // TODO - calculating average (need to get Review done first)
+            System.out.println(user);
             // TODO - get all created bookings
             result.put("user", user);
             result.put("success", true);
@@ -45,6 +44,42 @@ public class PublicController
         {
             if (debug) System.out.println(e);
             result.put("message", "Unable to get user profile");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @PostMapping(value="/{userID}/addReview/{revieweeID}")
+    public String addUserReview(@PathVariable ObjectId userID, @PathVariable ObjectId revieweeID,
+                                @RequestBody Review newReview) throws Exception
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            // obtaining reviewer details
+            BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
+            newReview.setReviewer(reviewer);
+
+            // adding review to tour
+            Account reviewee = accountRepository.findBy_id(revieweeID);
+            reviewee.addReview(newReview);
+            accountRepository.save(reviewee);
+
+            result.put("success", true);
+        }
+        catch (NullPointerException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to find user reviewed");
+            result.put("success", false);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Review creation unsuccessful");
             result.put("success", false);
         }
         finally

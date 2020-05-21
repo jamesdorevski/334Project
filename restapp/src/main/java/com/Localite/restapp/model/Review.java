@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Setter @Getter @NonNull
-@Document(collection="Reviews")
 public class Review 
 {
     @Id private ObjectId _id;
@@ -21,11 +20,6 @@ public class Review
     private Long dateCreated; // timestamp
     private double rating;
     private String description;
-
-    // OPTIONAL
-    private Long dateUpdated; // timestamp
-    private ObjectId tourID; // if a tour review
-    private BasicDBObject reviewee; // if a tourguide review GetSimpleUser()
 
     @Builder
     public Review(BasicDBObject reviewer, Long dateCreated, double rating, String description)
@@ -35,6 +29,4 @@ public class Review
         this.rating = rating;
         this.description = description;
     }
-
-
 }

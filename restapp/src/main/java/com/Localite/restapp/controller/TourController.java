@@ -124,6 +124,42 @@ public class TourController
         return new ArrayList<Tour>();
     }
 
+    @PostMapping(value="/{userID}/addReview/{tourID}")
+    public String addTourReview(@PathVariable ObjectId userID, @PathVariable ObjectId tourID,
+                                @RequestBody Review newReview) throws Exception
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            // obtaining reviewer details
+            BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
+            newReview.setReviewer(reviewer);
+
+            // adding review to tour
+            Tour tour = tourRepository.findBy_id(tourID);
+            tour.addReview(newReview);
+            tourRepository.save(tour);
+
+            result.put("success", true);
+        }
+        catch (NullPointerException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to find tour");
+            result.put("success", false);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Review creation unsuccessful");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
     // =================== BOOKING ===================
     @PostMapping(value="/booking/{tourID}/{userID}")
     public String makeBooking(@PathVariable("tourID") ObjectId tourID, @PathVariable("userID") ObjectId userID,
