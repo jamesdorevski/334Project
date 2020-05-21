@@ -16,6 +16,7 @@ class AccountService {
           // console.log(response.data.user)
           // console.log(JSON.parse(response.data.user))
           sessionStorage.setItem("user", (response.data.user));
+          sessionStorage.setItem("currentView", "tourist")
         }
 
       return response;
@@ -24,6 +25,7 @@ class AccountService {
 
   logout() {
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("currentView");
   }
 
   convertLangs(languagesSpokenArray){
@@ -37,6 +39,9 @@ class AccountService {
   }
 
   createUser(type, firstName, lastName, email, password, phoneNumber, languagesSpoken) {
+    // console.log(gender)
+    // console.log(license)
+    console.log(type)
 
     return axios.post(API_URL + "create", {
       type: type,
@@ -45,7 +50,7 @@ class AccountService {
       email: email,
       hashbrown: password,
       phoneNumber: phoneNumber,
-      languagesSpoken: this.convertLangs(languagesSpoken)
+      languagesSpoken: this.convertLangs(languagesSpoken),
     });
   }
 

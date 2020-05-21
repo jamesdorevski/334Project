@@ -36,6 +36,14 @@ class SignUpComponent extends Component {
   }
 
   render() {
+    const t = this.props.type
+    let type = ""
+    if (t === "tourguide") {
+            type = "tourguide"
+          } else {
+            type = "tourist"
+          }
+
     return (
       <Formik
         initialValues={{
@@ -62,10 +70,10 @@ class SignUpComponent extends Component {
           phoneNumber: Yup.string().required("Phone Number is required")
         })}
 
-        onSubmit={(fields) => {
+        onSubmit={(fields, { setSubmitting }) => {
           // find a way to pass fields as an object so we can extract the params in AuthService
           AccountService.createUser(
-            "tourist",
+            type,
             fields.firstName,
             fields.lastName,
             fields.email,
@@ -81,6 +89,8 @@ class SignUpComponent extends Component {
                   success: true,
                 });
               } else {
+                setSubmitting(false);
+
                 this.setState({
                   success: false,
                   message: "Unable to create account: " + response.data.message,
@@ -88,6 +98,8 @@ class SignUpComponent extends Component {
               }
             },
             (error) => {
+              setSubmitting(false);
+
               const resMessage =
                 (error.response &&
                   error.response.data &&
@@ -103,7 +115,7 @@ class SignUpComponent extends Component {
           );
         }}
         
-        render={({ errors, touched }) => (
+        render={({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form-group">
               <label htmlFor="firstName">First Name</label>
@@ -214,7 +226,10 @@ class SignUpComponent extends Component {
             />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary mr-2">
+              <button type="submit" disabled={isSubmitting} className="btn btn-primary mr-2">
+              {isSubmitting && (
+                      <span className="spinner-border spinner-border-sm mr-1"></span>
+                    )}
                 Register
               </button>
             </div>

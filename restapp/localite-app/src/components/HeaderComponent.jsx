@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import logo from "../images/localite.png";
 import profile from "../images/profile.jpg";
-import LoginComponent from "./LoginComponent";
+import LoginModalComponent from "./LoginModalComponent";
 import AccountService from "../api/AccountService";
 
 class HeaderComponent extends Component {
@@ -14,7 +14,6 @@ class HeaderComponent extends Component {
     this.state = {
       modalOpen: false,
       user: null,
-      currentView: "tourist"
     };
   }
 
@@ -30,33 +29,15 @@ class HeaderComponent extends Component {
     this.setState({ modalOpen: false });
   };
 
-  login = () => {
-    this.props.history.push("/login");
-  };
-
-  // loginClicked = () => {
-  //   //currently hardcoded
-  //   // console.log(this.email.current.value)
-  //   // console.log(this.password.current.value)
-  //   if (
-  //     this.email.current.value === "ecruz@gmail.com" &&
-  //     this.password.current.value === "1234"
-  //   ) {
-  //     AuthenticationService.registerSuccessfulLogin(
-  //       this.email.current.value,
-  //       this.password.current.value
-  //     );
-
-  //     this.setState({ modalOpen: false });
-  //     this.setState({ loginFailed: false });
-  //   } else {
-  //     this.setState({ loginFailed: true });
-  //   }
-  // };
+  loginSuccess = () => {
+    this.props.history.push("/")
+    this.setState({ modalOpen: false });
+  }
 
   render() {
     const isUserLoggedIn = AccountService.isUserLoggedIn();
     const user = AccountService.getCurrentUser();
+    const view = sessionStorage.getItem("currentView");
 
     return (
       <>
@@ -73,11 +54,13 @@ class HeaderComponent extends Component {
               </a>
             </div>
             <ul className="navbar-nav navbar-collapse justify-content-end">
-              {user.type === "tourist" && <li>
-                <Link className="nav-link header-link" to="/signup/guide">
-                  BECOME A GUIDE
-                </Link>
-              </li>}
+              {(!user || user.type === "tourist") && (
+                <li>
+                  <Link className="nav-link header-link" to="/signup/guide">
+                    BECOME A GUIDE
+                  </Link>
+                </li>
+              )}
 
               {isUserLoggedIn && (
                 <li>
@@ -97,14 +80,15 @@ class HeaderComponent extends Component {
                         Account Information
                       </Dropdown.Item>
 
-                      {/* If they are a Tour Guide and View is Tour Guide*/}
-                      {user.type === "both" && this.state.view === "tourguide" && <Dropdown.Item
-                        onClick={() =>
-                          this.props.history.push(`/account/show/${user._id}`)
-                        }
-                      >
-                        View Profile
-                      </Dropdown.Item>}
+                      {user.type === "tourguide" && view === "tourguide" && (
+                        <Dropdown.Item
+                          onClick={() =>
+                            this.props.history.push(`/account/show/${user._id}`)
+                          }
+                        >
+                          View Profile
+                        </Dropdown.Item>
+                      )}
 
                       <Dropdown.Item
                         onClick={() =>
@@ -126,8 +110,32 @@ class HeaderComponent extends Component {
                       </Dropdown.Item>
                       <Dropdown.Item>Messages</Dropdown.Item>
                       <div className="dropdown-divider"></div>
-                      {/* if they are on Tourist view and a Tour Guide*/}
-                      {user.type === "both" && this.state.currentView === "tourist" && <Dropdown.Item
+                      {user.type === "tourguide" && view === "tourist" && (
+                        <Dropdown.Item
+                          style={{ fontWeight: "bold", color: "green" }}
+                          onClick={() => {
+                            sessionStorage.setItem("currentView", "tourguide");
+                            this.forceUpdate();
+                          }}
+                        >
+                          Switch to Tour Guide View
+                        </Dropdown.Item>
+                      )}
+
+                      {user.type === "tourguide" && view === "tourguide" && (
+                        <Dropdown.Item
+                          style={{ fontWeight: "bold", color: "green" }}
+                          onClick={() => {
+                            sessionStorage.setItem("currentView", "tourist");
+                            this.forceUpdate();
+                          }}
+                        >
+                          Switch to Tourist View
+                        </Dropdown.Item>
+                      )}
+
+                      {/* 
+                      {user.type === "tourguide" && this.state.currentView === "tourist" && <Dropdown.Item
                         style={{ fontWeight: "bold", color: "green" }}
                         href="/"
                         onClick={this.setState({currentView: "tourguide"})}
@@ -135,14 +143,13 @@ class HeaderComponent extends Component {
                         Switch to Tour Guide View
                       </Dropdown.Item>}
 
-                      {/* if they are on Tour Guide view and a Tourist*/}
-                      {user.type === "both" && this.state.currentView === "tourguide" && <Dropdown.Item
+                      {user.type === "tourguide" && this.state.currentView === "tourguide" && <Dropdown.Item
                         style={{ fontWeight: "bold", color: "green" }}
                         href="/"
                         onClick={this.setState({currentView: "tourist"})}
                       >
                         Switch to Tourist View
-                      </Dropdown.Item>}
+                      </Dropdown.Item>} */}
                       <Dropdown.Item
                         style={{ fontWeight: "bold" }}
                         href="/"
@@ -161,7 +168,7 @@ class HeaderComponent extends Component {
                     type="button"
                     className="btn btn-link header-link"
                     style={{ textDecoration: "none" }}
-                    onClick={this.login}
+                    onClick={this.handleShow}
                   >
                     SIGN UP/LOG IN
                   </button>
@@ -171,33 +178,7 @@ class HeaderComponent extends Component {
           </nav>
         </header>
 
-        <Modal show={this.state.modalOpen} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>LOG IN</Modal.Title>
-          </Modal.Header>
-          <Modal.Body style={{ margin: "-30px" }}>
-            {this.state.loginFailed && (
-              <div
-                className="alert alert-warning"
-                style={{ marginTop: "10px" }}
-              >
-                Invalid Credentials
-              </div>
-            )}
-            <LoginComponent />
-          </Modal.Body>
-          <Modal.Footer className="justify-content-between">
-            <p>
-              Don't have an account?{" "}
-              <Link to="/signup" onClick={this.signUpClicked}>
-                Sign up.
-              </Link>
-            </p>
-            <Button variant="primary" type="submit" onClick={this.loginClicked}>
-              LOG IN
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <LoginModalComponent open={this.state.modalOpen} loginSuccess={this.loginSuccess} handleClose={this.handleClose} handleShow={this.handleShow} signUpClicked={this.signUpClicked}/>
       </>
     );
   }
