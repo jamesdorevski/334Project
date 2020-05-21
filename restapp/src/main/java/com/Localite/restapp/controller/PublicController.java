@@ -28,8 +28,10 @@ public class PublicController
         JSONObject result = new JSONObject();
         try
         {
-            BasicDBObject user = (accountRepository.findBy_id(userID)).getSimpleUser();
+            BasicDBObject user = (accountRepository.findBy_id(userID)).getProfileUser();
+
             // TODO - calculating average (need to get Review done first)
+            // TODO - get all created bookings
             result.put("user", user);
             result.put("success", true);
         }

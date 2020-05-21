@@ -65,7 +65,7 @@ public class TourController
         JSONObject result = new JSONObject();
         try 
         {
-            BasicDBObject tourguide = (accountRepository.findBy_id(guideID)).getSimpleUser();
+            BasicDBObject tourguide = (accountRepository.findBy_id(guideID)).getBasicUser();
             newTour.setTourGuide(tourguide);
             tourRepository.insert(newTour);
 
@@ -132,7 +132,7 @@ public class TourController
         JSONObject result = new JSONObject();
         try
         {
-            BasicDBObject tourist = (accountRepository.findBy_id(userID)).getSimpleUser();
+            BasicDBObject tourist = (accountRepository.findBy_id(userID)).getBasicUser();
             Tour tour = tourRepository.findBy_id(tourID);
             booking.setTour(tour);
             booking.setTourist(tourist);

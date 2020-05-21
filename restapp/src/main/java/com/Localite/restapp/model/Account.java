@@ -53,10 +53,10 @@ public class Account
         this.img = img;
     }
 
-    public BasicDBObject getSimpleUser()
+    public BasicDBObject getBasicUser() // placed in tours
     {
         BasicDBObject simple = new BasicDBObject();
-        simple.put("_id", _id);
+        simple.put("_id", (ObjectId) _id);
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
@@ -65,11 +65,23 @@ public class Account
         return simple;
     }
 
+    public BasicDBObject getProfileUser() // view user profile
+    {
+        BasicDBObject simple = new BasicDBObject();
+        simple.put("_id", (ObjectId) _id);
+        simple.put("firstName", firstName);
+        simple.put("lastName", lastName);
+        simple.put("gender", gender);
+        simple.put("languagesSpoken", languagesSpoken);
+        simple.put("img", img);
+        return simple;
+    }
+
     @Override
     public String toString()
     {
         JSONObject user = new JSONObject();
-        user.put("_id", _id);
+        user.put("_id", (ObjectId) _id);
         user.put("type", type);
         user.put("firstName", firstName);
         user.put("lastName", lastName);
