@@ -67,7 +67,17 @@ class SignUpComponent extends Component {
           confirmPassword: Yup.string()
             .oneOf([Yup.ref("password"), null], "Passwords must match")
             .required("Confirm Password is required"),
-          phoneNumber: Yup.string().required("Phone Number is required")
+          gender: Yup.string().required("Gender is required"),
+          phoneNumber: Yup.string().required("Phone Number is required"),
+          languagesSpoken: Yup.array().max(
+            1,
+            "Must have at least 1 language spoken"
+          ).of(
+        Yup.object().shape({
+          label: Yup.string().required(),
+          value: Yup.string().required(),
+        }))
+
         })}
 
         onSubmit={(fields, { setSubmitting }) => {
@@ -78,6 +88,7 @@ class SignUpComponent extends Component {
             fields.lastName,
             fields.email,
             fields.password,
+            fields.gender,
             fields.phoneNumber,
             this.state.selectedValues
           ).then(
@@ -200,6 +211,38 @@ class SignUpComponent extends Component {
               />
             </div>
             <div className="form-group">
+              <label htmlFor="gender">Gender</label>
+              <Field as="select"
+                name="gender"
+                type="text"
+                className={
+                  "form-control" +
+                  (errors.gender && touched.gender ? " is-invalid" : "")
+                }
+              >
+                {" "}
+                <option value="" label="Select your Gender" />
+                <option value="Male" label="Male" />
+                <option value="Female" label="Female" />
+                <option value="Trans Male" label="Trans Male" />
+                <option value="Trans Female" label="Trans Female" />
+                <option
+                  value="Genderqueer/Nonbinary"
+                  label="Genderqueer/Nonbinary"
+                />
+                <option
+                  value="Other/Prefer not to say"
+                  label="Other/Prefer not to say"
+                />
+              </Field>
+              <ErrorMessage
+                name="gender"
+                component="div"
+                className="invalid-feedback"
+              />
+            </div>
+
+            <div className="form-group">
               <label htmlFor="phoneNumber">Phone Number</label>
               <Field
                 name="phoneNumber"
@@ -223,7 +266,16 @@ class SignUpComponent extends Component {
               showCheckbox={true}
               onRemove={this.onRemove}
               onSelect={this.onSelect}
+              className={
+                "form-control" +
+                (errors.languagesSpoken && touched.languagesSpoken ? " is-invalid" : "")
+              }
             />
+            <ErrorMessage
+                name="languagesSpoken"
+                component="div"
+                className="invalid-feedback"
+              />
             </div>
             <div className="form-group">
               <button type="submit" disabled={isSubmitting} className="btn btn-primary mr-2">

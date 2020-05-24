@@ -39,16 +39,9 @@ export default function TourComponent(props) {
                 <Typography zerominwidth="true" variant="body2" gutterBottom>
                   {props.tour.description}
                 </Typography>
-                {props.tour.tags.map((tag) => (
-                  <Typography
-                    gutterBottom
-                    variant="body2"
-                    color="textSecondary"
-                    key={tag}
-                  >
-                    {tag}
-                  </Typography>
-                ))}
+                <Typography gutterBottom variant="body2" color="textSecondary">
+                  {props.tour.tags.join(", ")}
+                </Typography>
               </Grid>
             </Grid>
             <Grid item>

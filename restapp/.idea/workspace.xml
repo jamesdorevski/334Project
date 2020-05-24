@@ -1,93 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
+    <list default="true" id="8f0f894b-881c-4398-a736-cac4e3a5528b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/api/AccountService.js" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/api/AccountService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/api/TourService.js" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/api/TourService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/SignUpComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/SignUpComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restapp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/AppConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/LocaliteApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking$BookingBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/FAQ.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review$ReviewBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/AccountRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/BookingRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/FAQRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/TourRepository.class" beforeDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Review.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/LocaliteApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1bhgT3QkNHDoAfNkqPGrn7H6pFl" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="735" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="restapp" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\repos\334Project\restapp\src\main\resources" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\andre\Projects\334Project\restapp\localite-app\src\Utilities" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.Localite.restapp.security" />
-    </key>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet">
@@ -152,138 +230,60 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="" />
-      <created>1586721502655</created>
+      <changelist id="8f0f894b-881c-4398-a736-cac4e3a5528b" name="Default Changelist" comment="" />
+      <created>1590350636082</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586721502655</updated>
-      <workItem from="1589787438459" duration="22697000" />
-      <workItem from="1589945599233" duration="765000" />
-      <workItem from="1590120281409" duration="66000" />
-      <workItem from="1590236283496" duration="2974000" />
-      <workItem from="1590275310458" duration="14095000" />
+      <updated>1590350636082</updated>
     </task>
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1280" height="734" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24959612" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32866043" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="master" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/localite-app" />
-    </ignored-roots>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1472" y="593" key="#ESLint" timestamp="1590276240775">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1472" y="593" key="#ESLint/0.0.2560.1400@0.0.2560.1400" timestamp="1590276240775" />
-    <state x="928" y="424" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590310171242">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="2529" y="180" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589115094503" />
-    <state x="696" y="315" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589796927171" />
-    <state x="928" y="424" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1590310171242" />
-    <state x="868" y="348" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590278053955">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="2490" y="125" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589105189834" />
-    <state x="434" y="169" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1589779099003" />
-    <state x="868" y="348" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1590278053955" />
-    <state x="945" y="359" key="FileChooserDialogImpl" timestamp="1590309984227">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="2540" y="133" key="FileChooserDialogImpl/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589115616604" />
-    <state x="709" y="267" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590120341118" />
-    <state x="945" y="359" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1590309984227" />
-    <state width="1631" height="119" key="GridCell.Tab.0.bottom" timestamp="1589493370741">
-      <screen x="1920" y="-126" width="1680" height="1010" />
-    </state>
-    <state width="1631" height="119" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589493370741" />
-    <state width="1631" height="119" key="GridCell.Tab.0.center" timestamp="1589493370741">
-      <screen x="1920" y="-126" width="1680" height="1010" />
-    </state>
-    <state width="1631" height="119" key="GridCell.Tab.0.center/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589493370741" />
-    <state width="1631" height="119" key="GridCell.Tab.0.left" timestamp="1589493370741">
-      <screen x="1920" y="-126" width="1680" height="1010" />
-    </state>
-    <state width="1631" height="119" key="GridCell.Tab.0.left/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589493370741" />
-    <state width="1631" height="119" key="GridCell.Tab.0.right" timestamp="1589493370741">
-      <screen x="1920" y="-126" width="1680" height="1010" />
-    </state>
-    <state width="1631" height="119" key="GridCell.Tab.0.right/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589493370741" />
-    <state x="2290" y="33" key="Maven.ArtifactSearchDialog" timestamp="1589115173744">
-      <screen x="1920" y="-126" width="1680" height="1010" />
-    </state>
-    <state x="2290" y="33" key="Maven.ArtifactSearchDialog/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589115173744" />
-    <state x="520" y="207" key="SettingsEditor" timestamp="1590276195366">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="2261" y="23" key="SettingsEditor/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589094272148" />
-    <state x="520" y="207" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1590276195366" />
-    <state x="803" y="64" width="836" height="826" key="find.popup" timestamp="1590291500606">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2622" y="-64" width="587" height="801" key="find.popup/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589494108165" />
-    <state x="535" y="42" width="557" height="540" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1589779006320" />
-    <state x="803" y="64" width="836" height="826" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590291500606" />
-    <state x="1071" y="86" width="1115" height="1112" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1590279760123" />
-    <state x="342" y="140" key="new project wizard" timestamp="1590120344344">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1590120344344" />
-    <state x="575" y="224" width="1008" height="700" key="search.everywhere.popup" timestamp="1590288747047">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2423" y="91" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.-126.1680.1010@1920.-126.1680.1010" timestamp="1589478970299" />
-    <state x="383" y="146" width="672" height="457" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1589778972265" />
-    <state x="575" y="224" width="1008" height="700" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590288747047" />
-    <state x="766" y="301" width="1344" height="941" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1589804893236" />
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Review.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/LocaliteApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
