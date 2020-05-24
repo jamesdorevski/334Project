@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Form, Dropdown, Image } from "react-bootstrap";
+import { Modal, Button, Dropdown, Image } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import logo from "../images/localite.png";

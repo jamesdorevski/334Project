@@ -54,8 +54,7 @@ public class TourController
 
     /*
      * Allows tour guide Account type to create a new Tour object
-     * 
-     * @author James Dorevski 
+     *
      * @param Tour object 
      * @return String outlining the new tour's status
      */
@@ -106,11 +105,10 @@ public class TourController
     }
 
     /*
-     * Queries tours with the given city & country, as well as avaliablity for the given 
+     * Queries tours with the given city & country, as well as availability for the given
      * dates.
      * 
-     * @author James Dorevski
-     * @param city, country, startDate & endDate
+     * @param city, country, startDate & endDate, guests
      * @return ArrayList of Tours matching the query criteria
      * 
      */
@@ -118,12 +116,49 @@ public class TourController
     public ArrayList<Tour> findTours(@RequestBody String str) throws Exception
     {
         JSONObject input = new JSONObject(str);
-        //String city, String country, Date startDate, Date endDate
+//        ArrayList<JSONObject> result = new JSONObject();
 
-        // TODO: create search query class
+        //input object already contains:
+        //String location, Date startDate, Date endDate, Number adults, Number children, Number infants
+
+        // TODO: get tours...
+//        try
+//        {
+//            // ArrayList<Tour> tours = tourRepository.findBy_id(tourID);
+//            //return tours where tourDate >= startDate and <=endDate
+//            // and location (split at ,) country,city = tour country, city etc
+//            // and guests etc
+//            result.put("tour", tour);
+//            result.put("success", true);
+//        }
+//        catch (NullPointerException e)
+//        {
+//            if (debug) System.out.println(e);
+//            result.put("message", "Unable to find tour");
+//            result.put("success", false);
+//        }
+//        catch(Exception e)
+//        {
+//            if (debug) System.out.println(e);
+//            result.put("message", "Tour does not exist");
+//            result.put("success", false);
+//        }
+//        finally
+//        {
+//            return result.toString();
+//        }
+
         return new ArrayList<Tour>();
     }
 
+    /**
+     *
+     * @param userID
+     * @param tourID
+     * @param newReview
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value="/{userID}/addReview/{tourID}")
     public String addTourReview(@PathVariable ObjectId userID, @PathVariable ObjectId tourID,
                                 @RequestBody Review newReview) throws Exception

@@ -1,3 +1,40 @@
+.guestGroup {
+    padding: 11px 22px 11px;
+    display: grid;
+}
+
+.textField {
+    position: relative;
+    height: 100%;
+    width: 150px;
+    text-align: left;
+    font: inherit;
+    overflow: visible;
+}
+
+.buttonOverrides {
+    position: relative;
+    height: 100%;
+    text-align: center;
+    background: 0 0;
+    padding: 4px 12px;
+    margin-right: 8px;
+    font: inherit;
+    font-weight: 700;
+    border: inherit;
+    line-height: normal;
+    overflow: visible;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    background-color: white !important;
+}
+
+.buttonOverrides:hover {
+    box-shadow: none !important;
+    background-color: lightcoral !important;
+    color: white !important;
+}
+
 .PresetDateRangePicker_panel {
     padding: 0 22px 11px
 }
