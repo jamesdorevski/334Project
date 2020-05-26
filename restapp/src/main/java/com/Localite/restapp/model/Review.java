@@ -13,9 +13,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Setter @Getter @NonNull
+@Document(collection="Reviews")
 public class Review 
 {
     @Id private String _id;
+    private String tourID;
     private Long dateCreated; // timestamp
     private double rating;
     private BasicDBObject reviewer; // GetSimpleUser()

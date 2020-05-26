@@ -6,6 +6,7 @@ import com.Localite.restapp.model.Review;
 import com.Localite.restapp.model.Tour;
 import com.Localite.restapp.repository.AccountRepository;
 import com.Localite.restapp.repository.FAQRepository;
+import com.Localite.restapp.repository.ReviewRepository;
 import com.Localite.restapp.repository.TourRepository;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
@@ -23,6 +24,7 @@ public class PublicController
     @Autowired private FAQRepository faqRepository;
     @Autowired private AccountRepository accountRepository;
     @Autowired private TourRepository tourRepository;
+    @Autowired private ReviewRepository reviewRepository;
 
     // =================== General ===================
     @GetMapping(value="user/{userID}")
@@ -37,6 +39,11 @@ public class PublicController
             {
                 ArrayList<Tour> createdTours = tourRepository.findAllByTourGuide(userID); // getting tours by this tourGuide
                 user.put("createdTours", createdTours);
+            }
+            else if(user.get("type").equals("tourist"))
+            {
+                ArrayList<Review> tourReviews = reviewRepository.findAllByTourist(userID.toString());
+                System.out.println(tourReviews);
             }
             result.put("user", user);
             result.put("success", true);
@@ -68,9 +75,9 @@ public class PublicController
         {
             // obtaining reviewer details
             BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
-            newReview.set_id((new ObjectId()).toString());
             newReview.setReviewer(reviewer);
             newReview.setDateCreated(System.currentTimeMillis());
+            newReview = reviewRepository.insert(newReview);
 
             // adding review to user's profile
             Account reviewee = accountRepository.findBy_id(revieweeID);

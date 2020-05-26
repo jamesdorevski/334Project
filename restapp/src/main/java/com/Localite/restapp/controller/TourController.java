@@ -3,6 +3,7 @@ package com.Localite.restapp.controller;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.Localite.restapp.model.*;
+import com.Localite.restapp.repository.ReviewRepository;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class TourController
     @Autowired private TourRepository tourRepository;
     @Autowired private BookingRepository bookingRepository;
     @Autowired private AccountRepository accountRepository;
+    @Autowired private ReviewRepository reviewRepository;
 
     // =================== TOUR ===================
     @GetMapping(value="/{tourID}")
@@ -134,7 +136,7 @@ public class TourController
         }
     }
 
-    @PostMapping(value="/{userID}/addReview/{tourID}")
+    @PostMapping(value="/{tourID}/addReview/{userID}")
     public String addTourReview(@PathVariable ObjectId userID,
                                 @PathVariable ObjectId tourID,
                                 @RequestBody Review newReview) throws Exception
@@ -144,12 +146,17 @@ public class TourController
         {
             // obtaining reviewer details
             BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
+            newReview.set_id((new ObjectId()).toString());
             newReview.setReviewer(reviewer);
+            newReview.setDateCreated(System.currentTimeMillis());
 
             // adding review to tour
             Tour tour = tourRepository.findBy_id(tourID);
             tour.addReview(newReview);
             tourRepository.save(tour);
+
+            newReview.setTourID(tourID.toString());
+            reviewRepository.insert(newReview);
             result.put("success", true);
         }
         catch (NullPointerException e)
