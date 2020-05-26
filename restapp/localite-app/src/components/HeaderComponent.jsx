@@ -30,9 +30,9 @@ class HeaderComponent extends Component {
   };
 
   loginSuccess = () => {
-    this.props.history.push("/")
+    this.props.history.push("/");
     this.setState({ modalOpen: false });
-  }
+  };
 
   render() {
     const isUserLoggedIn = AccountService.isUserLoggedIn();
@@ -75,41 +75,72 @@ class HeaderComponent extends Component {
 
                     <Dropdown.Menu>
                       <Dropdown.Item
-                        onClick={() => this.props.history.push(`/account/info`)}
+                        onClick={() => this.props.history.push(`/account`)}
                       >
                         Account Information
                       </Dropdown.Item>
 
                       {user.type === "tourguide" && view === "tourguide" && (
                         <Dropdown.Item
-                          onClick={() =>{
-                            this.props.history.push(`/account/show/${user._id}`)
-                            this.forceUpdate()
-                            window.location.reload(false)
+                          onClick={() => {
+                            this.props.history.push(
+                              `/account/show/${user._id}`
+                            );
+                            this.forceUpdate();
+                            window.location.reload(false);
                           }}
                         >
                           View Profile
                         </Dropdown.Item>
                       )}
 
-                      <Dropdown.Item
-                        onClick={() =>
-                          this.props.history.push(
-                            `/account/${user._id}/upcoming`
-                          )
-                        }
-                      >
-                        Upcoming Tours
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() =>
-                          this.props.history.push(
-                            `/account/${AccountService.getCurrentUser._id}/past`
-                          )
-                        }
-                      >
-                        Past Tours
-                      </Dropdown.Item>
+                      {user.type === "tourguide" && view === "tourguide" && (
+                        <Dropdown.Item
+                          onClick={() => {
+                            this.props.history.push(
+                              `/account/${user._id}/upcoming/bookings`
+                            );
+                          }}
+                        >
+                          Upcoming Bookings
+                        </Dropdown.Item>
+                      )}
+
+                      {user.type === "tourguide" && view === "tourguide" && (
+                        <Dropdown.Item
+                          onClick={() => {
+                            this.props.history.push(
+                              `/account/${user._id}/past/bookings`
+                            );
+                          }}
+                        >
+                          Past Bookings
+                        </Dropdown.Item>
+                      )}
+
+                      {view === "tourist" && (
+                        <Dropdown.Item
+                          onClick={() =>
+                            this.props.history.push(
+                              `/account/${user._id}/upcoming`
+                            )
+                          }
+                        >
+                          Upcoming Tours
+                        </Dropdown.Item>
+                      )}
+
+                      {view === "tourist" && (
+                        <Dropdown.Item
+                          onClick={() =>
+                            this.props.history.push(
+                              `/account/${AccountService.getCurrentUser._id}/past`
+                            )
+                          }
+                        >
+                          Past Tours
+                        </Dropdown.Item>
+                      )}
                       <Dropdown.Item>Messages</Dropdown.Item>
                       <div className="dropdown-divider"></div>
                       {user.type === "tourguide" && view === "tourist" && (
@@ -138,22 +169,6 @@ class HeaderComponent extends Component {
                         </Dropdown.Item>
                       )}
 
-                      {/* 
-                      {user.type === "tourguide" && this.state.currentView === "tourist" && <Dropdown.Item
-                        style={{ fontWeight: "bold", color: "green" }}
-                        href="/"
-                        onClick={this.setState({currentView: "tourguide"})}
-                      >
-                        Switch to Tour Guide View
-                      </Dropdown.Item>}
-
-                      {user.type === "tourguide" && this.state.currentView === "tourguide" && <Dropdown.Item
-                        style={{ fontWeight: "bold", color: "green" }}
-                        href="/"
-                        onClick={this.setState({currentView: "tourist"})}
-                      >
-                        Switch to Tourist View
-                      </Dropdown.Item>} */}
                       <Dropdown.Item
                         style={{ fontWeight: "bold" }}
                         href="/"
@@ -182,7 +197,13 @@ class HeaderComponent extends Component {
           </nav>
         </header>
 
-        <LoginModalComponent open={this.state.modalOpen} loginSuccess={this.loginSuccess} handleClose={this.handleClose} handleShow={this.handleShow} signUpClicked={this.signUpClicked}/>
+        <LoginModalComponent
+          open={this.state.modalOpen}
+          loginSuccess={this.loginSuccess}
+          handleClose={this.handleClose}
+          handleShow={this.handleShow}
+          signUpClicked={this.signUpClicked}
+        />
       </>
     );
   }

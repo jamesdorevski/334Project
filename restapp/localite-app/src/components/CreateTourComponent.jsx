@@ -50,6 +50,9 @@ class SignUpComponent extends Component {
       className="container"
       background-color="transparent"
     >
+      <h3 style={{ paddingBottom: "20px" }}>
+          Create a new tour
+        </h3>
       <Formik
         initialValues={{
           firstName: "",
@@ -282,13 +285,26 @@ class SignUpComponent extends Component {
               />
             </div>
             <div className="form-group">
-              <button type="submit" disabled={isSubmitting} className="btn btn-primary mr-2">
-              {isSubmitting && (
-                      <span className="spinner-border spinner-border-sm mr-1"></span>
-                    )}
-                Register
-              </button>
-            </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn btn-primary mr-2"
+                >
+                  {isSubmitting && (
+                    <span className="spinner-border spinner-border-sm mr-1"></span>
+                  )}
+                  Create Tour
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger mr-2"
+                  onClick={() => {
+                    this.props.history.push(`/account/show/${AccountService.getCurrentUser()._id}`);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             {this.state.message && (
               <div className="form-group">
                 <div

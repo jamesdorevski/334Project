@@ -228,6 +228,7 @@ class ProfileComponent extends Component {
                 </Col>
                 <Col>
                   <h1>Hi, I'm {this.state.user.firstName}</h1>
+                  {this.state.user.type == "tourguide" && <p style={{color: "green", fontSize: "22px"}}>TOUR GUIDE</p>}
                   <p>
                     Languages Spoken:{" "}
                     {this.state.user.languagesSpoken.join(", ")}
@@ -274,6 +275,7 @@ class ProfileComponent extends Component {
                   <Button
                     style={{ marginRight: 20, marginLeft: "auto" }}
                     size="sm"
+                    onClick={() => this.props.history.push(`/tours/create`)}
                   >
                     Create New Tour
                   </Button>

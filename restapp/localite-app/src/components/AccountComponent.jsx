@@ -116,7 +116,7 @@ class AccountComponent extends Component {
             </p>
 
             <h5>Gender</h5>
-            <p>Female</p>
+            <p>{user.gender}</p>
 
             <h5>Email Address</h5>
             <p>{user.email}</p>
@@ -127,7 +127,7 @@ class AccountComponent extends Component {
             <h5>Languages Spoken</h5>
             <p>{user.languagesSpoken.join(", ")}</p>
 
-            <Button style={{ margin: "5px" }}>Update Account Info</Button>
+            <Button style={{ margin: "5px" }} onClick={() => this.props.history.push(`/account/update`)}>Update Account Info</Button>
             <Button
               variant="danger"
               style={{ margin: "5px" }}

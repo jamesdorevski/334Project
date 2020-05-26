@@ -18,6 +18,8 @@ import UpcomingToursComponent from "./components/UpcomingToursComponent"
 import PastToursComponent from "./components/PastToursComponent"
 import ProfileComponent from "./components/ProfileComponent"
 import LoginComponent from "./components/LoginComponent"
+import UpdateAccountComponent from "./components/UpdateAccountComponent"
+import CreateTourComponent from "./components/CreateTourComponent"
 
 export const App = () => {
     return (
@@ -36,10 +38,12 @@ export const App = () => {
             <Route path={Routes.FAQ} component={FAQComponent} />
             <Route path={Routes.DISPUTES} component={DisputeResolutionComponent} />
             {/*<Route path={Routes.TOURS} component={TourComponent} />*/}
+            <AuthenticatedRoute path={Routes.CREATE_TOUR} component={CreateTourComponent} />
             <Route path={Routes.PROFILE} component={ProfileComponent} />
             <AuthenticatedRoute path={Routes.UPCOMING_TOURS} component={UpcomingToursComponent} />
             <AuthenticatedRoute path={Routes.PAST_TOURS} component={PastToursComponent} />
-            <AuthenticatedRoute path={Routes.ACCOUNT} component={AccountComponent} />
+            <AuthenticatedRoute exact path={Routes.ACCOUNT} component={AccountComponent} />
+            <AuthenticatedRoute path={Routes.UPDATE_ACCOUNT} component={UpdateAccountComponent} />
             <Route path="*">
                 <Redirect to={Routes.HOME} />
             </Route>
