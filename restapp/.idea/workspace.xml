@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/TourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/TourRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/TourRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/TourRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/Localite/restapp/LocaliteApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/Localite/restapp/LocaliteApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Account.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +119,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="90" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590472052610" />
+    <state x="297" y="-6" width="670" height="676" key="search.everywhere.popup" timestamp="1590472092114">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="-6" width="670" height="676" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590472092114" />
   </component>
   <component name="masterDetails">
     <states>

@@ -101,6 +101,7 @@ public class Account
         user.put("firstName", firstName);
         user.put("lastName", lastName);
         user.put("email", email);
+        user.put("gender", gender);
         user.put("hashbrown", hashbrown);
         user.put("phoneNumber", phoneNumber);
         user.put("languagesSpoken", languagesSpoken);
