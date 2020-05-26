@@ -17,7 +17,9 @@ public interface TourRepository extends MongoRepository<Tour, String>
   public Tour findBy_id(ObjectId id);
   public void deleteBy_id(ObjectId id);
   public ArrayList<Tour> findByName(String name);
-  public ArrayList<Tour> findByLocation(BasicDBObject location);
+
+  @Query(value="{'location.city':?0}, {'location.country':?1}, {'maxLimit:true}")
+  public ArrayList<Tour> findTours(String city, String country);
 
   @Query(value="{'tourGuide._id':?0}")
   public ArrayList<Tour> findAllByTourGuide(ObjectId id);

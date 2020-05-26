@@ -25,29 +25,21 @@ public class PublicController
     @Autowired private TourRepository tourRepository;
 
     // =================== General ===================
-    /* Gets a tourist's proflie else not valid profile */
     @GetMapping(value="user/{userID}")
-    public String getTourGuide(@PathVariable("userID") ObjectId userID)
+    public String getPublicUserProfile(@PathVariable("userID") ObjectId userID)
     {
         JSONObject result = new JSONObject();
         try
         {
             BasicDBObject user = (accountRepository.findBy_id(userID)).getProfileUser();
 
-            if(user.get("type") != "tourGuide") // does a check so it's not a tourist account
+            if(user.get("type").equals("tourguide"))
             {
-                // getting tours by this tourGuide
-                ArrayList<Tour> createdTours = tourRepository.findAllByTourGuide(userID);
+                ArrayList<Tour> createdTours = tourRepository.findAllByTourGuide(userID); // getting tours by this tourGuide
                 user.put("createdTours", createdTours);
-
-                result.put("user", user);
-                result.put("success", true);
             }
-            else
-            {
-                result.put("success", false);
-                result.put("message", "404 - Page does not exist");
-            }
+            result.put("user", user);
+            result.put("success", true);
         }
         catch (NullPointerException e)
         {
@@ -76,9 +68,9 @@ public class PublicController
         {
             // obtaining reviewer details
             BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
+            newReview.set_id((new ObjectId()).toString());
             newReview.setReviewer(reviewer);
             newReview.setDateCreated(System.currentTimeMillis());
-            System.out.println(reviewer);
 
             // adding review to user's profile
             Account reviewee = accountRepository.findBy_id(revieweeID);

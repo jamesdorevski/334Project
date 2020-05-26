@@ -53,12 +53,6 @@ public class TourController
         }
     }
 
-    /*
-     * Allows tour guide Account type to create a new Tour object
-     *
-     * @param Tour object 
-     * @return String outlining the new tour's status
-     */
     @PostMapping(value = "/create/{guideID}")
     public String createTour(@PathVariable("guideID") ObjectId guideID,
                              @RequestBody Tour newTour)
@@ -106,58 +100,38 @@ public class TourController
         }
     }
 
-    /*
-     * Queries tours with the given city & country, as well as availability for the given
-     * dates.
-     * 
-     * @param city, country, startDate & endDate, guests
-     * @return ArrayList of Tours matching the query criteria
-     * 
-     */
     @PostMapping(value = "/search")
     public ArrayList<Tour> findTours(@RequestBody String str) throws Exception
     {
         JSONObject input = new JSONObject(str);
-//        ArrayList<JSONObject> result = new JSONObject();
+        JSONObject result = new JSONObject();
+        ArrayList<Tour> tours = new ArrayList<>();
 
         //input object already contains:
         //String location, Date startDate, Date endDate, Number adults, Number children, Number infants
-
-        // TODO: get tours...
-//        try
-//        {
-//            // ArrayList<Tour> tours = tourRepository.findBy_id(tourID);
-//            //return tours where tourDate >= startDate and <=endDate
-//            // and location (split at ,) country,city = tour country, city etc
-//            // and guests etc
-//            result.put("tour", tour);
-//            result.put("success", true);
-//        }
-//        catch (NullPointerException e)
-//        {
-//            if (debug) System.out.println(e);
-//            result.put("message", "Unable to find tour");
-//            result.put("success", false);
-//        }
-//        catch(Exception e)
-//        {
-//            if (debug) System.out.println(e);
-//            result.put("message", "Tour does not exist");
-//            result.put("success", false);
-//        }
-//        finally
-//        {
+        try
+        {
+            tours = tourRepository.findTours(input.getString("city"), input.getString("country"));
+            result.put("tours", tours);
+            result.put("success", true);
+        }
+        catch (NullPointerException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to find any available tours");
+            result.put("success", false);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "404 - Search error");
+            result.put("success", false);
+        }
+        finally
+        {
 //            return result.toString();
-//        }
-
-//        ArrayList<Tour> tours = tourRepository.findByName("Taronga Zoo visit");
-
-
-        BasicDBObject loc = new BasicDBObject();
-        loc.put("city", "Wollongong");
-        loc.put("country", "Australia");
-        ArrayList<Tour> tours = tourRepository.findByLocation(loc);
-        return tours;
+            return tours;
+        }
     }
 
     @PostMapping(value="/{userID}/addReview/{tourID}")
@@ -206,8 +180,9 @@ public class TourController
         try
         {
             Tour tour = tourRepository.findBy_id(tourID);
-            boolean bookingSpace = (tour.getLimit()-bookingRepository.countBookings(tourID)) >= 0; // default - no spots in tour
-            boolean notBooked = bookingRepository.findByTourist(tourID, userID) == 0; // default - user has booked tour
+            int numOfBookings = (tour.getLimit()-bookingRepository.countBookings(tourID));
+            boolean bookingSpace = numOfBookings > 0; // minimum 1 booking to book
+            boolean notBooked = bookingRepository.findByTourist(tourID, userID) == 0;
 
             if(bookingSpace && notBooked)
             {
@@ -216,6 +191,13 @@ public class TourController
                 booking.setTourist(tourist);
                 booking.setDate(System.currentTimeMillis());
                 bookingRepository.insert(booking);
+
+                // if there was only 1 booking left before it was booked
+                if (numOfBookings == 1)
+                {
+                    tour.setMaxLimit(true);
+                    tourRepository.save(tour);
+                }
                 result.put("success", true);
             }
             else

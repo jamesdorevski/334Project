@@ -22,14 +22,12 @@ public class Account
     private String lastName;
     private String email;
     private String hashbrown;
-    private String phoneNumber;
 
-    private ArrayList<String> languagesSpoken;
+    private String phoneNumber;
     private String gender;
     private String img; // https://blahblah.com
-
+    private ArrayList<String> languagesSpoken;
     private ArrayList<Review> allReviews = new ArrayList<>();
-    private double rating = 5.0; // default
 
     // Tourist
     private ArrayList<Booking> allBookings = new ArrayList<>();
@@ -57,7 +55,7 @@ public class Account
     public BasicDBObject getBasicUser() // placed in tours
     {
         BasicDBObject simple = new BasicDBObject();
-        simple.put("_id", _id);
+        simple.put("_id", _id.toString());
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
@@ -67,24 +65,27 @@ public class Account
 
     public BasicDBObject getProfileUser() // view user profile
     {
-        BasicDBObject simple = new BasicDBObject();
-        simple.put("_id", _id.toString());
-        simple.put("firstName", firstName);
-        simple.put("lastName", lastName);
-        simple.put("gender", gender);
-        simple.put("languagesSpoken", languagesSpoken);
-        simple.put("img", img);
-        return simple;
+        BasicDBObject profile = new BasicDBObject();
+        profile.put("_id", _id.toString());
+        profile.put("type", type);
+        profile.put("firstName", firstName);
+        profile.put("lastName", lastName);
+        profile.put("gender", gender);
+        profile.put("img", img);
+        profile.put("rating", getRating());
+        profile.put("languagesSpoken", languagesSpoken);
+        profile.put("allReviews", allReviews);
+        return profile;
     }
 
-    public void calcAvgRating()
+    public double getRating()
     {
         double totalRating = 5.0;
         for (int i=0; i<allReviews.size(); i++)
         {
             totalRating += allReviews.get(i).getRating();
         }
-        this.rating = Math.round((totalRating/allReviews.size()) * 10) / 10.0;
+        return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
     }
 
     public void addReview(Review newReview)
