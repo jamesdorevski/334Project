@@ -7,7 +7,7 @@ import Review from "./ReviewComponent";
 import MobileDetect from "mobile-detect";
 //new
 import Carousel from "react-multi-carousel";
-import CondensedTour from "./CondensedTourComponent"
+import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
 
@@ -45,7 +45,7 @@ class ProfileComponent extends Component {
 
     PublicService.getUserByID(id).then(
       (response) => {
-        // console.log(response);
+        console.log(response);
         if (response.data.success) {
           this.setState({ user: response.data.user });
         } else {
@@ -56,6 +56,25 @@ class ProfileComponent extends Component {
         this.props.history.push("/");
       }
     );
+  }
+
+  reviewStars(num) {
+    let stars = [];
+    for (let i = 0; i < num; i++) {
+      stars.push(
+        <img
+          style={{
+            width: "18px",
+            height: "18px",
+            marginBottom: "5px",
+            marginLeft: "5px",
+          }}
+          src={require("../images/star.png")}
+          alt="star"
+        />
+      );
+    }
+    return <div>{stars}</div>;
   }
 
   render() {
@@ -95,112 +114,112 @@ class ProfileComponent extends Component {
     };
 
     //TEMP: this will be pulled from backend
-    const reviews = [
-      {
-        _id: "523tkwneofwr2r5823",
-        title: "Great tour!",
-        reviewer: { firstName: "Karen", img: require("../images/profile.jpg") },
-        dateCreated:
-          monthNames[date.getMonth()] +
-          " " +
-          date.getDate().toString() +
-          ", " +
-          date.getFullYear().toString(),
-        description:
-          "Such a fun class. the information about propagating different types of plants was so helpful. now i'm off to turn my current plant family into a bigger one!",
-      },
-      {
-        _id: "523tkwneofwr2r5824",
-        title: "Had a great time with my family",
-        reviewer: {
-          firstName: "Josiah",
-          img: require("../images/profile.jpg"),
-        },
-        dateCreated:
-          monthNames[date.getMonth()] +
-          " " +
-          date.getDate().toString() +
-          ", " +
-          date.getFullYear().toString(),
-        description:
-          "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
-      },
-      {
-        _id: "523tkwneofwr2r5825",
-        title: "Loved it!",
-        reviewer: {
-          firstName: "Maggie",
-          img: require("../images/profile.jpg"),
-        },
-        dateCreated:
-          monthNames[date.getMonth()] +
-          " " +
-          date.getDate().toString() +
-          ", " +
-          date.getFullYear().toString(),
-        description:
-          "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
-      },
-      {
-        _id: "523tkwneofwr2r5826",
-        title: "Loved the tour",
-        reviewer: {
-          firstName: "Patrick",
-          img: require("../images/profile.jpg"),
-        },
-        dateCreated:
-          monthNames[date.getMonth()] +
-          " " +
-          date.getDate().toString() +
-          ", " +
-          date.getFullYear().toString(),
-        description:
-          "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
-      },
-    ];
+    // const reviews = [
+    //   {
+    //     _id: "523tkwneofwr2r5823",
+    //     title: "Great tour!",
+    //     reviewer: { firstName: "Karen", img: require("../images/profile.jpg") },
+    //     dateCreated:
+    //       monthNames[date.getMonth()] +
+    //       " " +
+    //       date.getDate().toString() +
+    //       ", " +
+    //       date.getFullYear().toString(),
+    //     description:
+    //       "Such a fun class. the information about propagating different types of plants was so helpful. now i'm off to turn my current plant family into a bigger one!",
+    //   },
+    //   {
+    //     _id: "523tkwneofwr2r5824",
+    //     title: "Had a great time with my family",
+    //     reviewer: {
+    //       firstName: "Josiah",
+    //       img: require("../images/profile.jpg"),
+    //     },
+    //     dateCreated:
+    //       monthNames[date.getMonth()] +
+    //       " " +
+    //       date.getDate().toString() +
+    //       ", " +
+    //       date.getFullYear().toString(),
+    //     description:
+    //       "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
+    //   },
+    //   {
+    //     _id: "523tkwneofwr2r5825",
+    //     title: "Loved it!",
+    //     reviewer: {
+    //       firstName: "Maggie",
+    //       img: require("../images/profile.jpg"),
+    //     },
+    //     dateCreated:
+    //       monthNames[date.getMonth()] +
+    //       " " +
+    //       date.getDate().toString() +
+    //       ", " +
+    //       date.getFullYear().toString(),
+    //     description:
+    //       "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
+    //   },
+    //   {
+    //     _id: "523tkwneofwr2r5826",
+    //     title: "Loved the tour",
+    //     reviewer: {
+    //       firstName: "Patrick",
+    //       img: require("../images/profile.jpg"),
+    //     },
+    //     dateCreated:
+    //       monthNames[date.getMonth()] +
+    //       " " +
+    //       date.getDate().toString() +
+    //       ", " +
+    //       date.getFullYear().toString(),
+    //     description:
+    //       "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
+    //   },
+    // ];
 
     //TEMP
-    const tempTours = [
-      {
-          tourName: "Backpacking in the Blue Mountains",
-          _id: 0,
-          tourGuide: {
-              firstName: "James",
-              img: require("../images/james.jpg"),
-              rating: 4.7,
-          },
-          description: "Description of Backpacking in the Blue Mountains",
-          basePrice: 90,
-          img: require("../images/mountains.jpg"),
-          tags: ["Outdoors", "Day Trip"],
-      },
-      {
-          tourName: "Food Tour of Sydney",
-          _id: 1,
-          tourGuide: {
-              firstName: "Josh",
-              img: require("../images/josh.jpg"),
-              rating: 4.5,
-          },
-          description: "Description of Food Tour of Sydney",
-          basePrice: 85,
-          img: require("../images/foodtour.jpg"),
-          tags: ["Food", "Kid-friendly", "Private Tours Available"],
-      },
-      {
-          tourName: "Day Hike - Sydney Harbour National Park",
-          _id: 2,
-          tourGuide: {
-              firstName: "Andrea",
-              img: require("../images/andrea.jpg"),
-              rating: 4.8,
-          },
-          description: "Description of Day Hike - Sydney Harbour National Park",
-          basePrice: 50,
-          img: require("../images/sydney-harbour.jpg"),
-          tags: ["Outdoors", "Day Trip"],
-      },
-  ];
+    // const tempTours = [
+    //   {
+    //     tourName: "Backpacking in the Blue Mountains",
+    //     _id: 0,
+    //     tourGuide: {
+    //       firstName: "James",
+    //       img: require("../images/james.jpg"),
+    //       rating: 4.7,
+    //     },
+    //     description: "Description of Backpacking in the Blue Mountains",
+    //     basePrice: 90,
+    //     img: require("../images/mountains.jpg"),
+    //     tags: ["Outdoors", "Day Trip"],
+    //   },
+    //   {
+    //     tourName: "Food Tour of Sydney",
+    //     _id: 1,
+    //     tourGuide: {
+    //       firstName: "Josh",
+    //       img: require("../images/josh.jpg"),
+    //       rating: 4.5,
+    //     },
+    //     description: "Description of Food Tour of Sydney",
+    //     basePrice: 85,
+    //     img: require("../images/foodtour.jpg"),
+    //     tags: ["Food", "Kid-friendly", "Private Tours Available"],
+    //   },
+    //   {
+    //     tourName: "Day Hike - Sydney Harbour National Park",
+    //     _id: 2,
+    //     tourGuide: {
+    //       firstName: "Andrea",
+    //       img: require("../images/andrea.jpg"),
+    //       rating: 4.8,
+    //     },
+    //     description: "Description of Day Hike - Sydney Harbour National Park",
+    //     basePrice: 50,
+    //     img: require("../images/sydney-harbour.jpg"),
+    //     tags: ["Outdoors", "Day Trip"],
+    //   },
+    // ];
 
     return (
       <>
@@ -221,14 +240,27 @@ class ProfileComponent extends Component {
                   <Figure.Image
                     roundedCircle
                     fluid
-                    width={150}
-                    height={150}
-                    src={require("../images/profile.jpg")}
+                    style={{
+                      objectFit: "cover",
+                      width: "150px",
+                      height: "150px",
+                    }}
+                    src={this.state.user.img}
                   />
                 </Col>
                 <Col>
                   <h1>Hi, I'm {this.state.user.firstName}</h1>
-                  {this.state.user.type == "tourguide" && <p style={{color: "green", fontSize: "22px"}}>TOUR GUIDE</p>}
+                  {this.state.user.type == "tourguide" && (
+                    <>
+                      <p style={{ color: "green", fontSize: "22px" }}>
+                        TOUR GUIDE
+                      </p>
+                      <p className="rowC">
+                        {this.state.user.rating.toFixed(1)}
+                        {this.reviewStars(this.state.user.rating)}
+                      </p>
+                    </>
+                  )}
                   <p>
                     Languages Spoken:{" "}
                     {this.state.user.languagesSpoken.join(", ")}
@@ -244,70 +276,109 @@ class ProfileComponent extends Component {
                 </Col>
               </Row>
               <hr />
-              <Row>
-                <h3>Current Tours</h3>
-              </Row>
-              <Row>
-              <Carousel
-                  responsive={responsive}
-                  ssr
-                  infinite={false}
-                  beforeChange={() => this.setState({ isMoving: true })}
-                  afterChange={() => this.setState({ isMoving: false })}
-                  containerClass="first-carousel-container container"
-                  deviceType={this.props.deviceType}
-                >
-                  {tempTours.map((tour) => {
-                    return (
-                      <div key={tour._id}>
-                        <CondensedTour
-                          isMoving={this.state.isMoving}
-                          tour={tour}
-                        />
-                      </div>
-                    );
-                  })}
-                </Carousel>
-              </Row>
 
-              {loggedIn && id === loggedIn._id && (
-                <Row>
-                  <Button
-                    style={{ marginRight: 20, marginLeft: "auto" }}
-                    size="sm"
-                    onClick={() => this.props.history.push(`/tours/create`)}
-                  >
-                    Create New Tour
-                  </Button>
-                </Row>
+              {this.state.user.type == "tourguide" && (
+                <>
+                  <Row>
+                    <h3>Current Tours</h3>
+                  </Row>
+                  <Row>
+                    <Carousel
+                      responsive={responsive}
+                      ssr
+                      infinite={false}
+                      beforeChange={() => this.setState({ isMoving: true })}
+                      afterChange={() => this.setState({ isMoving: false })}
+                      containerClass="first-carousel-container container"
+                      deviceType={this.props.deviceType}
+                    >
+                      {this.state.user.createdTours.map((tour) => {
+                        return (
+                          <div key={tour._id}>
+                            <CondensedTour
+                              isMoving={this.state.isMoving}
+                              tour={tour}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Carousel>
+                  </Row>
+
+                  {loggedIn && id === loggedIn._id && (
+                    <Row>
+                      <Button
+                        style={{ marginRight: 20, marginLeft: "auto" }}
+                        size="sm"
+                        onClick={() => this.props.history.push(`/tours/create`)}
+                      >
+                        Create New Tour
+                      </Button>
+                    </Row>
+                  )}
+                  <hr />
+                </>
               )}
 
-              <hr />
-              <Row>
-                <h3>Reviews</h3>
-              </Row>
-              <Row>
-                <Carousel
-                  responsive={responsive}
-                  ssr
-                  infinite={false}
-                  beforeChange={() => this.setState({ isMoving: true })}
-                  afterChange={() => this.setState({ isMoving: false })}
-                  containerClass="first-carousel-container container"
-                  deviceType={this.props.deviceType}
-                >
-                  {reviews.map((review) => {
-                    return (
-                      <div key={review._id}>
-                        <Review
-                          isMoving={this.state.isMoving}
-                          review={review}
-                        />
-                      </div>
-                    );
-                  })}
-                </Carousel>
-              </Row>
+              {this.state.user.type == "tourguide" && (
+                <>
+                  <Row>
+                    <h3>Reviews</h3>
+                  </Row>
+                  <Row>
+                    <Carousel
+                      responsive={responsive}
+                      ssr
+                      infinite={false}
+                      beforeChange={() => this.setState({ isMoving: true })}
+                      afterChange={() => this.setState({ isMoving: false })}
+                      containerClass="first-carousel-container container"
+                      deviceType={this.props.deviceType}
+                    >
+                      {this.state.user.allReviews.map((review) => {
+                        return (
+                          <div key={review._id}>
+                            <Review
+                              isMoving={this.state.isMoving}
+                              review={review}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Carousel>
+                  </Row>
+                </>
+              )}
+
+              {this.state.user.type == "tourist" && (
+                <>
+                  <Row>
+                    <h3>{this.state.user.firstName}'s Reviews</h3>
+                  </Row>
+                  <Row>
+                    <Carousel
+                      responsive={responsive}
+                      ssr
+                      infinite={false}
+                      beforeChange={() => this.setState({ isMoving: true })}
+                      afterChange={() => this.setState({ isMoving: false })}
+                      containerClass="first-carousel-container container"
+                      deviceType={this.props.deviceType}
+                    >
+                      {this.state.user.allReviews.map((review) => {
+                        return (
+                          <div key={review._id}>
+                            <Review
+                              isMoving={this.state.isMoving}
+                              review={review}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Carousel>
+                  </Row>
+                </>
+              )}
             </Container>
           </div>
         )}

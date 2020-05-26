@@ -48,7 +48,7 @@ class AccountComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
-          this.props.history.push('/')
+          this.props.history.push("/");
           AccountService.logout();
           this.setState({
             message: response.data.message,
@@ -105,9 +105,12 @@ class AccountComponent extends Component {
             <Figure.Image
               roundedCircle
               fluid
-              width={150}
-              height={150}
-              src={require("../images/profile.jpg")}
+              style={{
+                objectFit: "cover",
+                width: "150px",
+                height: "150px",
+              }}
+              src={user.img}
             />
 
             <h5>Full Name</h5>
@@ -127,7 +130,12 @@ class AccountComponent extends Component {
             <h5>Languages Spoken</h5>
             <p>{user.languagesSpoken.join(", ")}</p>
 
-            <Button style={{ margin: "5px" }} onClick={() => this.props.history.push(`/account/update`)}>Update Account Info</Button>
+            <Button
+              style={{ margin: "5px" }}
+              onClick={() => this.props.history.push(`/account/update`)}
+            >
+              Update Account Info
+            </Button>
             <Button
               variant="danger"
               style={{ margin: "5px" }}

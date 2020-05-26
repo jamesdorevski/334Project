@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Modal, Button, Dropdown, Image } from "react-bootstrap";
+import { Dropdown, Figure } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import logo from "../images/localite.png";
-import profile from "../images/profile.jpg";
 import LoginModalComponent from "./LoginModalComponent";
 import AccountService from "../api/AccountService";
 
@@ -69,7 +68,17 @@ class HeaderComponent extends Component {
                       className="header-link header-btn"
                       id="dropdown-basic"
                     >
-                      <Image src={profile} height="50px" roundedCircle />{" "}
+                      <Figure.Image
+                        roundedCircle
+                        fluid
+                        style={{
+                          objectFit: "cover",
+                          width: "50px",
+                          height: "50px",
+                          padding: "5px",
+                        }}
+                        src={user.img}
+                      />
                       {user.firstName}
                     </Dropdown.Toggle>
 
@@ -80,19 +89,15 @@ class HeaderComponent extends Component {
                         Account Information
                       </Dropdown.Item>
 
-                      {user.type === "tourguide" && view === "tourguide" && (
-                        <Dropdown.Item
-                          onClick={() => {
-                            this.props.history.push(
-                              `/account/show/${user._id}`
-                            );
-                            this.forceUpdate();
-                            window.location.reload(false);
-                          }}
-                        >
-                          View Profile
-                        </Dropdown.Item>
-                      )}
+                      <Dropdown.Item
+                        onClick={() => {
+                          this.props.history.push(`/account/show/${user._id}`);
+                          this.forceUpdate();
+                          window.location.reload(false);
+                        }}
+                      >
+                        View Profile
+                      </Dropdown.Item>
 
                       {user.type === "tourguide" && view === "tourguide" && (
                         <Dropdown.Item
