@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @Document(collection="Tours")
 public class Tour 
 {
-     @Id private ObjectId _id;
+     @Id private String _id;
      private BasicDBObject tourGuide; // owner of tour
      private String name;
      private BasicDBObject location;
@@ -23,16 +23,14 @@ public class Tour
 
      private String description;
      private double basePrice;
-     private String type; // group || individual (one family)
      private int limit; // number of bookings
+     private boolean maxLimit = false;
 
      private ArrayList<Review> allReviews = new ArrayList<>();
-     private double rating;
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
-                 String description, double basePrice,
-                 String type, int limit)
+                 String description, double basePrice, int limit)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -41,7 +39,6 @@ public class Tour
           this.endTour = endTour;
           this.description = description;
           this.basePrice = basePrice;
-          this.type = type;
           this.limit = limit;
      }
 
@@ -50,14 +47,14 @@ public class Tour
           return (int) Math.ceil((startTour-endTour)/3600000);
      }
 
-     public void calcAvgRating()
+     public double getRating()
      {
           double totalRating = 5.0;
           for (int i=0; i<allReviews.size(); i++)
           {
                totalRating += allReviews.get(i).getRating();
           }
-          this.rating = Math.round((totalRating/allReviews.size()) * 10) / 10.0;
+          return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
      }
 
      public void addReview(Review newReview)
@@ -76,8 +73,8 @@ public class Tour
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
           tour.put("basePrice", basePrice);
-          tour.put("type", type);
           tour.put("limit", limit);
+          tour.put("rating", getRating());
           tour.put("allReviews", allReviews);
           return tour.toString();
      }

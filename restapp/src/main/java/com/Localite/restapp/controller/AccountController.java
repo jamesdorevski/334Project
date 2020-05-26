@@ -166,7 +166,7 @@ public class AccountController
 
             /*
              * tourguide
-             * - get tours
+             * - get current bookings
              * - get past bookings
              */
         }

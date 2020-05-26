@@ -15,10 +15,10 @@ import java.util.Date;
 @Setter @Getter @NonNull
 public class Review 
 {
-    @Id private ObjectId _id;
-    private BasicDBObject reviewer; // GetSimpleUser()
+    @Id private String _id;
     private Long dateCreated; // timestamp
     private double rating;
+    private BasicDBObject reviewer; // GetSimpleUser()
     private String description;
 
     @Builder
@@ -28,5 +28,17 @@ public class Review
         this.dateCreated = dateCreated;
         this.rating = rating;
         this.description = description;
+    }
+
+    @Override
+    public String toString()
+    {
+        JSONObject review = new JSONObject();
+        review.put("_id", _id);
+        review.put("dateCreated", dateCreated);
+        review.put("rating", rating);
+        review.put("reviewer", reviewer);
+        review.put("description", description);
+        return review.toString();
     }
 }

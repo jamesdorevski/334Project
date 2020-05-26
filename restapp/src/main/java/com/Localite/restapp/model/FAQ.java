@@ -7,11 +7,13 @@ import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
+
 @Getter @Setter @NonNull
 @Document(collection="FAQ")
 public class FAQ
 {
-    private ObjectId _id;
+    @Id private String _id;
     private String question;
     private String answer;
 
