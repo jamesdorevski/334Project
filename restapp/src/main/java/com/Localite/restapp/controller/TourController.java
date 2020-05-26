@@ -237,4 +237,25 @@ public class TourController
             return result.toString();
         }
     }
+
+    @DeleteMapping("/removeBooking/{bookingID}")
+    public String removeBooking(@PathVariable("bookingID") ObjectId bookingID) throws Exception
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            bookingRepository.deleteBy_id(bookingID);
+            result.put("message", "Booking removed");
+            result.put("success", true);
+        }
+        catch(Exception e)
+        {
+            result.put("message", "Booking removal unsuccessful");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
 }

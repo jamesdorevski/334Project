@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookingRepository extends MongoRepository<Booking, String>
 {
-    @Query(value="{'tour._id':?0}", count=true)
-    public int countBookings(ObjectId tourID);
-
-    @Query(value="{'tour._id':?0}, {'tourist._id':?1}", count=true)
-    public int findByTourist(ObjectId tourID, ObjectId userID);
+    public void deleteBy_id(ObjectId _id);
+    @Query(value="{'tour._id':?0}", count=true) public int countBookings(ObjectId tourID);
+    @Query(value="{'tour._id':?0}, {'tourist._id':?1}", count=true) public int findByTourist(ObjectId tourID, ObjectId userID);
 }
