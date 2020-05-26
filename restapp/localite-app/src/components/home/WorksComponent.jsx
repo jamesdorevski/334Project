@@ -12,7 +12,7 @@ class WorksComponent extends Component {
           <center>
             <h2 style={{ padding: "20px" }}>How It Works</h2>
 
-            <div className="row">
+            <div className="row" style={{paddingBottom:"80px"}}>
               <div className="col">
                 <img
                   src={search}
