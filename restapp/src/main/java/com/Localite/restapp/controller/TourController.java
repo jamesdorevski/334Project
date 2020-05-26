@@ -1,5 +1,6 @@
 package com.Localite.restapp.controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.Localite.restapp.model.*;
 import com.mongodb.BasicDBObject;
@@ -148,7 +149,14 @@ public class TourController
 //            return result.toString();
 //        }
 
-        return new ArrayList<Tour>();
+//        ArrayList<Tour> tours = tourRepository.findByName("Taronga Zoo visit");
+
+        
+        BasicDBObject loc = new BasicDBObject();
+        loc.put("city", "Wollongong");
+        loc.put("country", "Australia");
+        ArrayList<Tour> tours = tourRepository.findByLocation(loc);
+        return tours;
     }
 
     /**

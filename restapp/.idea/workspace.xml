@@ -1,50 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f0f894b-881c-4398-a736-cac4e3a5528b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_3_0_BUILD_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/api/AccountService.js" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/api/AccountService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/SignUpComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/SignUpComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restapp.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/AppConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/LocaliteApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking$BookingBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/FAQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review$ReviewBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/AccountRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/BookingRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/FAQRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/TourRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/TourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/TourRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/TourRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/TourRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/Localite/restapp/LocaliteApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/Localite/restapp/LocaliteApplicationTests.class" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,28 +19,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Review.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/LocaliteApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -85,87 +29,11 @@
     <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="restapp" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet">
@@ -238,52 +106,26 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="734" extended-state="6" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24959612" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32866043" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Review.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/LocaliteApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state width="1237" height="90" key="GridCell.Tab.0.bottom" timestamp="1590472052610">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="90" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590472052610" />
+    <state width="1237" height="90" key="GridCell.Tab.0.center" timestamp="1590472052610">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="90" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590472052610" />
+    <state width="1237" height="90" key="GridCell.Tab.0.left" timestamp="1590472052610">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="90" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590472052610" />
+    <state width="1237" height="90" key="GridCell.Tab.0.right" timestamp="1590472052610">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="90" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590472052610" />
   </component>
   <component name="masterDetails">
     <states>
