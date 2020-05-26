@@ -40,21 +40,20 @@ class AccountService {
 
   createUser(type, firstName, lastName, email, password, gender, phoneNumber, languagesSpoken) {
     // console.log(gender)
-    // console.log(license)
-    console.log(gender)
-    console.log(languagesSpoken)
+    // console.log(languagesSpoken)
 
-    return ({"data":{"success": false, "message": "test"}})
+    // return ({"data":{"success": false, "message": "test"}})
 
-    // return axios.post(API_URL + "create", {
-    //   type: type,
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   hashbrown: password,
-    //   phoneNumber: phoneNumber,
-    //   languagesSpoken: this.convertLangs(languagesSpoken),
-    // });
+    return axios.post(API_URL + "create", {
+      type: type,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      hashbrown: password,
+      gender: gender,
+      phoneNumber: phoneNumber,
+      languagesSpoken: this.convertLangs(languagesSpoken),
+    });
   }
 
   deleteUser(id) {

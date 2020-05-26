@@ -21,12 +21,16 @@ export const Routes =
             '/disputes',
         TOURS:
             '/tours/:id',
+        CREATE_TOUR:
+            '/tours/create',
         PROFILE:
             '/account/show/:id',
         UPCOMING_TOURS:
             '/account/:id/upcoming',
         PAST_TOURS:
             '/account/:id/past',
+        UPDATE_ACCOUNT:
+            '/account/update',
         ACCOUNT:
-            '/account/:id',
+            '/account',
     }
