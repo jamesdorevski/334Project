@@ -2,6 +2,8 @@ package com.Localite.restapp.repository;
 
 import com.mongodb.BasicDBObject;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.bson.types.ObjectId;
 
@@ -16,4 +18,7 @@ public interface TourRepository extends MongoRepository<Tour, String>
   public void deleteBy_id(ObjectId id);
   public ArrayList<Tour> findByName(String name);
   public ArrayList<Tour> findByLocation(BasicDBObject location);
+
+  @Query(value="{'tourGuide._id':?0}")
+  public ArrayList<Tour> findAllByTourGuide(ObjectId id);
 }

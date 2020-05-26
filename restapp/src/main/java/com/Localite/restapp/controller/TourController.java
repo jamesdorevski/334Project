@@ -60,7 +60,8 @@ public class TourController
      * @return String outlining the new tour's status
      */
     @PostMapping(value = "/create/{guideID}")
-    public String createTour(@PathVariable("guideID") ObjectId guideID, @RequestBody Tour newTour)
+    public String createTour(@PathVariable("guideID") ObjectId guideID,
+                             @RequestBody Tour newTour)
     {
         JSONObject result = new JSONObject();
         try 
@@ -159,16 +160,9 @@ public class TourController
         return tours;
     }
 
-    /**
-     *
-     * @param userID
-     * @param tourID
-     * @param newReview
-     * @return
-     * @throws Exception
-     */
     @PostMapping(value="/{userID}/addReview/{tourID}")
-    public String addTourReview(@PathVariable ObjectId userID, @PathVariable ObjectId tourID,
+    public String addTourReview(@PathVariable ObjectId userID,
+                                @PathVariable ObjectId tourID,
                                 @RequestBody Review newReview) throws Exception
     {
         JSONObject result = new JSONObject();
@@ -182,7 +176,6 @@ public class TourController
             Tour tour = tourRepository.findBy_id(tourID);
             tour.addReview(newReview);
             tourRepository.save(tour);
-
             result.put("success", true);
         }
         catch (NullPointerException e)
@@ -204,19 +197,39 @@ public class TourController
     }
 
     // =================== BOOKING ===================
-    @PostMapping(value="/booking/{tourID}/{userID}")
-    public String makeBooking(@PathVariable("tourID") ObjectId tourID, @PathVariable("userID") ObjectId userID,
+    @PostMapping(value="/{tourID}/booking/{userID}")
+    public String makeBooking(@PathVariable("tourID") ObjectId tourID,
+                              @PathVariable("userID") ObjectId userID,
                               @RequestBody Booking booking)
     {
         JSONObject result = new JSONObject();
         try
         {
-            BasicDBObject tourist = (accountRepository.findBy_id(userID)).getBasicUser();
             Tour tour = tourRepository.findBy_id(tourID);
-            booking.setTour(tour);
-            booking.setTourist(tourist);
-            bookingRepository.insert(booking);
-            result.put("success", true);
+            boolean bookingSpace = (tour.getLimit()-bookingRepository.countBookings(tourID)) >= 0; // default - no spots in tour
+            boolean notBooked = bookingRepository.findByTourist(tourID, userID) == 0; // default - user has booked tour
+
+            if(bookingSpace && notBooked)
+            {
+                BasicDBObject tourist = (accountRepository.findBy_id(userID)).getBasicUser();
+                booking.setTour(tour);
+                booking.setTourist(tourist);
+                booking.setDate(System.currentTimeMillis());
+                bookingRepository.insert(booking);
+                result.put("success", true);
+            }
+            else
+            {
+                result.put("success", false);
+                if(!bookingSpace)
+                    result.put("message", "No booking spots left");
+                else
+                {
+                    result.put("message", "User has booked tour");
+                    result.put("tour", tour); // returns tour as well to load tour page
+                }
+                if (debug) System.out.println(bookingSpace + " | " + notBooked);
+            }
         }
         catch (NullPointerException e)
         {
@@ -228,28 +241,6 @@ public class TourController
         {
             if (debug) System.out.println(e);
             result.put("message", "Booking unsuccessful");
-            result.put("success", false);
-        }
-        finally
-        {
-            return result.toString();
-        }
-    }
-
-    @GetMapping(value="/bookingList")
-    public String getBookings()
-    {
-        JSONObject result = new JSONObject();
-        try
-        {
-            // find bookings
-            // check if bookings exist. return no bookings else ....
-            // sort them by past and current bookings
-        }
-        catch (Exception e)
-        {
-            if (debug) System.out.println(e);
-            result.put("message", "Unable to load bookings");
             result.put("success", false);
         }
         finally

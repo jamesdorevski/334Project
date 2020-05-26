@@ -29,7 +29,7 @@ public class Account
     private String img; // https://blahblah.com
 
     private ArrayList<Review> allReviews = new ArrayList<>();
-    private double rating;
+    private double rating = 5.0; // default
 
     // Tourist
     private ArrayList<Booking> allBookings = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Account
     public BasicDBObject getBasicUser() // placed in tours
     {
         BasicDBObject simple = new BasicDBObject();
-        simple.put("_id", _id.toString());
+        simple.put("_id", _id);
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
@@ -96,7 +96,7 @@ public class Account
     public String toString()
     {
         JSONObject user = new JSONObject();
-        user.put("_id", (ObjectId) _id);
+        user.put("_id", _id);
         user.put("type", type);
         user.put("firstName", firstName);
         user.put("lastName", lastName);

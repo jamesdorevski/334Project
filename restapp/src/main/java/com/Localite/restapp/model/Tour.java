@@ -23,14 +23,16 @@ public class Tour
 
      private String description;
      private double basePrice;
-     private int groupLimit;
+     private String type; // group || individual (one family)
+     private int limit; // number of bookings
 
      private ArrayList<Review> allReviews = new ArrayList<>();
      private double rating;
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
-                 String description, double basePrice, int groupLimit)
+                 String description, double basePrice,
+                 String type, int limit)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -39,7 +41,8 @@ public class Tour
           this.endTour = endTour;
           this.description = description;
           this.basePrice = basePrice;
-          this.groupLimit = groupLimit;
+          this.type = type;
+          this.limit = limit;
      }
 
      public int getDurationInHours()
@@ -73,7 +76,9 @@ public class Tour
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
           tour.put("basePrice", basePrice);
-          tour.put("groupLimit", groupLimit);
+          tour.put("type", type);
+          tour.put("limit", limit);
+          tour.put("allReviews", allReviews);
           return tour.toString();
      }
 }

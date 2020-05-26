@@ -3,8 +3,10 @@ package com.Localite.restapp.controller;
 import com.Localite.restapp.model.Account;
 import com.Localite.restapp.model.FAQ;
 import com.Localite.restapp.model.Review;
+import com.Localite.restapp.model.Tour;
 import com.Localite.restapp.repository.AccountRepository;
 import com.Localite.restapp.repository.FAQRepository;
+import com.Localite.restapp.repository.TourRepository;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -20,19 +22,32 @@ public class PublicController
     private boolean debug = true;
     @Autowired private FAQRepository faqRepository;
     @Autowired private AccountRepository accountRepository;
+    @Autowired private TourRepository tourRepository;
 
     // =================== General ===================
+    /* Gets a tourist's proflie else not valid profile */
     @GetMapping(value="user/{userID}")
-    public String getUserProfile(@PathVariable("userID") ObjectId userID)
+    public String getTourGuide(@PathVariable("userID") ObjectId userID)
     {
         JSONObject result = new JSONObject();
         try
         {
             BasicDBObject user = (accountRepository.findBy_id(userID)).getProfileUser();
-            System.out.println(user);
-            // TODO - get all created bookings
-            result.put("user", user);
-            result.put("success", true);
+
+            if(user.get("type") != "tourGuide") // does a check so it's not a tourist account
+            {
+                // getting tours by this tourGuide
+                ArrayList<Tour> createdTours = tourRepository.findAllByTourGuide(userID);
+                user.put("createdTours", createdTours);
+
+                result.put("user", user);
+                result.put("success", true);
+            }
+            else
+            {
+                result.put("success", false);
+                result.put("message", "404 - Page does not exist");
+            }
         }
         catch (NullPointerException e)
         {
@@ -62,12 +77,13 @@ public class PublicController
             // obtaining reviewer details
             BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
             newReview.setReviewer(reviewer);
+            newReview.setDateCreated(System.currentTimeMillis());
+            System.out.println(reviewer);
 
-            // adding review to tour
+            // adding review to user's profile
             Account reviewee = accountRepository.findBy_id(revieweeID);
             reviewee.addReview(newReview);
             accountRepository.save(reviewee);
-
             result.put("success", true);
         }
         catch (NullPointerException e)

@@ -99,8 +99,9 @@ public class AccountController
         }
     }
 
-    @PostMapping(path="update/{id}")
-    public String updateUser(@PathVariable("id") ObjectId userID, @RequestBody Account newInfo) throws Exception
+    @PostMapping(path="update/{userID}")
+    public String updateUser(@PathVariable("userID") ObjectId userID,
+                             @RequestBody Account newInfo) throws Exception
     {
         JSONObject result = new JSONObject();
         try
@@ -143,6 +144,35 @@ public class AccountController
             if (debug) System.out.println(e);
             result.put("message", "Network Error");
             result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @GetMapping(path="/tourist/{userID}")
+    public String getUserProfile(@PathVariable ObjectId userID) throws Exception
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+             /*
+             * tourist
+             * - get current bookings
+             * - get past bookings
+             */
+
+            /*
+             * tourguide
+             * - get tours
+             * - get past bookings
+             */
+        }
+        catch(Exception e)
+        {
+
         }
         finally
         {
