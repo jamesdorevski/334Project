@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import com.Localite.restapp.model.*;
 import com.Localite.restapp.repository.ReviewRepository;
 import com.mongodb.BasicDBObject;
+import com.mongodb.internal.client.model.AggregationLevel;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 
@@ -109,11 +111,11 @@ public class TourController
         JSONObject result = new JSONObject();
         ArrayList<Tour> tours = new ArrayList<>();
 
-        //input object already contains:
-        //String location, Date startDate, Date endDate, Number adults, Number children, Number infants
         try
         {
-            tours = tourRepository.findTours(input.getString("city"), input.getString("country"));
+            tours = tourRepository.findTours(input.getString("city"), input.getString("country"),
+                                   input.getLong("startDate"), input.getLong("endDate"),
+                                    input.getInt("numOfParties"));
             result.put("tours", tours);
             result.put("success", true);
         }
@@ -181,26 +183,35 @@ public class TourController
     @PostMapping(value="/{tourID}/booking/{userID}")
     public String makeBooking(@PathVariable("tourID") ObjectId tourID,
                               @PathVariable("userID") ObjectId userID,
-                              @RequestBody Booking booking)
+                              @RequestBody String str)
     {
+        JSONObject input = new JSONObject(str);
         JSONObject result = new JSONObject();
         try
         {
             Tour tour = tourRepository.findBy_id(tourID);
-            int numOfBookings = (tour.getLimit()-bookingRepository.countBookings(tourID));
+            int numOfBookings = (tour.getCapacity()-bookingRepository.countBookings(tourID));
             boolean bookingSpace = numOfBookings > 0; // minimum 1 booking to book
             boolean notBooked = bookingRepository.findByTourist(tourID, userID) == 0;
 
             if(bookingSpace && notBooked)
             {
-                BasicDBObject tourist = (accountRepository.findBy_id(userID)).getBasicUser();
-                booking.setTour(tour);
-                booking.setTourist(tourist);
-                booking.setDate(System.currentTimeMillis());
-                bookingRepository.insert(booking);
+                Account tourist = accountRepository.findBy_id(userID);
+                for(int i=0; i < input.getInt("numOfParties"); i++)
+                {
+                    Booking booking = new Booking();
+                    booking.setTour(tour);
+                    booking.setTourist(tourist.getBasicUser());
+                    booking.setDate(System.currentTimeMillis());
+                    booking.setDietaryRequirement(input.getString("dietaryRequirement"));
+                    booking = bookingRepository.insert(booking);
 
-                // if there was only 1 booking left before it was booked
-                if (numOfBookings == 1)
+                    if (i == 0)
+                        tourist.addBooking(booking);
+                }
+
+                int bookingsLeft = numOfBookings - input.getInt("numOfParties");
+                if (bookingsLeft == 0)
                 {
                     tour.setMaxLimit(true);
                     tourRepository.save(tour);
@@ -238,13 +249,14 @@ public class TourController
         }
     }
 
-    @DeleteMapping("/removeBooking/{bookingID}")
-    public String removeBooking(@PathVariable("bookingID") ObjectId bookingID) throws Exception
+    @DeleteMapping("/{tourID}/removeBooking/{userID}")
+    public String removeBooking(@PathVariable("tourID") ObjectId tourID,
+                                @PathVariable("userID") String userID) throws Exception
     {
         JSONObject result = new JSONObject();
         try
         {
-            bookingRepository.deleteBy_id(bookingID);
+            bookingRepository.deleteBookings(userID, tourID);
             result.put("message", "Booking removed");
             result.put("success", true);
         }

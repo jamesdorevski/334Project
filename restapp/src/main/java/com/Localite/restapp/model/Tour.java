@@ -23,14 +23,14 @@ public class Tour
 
      private String description;
      private double basePrice;
-     private int limit; // number of bookings
-     private boolean maxLimit = false;
+     private int capacity; // number of people
+     private boolean maxLimit = false; // boolean for retrival
 
      private ArrayList<Review> allReviews = new ArrayList<>();
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
-                 String description, double basePrice, int limit)
+                 String description, double basePrice, int capacity)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -39,7 +39,7 @@ public class Tour
           this.endTour = endTour;
           this.description = description;
           this.basePrice = basePrice;
-          this.limit = limit;
+          this.capacity = capacity;
      }
 
      public int getDurationInHours()
@@ -73,7 +73,7 @@ public class Tour
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
           tour.put("basePrice", basePrice);
-          tour.put("limit", limit);
+          tour.put("capacity", capacity);
           tour.put("rating", getRating());
           tour.put("allReviews", allReviews);
           return tour.toString();

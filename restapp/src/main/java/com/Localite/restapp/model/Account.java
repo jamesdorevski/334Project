@@ -93,6 +93,11 @@ public class Account
         this.allReviews.add(newReview);
     }
 
+    public void addBooking(Booking newBooking)
+    {
+        this.allBookings.add(newBooking);
+    }
+
     @Override
     public String toString()
     {

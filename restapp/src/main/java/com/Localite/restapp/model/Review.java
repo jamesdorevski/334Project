@@ -19,17 +19,20 @@ public class Review
     @Id private String _id;
     private String tourID;
     private Long dateCreated; // timestamp
-    private double rating;
     private BasicDBObject reviewer; // GetSimpleUser()
+
+    private String title;
     private String description;
+    private double rating;
 
     @Builder
-    public Review(BasicDBObject reviewer, Long dateCreated, double rating, String description)
+    public Review(BasicDBObject reviewer, Long dateCreated, String title, double rating, String description)
     {
         this.reviewer = reviewer;
         this.dateCreated = dateCreated;
         this.rating = rating;
         this.description = description;
+        this.title = title;
     }
 
     @Override
@@ -38,9 +41,10 @@ public class Review
         JSONObject review = new JSONObject();
         review.put("_id", _id);
         review.put("dateCreated", dateCreated);
-        review.put("rating", rating);
         review.put("reviewer", reviewer);
+        review.put("title", title);
         review.put("description", description);
+        review.put("rating", rating);
         return review.toString();
     }
 }
