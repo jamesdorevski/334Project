@@ -11,18 +11,22 @@ class SignUpComponent extends Component {
     this.state = {
       message: "",
       success: false,
-      langArray: [
-        { lang: "English" },
-        { lang: "Spanish"},
-        { lang: "French"},
-        { lang: "Arabic"},
-        { lang: "Chinese"},
-        { lang: "Greek" },
-        { lang: "Italian"}
+      tags: [
+        { tag: "Night Tour" },
+        { tag: "Day Trip"},
+        { tag: "Food"},
+        { tag: "Wine"},
+        { tag: "Hiking and Outdoors"},
+        { tag: "Museums" },
+        { tag: "Shopping"}
       ],
       selectedValues: [
       ]
     };
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 
   onSelect = (selectedList, selectedItem) => {
@@ -36,13 +40,6 @@ class SignUpComponent extends Component {
   }
 
   render() {
-    const t = this.props.type
-    let type = ""
-    if (t === "tourguide") {
-            type = "tourguide"
-          } else {
-            type = "tourist"
-          }
 
     return (
       <div
@@ -55,8 +52,8 @@ class SignUpComponent extends Component {
         </h3>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
+          tourName: "",
+          description: "",
           email: "",
           password: "",
           confirmPassword: "",
@@ -64,8 +61,10 @@ class SignUpComponent extends Component {
         }}
 
         validationSchema={Yup.object().shape({
-          firstName: Yup.string().required("First Name is required"),
-          lastName: Yup.string().required("Last Name is required"),
+          tourName: Yup.string()
+            .max(40, "Tour name cannot exceed 40 characters")
+            .required("Tour Name is required"),
+          description: Yup.string().required("Description is required"),
           email: Yup.string()
             .email("Email is invalid")
             .required("Email is required"),
@@ -77,9 +76,9 @@ class SignUpComponent extends Component {
             .required("Confirm Password is required"),
           gender: Yup.string().required("Gender is required"),
           phoneNumber: Yup.string().required("Phone Number is required"),
-          languagesSpoken: Yup.array().max(
-            1,
-            "Must have at least 1 language spoken"
+          tags: Yup.array().max(
+            2,
+            "Must have at least 2 tags"
           ).of(
         Yup.object().shape({
           label: Yup.string().required(),
@@ -91,9 +90,8 @@ class SignUpComponent extends Component {
         onSubmit={(fields, { setSubmitting }) => {
           // find a way to pass fields as an object so we can extract the params in AuthService
           AccountService.createUser(
-            type,
-            fields.firstName,
-            fields.lastName,
+            fields.tourName,
+            fields.description,
             fields.email,
             fields.password,
             fields.gender,
@@ -136,33 +134,34 @@ class SignUpComponent extends Component {
         render={({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="tourName">Tour Name</label>
               <Field
-                name="firstName"
+                name="tourName"
                 type="text"
                 className={
                   "form-control" +
-                  (errors.firstName && touched.firstName ? " is-invalid" : "")
+                  (errors.tourName && touched.tourName ? " is-invalid" : "")
                 }
               />
               <ErrorMessage
-                name="firstName"
+                name="tourName"
                 component="div"
                 className="invalid-feedback"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="description">Description</label>
               <Field
-                name="lastName"
+                name="description"
                 type="text"
+                component="textarea"
                 className={
                   "form-control" +
-                  (errors.lastName && touched.lastName ? " is-invalid" : "")
+                  (errors.description && touched.description ? " is-invalid" : "")
                 }
               />
               <ErrorMessage
-                name="lastName"
+                name="description"
                 component="div"
                 className="invalid-feedback"
               />
@@ -266,20 +265,20 @@ class SignUpComponent extends Component {
               />
             </div>
             <div className="form-group">
-            <label htmlFor="languagesSpoken">Languages Spoken</label>
+            <label htmlFor="tags">Tags</label>
             <Multiselect
-              options={this.state.langArray}
-              displayValue="lang"
+              options={this.state.tags}
+              displayValue="tag"
               showCheckbox={true}
               onRemove={this.onRemove}
               onSelect={this.onSelect}
               className={
                 "form-control" +
-                (errors.languagesSpoken && touched.languagesSpoken ? " is-invalid" : "")
+                (errors.tags && touched.tags ? " is-invalid" : "")
               }
             />
             <ErrorMessage
-                name="languagesSpoken"
+                name="tags"
                 component="div"
                 className="invalid-feedback"
               />

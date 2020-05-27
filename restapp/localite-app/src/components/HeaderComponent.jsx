@@ -103,49 +103,27 @@ class HeaderComponent extends Component {
                         <Dropdown.Item
                           onClick={() => {
                             this.props.history.push(
-                              `/account/${user._id}/upcoming/bookings`
+                              `/account/${user._id}/bookings`
                             );
                           }}
                         >
-                          Upcoming Bookings
+                          My Bookings
                         </Dropdown.Item>
                       )}
 
-                      {user.type === "tourguide" && view === "tourguide" && (
-                        <Dropdown.Item
-                          onClick={() => {
-                            this.props.history.push(
-                              `/account/${user._id}/past/bookings`
-                            );
-                          }}
-                        >
-                          Past Bookings
-                        </Dropdown.Item>
-                      )}
 
                       {view === "tourist" && (
                         <Dropdown.Item
                           onClick={() =>
                             this.props.history.push(
-                              `/account/${user._id}/upcoming`
+                              `/account/${user._id}/tours`
                             )
                           }
                         >
-                          Upcoming Tours
+                          My Tours
                         </Dropdown.Item>
                       )}
 
-                      {view === "tourist" && (
-                        <Dropdown.Item
-                          onClick={() =>
-                            this.props.history.push(
-                              `/account/${AccountService.getCurrentUser._id}/past`
-                            )
-                          }
-                        >
-                          Past Tours
-                        </Dropdown.Item>
-                      )}
                       <Dropdown.Item>Messages</Dropdown.Item>
                       <div className="dropdown-divider"></div>
                       {user.type === "tourguide" && view === "tourist" && (

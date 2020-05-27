@@ -53,14 +53,7 @@ class UpdateAccountComponent extends Component {
 
   render() {
     // console.log(this.state.user);
-    const t = this.props.type;
-    let type = "";
-    if (t === "tourguide") {
-      type = "tourguide";
-    } else {
-      type = "tourist";
-    }
-
+  
     // const genders = [
     //   { label: "Male", value: "Male" },
     //   { label: "Female", value: "Female" },
