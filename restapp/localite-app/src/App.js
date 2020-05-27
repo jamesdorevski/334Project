@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import { Routes } from "./navigation/routes";
 import AuthenticatedRoute from "./components/AuthenticatedRoute"
@@ -14,7 +14,7 @@ import FAQComponent from "./components/FAQComponent.jsx"
 import DisputeResolutionComponent from "./components/DisputeResolutionComponent.jsx"
 import BecomeAGuideComponent from "./components/BecomeAGuideComponent.jsx"
 import AccountComponent from "./components/AccountComponent"
-import UpcomingToursComponent from "./components/UpcomingToursComponent"
+import MyBookingsComponent from "./components/MyBookingsComponent"
 import PastToursComponent from "./components/PastToursComponent"
 import ProfileComponent from "./components/ProfileComponent"
 import LoginComponent from "./components/LoginComponent"
@@ -40,7 +40,7 @@ export const App = () => {
             {/*<Route path={Routes.TOURS} component={TourComponent} />*/}
             <AuthenticatedRoute path={Routes.CREATE_TOUR} component={CreateTourComponent} />
             <Route path={Routes.PROFILE} component={ProfileComponent} />
-            <AuthenticatedRoute path={Routes.UPCOMING_TOURS} component={UpcomingToursComponent} />
+            <AuthenticatedRoute path={Routes.MY_BOOKINGS} component={MyBookingsComponent} />
             <AuthenticatedRoute path={Routes.PAST_TOURS} component={PastToursComponent} />
             <AuthenticatedRoute exact path={Routes.ACCOUNT} component={AccountComponent} />
             <AuthenticatedRoute path={Routes.UPDATE_ACCOUNT} component={UpdateAccountComponent} />

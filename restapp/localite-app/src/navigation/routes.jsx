@@ -25,8 +25,8 @@ export const Routes =
             '/tours/create',
         PROFILE:
             '/account/show/:id',
-        UPCOMING_TOURS:
-            '/account/:id/upcoming',
+        MY_BOOKINGS:
+            '/account/:id/bookings',
         PAST_TOURS:
             '/account/:id/past',
         UPDATE_ACCOUNT:

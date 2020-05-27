@@ -24,14 +24,18 @@ export default function CondensedTourComponent(props) {
     <div key={props.tour._id} className={classes.root}>
       <Card className={classes.card}>
         <CardActionArea>
-          <img className="tour-img" alt="complex" src={props.tour.img} />
+          <img
+            className="tour-img"
+            alt={props.tour.name}
+            src={props.tour.img}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.tour.tourName}
+              {props.tour.name}
             </Typography>
-            <Typography gutterBottom variant="body2" color="textSecondary">
+            {/* <Typography gutterBottom variant="body2" color="textSecondary">
               {props.tour.tags.join(", ")}
-            </Typography>
+            </Typography> */}
           </CardContent>
         </CardActionArea>
       </Card>

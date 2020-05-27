@@ -53,14 +53,7 @@ class UpdateAccountComponent extends Component {
 
   render() {
     // console.log(this.state.user);
-    const t = this.props.type;
-    let type = "";
-    if (t === "tourguide") {
-      type = "tourguide";
-    } else {
-      type = "tourist";
-    }
-
+  
     // const genders = [
     //   { label: "Male", value: "Male" },
     //   { label: "Female", value: "Female" },
@@ -80,12 +73,15 @@ class UpdateAccountComponent extends Component {
           Personal Info
         </h3>
         <Figure.Image
-              roundedCircle
-              fluid
-              width={150}
-              height={150}
-              src={require("../images/profile.jpg")}
-            />
+                    roundedCircle
+                    fluid
+                    style={{
+                      objectFit: "cover",
+                      width: "150px",
+                      height: "150px",
+                    }}
+                    src={this.state.user.img}
+                  />
             <br/>
         <a href="#">Upload new picture</a>
         <div style={{padding: "10px"}}></div>

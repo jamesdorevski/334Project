@@ -99,6 +99,8 @@ public class AccountController
         }
     }
 
+    //made but as-yet untested because it's not connected and I dont know how
+    //to even start to approach making account objects in talend to pass as body -Josh
     @PostMapping(path="update/{userID}")
     public String updateUser(@PathVariable("userID") ObjectId userID,
                              @RequestBody Account newInfo) throws Exception
@@ -106,8 +108,49 @@ public class AccountController
         JSONObject result = new JSONObject();
         try
         {
+            Account thisAccount = accountRepository.findBy_id(userID);
+
+            if (newInfo.getType() != null)
+              thisAccount.setType(newInfo.getType());
+
+            if (newInfo.getFirstName() != null)
+              thisAccount.setFirstName(newInfo.getFirstName());
+
+            if (newInfo.getLastName() != null)
+              thisAccount.setLastName(newInfo.getLastName());
+
+            if (newInfo.getEmail() != null)
+              thisAccount.setEmail(newInfo.getEmail());
+
+            if (newInfo.getHashbrown() != null)
+              thisAccount.setHashbrown(newInfo.getHashbrown());
+
+            if (newInfo.getPhoneNumber() != null)
+              thisAccount.setPhoneNumber(newInfo.getPhoneNumber());
+
+            if (newInfo.getGender() != null)
+              thisAccount.setGender(newInfo.getGender());
+
+            if (newInfo.getImg() != null)
+              thisAccount.setImg(newInfo.getImg());
+
+            if (newInfo.getLanguagesSpoken() != null)
+              thisAccount.setLanguagesSpoken(newInfo.getLanguagesSpoken());
+
+            if (newInfo.getAllReviews() != null)
+              thisAccount.setAllReviews(newInfo.getAllReviews());
+
+            // Tourist
+            if (newInfo.getAllBookings() != null)
+              thisAccount.setAllBookings(newInfo.getAllBookings());
+
+            // Tourguide
+            if (newInfo.getLicence() != null)
+              thisAccount.setLicence(newInfo.getLicence());
+
             newInfo.set_id(userID);
-            accountRepository.save(newInfo);
+
+            accountRepository.save(thisAccount);
             result.put("message", "Account updated");
             result.put("success", true);
         }
