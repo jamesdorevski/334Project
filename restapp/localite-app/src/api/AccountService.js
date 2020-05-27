@@ -56,6 +56,18 @@ class AccountService {
     });
   }
 
+  updateUser(id, firstName, lastName, email, password, gender, phoneNumber, languagesSpoken){
+    return axios.post(API_URL + `update/${id}`, {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      hashbrown: password,
+      gender: gender,
+      phoneNumber: phoneNumber,
+      languagesSpoken: this.convertLangs(languagesSpoken),
+    });
+  }
+
   deleteUser(id) {
     // return {"success": false, "message": "Network Error"}
     return axios.delete(API_URL + `delete/${id}`);

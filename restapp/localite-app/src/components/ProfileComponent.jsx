@@ -250,7 +250,7 @@ class ProfileComponent extends Component {
                 </Col>
                 <Col>
                   <h1>Hi, I'm {this.state.user.firstName}</h1>
-                  {this.state.user.type == "tourguide" && (
+                  {this.state.user.type === "tourguide" && (
                     <>
                       <p style={{ color: "green", fontSize: "22px" }}>
                         TOUR GUIDE
@@ -277,7 +277,7 @@ class ProfileComponent extends Component {
               </Row>
               <hr />
 
-              {this.state.user.type == "tourguide" && (
+              {this.state.user.type === "tourguide" && (
                 <>
                   <Row>
                     <h3>Current Tours</h3>
@@ -320,7 +320,7 @@ class ProfileComponent extends Component {
                 </>
               )}
 
-              {this.state.user.type == "tourguide" && (
+              {this.state.user.type === "tourguide" && (
                 <>
                   <Row>
                     <h3>Reviews</h3>
@@ -350,7 +350,7 @@ class ProfileComponent extends Component {
                 </>
               )}
 
-              {this.state.user.type == "tourist" && (
+              {this.state.user.type === "tourist" && (
                 <>
                   <Row>
                     <h3>{this.state.user.firstName}'s Reviews</h3>
