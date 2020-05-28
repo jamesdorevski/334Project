@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React, {Component} from "react"
 // UNCOMMENT ONCE findTours is written in TourController
 // import qs from 'qs';
 // import axios from "axios";
-import Tour from "./TourComponent";
-import Loader from 'react-loader-spinner';
+import Tour from "./TourComponent"
+import Loader from 'react-loader-spinner'
+import FilterModalComponent from './FilterModalComponent'
 
 class TourResultsComponent extends Component {
     constructor(props) {
@@ -14,9 +15,18 @@ class TourResultsComponent extends Component {
             loaded: false,
             error: false,
             tours: [],
+            modalOpen: false
         };
     }
-
+    
+    handleClose = () => {
+        this.setState({ modalOpen: false });
+      };
+    
+      handleShow = () => {
+        this.setState({ modalOpen: true });
+      };
+    
     componentDidMount = () => {
 
         //temporary only - DELETE ME once backend findTours is written (the commented out code implements the passing of params to findTours)
@@ -114,9 +124,18 @@ class TourResultsComponent extends Component {
                     }}
                 />
                 <div
+                className= "rowC"
                     style={{textAlign: "left", paddingLeft: "20px", paddingTop: "20px"}}
                 >
                     <h4>{this.state.tours.length} tours are available for your dates!</h4>
+                    <button
+                    type="button"
+                    className="btn btn-link"
+                    style={{ textDecoration: "none" }}
+                    onClick={this.handleShow}
+                  >
+                    FILTERS
+                  </button>
                 </div>
                 {error && (
                     <p className="text-danger">{error}</p>
@@ -129,6 +148,12 @@ class TourResultsComponent extends Component {
                         </div>
                     ))}
                 </div>
+
+                <FilterModalComponent
+          open={this.state.modalOpen}
+          handleClose={this.handleClose}
+          handleShow={this.handleShow}
+        />
             </>
         );
     }

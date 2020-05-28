@@ -124,7 +124,7 @@ class HeaderComponent extends Component {
                         </Dropdown.Item>
                       )}
 
-                      <Dropdown.Item>Messages</Dropdown.Item>
+                      <Dropdown.Item onClick={() => this.props.history.push(`/account/messages`)}>Messages</Dropdown.Item>
                       <div className="dropdown-divider"></div>
                       {user.type === "tourguide" && view === "tourist" && (
                         <Dropdown.Item

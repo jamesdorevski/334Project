@@ -31,6 +31,8 @@ export const Routes =
             '/account/:id/past',
         UPDATE_ACCOUNT:
             '/account/update',
+        MESSAGES:
+            '/account/messages',
         ACCOUNT:
-            '/account',
+            '/account'
     }

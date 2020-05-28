@@ -24,6 +24,31 @@
   margin-top:-90px;
 }
 
+/* .container {
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
+}
+
+.center-col {
+  flex: 1;
+  background: #aaa;
+  overflow-y: scroll;
+} */
+
+.form {
+  margin: 0 auto;
+  padding: 100px 30px 0;
+
+  @media (min-width: 800px) {
+    max-width: 60%;
+  }
+}
+
+.input-range {
+  margin-bottom: 160px;
+}
+
 .rowC{display:flex; flex-direction:row;}
 
 .tour-img {

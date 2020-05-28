@@ -1,27 +1,47 @@
 import React, { Component } from "react";
 import plane2 from "../images/plane2.jpg";
+import PublicService from "../api/PublicService";
 
 class FAQComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      questions: null,
+      questions: [],
     };
   }
 
   componentWillMount = () => {
-    //will pull questions from backend
-    const static_questions = {
-      "Question lorem ipsum dolor sit amet, consectetur adipiscing elit?":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "Question lorem ipsum dolor sit amet, consectetur?":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "Question lorem ipsum dolor sit amet, consectetur adipiscing?":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    };
+    // //will pull questions from backend
+    const static_questions = [
+      {"question": "Question lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+      {"question": "Question lorem ipsum dolor sit amet, consectetur?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
+      {"question": "Question lorem ipsum dolor sit amet, consectetur adipiscing?",
+      "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."},
+    ];
 
-    this.setState({ questions: static_questions });
+    PublicService.getFAQ().then(
+      (response) => {
+        console.log(response);
+        if (response.data.success) {
+          this.setState({
+            // questions: response.data.faqList,
+            questions: static_questions
+          });
+        } else {
+          this.setState({
+            questions: [],
+          });
+        }
+      },
+      (error) => {
+        this.setState({
+          questions: [],
+        });
+      }
+    );
   };
 
   render() {
@@ -41,12 +61,14 @@ class FAQComponent extends Component {
             className="container"
             background-color="transparent"
           >
-            {Object.entries(this.state.questions).map(([question, answer]) => (
-              <div key={question} style={{ paddingBottom: "20px" }}>
-                <h5>{question}</h5>
-                <p>{answer}</p>
-              </div>
-            ))}
+            {this.state.questions.map((question) => {
+                    return (
+                      <div key={question.question} style={{ paddingBottom: "20px" }}>
+                        <h5>{question.question}</h5>
+                        <p>{question.answer}</p>
+                      </div>
+                    );
+                  })}
             <hr />
           </div>
         </section>

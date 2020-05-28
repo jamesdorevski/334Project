@@ -20,6 +20,7 @@ import ProfileComponent from "./components/ProfileComponent"
 import LoginComponent from "./components/LoginComponent"
 import UpdateAccountComponent from "./components/UpdateAccountComponent"
 import CreateTourComponent from "./components/CreateTourComponent"
+import MessagesComponent from "./components/MessagesComponent"
 
 export const App = () => {
     return (
@@ -44,6 +45,7 @@ export const App = () => {
             <AuthenticatedRoute path={Routes.PAST_TOURS} component={PastToursComponent} />
             <AuthenticatedRoute exact path={Routes.ACCOUNT} component={AccountComponent} />
             <AuthenticatedRoute path={Routes.UPDATE_ACCOUNT} component={UpdateAccountComponent} />
+            <AuthenticatedRoute path={Routes.MESSAGES} component={MessagesComponent} />
             <Route path="*">
                 <Redirect to={Routes.HOME} />
             </Route>
