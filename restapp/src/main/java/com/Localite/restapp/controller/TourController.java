@@ -6,6 +6,7 @@ import com.Localite.restapp.model.*;
 import com.Localite.restapp.repository.ReviewRepository;
 import com.mongodb.BasicDBObject;
 import com.mongodb.internal.client.model.AggregationLevel;
+import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
@@ -105,15 +106,13 @@ public class TourController
     }
 
     @PostMapping(value = "/search")
-    public ArrayList<Tour> findTours(@RequestBody String str) throws Exception
+    public String findTours(@RequestBody String str) throws Exception
     {
         JSONObject input = new JSONObject(str);
         JSONObject result = new JSONObject();
-        ArrayList<Tour> tours = new ArrayList<>();
-
         try
         {
-            tours = tourRepository.findTours(input.getString("city"), input.getString("country"),
+            ArrayList<Tour>tours = tourRepository.findTours(input.getString("city"), input.getString("country"),
                                    input.getLong("startDate"), input.getLong("endDate"),
                                     input.getInt("numOfParties"));
             result.put("tours", tours);
@@ -133,8 +132,7 @@ public class TourController
         }
         finally
         {
-//            return result.toString();
-            return tours;
+            return result.toString();
         }
     }
 
@@ -180,7 +178,7 @@ public class TourController
     }
 
     // =================== BOOKING ===================
-    @PostMapping(value="/{tourID}/booking/{userID}")
+    @PostMapping(value="/{tourID}/makeBooking/{userID}")
     public String makeBooking(@PathVariable("tourID") ObjectId tourID,
                               @PathVariable("userID") ObjectId userID,
                               @RequestBody String str)
@@ -197,7 +195,8 @@ public class TourController
             if(bookingSpace && notBooked)
             {
                 Account tourist = accountRepository.findBy_id(userID);
-                for(int i=0; i < input.getInt("numOfParties"); i++)
+                int totalParties = input.getInt("adult")+input.getInt("child")+input.getInt("infant");
+                for(int i=0; i<totalParties; i++)
                 {
                     Booking booking = new Booking();
                     booking.setTour(tour);
@@ -210,7 +209,7 @@ public class TourController
                         tourist.addBooking(booking);
                 }
 
-                int bookingsLeft = numOfBookings - input.getInt("numOfParties");
+                int bookingsLeft = numOfBookings-totalParties;
                 if (bookingsLeft == 0)
                 {
                     tour.setMaxLimit(true);
@@ -264,6 +263,71 @@ public class TourController
         {
             result.put("message", "Booking removal unsuccessful");
             result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    // =================== PAYMENT ===================
+    @PostMapping("/{tourID}/makePayment")
+    public String makePayment(@PathVariable("tourID") ObjectId tourID,
+                              @RequestBody String str) throws Exception
+    {
+        JSONObject input = new JSONObject(str);
+        JSONObject result = new JSONObject();
+
+        try
+        {
+            Tour tour = tourRepository.findBy_id(tourID);
+            result.put("allTotals", tour.getTotals(input));
+            result.put("success", true);
+        }
+        catch (Exception e)
+        {
+            result.put("success", false);
+            result.put("message", "Unable to calculate totals");
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @GetMapping("/{tourID}/preRefund/{userID}")
+    public String preRefund(@PathVariable("tourID") ObjectId tourID,
+                             @PathVariable("userID") ObjectId userID)
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+
+        }
+        catch(Exception e)
+        {
+
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @PostMapping("/{tourID}/makeRefund/{userID}")
+    public String makeRefund(@PathVariable("tourID") ObjectId tourID,
+                            @PathVariable("userID") ObjectId userID)
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+
+        }
+        catch(Exception e)
+        {
+
         }
         finally
         {

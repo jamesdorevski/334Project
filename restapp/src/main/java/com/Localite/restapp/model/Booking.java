@@ -19,6 +19,7 @@ public class Booking
     private Tour tour;
     private Long date;
     private String dietaryRequirement;
+    private BasicDBObject numOfParties;
 
     public Booking(){}
 }

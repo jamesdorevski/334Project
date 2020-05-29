@@ -22,7 +22,7 @@ public class Tour
      private Long endTour;
 
      private String description;
-     private double basePrice;
+     private BasicDBObject basePrices; // adult, child and infant
      private int capacity; // number of people
      private boolean maxLimit = false; // boolean for retrival
 
@@ -30,7 +30,7 @@ public class Tour
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
-                 String description, double basePrice, int capacity)
+                 String description, BasicDBObject basePrices, int capacity)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -38,7 +38,7 @@ public class Tour
           this.startTour = startTour;
           this.endTour = endTour;
           this.description = description;
-          this.basePrice = basePrice;
+          this.basePrices = basePrices;
           this.capacity = capacity;
      }
 
@@ -62,6 +62,27 @@ public class Tour
           this.allReviews.add(newReview);
      }
 
+     public String getTotals(JSONObject numOfParties)
+     {
+          JSONObject totals = new JSONObject();
+
+          // calculating adult
+          double adultTotal = numOfParties.getDouble("adult")*basePrices.getDouble("adult");
+          totals.put("adult", adultTotal);
+
+          // calculating child
+          double childTotal = numOfParties.getDouble("child")*basePrices.getDouble("child");
+          totals.put("child", childTotal);
+
+          // calculating infant
+          double infantTotal = numOfParties.getDouble("infant")*basePrices.getDouble("infant");
+          totals.put("infant", infantTotal);
+
+          // total
+          totals.put("total", adultTotal+childTotal+infantTotal);
+          return totals.toString();
+     }
+
      @Override
      public String toString()
      {
@@ -72,7 +93,7 @@ public class Tour
           tour.put("name", name);
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
-          tour.put("basePrice", basePrice);
+          tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
           tour.put("rating", getRating());
           tour.put("allReviews", allReviews);
