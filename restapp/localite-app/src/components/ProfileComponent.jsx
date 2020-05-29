@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import AccountService from "../api/AccountService";
 import Review from "./ReviewComponent";
 import MobileDetect from "mobile-detect";
-//new
 import Carousel from "react-multi-carousel";
 import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
+import StarRatingComponent from 'react-star-rating-component';
+//https://www.npmjs.com/package/react-star-rating-component
 
 class ProfileComponent extends Component {
   constructor(props) {
@@ -58,25 +59,25 @@ class ProfileComponent extends Component {
     );
   }
 
-  reviewStars(num) {
-    let stars = [];
-    for (let i = 0; i < num; i++) {
-      stars.push(
-        <img
-          key={i}
-          style={{
-            width: "18px",
-            height: "18px",
-            marginBottom: "5px",
-            marginLeft: "5px",
-          }}
-          src={require("../images/star.png")}
-          alt="star"
-        />
-      );
-    }
-    return <div>{stars}</div>;
-  }
+  // reviewStars(num) {
+  //   let stars = [];
+  //   for (let i = 0; i < num; i++) {
+  //     stars.push(
+  //       <img
+  //         key={i}
+  //         style={{
+  //           width: "18px",
+  //           height: "18px",
+  //           marginBottom: "5px",
+  //           marginLeft: "5px",
+  //         }}
+  //         src={require("../images/star.png")}
+  //         alt="star"
+  //       />
+  //     );
+  //   }
+  //   return <div>{stars}</div>;
+  // }
 
   render() {
     const id = this.props.match.params.id;
@@ -244,8 +245,13 @@ class ProfileComponent extends Component {
                       </p>
                       <div className="rowC">
                         {this.state.user.rating.toFixed(1)}
-                        {this.reviewStars(this.state.user.rating)}
+                        <StarRatingComponent 
+                      editing={false}
+          starCount={5}
+          value={Math.round(this.state.user.rating)}
+        />
                       </div>
+                      
                     </>
                   )}
                   <p>
@@ -297,7 +303,7 @@ class ProfileComponent extends Component {
                       <Button
                         style={{ marginRight: 20, marginLeft: "auto" }}
                         size="sm"
-                        onClick={() => this.props.history.push(`/tours/create`)}
+                        onClick={() => this.props.history.push(`/tours/${loggedIn._id}/create`)}
                       >
                         Create New Tour
                       </Button>

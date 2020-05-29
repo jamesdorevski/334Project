@@ -84,7 +84,9 @@ class HeaderComponent extends Component {
 
                     <Dropdown.Menu>
                       <Dropdown.Item
-                        onClick={() => this.props.history.push(`/account`)}
+                        onClick={() =>
+                          this.props.history.push(`/account/${user._id}`)
+                        }
                       >
                         Account Information
                       </Dropdown.Item>
@@ -111,7 +113,6 @@ class HeaderComponent extends Component {
                         </Dropdown.Item>
                       )}
 
-
                       {view === "tourist" && (
                         <Dropdown.Item
                           onClick={() =>
@@ -124,7 +125,15 @@ class HeaderComponent extends Component {
                         </Dropdown.Item>
                       )}
 
-                      <Dropdown.Item onClick={() => this.props.history.push(`/account/messages`)}>Messages</Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() =>
+                          this.props.history.push(
+                            `/account/${user._id}/messages`
+                          )
+                        }
+                      >
+                        Messages
+                      </Dropdown.Item>
                       <div className="dropdown-divider"></div>
                       {user.type === "tourguide" && view === "tourist" && (
                         <Dropdown.Item

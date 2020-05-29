@@ -24,17 +24,16 @@
   margin-top:-90px;
 }
 
-/* .container {
-  display: flex;
-  flex-direction: row;
-  height: 50vh;
+#page-container {
+  position: relative;
+  min-height: 84vh;
 }
 
-.center-col {
-  flex: 1;
-  background: #aaa;
-  overflow-y: scroll;
-} */
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 .form {
   margin: 0 auto;

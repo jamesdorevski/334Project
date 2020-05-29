@@ -12,7 +12,11 @@ class PublicService {
 }
 
   getFAQ() {
-      return axios.get(API_URL + "faq");
+    return axios.get(API_URL + "faq");
+  }
+
+  getTourTags() {
+    return axios.get(API_URL + "tour/tags")
   }
 
 }

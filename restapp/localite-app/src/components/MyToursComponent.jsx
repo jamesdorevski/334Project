@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row} from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import PublicService from "../api/PublicService";
 import MobileDetect from "mobile-detect";
 //new
@@ -8,7 +8,7 @@ import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
 
-class MyBookingsComponent extends Component {
+class MyToursComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +89,7 @@ class MyBookingsComponent extends Component {
           >
             <Container fluid>
               <Row>
-                <h3>Upcoming Bookings</h3>
+                <h3>Upcoming Tours</h3>
               </Row>
               <Row>
                 <Carousel
@@ -114,7 +114,7 @@ class MyBookingsComponent extends Component {
                 </Carousel>
               </Row>
               <Row>
-                <h3>Past Bookings</h3>
+                <h3>Past Tours</h3>
               </Row>
               <Row>
                 <Carousel
@@ -146,4 +146,4 @@ class MyBookingsComponent extends Component {
   }
 }
 
-export default MyBookingsComponent;
+export default MyToursComponent;

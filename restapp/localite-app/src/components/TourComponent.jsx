@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import { Figure, Button } from "react-bootstrap";
+import StarRatingComponent from "react-star-rating-component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,9 +55,13 @@ export default function TourComponent(props) {
                   src={props.tour.tourGuide.img}
                 />
               </ButtonBase>
-              <Typography variant="subtitle1">
+              <Typography
+                variant="subtitle1"
+                className="rowC"
+                style={{ marginBottom: "-10px" }}
+              >
                 {props.tour.tourGuide.firstName} {props.tour.tourGuide.rating}
-                <img
+                {/* <img
                   style={{
                     width: "18px",
                     height: "18px",
@@ -65,13 +70,14 @@ export default function TourComponent(props) {
                   }}
                   src={require("../images/star.png")}
                   alt={props.tour.tourName}
-                />
+                /> */}
+                <StarRatingComponent editing={false} starCount={1} value={1} />
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Starting at ${props.tour.basePrice}.
               </Typography>
 
-              <Button>Book</Button>
+              <Button style={{ margin: "5px" }}>Book</Button>
             </Grid>
           </Grid>
         </Grid>

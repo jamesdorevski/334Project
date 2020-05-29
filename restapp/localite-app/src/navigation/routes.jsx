@@ -22,17 +22,17 @@ export const Routes =
         TOURS:
             '/tours/:id',
         CREATE_TOUR:
-            '/tours/create',
+            '/tours/:id/create',
         PROFILE:
             '/account/show/:id',
         MY_BOOKINGS:
             '/account/:id/bookings',
-        PAST_TOURS:
-            '/account/:id/past',
+        MY_TOURS:
+            '/account/:id/tours',
         UPDATE_ACCOUNT:
-            '/account/update',
+            '/account/:id/update',
         MESSAGES:
-            '/account/messages',
+            '/account/:id/messages',
         ACCOUNT:
-            '/account'
+            '/account/:id'
     }

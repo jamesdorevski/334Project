@@ -5,7 +5,6 @@ import AccountService from "../api/AccountService";
 import TourService from "../api/TourService";
 import { Multiselect } from "multiselect-react-dropdown";
 import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
 
 const currencies = [
   {
