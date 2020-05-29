@@ -7,6 +7,7 @@
 /Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/model/Booking.java
 /Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/AppConfig.java
 /Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/controller/AccountController.java
+/Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/repository/ReviewRepository.java
 /Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/repository/TourRepository.java
 /Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/controller/TourController.java
 /Users/brittchin/Desktop/334Project/restapp/src/main/java/com/Localite/restapp/repository/BookingRepository.java
