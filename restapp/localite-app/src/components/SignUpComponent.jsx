@@ -27,22 +27,29 @@ class SignUpComponent extends Component {
 
   onSelect = (selectedList, selectedItem) => {
     this.setState({selectedValues: selectedList})
-    // const list = this.state.selectedValues
-    // list.concat(selectedItem)
-    // this.setState({selectedValues: list})
-    console.log(this.state.selectedValues)
+    // console.log(this.state.selectedValues)
   }
 
   onRemove = (selectedList, removedItem) => {
     this.setState({selectedValues: selectedList})
-    // const list = this.state.selectedValues
-    // list.concat(selectedItem)
-    // this.setState({selectedValues: list})
-    console.log(this.state.selectedValues)
+    // console.log(this.state.selectedValues)
   }
 
   render() {
+    const t = this.props.type
+    let type = ""
+    if (t === "tourguide") {
+            type = "tourguide"
+          } else {
+            type = "tourist"
+          }
+
     return (
+      <div
+      style={{ padding: "10px" }}
+      className="container"
+      background-color="transparent"
+    >
       <Formik
         initialValues={{
           firstName: "",
@@ -65,22 +72,34 @@ class SignUpComponent extends Component {
           confirmPassword: Yup.string()
             .oneOf([Yup.ref("password"), null], "Passwords must match")
             .required("Confirm Password is required"),
-          phoneNumber: Yup.string().required("Phone Number is required")
+          gender: Yup.string().required("Gender is required"),
+          phoneNumber: Yup.string().required("Phone Number is required"),
+          languagesSpoken: Yup.array().max(
+            1,
+            "Must have at least 1 language spoken"
+          ).of(
+        Yup.object().shape({
+          label: Yup.string().required(),
+          value: Yup.string().required(),
+        }))
+
         })}
 
-        onSubmit={(fields) => {
+        onSubmit={(fields, { setSubmitting }) => {
           // find a way to pass fields as an object so we can extract the params in AuthService
           AccountService.createUser(
-            "tourist",
+            type,
             fields.firstName,
             fields.lastName,
             fields.email,
             fields.password,
+            fields.gender,
             fields.phoneNumber,
-            this.state.langArray
+            this.state.selectedValues
           ).then(
             (response) => {
               console.log(response);
+              setSubmitting(false);
               if (response.data.success) {
                 this.setState({
                   message: response.data.message,
@@ -94,6 +113,8 @@ class SignUpComponent extends Component {
               }
             },
             (error) => {
+              setSubmitting(false);
+
               const resMessage =
                 (error.response &&
                   error.response.data &&
@@ -109,7 +130,7 @@ class SignUpComponent extends Component {
           );
         }}
         
-        render={({ errors, touched }) => (
+        render={({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form-group">
               <label htmlFor="firstName">First Name</label>
@@ -194,6 +215,38 @@ class SignUpComponent extends Component {
               />
             </div>
             <div className="form-group">
+              <label htmlFor="gender">Gender</label>
+              <Field as="select"
+                name="gender"
+                type="text"
+                className={
+                  "form-control" +
+                  (errors.gender && touched.gender ? " is-invalid" : "")
+                }
+              >
+                {" "}
+                <option value="" label="Select your Gender" />
+                <option value="Male" label="Male" />
+                <option value="Female" label="Female" />
+                <option value="Trans Male" label="Trans Male" />
+                <option value="Trans Female" label="Trans Female" />
+                <option
+                  value="Genderqueer/Nonbinary"
+                  label="Genderqueer/Nonbinary"
+                />
+                <option
+                  value="Other/Prefer not to say"
+                  label="Other/Prefer not to say"
+                />
+              </Field>
+              <ErrorMessage
+                name="gender"
+                component="div"
+                className="invalid-feedback"
+              />
+            </div>
+
+            <div className="form-group">
               <label htmlFor="phoneNumber">Phone Number</label>
               <Field
                 name="phoneNumber"
@@ -217,10 +270,22 @@ class SignUpComponent extends Component {
               showCheckbox={true}
               onRemove={this.onRemove}
               onSelect={this.onSelect}
+              className={
+                "form-control" +
+                (errors.languagesSpoken && touched.languagesSpoken ? " is-invalid" : "")
+              }
             />
+            <ErrorMessage
+                name="languagesSpoken"
+                component="div"
+                className="invalid-feedback"
+              />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary mr-2">
+              <button type="submit" disabled={isSubmitting} className="btn btn-primary mr-2">
+              {isSubmitting && (
+                      <span className="spinner-border spinner-border-sm mr-1"></span>
+                    )}
                 Register
               </button>
             </div>
@@ -241,6 +306,7 @@ class SignUpComponent extends Component {
           </Form>
         )}
       />
+      </div>
     );
   }
 }

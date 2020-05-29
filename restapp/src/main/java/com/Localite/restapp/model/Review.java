@@ -1,34 +1,50 @@
 package com.Localite.restapp.model;
 
+import com.mongodb.BasicDBObject;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.bson.types.ObjectId;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @Setter @Getter @NonNull
-//@Document(collection="Reviews")
+@Document(collection="Reviews")
 public class Review 
 {
-    @Id private ObjectId _id;
-    private Account reviewer; // GetSimpleUser()
-    private Account reviewee; // GetSimpleUser()
+    @Id private String _id;
+    private String tourID;
     private Long dateCreated; // timestamp
-    private double rating;
-    private String description;
+    private BasicDBObject reviewer; // GetSimpleUser()
 
-    private Long dateUpdated; // timestamp
+    private String title;
+    private String description;
+    private double rating;
 
     @Builder
-    public Review(Account reviewer, Long dateCreated, double rating, String description)
+    public Review(BasicDBObject reviewer, Long dateCreated, String title, double rating, String description)
     {
         this.reviewer = reviewer;
         this.dateCreated = dateCreated;
         this.rating = rating;
         this.description = description;
+        this.title = title;
+    }
+
+    @Override
+    public String toString()
+    {
+        JSONObject review = new JSONObject();
+        review.put("_id", _id);
+        review.put("dateCreated", dateCreated);
+        review.put("reviewer", reviewer);
+        review.put("title", title);
+        review.put("description", description);
+        review.put("rating", rating);
+        return review.toString();
     }
 }

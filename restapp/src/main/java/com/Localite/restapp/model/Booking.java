@@ -1,5 +1,6 @@
 package com.Localite.restapp.model;
 
+import com.mongodb.BasicDBObject;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,15 +10,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Builder
 @Getter @Setter
-//@Document(collection="Bookings")
+@Document(collection="Bookings")
 public class Booking 
 {
     @Id private ObjectId _id;
-    private Account tourGuide;
-    private Account tourist;
+    private BasicDBObject tourist;
     private Tour tour;
-    private Long date; // timestamp
-    private String dietaryStuff;
+    private Long date;
+    private String dietaryRequirement;
+    private BasicDBObject numOfParties;
+
+    public Booking(){}
 }

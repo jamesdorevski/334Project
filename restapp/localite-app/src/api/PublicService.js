@@ -3,23 +3,20 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/";
 
 class PublicService {
-  getUserByID(id) {
-    return axios
-      .post(API_URL + "getUser", {
-        id
-      })
-      .then((response) => {
-        // console.log(response.data)
 
-        if (response.data.success) {
-        }
-
+  getUserByID(id){
+    return axios.get(API_URL + `/user/${id}`).then((response) => {
+      // console.log(response)
       return response;
-      });
-  }
+    })
+}
 
   getFAQ() {
-      return axios.get(API_URL + "getFAQ");
+    return axios.get(API_URL + "faq");
+  }
+
+  getTourTags() {
+    return axios.get(API_URL + "tour/tags")
   }
 
 }

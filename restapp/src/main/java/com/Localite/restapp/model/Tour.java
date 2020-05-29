@@ -1,8 +1,7 @@
 package com.Localite.restapp.model;
 
-import lombok.Builder;
+import com.mongodb.BasicDBObject;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -15,24 +14,103 @@ import java.util.ArrayList;
 @Document(collection="Tours")
 public class Tour 
 {
-     @Id private ObjectId _id;
-     private Account tourGuide; // owner of tour
-     private Location location;
-     private String tourName;
-     private double tourDuration; //in hours
-     private String tourDescription;
-     private double basePrice;
-     private int groupLimit;
-     private ArrayList<Review> tourReviews;
+     @Id private String _id;
+     private BasicDBObject tourGuide; // owner of tour
+     private String name;
+     private BasicDBObject location;
+     private Long startTour;
+     private Long endTour;
 
-     public Tour(Account tourGuide, Location location, String tourName, double tourDuration, String tourDescription, double basePrice, int groupLimit) {
+     private String description;
+     private BasicDBObject basePrices; // adult, child and infant
+     private int capacity; // number of people
+     private boolean maxLimit = false; // boolean for retrieval
+     private ArrayList<String> tags;
+
+     private ArrayList<Review> allReviews = new ArrayList<>();
+
+     public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
+                 Long startTour, Long endTour,
+                 String description, BasicDBObject basePrices, int capacity,
+                 ArrayList<String> tags)
+     {
           this.tourGuide = tourGuide;
           this.location = location;
-          this.tourName = tourName;
-          this.tourDuration = tourDuration;
-          this.tourDescription = tourDescription;
-          this.basePrice = basePrice;
-          this.groupLimit = groupLimit;
+          this.name = name;
+          this.startTour = startTour;
+          this.endTour = endTour;
+          this.description = description;
+          this.basePrices = basePrices;
+          this.capacity = capacity;
+          this.tags = tags;
+     }
+
+     public int getDurationInHours()
+     {
+          return (int) Math.ceil((startTour-endTour)/3600000);
+     }
+
+     public double getRating()
+     {
+          double totalRating = 5.0;
+          for (int i=0; i<allReviews.size(); i++)
+          {
+               totalRating += allReviews.get(i).getRating();
+          }
+          return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
+     }
+
+     public void addReview(Review newReview)
+     {
+          this.allReviews.add(newReview);
+     }
+
+     public String getTotals(JSONObject numOfParties)
+     {
+          JSONObject totals = new JSONObject();
+
+          // calculating adult
+          double adultTotal = numOfParties.getDouble("adult")*basePrices.getDouble("adult");
+          totals.put("adult", adultTotal);
+
+          // calculating child
+          double childTotal = numOfParties.getDouble("child")*basePrices.getDouble("child");
+          totals.put("child", childTotal);
+
+          // calculating infant
+          double infantTotal = numOfParties.getDouble("infant")*basePrices.getDouble("infant");
+          totals.put("infant", infantTotal);
+
+          // total
+          totals.put("total", adultTotal+childTotal+infantTotal);
+          return totals.toString();
+     }
+
+     public void update(Tour newInfo)
+     {
+          if(newInfo.name != null)
+               this.name = newInfo.name;
+
+          if(newInfo.location != null)
+               this.location = newInfo.location;
+
+          if(newInfo.startTour != null)
+               this.startTour = newInfo.startTour;
+
+          if(newInfo.endTour != null)
+               this.endTour = newInfo.endTour;
+
+          if(newInfo.description != null)
+               this.description = newInfo.description;
+
+          if(newInfo.basePrices != null)
+               this.basePrices = newInfo.basePrices;
+
+          if(newInfo.capacity != 0)
+               this.capacity = newInfo.capacity;
+
+          if(newInfo.tags != null)
+               this.tags = newInfo.tags;
      }
 
      @Override
@@ -40,6 +118,16 @@ public class Tour
      {
           JSONObject tour = new JSONObject();
           tour.put("_id", _id);
+          tour.put("tourGuide", tourGuide);
+          tour.put("location", location);
+          tour.put("name", name);
+          tour.put("duration", getDurationInHours());
+          tour.put("description", description);
+          tour.put("tags", tags);
+          tour.put("basePrices", basePrices);
+          tour.put("capacity", capacity);
+          tour.put("rating", getRating());
+          tour.put("allReviews", allReviews);
           return tour.toString();
      }
 }

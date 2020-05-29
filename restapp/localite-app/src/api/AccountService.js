@@ -16,6 +16,7 @@ class AccountService {
           // console.log(response.data.user)
           // console.log(JSON.parse(response.data.user))
           sessionStorage.setItem("user", (response.data.user));
+          sessionStorage.setItem("currentView", "tourist")
         }
 
       return response;
@@ -24,21 +25,51 @@ class AccountService {
 
   logout() {
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("currentView");
   }
 
-  createUser(type, firstName, lastName, email, password, phoneNumber, languagesSpoken) {
+  convertLangs(languagesSpokenArray){
+    var languages = []
+
+    for (var l in languagesSpokenArray) {
+      languages.push(languagesSpokenArray[l].lang)
+    }
+
+    return languages
+  }
+
+  createUser(type, firstName, lastName, email, password, gender, phoneNumber, languagesSpoken) {
+    // console.log(gender)
+    // console.log(languagesSpoken)
+
+    // return ({"data":{"success": false, "message": "test"}})
+
     return axios.post(API_URL + "create", {
       type: type,
       firstName: firstName,
       lastName: lastName,
       email: email,
       hashbrown: password,
+      gender: gender,
       phoneNumber: phoneNumber,
-      languagesSpoken: languagesSpoken
+      languagesSpoken: this.convertLangs(languagesSpoken),
+    });
+  }
+
+  updateUser(id, firstName, lastName, email, password, gender, phoneNumber, languagesSpoken){
+    return axios.post(API_URL + `update/${id}`, {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      hashbrown: password,
+      gender: gender,
+      phoneNumber: phoneNumber,
+      languagesSpoken: this.convertLangs(languagesSpoken),
     });
   }
 
   deleteUser(id) {
+    // return {"success": false, "message": "Network Error"}
     return axios.delete(API_URL + `delete/${id}`);
   }
 
