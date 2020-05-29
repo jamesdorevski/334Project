@@ -63,6 +63,7 @@ class ProfileComponent extends Component {
     for (let i = 0; i < num; i++) {
       stars.push(
         <img
+          key={i}
           style={{
             width: "18px",
             height: "18px",
@@ -80,21 +81,7 @@ class ProfileComponent extends Component {
   render() {
     const id = this.props.match.params.id;
     const loggedIn = AccountService.getCurrentUser();
-    const date = new Date();
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+   
     const responsive = {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -255,10 +242,10 @@ class ProfileComponent extends Component {
                       <p style={{ color: "green", fontSize: "22px" }}>
                         TOUR GUIDE
                       </p>
-                      <p className="rowC">
+                      <div className="rowC">
                         {this.state.user.rating.toFixed(1)}
                         {this.reviewStars(this.state.user.rating)}
-                      </p>
+                      </div>
                     </>
                   )}
                   <p>
