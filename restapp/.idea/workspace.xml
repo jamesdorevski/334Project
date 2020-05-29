@@ -3,20 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25ab4869-a145-4c49-a76a-90c599d011ec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/api/AccountService.js" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/api/AccountService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/CreateTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/CreateTourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/HeaderComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/HeaderComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/ReviewComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ReviewComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/UpdateAccountComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/UpdateAccountComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/navigation/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/navigation/routes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +22,15 @@
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
+  <component name="ProjectId" id="1cYucOqKUpNdHW1jXyOwawnLcId" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />

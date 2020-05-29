@@ -24,13 +24,15 @@ public class Tour
      private String description;
      private BasicDBObject basePrices; // adult, child and infant
      private int capacity; // number of people
-     private boolean maxLimit = false; // boolean for retrival
+     private boolean maxLimit = false; // boolean for retrieval
+     private ArrayList<String> tags;
 
      private ArrayList<Review> allReviews = new ArrayList<>();
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
-                 String description, BasicDBObject basePrices, int capacity)
+                 String description, BasicDBObject basePrices, int capacity,
+                 ArrayList<String> tags)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -40,6 +42,7 @@ public class Tour
           this.description = description;
           this.basePrices = basePrices;
           this.capacity = capacity;
+          this.tags = tags;
      }
 
      public int getDurationInHours()
@@ -93,6 +96,7 @@ public class Tour
           tour.put("name", name);
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
+          tour.put("tags", tags);
           tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
           tour.put("rating", getRating());
