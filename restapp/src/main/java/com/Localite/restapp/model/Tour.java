@@ -22,15 +22,17 @@ public class Tour
      private Long endTour;
 
      private String description;
-     private double basePrice;
+     private BasicDBObject basePrices; // adult, child and infant
      private int capacity; // number of people
-     private boolean maxLimit = false; // boolean for retrival
+     private boolean maxLimit = false; // boolean for retrieval
+     private ArrayList<String> tags;
 
      private ArrayList<Review> allReviews = new ArrayList<>();
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
-                 String description, double basePrice, int capacity)
+                 String description, BasicDBObject basePrices, int capacity,
+                 ArrayList<String> tags)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -38,8 +40,9 @@ public class Tour
           this.startTour = startTour;
           this.endTour = endTour;
           this.description = description;
-          this.basePrice = basePrice;
+          this.basePrices = basePrices;
           this.capacity = capacity;
+          this.tags = tags;
      }
 
      public int getDurationInHours()
@@ -62,6 +65,54 @@ public class Tour
           this.allReviews.add(newReview);
      }
 
+     public String getTotals(JSONObject numOfParties)
+     {
+          JSONObject totals = new JSONObject();
+
+          // calculating adult
+          double adultTotal = numOfParties.getDouble("adult")*basePrices.getDouble("adult");
+          totals.put("adult", adultTotal);
+
+          // calculating child
+          double childTotal = numOfParties.getDouble("child")*basePrices.getDouble("child");
+          totals.put("child", childTotal);
+
+          // calculating infant
+          double infantTotal = numOfParties.getDouble("infant")*basePrices.getDouble("infant");
+          totals.put("infant", infantTotal);
+
+          // total
+          totals.put("total", adultTotal+childTotal+infantTotal);
+          return totals.toString();
+     }
+
+     public void update(Tour newInfo)
+     {
+          if(newInfo.name != null)
+               this.name = newInfo.name;
+
+          if(newInfo.location != null)
+               this.location = newInfo.location;
+
+          if(newInfo.startTour != null)
+               this.startTour = newInfo.startTour;
+
+          if(newInfo.endTour != null)
+               this.endTour = newInfo.endTour;
+
+          if(newInfo.description != null)
+               this.description = newInfo.description;
+
+          if(newInfo.basePrices != null)
+               this.basePrices = newInfo.basePrices;
+
+          if(newInfo.capacity != 0)
+               this.capacity = newInfo.capacity;
+
+          if(newInfo.tags != null)
+               this.tags = newInfo.tags;
+     }
+
      @Override
      public String toString()
      {
@@ -72,7 +123,8 @@ public class Tour
           tour.put("name", name);
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
-          tour.put("basePrice", basePrice);
+          tour.put("tags", tags);
+          tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
           tour.put("rating", getRating());
           tour.put("allReviews", allReviews);

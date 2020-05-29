@@ -154,17 +154,7 @@ public class PublicController
         JSONObject result = new JSONObject();
         try
         {
-            ArrayList<FAQ> rawFaq = faqRepository.findAll();
-            System.out.println(rawFaq);
-            ArrayList<JSONObject> faqList = new ArrayList<>();
-
-            // formating for front end {"question":"answer"}
-            for (int i=0; i<rawFaq.size(); i++)
-            {
-                JSONObject obj = new JSONObject();
-                obj.put(rawFaq.get(i).getQuestion(), rawFaq.get(i).getAnswer());
-                faqList.add(obj);
-            }
+            ArrayList<FAQ> faqList = faqRepository.findAll();
             result.put("faqList", faqList);
             result.put("success", true);
         }
@@ -197,5 +187,44 @@ public class PublicController
         {
             return result.toString();
         }
+    }
+
+    @GetMapping(value="/languages")
+    public String[] getLanguages()
+    {
+        String[] lang = new String[] {"Afrikaans", "Albanian", "Arabic", "Armenian",
+            "Basque", "Bengali", "Bulgarian",
+            "Catalan", "Cambodian", "Chinese (Mandarin)", "Croatian", "Czech",
+            "Danish", "Dutch",
+            "English", "Estonian",
+            "Fiji", "Finnish", "French",
+            "Georgian", "German", "Greek", "Gujarati",
+            "Hebrew", "Hindi", "Hungarian",
+            "Icelandic", "Indonesian", "Irish", "Italian",
+            "Japanese", "Javanese",
+            "Korean",
+            "Latin", "Latvian", "Lithuanian",
+            "Macedonian", "Malay", "Malayalam", "Maltese", "Maori", "Marathi", "Mongolian",
+            "Nepali", "Norwegian",
+            "Persian", "Polish", "Portuguese", "Punjabi",
+            "Quechua",
+            "Romanian", "Russian",
+            "Samoan", "Serbian", "Slovak", "Slovenian", "Spanish", "Swahili", "Swedish",
+            "Tamil", "Tatar", "Telugu", "Thai", "Tibetan", "Tonga", "Turkish",
+            "Ukrainian", "Urdu", "Uzbek",
+            "Vietnamese",
+            "Welsh",
+            "Xhosa"};
+
+        return lang;
+    }
+
+    @GetMapping("/tour/tags")
+    public String[] getTags()
+    {
+        String[] tags = new String[] {"Wheelchair Accessible", "Kid-Friendly",
+                "Night-tour", "Day-Trip", "Food",
+                "Wine", "Hiking and Outdoors", "Museums", "Nature and WildLife", "Shopping"};
+        return tags;
     }
 }
