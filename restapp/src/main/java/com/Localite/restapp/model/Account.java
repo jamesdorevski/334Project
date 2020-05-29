@@ -98,6 +98,40 @@ public class Account
         this.allBookings.add(newBooking);
     }
 
+    public void update(Account newInfo)
+    {
+        if (newInfo.type != null)
+            this.type = newInfo.type;
+
+        if (newInfo.firstName != null)
+            this.firstName = newInfo.firstName;
+
+        if (newInfo.lastName != null)
+            this.lastName = newInfo.lastName;
+
+        if (newInfo.email != null)
+            this.email = newInfo.email;
+
+        if (newInfo.hashbrown != null)
+            this.hashbrown = newInfo.hashbrown;
+
+        if (newInfo.phoneNumber != null)
+            this.phoneNumber = newInfo.phoneNumber;
+
+        if (newInfo.gender != null)
+            this.gender = newInfo.gender;
+
+        if (newInfo.img != null)
+            this.img = newInfo.img;
+
+        if (newInfo.languagesSpoken != null)
+            this.languagesSpoken = newInfo.languagesSpoken;
+
+        // Tourguide
+        if (newInfo.licence != null)
+            this.licence = newInfo.licence;
+    }
+
     @Override
     public String toString()
     {

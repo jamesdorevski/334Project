@@ -86,6 +86,33 @@ public class Tour
           return totals.toString();
      }
 
+     public void update(Tour newInfo)
+     {
+          if(newInfo.name != null)
+               this.name = newInfo.name;
+
+          if(newInfo.location != null)
+               this.location = newInfo.location;
+
+          if(newInfo.startTour != null)
+               this.startTour = newInfo.startTour;
+
+          if(newInfo.endTour != null)
+               this.endTour = newInfo.endTour;
+
+          if(newInfo.description != null)
+               this.description = newInfo.description;
+
+          if(newInfo.basePrices != null)
+               this.basePrices = newInfo.basePrices;
+
+          if(newInfo.capacity != 0)
+               this.capacity = newInfo.capacity;
+
+          if(newInfo.tags != null)
+               this.tags = newInfo.tags;
+     }
+
      @Override
      public String toString()
      {

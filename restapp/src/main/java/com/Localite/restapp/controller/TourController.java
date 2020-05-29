@@ -9,6 +9,7 @@ import com.mongodb.internal.client.model.AggregationLevel;
 import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
@@ -97,6 +98,37 @@ public class TourController
         catch(Exception e)
         {
             result.put("message", "Tour deletion unsuccessful");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @PostMapping(value="/update/{tourID}")
+    public String updateTour(@PathVariable("tourID") ObjectId tourID,
+                             @RequestBody Tour newInfo) throws Exception
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+            Tour thisTour = tourRepository.findBy_id(tourID);
+            thisTour.update(newInfo);
+            tourRepository.save(thisTour);
+            result.put("success", true);
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Tour update unsuccessful");
+            result.put("success", false);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Network Error");
             result.put("success", false);
         }
         finally
