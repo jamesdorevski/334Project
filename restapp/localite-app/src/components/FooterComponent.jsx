@@ -5,30 +5,30 @@ class FooterComponent extends Component {
     return (
       <>
         <span></span>
-        <footer className="page-footer mt-6">
+        <footer className="page-footer mt-6" style={{paddingLeft: "30px"}}>
           <div className="container-fluid text-center text-md-left">
             <div className="row">
               <div className="col-md-2 mt-md-0 mt-3">
-                <h6 className="text-uppercase" style={{paddingLeft:"100px"}}>CONTACT US</h6>
+                <h6 className="text-uppercase">CONTACT US</h6>
                 <ul className="list-unstyled">
                   <li>
-                    <a style={{ fontSize: "16px" }, { paddingLeft:"100px" }}>Phone: XXXX XXX XXX</a>
+                    <a style={{ fontSize: "16px" }}>Phone: XXXX XXX XXX</a>
                   </li>
                   <li>
-                    <a style={{ fontSize: "16px" }, { paddingLeft:"100px" }}>Email: email@email.com</a>
+                    <a style={{ fontSize: "16px" }}>Email: email@email.com</a>
                   </li>
                 </ul>
               </div>
-              <div className="col-md-2 mb-md-0 mb-3">
-                <h6 className="text-uppercase" style={{paddingLeft:"80px"}}>SUPPORT</h6>
+              <div className="col-md-2 mb-md-0 mb-3" style={{paddingLeft: "30px"}}>
+                <h6 className="text-uppercase">SUPPORT</h6>
                 <ul className="list-unstyled">
                   <li>
-                    <a style={{ fontSize: "16px" }, { paddingLeft:"80px" }} href="/faq">
+                    <a style={{ fontSize: "16px" }} href="/faq">
                       FAQ
                     </a>
                   </li>
                   <li>
-                    <a style={{ fontSize: "16px" }, { paddingLeft:"80px" }} href="/disputes">
+                    <a style={{ fontSize: "16px" }} href="/disputes">
                       Dispute Resolution
                     </a>
                   </li>

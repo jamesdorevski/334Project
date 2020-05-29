@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
 import { Multiselect } from "multiselect-react-dropdown";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import AccountService from "../api/AccountService";
-import PublicService from "../api/PublicService";
 import StarRatingComponent from "react-star-rating-component";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -98,6 +95,7 @@ class FilterModalComponent extends Component {
               tags: this.state.selectedValues,
             }}
             onSubmit={({}, { setSubmitting }) => {
+              setSubmitting(false)
               // AccountService.loginUser(email, password).then(
               //   (response) => {
               //     console.log(response);

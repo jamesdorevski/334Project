@@ -69,7 +69,6 @@ class FAQComponent extends Component {
                       </div>
                     );
                   })}
-            <hr />
           </div>
         </section>
       </>

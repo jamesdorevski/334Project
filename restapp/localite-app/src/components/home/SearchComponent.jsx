@@ -171,7 +171,7 @@ export const SearchComponent = (props) => {
                             </Form.Row>
 
                             <Form.Row className="justify-content-end">
-                                <Button size="md" variant="outlined" onClick={searchClicked}>
+                                <Button size="medium" variant="outlined" onClick={searchClicked}>
                                     Find a tour
                                 </Button>
                             </Form.Row>

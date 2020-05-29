@@ -3,17 +3,18 @@ import search from "../../images/search.png";
 import connect from "../../images/connect.png";
 import book from "../../images/book.png";
 import experience from "../../images/experience.png";
+import { Typography } from "@material-ui/core";
 
 class WorksComponent extends Component {
   render() {
     const h = "125px"
     return (
       <section className="py-1">
-        <div className="container" background-color="transparent">
+        <div className="container" background-color="transparent" style={{marginTop: "-20px"}}>
           <center>
             <h2 style={{ padding: "20px" }}>How It Works</h2>
 
-            <div className="row" style={{paddingBottom:"80px"}}>
+            <div className="row" style={{paddingBottom:"20px"}}>
               <div className="col">
                 <img
                   src={search}
@@ -21,7 +22,7 @@ class WorksComponent extends Component {
                   className="d-inline-block align-top"
                   alt="search"
                 />
-                <h4 style={{ padding: "10px" }}>SEARCH</h4>
+                <Typography className="text-uppercase" style={{fontWeight: 500, fontSize: 28, padding: "10px"}}>Search</Typography>
                 <h6>Search for a tour with our lorem ipsum dolor sit</h6>
               </div>
               <div className="col">
@@ -31,7 +32,7 @@ class WorksComponent extends Component {
                   className="d-inline-block align-top"
                   alt="connect"
                 />
-                <h4 style={{ padding: "10px" }}>CONNECT</h4>
+                <Typography className="text-uppercase" style={{fontWeight: 500, fontSize: 28, padding: "10px"}}>Connect</Typography>
                 <h6>Connect with a tour guide lorem ipsum dolor sit</h6>
               </div>
               <div className="col">
@@ -41,7 +42,7 @@ class WorksComponent extends Component {
                   className="d-inline-block align-top"
                   alt="book"
                 />
-                <h4 style={{ padding: "10px" }}>BOOK</h4>
+                <Typography className="text-uppercase" style={{fontWeight: 500, fontSize: 28, padding: "10px"}}>Book</Typography>
                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h6>
               </div>
               <div className="col">
@@ -51,7 +52,7 @@ class WorksComponent extends Component {
                   className="d-inline-block align-top"
                   alt="experience"
                 />
-                <h4 style={{ padding: "10px" }}>EXPERIENCE</h4>
+                <Typography className="text-uppercase" style={{fontWeight: 500, fontSize: 28, padding: "10px"}}>Experience</Typography>
                 <h6>Local culture lorem ipsum dolor sit amet, consectetur</h6>
               </div>
             </div>

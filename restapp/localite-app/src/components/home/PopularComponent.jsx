@@ -14,7 +14,7 @@ class PopularComponent extends Component {
         <div
           className="container"
           background-color="transparent"
-          style={{ paddingBottom: "100px" }}
+          style={{ paddingBottom: "50px" }}
         >
           <center>
             <h2 style={{ padding: "20px" }}>Popular Experiences</h2>
