@@ -38,14 +38,15 @@ function MediaCard(props) {
           <Typography component="p">{description}</Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      {//share and learn more buttons--don't think they're necessary so i yeeted them
+      /* <CardActions>
         <Button size="small" color="primary">
           Share
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   </a>
   );
