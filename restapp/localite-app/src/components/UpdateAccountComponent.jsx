@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Figure } from "react-bootstrap";
 import AccountService from "../api/AccountService";
+import PublicService from "../api/PublicService";
 import { Multiselect } from "multiselect-react-dropdown";
 
 class UpdateAccountComponent extends Component {
@@ -12,22 +13,10 @@ class UpdateAccountComponent extends Component {
     this.state = {
       message: "",
       success: false,
-      langArray: [
-        { lang: "English" },
-        { lang: "Spanish" },
-        { lang: "French" },
-        { lang: "Arabic" },
-        { lang: "Chinese" },
-        { lang: "Greek" },
-        { lang: "Italian" },
-      ],
+      langArray: [],
       selectedValues: [],
-      user: null,
+      user: AccountService.getCurrentUser(),
     };
-  }
-
-  componentWillMount() {
-    this.setState({ user: AccountService.getCurrentUser() });
   }
 
   componentDidMount() {
@@ -39,6 +28,19 @@ class UpdateAccountComponent extends Component {
       })
     );
     this.setState({ selectedValues: dict });
+
+    let temp = [];
+    PublicService.getLanguages().then((response) => {
+      if (response) {
+        // console.log(response.data)
+        response.data.map((language) =>
+          temp.push({
+            lang: language,
+          })
+        );
+        this.setState({ langArray: temp });
+      }
+    });
   }
 
   onSelect = (selectedList, selectedItem) => {
@@ -53,7 +55,7 @@ class UpdateAccountComponent extends Component {
 
   render() {
     // console.log(this.state.user);
-  
+
     // const genders = [
     //   { label: "Male", value: "Male" },
     //   { label: "Female", value: "Female" },
@@ -73,18 +75,20 @@ class UpdateAccountComponent extends Component {
           Personal Info
         </h3>
         <Figure.Image
-                    roundedCircle
-                    fluid
-                    style={{
-                      objectFit: "cover",
-                      width: "150px",
-                      height: "150px",
-                    }}
-                    src={this.state.user.img}
-                  />
-            <br/>
-        <a href="#">Upload new picture</a>
-        <div style={{padding: "10px"}}></div>
+          roundedCircle
+          fluid
+          style={{
+            objectFit: "cover",
+            width: "150px",
+            height: "150px",
+          }}
+          src={this.state.user.img}
+        />
+        <br />
+        <button type="button" className="link-button">
+          Upload new profile picture
+        </button>
+        <div style={{ padding: "10px" }}></div>
         <Formik
           initialValues={{
             firstName: this.state.user.firstName,
@@ -264,19 +268,34 @@ class UpdateAccountComponent extends Component {
                   }
                 >
                   {" "}
-                  <option value={this.state.user.gender} label={this.state.user.gender} />
-                  {this.state.user.gender !== "Male" && <option value="Male" label="Male" />}
-                  {this.state.user.gender !== "Female" && <option value="Female" label="Female" />}
-                  {this.state.user.gender !== "Trans male" && <option value="Trans Male" label="Trans Male" />}
-                  {this.state.user.gender !== "Trans female" && <option value="Trans Female" label="Trans Female" />}
-                  {this.state.user.gender !== "Genderqueer/Nonbinary" && <option
-                    value="Genderqueer/Nonbinary"
-                    label="Genderqueer/Nonbinary"
-                  />}
-                  {this.state.user.gender !== "Other/Prefer not to say" && <option
-                    value="Other/Prefer not to say"
-                    label="Other/Prefer not to say"
-                  />}
+                  <option
+                    value={this.state.user.gender}
+                    label={this.state.user.gender}
+                  />
+                  {this.state.user.gender !== "Male" && (
+                    <option value="Male" label="Male" />
+                  )}
+                  {this.state.user.gender !== "Female" && (
+                    <option value="Female" label="Female" />
+                  )}
+                  {this.state.user.gender !== "Trans male" && (
+                    <option value="Trans Male" label="Trans Male" />
+                  )}
+                  {this.state.user.gender !== "Trans female" && (
+                    <option value="Trans Female" label="Trans Female" />
+                  )}
+                  {this.state.user.gender !== "Genderqueer/Nonbinary" && (
+                    <option
+                      value="Genderqueer/Nonbinary"
+                      label="Genderqueer/Nonbinary"
+                    />
+                  )}
+                  {this.state.user.gender !== "Other/Prefer not to say" && (
+                    <option
+                      value="Other/Prefer not to say"
+                      label="Other/Prefer not to say"
+                    />
+                  )}
                   {/* TRIED DOING THIS BUT DIDN'T WORK - WILL TRY AGAIN LATER
                   <option value="" label={this.state.user.gender} />
                   {genders.map((gender) => {
@@ -353,7 +372,7 @@ class UpdateAccountComponent extends Component {
                   type="button"
                   className="btn btn-danger mr-2"
                   onClick={() => {
-                    this.props.history.push(`/account`);
+                    this.props.history.push(`/account/${this.state.user._id}`);
                   }}
                 >
                   Cancel

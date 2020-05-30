@@ -11,6 +11,10 @@ class PublicService {
     })
 }
 
+getLanguages(){
+  return axios.get(API_URL + "languages");
+}
+
   getFAQ() {
     return axios.get(API_URL + "faq");
   }

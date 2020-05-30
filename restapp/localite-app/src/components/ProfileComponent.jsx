@@ -48,7 +48,7 @@ class ProfileComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
-          this.setState({ user: response.data.user });
+          this.setState({ user: response.data.profile });
         } else {
           this.props.history.push("/");
         }
@@ -358,7 +358,7 @@ class ProfileComponent extends Component {
                       containerClass="first-carousel-container container"
                       deviceType={this.props.deviceType}
                     >
-                      {this.state.user.allReviews.map((review) => {
+                      {this.state.user.tourReviews.map((review) => {
                         return (
                           <div key={review._id}>
                             <Review

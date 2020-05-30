@@ -86,7 +86,7 @@ export default function TourComponent(props) {
                 style={{ marginBottom: "-10px", paddingLeft: "5px" }}
               >
                 {props.tour.tourGuide.firstName} {props.tour.tourGuide.rating}
-                <StarRatingComponent editing={false} starCount={1} value={1} />
+                <StarRatingComponent name="star" editing={false} starCount={1} value={1} />
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Starting at ${props.tour.basePrice}.
