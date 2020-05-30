@@ -3,18 +3,44 @@
     display: grid;
 }
 
+.card {
+    cursor: pointer
+}
+
 .textField {
     position: relative;
     height: 100%;
-    width: 150px;
+    width: inherit;
     text-align: left;
     font: inherit;
     overflow: visible;
 }
+.submitButton {
+    position: relative;
+    height: 100%;
+    text-align: center;
+    background: 0 0;
+    padding: 4px 12px;
+    margin-right: 8px;
+    font: inherit;
+    font-weight: 700;
+    border: inherit;
+    line-height: normal;
+    overflow: visible;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    background-color: deepskyblue !important;
+}
+
+.submitButton:hover {
+    box-shadow: none !important;
+    background-color: orangered !important;
+    color: white !important;
+}
 
 .buttonOverrides {
     position: relative;
-    height: 100%;
+    height: 40px;
     text-align: center;
     background: 0 0;
     padding: 4px 12px;

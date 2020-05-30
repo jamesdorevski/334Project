@@ -1,0 +1,84 @@
+.autocomplete-dropdown-container {
+    overflow: visible;
+}
+
+.Location__search-bar-container {
+    height: 40px;
+    width: 350px;
+    max-width: 500px;
+    margin: inherit;
+}
+
+.Location__search-input,
+.Location__search-input:focus,
+.Location__search-input:active {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    border: honeydew;
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 2px;
+    outline: none;
+}
+
+.Location__clear-button,
+.Location__clear-button:active,
+.Location__clear-button:focus {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    color: #999;
+}
+
+
+.Location__autocomplete-container {
+    border-bottom: honeydew;
+    border-left: honeydew;
+    border-right: honeydew;
+    border-top: 1px solid #e6e6e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 0 0 2px 2px;
+    background: white;
+}
+
+.Location__suggestion-item {
+    padding: 8px;
+    text-align: left;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.Location__suggestion-item--active {
+    background-color: #fafafa;
+}
+
+.Location__dropdown-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+}
+
+.Location__dropdown-footer-image {
+    display: inline-block;
+    width: 150px;
+}
+
+.Location__spinner {
+    color: #18bc9c;
+    font-size: 30px;
+}
+
+.Location__error-message {
+    color: red;
+}
+
+.Location__geocode-result-header {
+    font-size: 20px;
+    color: #222222;
+}

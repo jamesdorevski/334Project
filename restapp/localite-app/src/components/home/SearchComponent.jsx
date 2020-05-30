@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-// import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import qs from 'qs';
 import Col from "react-bootstrap/Col";
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Paper from "@material-ui/core/Paper";
@@ -12,9 +11,10 @@ import Popper from "@material-ui/core/Popper";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import "react-dates/initialize";
-import { DateRangePicker } from "react-dates";
+import {DateRangePicker} from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import "../../styles/_custom.css"
+import LocationAutoComplete from "../LocationAutoComplete";
 
 export const SearchComponent = (props) => {
 
@@ -47,26 +47,33 @@ export const SearchComponent = (props) => {
     };
 
     // dates state
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
     const [focusedInput, setFocusedInput] = useState(null);
-    const handleDatesChange = ({ startDate, endDate }) => {
+    const handleDatesChange = ({startDate, endDate}) => {
         setStartDate(startDate);
         setEndDate(endDate);
     };
 
     // location state
-    const [location, setLocation] = React.useState("");
-    const handleChange = event => {
-        setLocation(event.target.value);
+    const [address, setAddress] = useState('');
+
+    const setLocation = selected => {
+        setAddress(selected);
     };
+
+    const locationProps = {
+        address,
+        setAddress,
+        setLocation,
+    }
 
     const searchClicked = () => {
         const params = {
-            location: location,
+            location: address,
             startDate: startDate,
             endDate: endDate,
-            adults: Number(adults),
+            persons: Number(adults),
             children: Number(childrenTourists),
             infants: Number(infants)
         };
@@ -80,11 +87,10 @@ export const SearchComponent = (props) => {
                     <div>
                         <Form>
                             <Form.Row>
-                                <Form.Group as={Col} md="6" controlId="location">
-                                    <Form.Control placeholder="Where are you traveling?"
-                                                  value={location}
-                                                  onChange={handleChange}
-                                                  />
+                                <Form.Group as={Col} md="4" controlId="location">
+                                    <LocationAutoComplete
+                                        {...locationProps}
+                                    />
                                 </Form.Group>
 
                                 <Form.Group as={Col} md="4" controlId="date">
@@ -171,7 +177,7 @@ export const SearchComponent = (props) => {
                             </Form.Row>
 
                             <Form.Row className="justify-content-end">
-                                <Button size="medium" variant="outlined" onClick={searchClicked}>
+                                <Button className="submitButton" size="large" variant="outlined" onClick={searchClicked}>
                                     Find a tour
                                 </Button>
                             </Form.Row>
