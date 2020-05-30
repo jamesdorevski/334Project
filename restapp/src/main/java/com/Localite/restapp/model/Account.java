@@ -11,7 +11,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 
-@Getter @Setter @NonNull
+@Getter @Setter
 @Document(collection="Users")
 @Component @SessionScope
 public class Account
@@ -27,13 +27,14 @@ public class Account
     private String gender;
     private String img; // https://blahblah.com
     private ArrayList<String> languagesSpoken;
-    private ArrayList<Review> allReviews = new ArrayList<>();
 
     // Tourist
     private ArrayList<Booking> allBookings = new ArrayList<>();
 
     // Tourguide
     private String licence;
+    private ArrayList<Review> allReviews;
+    private double ratings;
 
     public Account(){}
 
@@ -72,10 +73,28 @@ public class Account
         profile.put("lastName", lastName);
         profile.put("gender", gender);
         profile.put("img", img);
-        profile.put("rating", getRating());
         profile.put("languagesSpoken", languagesSpoken);
-        profile.put("allReviews", allReviews);
+
+        if(type == "tourguide")
+        {
+            profile.put("allReviews", allReviews);
+            profile.put("ratings", ratings);
+        }
         return profile;
+    }
+
+    public void setReviews(ArrayList<Review> allReviews)
+    {
+        // set rating with new reviews
+        if(this.allReviews != null)
+        {
+            this.allReviews.clear();
+            this.allReviews.addAll(allReviews);
+        }
+        else
+            this.allReviews = allReviews;
+
+        this.ratings = getRating();
     }
 
     public double getRating()
@@ -86,11 +105,6 @@ public class Account
             totalRating += allReviews.get(i).getRating();
         }
         return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
-    }
-
-    public void addReview(Review newReview)
-    {
-        this.allReviews.add(newReview);
     }
 
     public void addBooking(Booking newBooking)
@@ -125,7 +139,10 @@ public class Account
             this.img = newInfo.img;
 
         if (newInfo.languagesSpoken != null)
-            this.languagesSpoken = newInfo.languagesSpoken;
+        {
+            this.languagesSpoken.clear();
+            this.languagesSpoken.addAll(newInfo.languagesSpoken);
+        }
 
         // Tourguide
         if (newInfo.licence != null)

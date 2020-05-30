@@ -12,23 +12,27 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Setter @Getter @NonNull
+@Setter @Getter
 @Document(collection="Reviews")
 public class Review 
 {
     @Id private String _id;
-    private String tourID;
     private Long dateCreated; // timestamp
-    private BasicDBObject reviewer; // GetSimpleUser()
+    private BasicDBObject reviewer;
+
+    // object is that being reviewed
+    private BasicDBObject reviewee;
+    private Tour tour;
 
     private String title;
     private String description;
     private double rating;
 
     @Builder
-    public Review(BasicDBObject reviewer, Long dateCreated, String title, double rating, String description)
+    public Review(BasicDBObject reviewer, BasicDBObject reviewee, Long dateCreated, String title, double rating, String description)
     {
         this.reviewer = reviewer;
+        this.reviewee = reviewee;
         this.dateCreated = dateCreated;
         this.rating = rating;
         this.description = description;
@@ -42,6 +46,7 @@ public class Review
         review.put("_id", _id);
         review.put("dateCreated", dateCreated);
         review.put("reviewer", reviewer);
+        review.put("reviewee", reviewee);
         review.put("title", title);
         review.put("description", description);
         review.put("rating", rating);

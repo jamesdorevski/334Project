@@ -24,5 +24,5 @@ public interface TourRepository extends MongoRepository<Tour, String>
     public ArrayList<Tour> findTours(String city, String country, Long startDate, Long endDate, int numOfPeople);
 
     @Query(value="{'tourGuide._id':?0}")
-    public ArrayList<Tour> findAllByTourGuide(ObjectId id);
+    public ArrayList<Tour> findToursByTourguide(String id);
 }

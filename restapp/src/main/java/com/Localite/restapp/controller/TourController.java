@@ -176,25 +176,25 @@ public class TourController
         JSONObject result = new JSONObject();
         try
         {
-            // obtaining reviewer details
-            BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
-            newReview.set_id((new ObjectId()).toString());
-            newReview.setReviewer(reviewer);
+            // setting dateCreated
             newReview.setDateCreated(System.currentTimeMillis());
 
-            // adding review to tour
-            Tour tour = tourRepository.findBy_id(tourID);
-            tour.addReview(newReview);
-            tourRepository.save(tour);
+            // setting reviewer
+            Account reviewer = accountRepository.findBy_id(userID);
+            newReview.setReviewer(reviewer.getBasicUser());
 
-            newReview.setTourID(tourID.toString());
+            // setting tour reviewed
+            Tour tour = tourRepository.findBy_id(tourID);
+            newReview.setTour(tour);
+
+            // adding review to repo
             reviewRepository.insert(newReview);
             result.put("success", true);
         }
         catch (NullPointerException e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "Unable to find tour");
+            result.put("message", "Unable to find tour/basic reviewer");
             result.put("success", false);
         }
         catch (Exception e)

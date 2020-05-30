@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @Getter @Setter
@@ -27,7 +28,9 @@ public class Tour
      private boolean maxLimit = false; // boolean for retrieval
      private ArrayList<String> tags;
 
-     private ArrayList<Review> allReviews = new ArrayList<>();
+     // set only when retriving from db
+     private ArrayList<Review> allReviews;
+     private double ratings;
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
@@ -50,6 +53,20 @@ public class Tour
           return (int) Math.ceil((startTour-endTour)/3600000);
      }
 
+     public void setReviews(ArrayList<Review> allReviews)
+     {
+          // set new reviews and set rating
+          if(this.allReviews != null)
+          {
+               this.allReviews.clear();
+               this.allReviews.addAll(allReviews);
+          }
+          else
+               this.allReviews = allReviews;
+
+          this.ratings = getRating();
+     }
+
      public double getRating()
      {
           double totalRating = 5.0;
@@ -58,11 +75,6 @@ public class Tour
                totalRating += allReviews.get(i).getRating();
           }
           return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
-     }
-
-     public void addReview(Review newReview)
-     {
-          this.allReviews.add(newReview);
      }
 
      public String getTotals(JSONObject numOfParties)
@@ -110,7 +122,10 @@ public class Tour
                this.capacity = newInfo.capacity;
 
           if(newInfo.tags != null)
-               this.tags = newInfo.tags;
+          {
+               this.tags.clear();
+               this.tags.addAll(newInfo.tags);
+          }
      }
 
      @Override
@@ -126,8 +141,6 @@ public class Tour
           tour.put("tags", tags);
           tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
-          tour.put("rating", getRating());
-          tour.put("allReviews", allReviews);
           return tour.toString();
      }
 }

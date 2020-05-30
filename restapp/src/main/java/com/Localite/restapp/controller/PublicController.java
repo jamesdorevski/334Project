@@ -33,25 +33,51 @@ public class PublicController
         JSONObject result = new JSONObject();
         try
         {
-            BasicDBObject user = (accountRepository.findBy_id(userID)).getProfileUser();
+            Account user = accountRepository.findBy_id(userID);
+            BasicDBObject profile = new BasicDBObject();
 
-            if(user.get("type").equals("tourguide"))
+            if(user.getType().equals("tourguide"))
             {
-                ArrayList<Tour> createdTours = tourRepository.findAllByTourGuide(userID); // getting tours by this tourGuide
-                user.put("createdTours", createdTours);
+                // getting tours
+                ArrayList<Tour> createdTours = tourRepository.findToursByTourguide(userID.toString());
+
+                // for each tour update review
+                for(int i=0; i<createdTours.size();i++)
+                {
+                    ArrayList<Review> tourReviews = reviewRepository.getByTourID(new ObjectId(createdTours.get(i).get_id()));
+
+                    if(tourReviews.size() > 0)// update only if a review exist
+                    {
+                        createdTours.get(i).setReviews(tourReviews);
+                        tourRepository.save(createdTours.get(i));
+                    }
+                }
+
+                // getting reviews on self
+                ArrayList<Review> allReviews = reviewRepository.getByRevieweeID(userID.toString());
+                user.setReviews(allReviews);
+                accountRepository.save(user);
+
+                profile = user.getProfileUser();
+                profile.put("createdTours", createdTours);
             }
-            else if(user.get("type").equals("tourist"))
+            else if(user.getType().equals("tourist"))
             {
-                ArrayList<Review> tourReviews = reviewRepository.findAllByTourist(userID.toString());
-                System.out.println(tourReviews);
+                ArrayList<Review> tourReviews = reviewRepository.getTourReviewByReviewerID(userID.toString());
+                ArrayList<Review> guideReviews = reviewRepository.getGuideReviewByReviewerID(userID.toString());
+
+                profile = user.getProfileUser();
+                profile.put("tourReviews", tourReviews);
+                profile.put("guideReview", guideReviews);
             }
-            result.put("user", user);
+
+            result.put("profile", profile);
             result.put("success", true);
         }
         catch (NullPointerException e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "User profile does not exist");
+            result.put("message", "Error loading user profile");
             result.put("success", false);
         }
         catch (Exception e)
@@ -73,22 +99,25 @@ public class PublicController
         JSONObject result = new JSONObject();
         try
         {
-            // obtaining reviewer details
-            BasicDBObject reviewer = (accountRepository.findBy_id(userID).getBasicUser());
-            newReview.setReviewer(reviewer);
+            // dateCreated
             newReview.setDateCreated(System.currentTimeMillis());
-            newReview = reviewRepository.insert(newReview);
 
-            // adding review to user's profile
+            // setting reviewer
+            Account reviewer = accountRepository.findBy_id(userID);
+            newReview.setReviewer(reviewer.getBasicUser());
+
+            // setting reviewee
             Account reviewee = accountRepository.findBy_id(revieweeID);
-            reviewee.addReview(newReview);
-            accountRepository.save(reviewee);
+            newReview.setReviewee(reviewee.getBasicUser());
+
+            // adding review to repo
+            reviewRepository.insert(newReview);
             result.put("success", true);
         }
         catch (NullPointerException e)
         {
             if (debug) System.out.println(e);
-            result.put("message", "Unable to find user reviewed");
+            result.put("message", "Unable to obtain basic reviewer/reviewee");
             result.put("success", false);
         }
         catch (Exception e)
