@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.parameters.P;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -77,6 +78,27 @@ public class Tour
           return Math.round((totalRatings/(allReviews.size()+1)) * 10) / 10.0;
      }
 
+     public int capacityCheck(ArrayList<Booking> allBookings, Booking booking)
+     {
+          int totalBookings = 0;
+
+          // adding existing bookings
+          for(int i=0; i<allBookings.size(); i++)
+          {
+               totalBookings += allBookings.get(i).getParties().getInt("adult");
+               totalBookings += allBookings.get(i).getParties().getInt("child");
+               totalBookings += allBookings.get(i).getParties().getInt("infant");
+          }
+
+          // adding current booking
+          totalBookings += booking.getParties().getInt("adult");
+          totalBookings += booking.getParties().getInt("child");
+          totalBookings += booking.getParties().getInt("infant");
+
+          // checking capacity
+          return this.capacity - totalBookings;
+     }
+
      public String getTotals(JSONObject numOfParties)
      {
           JSONObject totals = new JSONObject();
@@ -96,6 +118,20 @@ public class Tour
           // total
           totals.put("total", adultTotal+childTotal+infantTotal);
           return totals.toString();
+     }
+
+     public double calcTotalCost(BasicDBObject booking)
+     {
+          // calculating adult
+          double adultTotal = booking.getDouble("adult")*basePrices.getDouble("adult");
+
+          // calculating child
+          double childTotal = booking.getDouble("child")*basePrices.getDouble("child");
+
+          // calculating infant
+          double infantTotal = booking.getDouble("infant")*basePrices.getDouble("infant");
+
+          return adultTotal+childTotal+infantTotal;
      }
 
      public void update(Tour newInfo)

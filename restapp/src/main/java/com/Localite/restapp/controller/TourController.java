@@ -253,53 +253,52 @@ public class TourController
     @PostMapping(value="/{tourID}/makeBooking/{userID}")
     public String makeBooking(@PathVariable("tourID") ObjectId tourID,
                               @PathVariable("userID") ObjectId userID,
-                              @RequestBody String str)
+                              @RequestBody Booking booking)
     {
-        JSONObject input = new JSONObject(str);
         JSONObject result = new JSONObject();
         try
         {
             Tour tour = tourRepository.findBy_id(tourID);
-            int numOfBookings = (tour.getCapacity()-bookingRepository.countBookings(tourID));
-            boolean bookingSpace = numOfBookings > 0; // minimum 1 booking to book
+
+            // check if user has booked this before
             boolean notBooked = bookingRepository.findByTourist(tourID, userID) == 0;
 
-            if(bookingSpace && notBooked)
+            if(notBooked)
             {
-                Account tourist = accountRepository.findBy_id(userID);
-                int totalParties = input.getInt("adult")+input.getInt("child")+input.getInt("infant");
-                for(int i=0; i<totalParties; i++)
+                // check capacity of tour
+                ArrayList<Booking> bookingList = bookingRepository.getTourBookings(tourID);
+                int spaceLeft = tour.capacityCheck(bookingList, booking);
+
+                if(spaceLeft >= 0)
                 {
-                    Booking booking = new Booking();
+                    Account tourist = accountRepository.findBy_id(userID);
+
+                    // setting booking values
+                    booking.setDateBooked(System.currentTimeMillis());
+                    booking.setUser(tourist.getBasicUser());
                     booking.setTour(tour);
-                    booking.setTourist(tourist.getBasicUser());
-                    booking.setDate(System.currentTimeMillis());
-                    booking.setDietaryRequirement(input.getString("dietaryRequirement"));
+                    booking.setTotalPrice(tour.calcTotalCost(booking.getParties()));
                     booking = bookingRepository.insert(booking);
 
-//                    if (i == 0)
-//                        tourist.addBooking(booking);
-                }
+                    if (spaceLeft == 0)
+                    {
+                        tour.setMaxLimit(true);
+                        tourRepository.save(tour);
+                    }
 
-                int bookingsLeft = numOfBookings-totalParties;
-                if (bookingsLeft == 0)
-                {
-                    tour.setMaxLimit(true);
-                    tourRepository.save(tour);
+                    result.put("confirmationNum", booking.get_id().toString());
                 }
-                result.put("success", true);
+                else
+                {
+                    result.put("success", false);
+                    result.put("message", "Not enough space for all parties");
+                }
             }
             else
             {
                 result.put("success", false);
-                if(!bookingSpace)
-                    result.put("message", "No booking spots left");
-                else
-                {
-                    result.put("message", "User has booked tour");
-                    result.put("tour", tour); // returns tour as well to load tour page
-                }
-                if (debug) System.out.println(bookingSpace + " | " + notBooked);
+                result.put("message", "User has booked tour");
+                result.put("tour", tour); // returns tour as well to load tour page
             }
         }
         catch (NullPointerException e)
@@ -327,7 +326,14 @@ public class TourController
         JSONObject result = new JSONObject();
         try
         {
-            bookingRepository.deleteBookings(userID, tourID);
+            // setting maxLimit to false
+            Tour tour = tourRepository.findBy_id(tourID);
+            tour.setMaxLimit(false);
+            tourRepository.save(tour);
+
+            // delete booking
+            bookingRepository.deleteBooking(userID, tourID);
+
             result.put("message", "Booking removed");
             result.put("success", true);
         }
@@ -343,8 +349,8 @@ public class TourController
     }
 
     // =================== PAYMENT ===================
-    @PostMapping("/{tourID}/makePayment")
-    public String makePayment(@PathVariable("tourID") ObjectId tourID,
+    @PostMapping("/{tourID}/getTotalCost")
+    public String getTotalCost(@PathVariable("tourID") ObjectId tourID,
                               @RequestBody String str) throws Exception
     {
         JSONObject input = new JSONObject(str);

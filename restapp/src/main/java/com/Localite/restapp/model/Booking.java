@@ -14,12 +14,13 @@ import java.util.Date;
 @Document(collection="Bookings")
 public class Booking 
 {
-    @Id private ObjectId _id;
-    private BasicDBObject tourist;
+    @Id private String _id;
+    private Long dateBooked;
+    private BasicDBObject user;
+    private BasicDBObject parties;
     private Tour tour;
-    private Long date;
     private String dietaryRequirement;
-    private BasicDBObject numOfParties;
+    private double totalPrice;
 
     public Booking(){}
 }

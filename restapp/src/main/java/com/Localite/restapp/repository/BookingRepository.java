@@ -6,17 +6,18 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
 @Repository
 public interface BookingRepository extends MongoRepository<Booking, String>
 {
     @Query(value="{'tourist._id':?0, 'tour._id':?1}", delete=true)
-    public void deleteBookings(String touristID, ObjectId tourID);
-
-    // returns number of bookings for a tour
-    @Query(value="{'tour._id':?0}", count=true)
-    public int countBookings(ObjectId tourID);
+    public void deleteBooking(String touristID, ObjectId tourID);
 
     // to check if booking for this tourist exist
-    @Query(value="{'tour._id':?0}, {'tourist._id':?1}", count=true)
+    @Query(value="{'tour._id':?0, 'tourist._id':?1}", count=true)
     public int findByTourist(ObjectId tourID, ObjectId userID);
+
+    @Query(value="{'tour._id':?0}", count=true)
+    public ArrayList<Booking> getTourBookings(ObjectId tourID);
 }
