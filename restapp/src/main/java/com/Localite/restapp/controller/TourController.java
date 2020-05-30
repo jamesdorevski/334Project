@@ -237,8 +237,8 @@ public class TourController
                     booking.setDietaryRequirement(input.getString("dietaryRequirement"));
                     booking = bookingRepository.insert(booking);
 
-                    if (i == 0)
-                        tourist.addBooking(booking);
+//                    if (i == 0)
+//                        tourist.addBooking(booking);
                 }
 
                 int bookingsLeft = numOfBookings-totalParties;

@@ -30,7 +30,7 @@ public class Tour
 
      // set only when retriving from db
      private ArrayList<Review> allReviews;
-     private double ratings;
+     private double ratings = 5.0;
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
@@ -50,7 +50,7 @@ public class Tour
 
      public int getDurationInHours()
      {
-          return (int) Math.ceil((startTour-endTour)/3600000);
+          return (int) Math.ceil((endTour-startTour)/3600000);
      }
 
      public void setReviews(ArrayList<Review> allReviews)
@@ -64,17 +64,17 @@ public class Tour
           else
                this.allReviews = allReviews;
 
-          this.ratings = getRating();
+          this.ratings = calcRatings();
      }
 
-     public double getRating()
+     public double calcRatings()
      {
-          double totalRating = 5.0;
+          double totalRatings = 5.0;
           for (int i=0; i<allReviews.size(); i++)
           {
-               totalRating += allReviews.get(i).getRating();
+               totalRatings += allReviews.get(i).getRatings();
           }
-          return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
+          return Math.round((totalRatings/(allReviews.size()+1)) * 10) / 10.0;
      }
 
      public String getTotals(JSONObject numOfParties)
