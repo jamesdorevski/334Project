@@ -41,7 +41,7 @@ public class PublicController
                 // getting tours
                 ArrayList<Tour> createdTours = tourRepository.findToursByTourguide(userID.toString());
 
-                // for each tour update review
+                // for each tour update reviews
                 for(int i=0; i<createdTours.size();i++)
                 {
                     ArrayList<Review> tourReviews = reviewRepository.getByTourID(new ObjectId(createdTours.get(i).get_id()));
@@ -53,22 +53,22 @@ public class PublicController
                     }
                 }
 
-                // getting reviews on self
-                ArrayList<Review> allReviews = reviewRepository.getByRevieweeID(userID.toString());
-                user.setReviews(allReviews);
-                accountRepository.save(user);
+                // calculating average tour ratings for tourguide if tour exists
+                if(createdTours.size() > 0)
+                {
+                    user.calcRatings(createdTours);
+                    accountRepository.save(user);
+                }
 
                 profile = user.getProfileUser();
                 profile.put("createdTours", createdTours);
             }
             else if(user.getType().equals("tourist"))
             {
-                ArrayList<Review> tourReviews = reviewRepository.getTourReviewByReviewerID(userID.toString());
-                ArrayList<Review> guideReviews = reviewRepository.getGuideReviewByReviewerID(userID.toString());
+                ArrayList<Review> tourReviews = reviewRepository.getReviewerID(userID.toString());
 
                 profile = user.getProfileUser();
                 profile.put("tourReviews", tourReviews);
-                profile.put("guideReview", guideReviews);
             }
 
             result.put("profile", profile);
@@ -92,45 +92,45 @@ public class PublicController
         }
     }
 
-    @PostMapping(value="/{userID}/addReview/{revieweeID}")
-    public String addUserReview(@PathVariable ObjectId userID, @PathVariable ObjectId revieweeID,
-                                @RequestBody Review newReview) throws Exception
-    {
-        JSONObject result = new JSONObject();
-        try
-        {
-            // dateCreated
-            newReview.setDateCreated(System.currentTimeMillis());
-
-            // setting reviewer
-            Account reviewer = accountRepository.findBy_id(userID);
-            newReview.setReviewer(reviewer.getBasicUser());
-
-            // setting reviewee
-            Account reviewee = accountRepository.findBy_id(revieweeID);
-            newReview.setReviewee(reviewee.getBasicUser());
-
-            // adding review to repo
-            reviewRepository.insert(newReview);
-            result.put("success", true);
-        }
-        catch (NullPointerException e)
-        {
-            if (debug) System.out.println(e);
-            result.put("message", "Unable to obtain basic reviewer/reviewee");
-            result.put("success", false);
-        }
-        catch (Exception e)
-        {
-            if (debug) System.out.println(e);
-            result.put("message", "Review creation unsuccessful");
-            result.put("success", false);
-        }
-        finally
-        {
-            return result.toString();
-        }
-    }
+//    @PostMapping(value="/{userID}/addReview/{revieweeID}")
+//    public String addUserReview(@PathVariable ObjectId userID, @PathVariable ObjectId revieweeID,
+//                                @RequestBody Review newReview) throws Exception
+//    {
+//        JSONObject result = new JSONObject();
+//        try
+//        {
+//            // dateCreated
+//            newReview.setDateCreated(System.currentTimeMillis());
+//
+//            // setting reviewer
+//            Account reviewer = accountRepository.findBy_id(userID);
+//            newReview.setReviewer(reviewer.getBasicUser());
+//
+//            // setting reviewee
+//            Account reviewee = accountRepository.findBy_id(revieweeID);
+//            newReview.setReviewee(reviewee.getBasicUser());
+//
+//            // adding review to repo
+//            reviewRepository.insert(newReview);
+//            result.put("success", true);
+//        }
+//        catch (NullPointerException e)
+//        {
+//            if (debug) System.out.println(e);
+//            result.put("message", "Unable to obtain basic reviewer/reviewee");
+//            result.put("success", false);
+//        }
+//        catch (Exception e)
+//        {
+//            if (debug) System.out.println(e);
+//            result.put("message", "Review creation unsuccessful");
+//            result.put("success", false);
+//        }
+//        finally
+//        {
+//            return result.toString();
+//        }
+//    }
 
     // =================== FAQ ===================
     @PostMapping(value="faq/addOne")

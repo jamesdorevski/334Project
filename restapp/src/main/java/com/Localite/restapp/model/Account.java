@@ -28,12 +28,8 @@ public class Account
     private String img; // https://blahblah.com
     private ArrayList<String> languagesSpoken;
 
-    // Tourist
-    private ArrayList<Booking> allBookings = new ArrayList<>();
-
     // Tourguide
     private String licence;
-    private ArrayList<Review> allReviews;
     private double ratings;
 
     public Account(){}
@@ -51,6 +47,9 @@ public class Account
         this.languagesSpoken = languagesSpoken;
         this.gender = gender;
         this.img = img;
+
+        if(type == "tourguide")
+            this.ratings = 5.0;
     }
 
     public BasicDBObject getBasicUser() // placed in tours
@@ -76,40 +75,19 @@ public class Account
         profile.put("languagesSpoken", languagesSpoken);
 
         if(type == "tourguide")
-        {
-            profile.put("allReviews", allReviews);
             profile.put("ratings", ratings);
-        }
+
         return profile;
     }
 
-    public void setReviews(ArrayList<Review> allReviews)
+    public void calcRatings(ArrayList<Tour> allTours)
     {
-        // set rating with new reviews
-        if(this.allReviews != null)
+        double totalRatings = 0;
+        for (int i=0; i<allTours.size(); i++)
         {
-            this.allReviews.clear();
-            this.allReviews.addAll(allReviews);
+            totalRatings += allTours.get(i).getRatings();
         }
-        else
-            this.allReviews = allReviews;
-
-        this.ratings = getRating();
-    }
-
-    public double getRating()
-    {
-        double totalRating = 5.0;
-        for (int i=0; i<allReviews.size(); i++)
-        {
-            totalRating += allReviews.get(i).getRating();
-        }
-        return Math.round((totalRating/(allReviews.size()+1)) * 10) / 10.0;
-    }
-
-    public void addBooking(Booking newBooking)
-    {
-        this.allBookings.add(newBooking);
+        this.ratings = Math.round((totalRatings/(allTours.size())) * 10) / 10.0;
     }
 
     public void update(Account newInfo)

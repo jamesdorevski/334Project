@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/FAQComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/FAQComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/FilterModalComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/FilterModalComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourComponent.jsx" afterDir="false" />
@@ -35,6 +36,22 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/FAQRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/FAQRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/Localite/restapp/LocaliteApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/Localite/restapp/LocaliteApplicationTests.class" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/ReviewRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review$ReviewBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review$ReviewBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/ReviewRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/ReviewRepository.class" afterDir="false" />
+>>>>>>> bbd67f3d79b7d6c3c50cbbf61546e7a6ebbe6b88
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -307,22 +324,22 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="72" key="GridCell.Tab.0.bottom" timestamp="1590836709843">
+    <state width="1237" height="164" key="GridCell.Tab.0.bottom" timestamp="1590849519044">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="72" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590836709843" />
-    <state width="1237" height="72" key="GridCell.Tab.0.center" timestamp="1590836709843">
+    <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590849519044" />
+    <state width="1237" height="164" key="GridCell.Tab.0.center" timestamp="1590849519043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="72" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590836709843" />
-    <state width="1237" height="72" key="GridCell.Tab.0.left" timestamp="1590836709842">
+    <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590849519043" />
+    <state width="1237" height="164" key="GridCell.Tab.0.left" timestamp="1590849519043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="72" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590836709842" />
-    <state width="1237" height="72" key="GridCell.Tab.0.right" timestamp="1590836709843">
+    <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590849519043" />
+    <state width="1237" height="164" key="GridCell.Tab.0.right" timestamp="1590849519043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="72" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590836709843" />
+    <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590849519043" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1590833564957">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
