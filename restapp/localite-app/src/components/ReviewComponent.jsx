@@ -36,11 +36,6 @@ export default function ReviewComponent(props) {
   ];
 
   const date = new Date(props.review.dateCreated)
-  console.log(monthNames[date.getMonth()] +
-        " " +
-        date.getDate().toString() +
-        ", " +
-        date.getFullYear().toString())
 
   return (
     <div key={props.review._id} className={classes.root}>

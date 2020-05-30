@@ -23,6 +23,16 @@
   overflow: hidden;
   margin-top:-90px;
 }
+.tour-tag {
+  position: relative;
+  bottom: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  color: grey;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+}
 
 #page-container {
   position: relative;

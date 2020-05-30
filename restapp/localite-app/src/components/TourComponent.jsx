@@ -32,17 +32,42 @@ export default function TourComponent(props) {
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
+            <Grid
+              item
+              xs
+              container
+              direction="column"
+              spacing={2}
+            >
+              <Grid item xs style={{ width: "330px" }}>
+                <Typography
+                  style={{ fontWeight: 600 }}
+                  gutterBottom
+                  variant="subtitle1"
+                >
                   {props.tour.tourName}
                 </Typography>
-                <Typography zerominwidth="true" variant="body2" gutterBottom>
+                <Typography
+                  noWrap={true}
+                  zerominwidth="true"
+                  variant="body2"
+                  gutterBottom
+                >
                   {props.tour.description}
                 </Typography>
-                <Typography gutterBottom variant="body2" color="textSecondary">
-                  {props.tour.tags.join(", ")}
-                </Typography>
+                {props.tour.tags.map((tag) => (
+                  <div
+                    key={tag}
+                    className="tour-tag"
+                  >
+                    <Typography
+                      className="text-uppercase"
+                      style={{ fontSize: 12 }}
+                    >
+                      {tag}
+                    </Typography>
+                  </div>
+                ))}
               </Grid>
             </Grid>
             <Grid item>
@@ -58,26 +83,16 @@ export default function TourComponent(props) {
               <Typography
                 variant="subtitle1"
                 className="rowC"
-                style={{ marginBottom: "-10px" }}
+                style={{ marginBottom: "-10px", paddingLeft: "5px" }}
               >
                 {props.tour.tourGuide.firstName} {props.tour.tourGuide.rating}
-                {/* <img
-                  style={{
-                    width: "18px",
-                    height: "18px",
-                    marginBottom: "5px",
-                    marginLeft: "5px",
-                  }}
-                  src={require("../images/star.png")}
-                  alt={props.tour.tourName}
-                /> */}
                 <StarRatingComponent editing={false} starCount={1} value={1} />
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Starting at ${props.tour.basePrice}.
               </Typography>
 
-              <Button style={{ margin: "5px" }}>Book</Button>
+              <Button style={{ margin: "5px", marginTop: "30px" }}>Book</Button>
             </Grid>
           </Grid>
         </Grid>

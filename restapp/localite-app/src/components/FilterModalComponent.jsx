@@ -25,6 +25,8 @@ class FilterModalComponent extends Component {
         { tag: "Shopping" },
       ],
       selectedValues: [],
+      start: 1,
+      end: 200,
       price: [1, 100],
       selectedRating: null
     };
@@ -64,6 +66,10 @@ class FilterModalComponent extends Component {
   handleChange = (event, newValue) => {
     this.setState({ price: newValue });
   };
+
+  handleBoxChange = () => {
+
+  }
   
   valuetext = (value) => {
     return `$${value}`;
@@ -142,7 +148,11 @@ class FilterModalComponent extends Component {
                       max={maximum}
                     />
                     </div>
-                    
+                    <form>
+          $<input type="text" style={{width: "80px"}} value={this.state.price[0]} onChange={this.handleBoxChange} ></input>
+          to
+          $<input type="text" style={{width: "80px"}} value={this.state.price[1]} onChange={this.handleBoxChange} ></input>
+      </form>
                   </div>
 
                   <div className="form-group">
