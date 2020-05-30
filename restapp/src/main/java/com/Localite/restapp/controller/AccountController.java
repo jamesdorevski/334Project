@@ -1,10 +1,11 @@
 package com.Localite.restapp.controller;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
-
+import java.util.ArrayList;
+import org.bson.types.ObjectId;
+import java.util.Random;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -180,4 +181,67 @@ public class AccountController
             return result.toString();
         }
     }
+
+    @PostMapping("/generate")
+    public String generateUser(@RequestBody int amountToGenerate) throws Exception
+    {
+        JSONObject result = new JSONObject();
+        Random rand = new Random();
+        for(int i = 0; i < amountToGenerate ; i++)
+        {
+            try
+            {
+                System.out.println("Creating Account " + i + " of " + amountToGenerate);
+                int randomizedInt = rand.nextInt(100000);
+
+                //50/50 chance items decided by modulo (%) 2 and ternary operator to assign
+                String type = (randomizedInt % 2 == 0) ? "tourist" : "tourguide";
+                String gender = (randomizedInt % 2 == 0) ? "Male" : "Female"; //more gender options exist but this way is easier for right now
+
+                //email is obviously fake and made unique by adding a generated int. (may be duplicate occasionally)
+                String email = ("fakemail" + String.valueOf(randomizedInt) + "@fake.com");
+                System.out.println(email);
+
+                //for sake of convenience password is always the same
+                String hashbrown = "password123";
+
+                //phonenumber is 44 then randomized
+                String phoneNumber = ("44"+ String.valueOf(randomizedInt));
+
+                //these 3 can e made unique by picking from an array. For now they're set
+                String firstName = "Bob";
+                String lastName = "Testo";
+                ArrayList<String> languagesSpoken = new ArrayList<>();
+                languagesSpoken.add("English"); //more later
+
+                String img = "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg";
+
+                //now we create the account
+                /*  public Account(String type, String firstName, String lastName, String email, String hashbrown,
+                    String phoneNumber, ArrayList<String> languagesSpoken,
+                    String gender, String img)*/
+
+                Account newAccount = new Account(type, firstName, lastName, email, hashbrown, phoneNumber, languagesSpoken, gender, img);
+                createUser(newAccount);
+
+                if (debug)
+                  System.out.println("Account " + i + " generated");
+                result.put("message", "Account generated");
+                result.put("success", true);
+            }
+            catch (Exception e)
+            {
+                if (debug)
+                  System.out.println(e);
+                result.put("message", "Account generation unsuccessful");
+                result.put("success", false);
+            }
+            finally
+            {
+              continue;
+            }
+      }
+      return result.toString();
+    }
 }
+
