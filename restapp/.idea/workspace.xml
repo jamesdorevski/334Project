@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="24b89233-01fc-4186-9523-51bc11302b3a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/localite-app/node_modules/.bin/acorn" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/node_modules/.bin/acorn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/node_modules/.bin/ansi-html" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/node_modules/.bin/ansi-html" afterDir="false" />
@@ -1772,6 +1791,18 @@
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/PopularComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/PopularComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/WorksComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/WorksComponent.jsx" afterDir="false" />
+=======
+    <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/localite-app/src/styles/LocationAutoComplete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/localite-app/src/utils/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1782,6 +1813,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
@@ -1899,6 +1931,18 @@
         </subPane>
       </pane>
     </panes>
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1cWVvTfcYi4cx94ZulyrF2rfBHA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+>>>>>>> Stashed changes
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -1908,9 +1952,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+<<<<<<< Updated upstream
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -1924,6 +1977,9 @@
         </RuleState>
       </list>
     </option>
+=======
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+>>>>>>> Stashed changes
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet">
@@ -1988,14 +2044,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="25ab4869-a145-4c49-a76a-90c599d011ec" name="Default Changelist" comment="" />
+      <changelist id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="" />
       <created>1590522065812</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590522065812</updated>
+      <workItem from="1590644573241" duration="3049000" />
+      <workItem from="1590802760648" duration="3840000" />
     </task>
     <servers />
   </component>
+<<<<<<< Updated upstream
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
@@ -2098,6 +2157,50 @@
         </state>
       </provider>
     </entry>
+=======
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590587358686">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1590587358686" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590587358686">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1590587358686" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590587358686">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1590587358686" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590587358686">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1590587358686" />
+    <state x="889" y="160" width="780" height="1079" key="find.popup" timestamp="1590664833089">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="667" y="119" width="585" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590543786906" />
+    <state x="889" y="160" width="780" height="1079" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1590664833089" />
+    <state x="623" y="-855" width="672" height="678" key="search.everywhere.popup" timestamp="1590806036702">
+      <screen x="0" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="623" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1590806036702" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590544216130" />
+>>>>>>> Stashed changes
   </component>
   <component name="masterDetails">
     <states>
