@@ -1,3 +1,7 @@
+.buttonContainer {
+    margin-left: 20px;
+}
+
 .guestGroup {
     padding: 11px 22px 11px;
     display: grid;
@@ -17,7 +21,7 @@
 }
 .submitButton {
     position: relative;
-    height: 100%;
+    height: 40px;
     text-align: center;
     background: 0 0;
     padding: 4px 12px;
