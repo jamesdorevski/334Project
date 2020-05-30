@@ -36,10 +36,16 @@ class ExploreComponent extends Component {
       { title: "Wine Tasting", img: require("../../images/wine_tasting.jpg") },
       { title: "Museums", img: require("../../images/museum.jpg") },
       { title: "Day Trip", img: require("../../images/day.jpg") },
-      { title: "Wheelchair Accessible", img: require("../../images/wheelchair.jpg") },
-      { title: "Nature and Wildlife", img: require("../../images/wildlife.jpg") },
+      {
+        title: "Wheelchair Accessible",
+        img: require("../../images/wheelchair.jpg"),
+      },
+      {
+        title: "Nature and Wildlife",
+        img: require("../../images/wildlife.jpg"),
+      },
       { title: "Shopping", img: require("../../images/shopping.jpg") },
-      { title: "Night Tour", img: require("../../images/night.jpg") }
+      { title: "Night Tour", img: require("../../images/night.jpg") },
     ];
 
     const responsive = {
@@ -75,21 +81,27 @@ class ExploreComponent extends Component {
           >
             {experiences.map((card) => {
               return (
-                <div>
-                  <Card
-                    key={card.title}
-                    isMoving={this.state.isMoving}
-                    style={{ width: "200px", height: "150px" }}
-                  >
+                <div key={card.title}>
+                  <Card style={{ width: "200px", height: "150px" }}>
                     <Card.Img
                       variant="top"
                       src={card.img}
                       style={{ height: "150px", objectFit: "cover" }}
                     />
                   </Card>
-                  <Typography className="text-uppercase" style={{fontWeight: 600, fontSize: 16, paddingRight: "30px", paddingTop: "10px"}}>{card.title}</Typography>
+                  <Typography
+                    className="text-uppercase"
+                    style={{
+                      fontWeight: 600,
+                      fontSize: 16,
+                      paddingRight: "30px",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    {card.title}
+                  </Typography>
                 </div>
-              )
+              );
             })}
           </Carousel>
         </div>

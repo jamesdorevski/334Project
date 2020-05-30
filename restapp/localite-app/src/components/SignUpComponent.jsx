@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AccountService from "../api/AccountService";
+import PublicService from "../api/PublicService";
 import { Multiselect } from "multiselect-react-dropdown";
 
 class SignUpComponent extends Component {
@@ -11,15 +12,7 @@ class SignUpComponent extends Component {
     this.state = {
       message: "",
       success: false,
-      langArray: [
-        { lang: "English" },
-        { lang: "Spanish"},
-        { lang: "French"},
-        { lang: "Arabic"},
-        { lang: "Chinese"},
-        { lang: "Greek" },
-        { lang: "Italian"}
-      ],
+      langArray: [],
       selectedValues: [
       ]
     };
@@ -33,6 +26,21 @@ class SignUpComponent extends Component {
   onRemove = (selectedList, removedItem) => {
     this.setState({selectedValues: selectedList})
     // console.log(this.state.selectedValues)
+  }
+
+  componentDidMount() {
+    let dict = []
+    PublicService.getLanguages().then((response) => {
+      if (response) {
+        // console.log(response.data)
+        response.data.map((language) =>
+      dict.push({
+        lang: language,
+      })
+    );
+    this.setState({ langArray: dict });
+      }
+    });
   }
 
   render() {

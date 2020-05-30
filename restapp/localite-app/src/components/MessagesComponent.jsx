@@ -15,12 +15,12 @@ class MessagesComponent extends Component {
 
   componentWillMount() {
     //call backend to load messages for loggedIn user
-    const loggedIn = AccountService.getCurrentUser();
-    let name = "";
-    PublicService.getUserByID("5ec560a17b05e02bc1105411").then((response) => {
-      name = response.data.user.firstName;
-      console.log(name);
-    });
+    // const loggedIn = AccountService.getCurrentUser();
+    // let name = "";
+    // PublicService.getUserByID("5ec560a17b05e02bc1105411").then((response) => {
+    //   name = response.data.user.firstName;
+    //   console.log(name);
+    // });
 
     const hardcoded_messages = [
       {

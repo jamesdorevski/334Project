@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AccountService from "../api/AccountService";
+import PublicService from "../api/PublicService";
 import TourService from "../api/TourService";
 import { Multiselect } from "multiselect-react-dropdown";
 import TextField from "@material-ui/core/TextField";
@@ -32,15 +33,7 @@ class SignUpComponent extends Component {
     this.state = {
       message: "",
       success: false,
-      tags: [
-        { tag: "Night Tour" },
-        { tag: "Day Trip" },
-        { tag: "Food" },
-        { tag: "Wine" },
-        { tag: "Hiking and Outdoors" },
-        { tag: "Museums" },
-        { tag: "Shopping" },
-      ],
+      tags: [],
       selectedValues: [],
       currency: "USD",
     };
@@ -48,6 +41,19 @@ class SignUpComponent extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+
+    let dict = [];
+    PublicService.getTourTags().then((response) => {
+      if (response) {
+        // console.log(response.data)
+        response.data.map((tagName) =>
+          dict.push({
+            tag: tagName,
+          })
+        );
+        this.setState({ tags: dict });
+      }
+    });
   }
 
   onSelect = (selectedList, selectedItem) => {

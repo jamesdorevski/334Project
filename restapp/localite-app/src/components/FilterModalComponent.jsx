@@ -5,6 +5,7 @@ import { Formik, Form } from "formik";
 import StarRatingComponent from "react-star-rating-component";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
+import PublicService from "../api/PublicService";
 
 class FilterModalComponent extends Component {
   constructor(props) {
@@ -15,42 +16,29 @@ class FilterModalComponent extends Component {
         min: 3,
         max: 7,
       },
-      tags: [
-        { tag: "Night Tour" },
-        { tag: "Day Trip" },
-        { tag: "Food" },
-        { tag: "Wine" },
-        { tag: "Hiking and Outdoors" },
-        { tag: "Museums" },
-        { tag: "Shopping" },
-      ],
+      tags: [],
       selectedValues: [],
       start: 1,
       end: 200,
       price: [1, 100],
-      selectedRating: null
+      selectedRating: null,
     };
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    // let dict = []
-    // const tagList = []
-    // PublicService.getTourTags().then((response) => {
-    //   console.log(response);
-    //   if (response) {
-    //     tagList = response.data
-    //   } else {
-    //     //idk
-    //   }
-    // });
-
-    // tagList.map((tagName) =>
-    //   dict.push({
-    //     tag: tagName,
-    //   })
-    // );
-    // this.setState({ tags: dict });
+    let dict = [];
+    PublicService.getTourTags().then((response) => {
+      if (response) {
+        // console.log(response.data)
+        response.data.map((tagName) =>
+          dict.push({
+            tag: tagName,
+          })
+        );
+        this.setState({ tags: dict });
+      }
+    });
   }
 
   onSelect = (selectedList, selectedItem) => {
@@ -67,21 +55,19 @@ class FilterModalComponent extends Component {
     this.setState({ price: newValue });
   };
 
-  handleBoxChange = () => {
+  handleBoxChange = () => {};
 
-  }
-  
   valuetext = (value) => {
     return `$${value}`;
-  }
+  };
 
   selectRating = (event) => {
-    console.log(event.target.value)
-  }
+    console.log(event.target.value);
+  };
 
   render() {
-    const maximum = 200
-    const minimum = 1
+    const maximum = 200;
+    const minimum = 1;
 
     const marks = [
       {
@@ -100,8 +86,8 @@ class FilterModalComponent extends Component {
             initialValues={{
               tags: this.state.selectedValues,
             }}
-            onSubmit={({}, { setSubmitting }) => {
-              setSubmitting(false)
+            onSubmit={({ fields, setSubmitting }) => {
+              setSubmitting(false);
               // AccountService.loginUser(email, password).then(
               //   (response) => {
               //     console.log(response);
@@ -136,23 +122,34 @@ class FilterModalComponent extends Component {
                     <Typography id="range-slider" gutterBottom>
                       Price
                     </Typography>
-                    <div style={{padding: "10px"}}>
-                    <Slider
-                      value={this.state.price}
-                      onChange={this.handleChange}
-                      valueLabelDisplay="auto"
-                      aria-labelledby="range-slider"
-                      getAriaValueText={this.valuetext}
-                      marks={marks}
-                      min={minimum}
-                      max={maximum}
-                    />
+                    <div style={{ padding: "10px" }}>
+                      <Slider
+                        value={this.state.price}
+                        onChange={this.handleChange}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="range-slider"
+                        getAriaValueText={this.valuetext}
+                        marks={marks}
+                        min={minimum}
+                        max={maximum}
+                      />
                     </div>
                     <form>
-          $<input type="text" style={{width: "80px"}} value={this.state.price[0]} onChange={this.handleBoxChange} ></input>
-          to
-          $<input type="text" style={{width: "80px"}} value={this.state.price[1]} onChange={this.handleBoxChange} ></input>
-      </form>
+                      $
+                      <input
+                        type="text"
+                        style={{ width: "80px" }}
+                        value={this.state.price[0]}
+                        onChange={this.handleBoxChange}
+                      ></input>
+                      to $
+                      <input
+                        type="text"
+                        style={{ width: "80px" }}
+                        value={this.state.price[1]}
+                        onChange={this.handleBoxChange}
+                      ></input>
+                    </form>
                   </div>
 
                   <div className="form-group">
@@ -168,6 +165,7 @@ class FilterModalComponent extends Component {
                             onClick={() => this.selectRating}
                           >
                             <StarRatingComponent
+                              name={n.toString()}
                               editing={false}
                               starCount={5}
                               value={n}

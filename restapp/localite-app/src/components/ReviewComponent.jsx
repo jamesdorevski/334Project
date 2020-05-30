@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import { Figure } from "react-bootstrap";
+import StarRatingComponent from 'react-star-rating-component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +61,7 @@ export default function ReviewComponent(props) {
                 </Typography>
                 <Typography variant="subtitle1" style={{paddingLeft: "5px", fontWeight: 300}}>
                   {props.review.rating}
-                  <img
+                  {/* <img
                     style={{
                       width: "18px",
                       height: "18px",
@@ -68,8 +69,14 @@ export default function ReviewComponent(props) {
                     }}
                     src={require("../images/star.png")}
                     alt="star"
-                  />
+                  /> */}
+                  
                 </Typography>
+                <StarRatingComponent 
+                      editing={false}
+          starCount={5}
+          value={Math.round(props.review.rating)}
+        />
                 </div>
                 
                 <Typography variant="subtitle2">
