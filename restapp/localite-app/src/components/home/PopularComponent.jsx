@@ -4,8 +4,6 @@ import CardDeck from "react-bootstrap/CardDeck";
 import wine from "../../images/wine.jpg";
 import art from "../../images/art.jpg";
 import horses from "../../images/horses.jpg";
-//hover animation - gonna work on this later
-import ImageContentHover from "react-image-hover";
 
 class PopularComponent extends Component {
   render() {
@@ -16,9 +14,7 @@ class PopularComponent extends Component {
           background-color="transparent"
           style={{ paddingBottom: "50px" }}
         >
-          <center>
             <h2 style={{ padding: "20px" }}>Popular Experiences</h2>
-          </center>
           <CardDeck>
             <Card
               hoverable="true"
@@ -28,10 +24,9 @@ class PopularComponent extends Component {
               <Card.Img variant="top" src={wine} />
               <Card.Body>
                 <Card.Title>
-                  <center>
+
                     Wine Tasting •{" "}
                     <i style={{ fontWeight: "lighter" }}>Florence, Italy</i>
-                  </center>
                 </Card.Title>
                 <Card.Text>
                   This card has supporting text below as a natural lead-in to
@@ -43,12 +38,11 @@ class PopularComponent extends Component {
               <Card.Img variant="top" src={art} />
               <Card.Body>
                 <Card.Title>
-                  <center>
+
                     Street Art Tour •{" "}
                     <i style={{ fontWeight: "lighter" }}>
                       Melbourne, Australia
                     </i>
-                  </center>
                 </Card.Title>
                 <Card.Text>
                   This card has supporting text below as a natural lead-in to
@@ -60,10 +54,8 @@ class PopularComponent extends Component {
               <Card.Img variant="top" src={horses} />
               <Card.Body>
                 <Card.Title>
-                  <center>
                     Horseback Riding •{" "}
                     <i style={{ fontWeight: "lighter" }}>Hume, Virginia</i>
-                  </center>
                 </Card.Title>
                 <Card.Text>
                   This card has supporting text below as a natural lead-in to
