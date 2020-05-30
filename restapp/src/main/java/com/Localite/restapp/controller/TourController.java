@@ -8,6 +8,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.internal.client.model.AggregationLevel;
 import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
@@ -168,6 +169,45 @@ public class TourController
         }
     }
 
+    @PostMapping(value = "/filterSearch")
+    public String filterTours(@RequestBody String str) throws Exception
+    {
+        JSONObject input = new JSONObject(str);
+        JSONObject result = new JSONObject();
+        try
+        {
+            // converting tags into array for db search
+            JSONArray rawTags = input.getJSONArray("tags");
+            ArrayList<String> tags = new ArrayList<>();
+
+            for(int i=0; i<rawTags.length(); i++)
+            {
+                tags.add(rawTags.getString(i));
+            }
+
+            ArrayList<Tour> tours = tourRepository.filterTours(tags,
+                                input.getInt("minPrice"), input.getInt("maxPrice"),
+                                input.getInt("ratings"));
+            result.put("tours", tours);
+            result.put("success", true);
+        }
+        catch (NullPointerException e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to find any available tours");
+            result.put("success", false);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "404 - Search error");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
     @PostMapping(value="/{tourID}/addReview/{userID}")
     public String addTourReview(@PathVariable ObjectId userID,
                                 @PathVariable ObjectId tourID,
