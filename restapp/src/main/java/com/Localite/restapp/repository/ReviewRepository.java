@@ -15,5 +15,5 @@ public interface ReviewRepository extends MongoRepository<Review, String>
     public ArrayList<Review> getReviewerID(String reviewerID);
 
     @Query(value="{'tour._id':?0}")
-    public ArrayList<Review> getByTourID(ObjectId tourID);
+    public ArrayList<Review> getByTourID(String tourID);
 }
