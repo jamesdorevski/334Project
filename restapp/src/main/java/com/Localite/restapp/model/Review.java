@@ -21,23 +21,11 @@ public class Review
     private BasicDBObject reviewer;
 
     // object is that being reviewed
-    private BasicDBObject reviewee;
-    private Tour tour;
+    private BasicDBObject tour;
 
     private String title;
     private String description;
     private double ratings;
-
-    @Builder
-    public Review(BasicDBObject reviewer, BasicDBObject reviewee, Long dateCreated, String title, double ratings, String description)
-    {
-        this.reviewer = reviewer;
-        this.reviewee = reviewee;
-        this.dateCreated = dateCreated;
-        this.ratings = ratings;
-        this.description = description;
-        this.title = title;
-    }
 
     @Override
     public String toString()
@@ -46,7 +34,7 @@ public class Review
         review.put("_id", _id);
         review.put("dateCreated", dateCreated);
         review.put("reviewer", reviewer);
-        review.put("reviewee", reviewee);
+        review.put("tour", tour);
         review.put("title", title);
         review.put("description", description);
         review.put("ratings", ratings);

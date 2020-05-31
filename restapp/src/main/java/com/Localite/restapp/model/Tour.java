@@ -54,6 +54,19 @@ public class Tour
           return (int) Math.ceil((endTour-startTour)/3600000);
      }
 
+     public BasicDBObject getBasicTour()
+     {
+          BasicDBObject basic = new BasicDBObject();
+          basic.put("_id", _id);
+          basic.put("tourGuide", tourGuide);
+          basic.put("location", location);
+          basic.put("name", name);
+          basic.put("duration", getDurationInHours());
+          basic.put("description", description);
+          basic.put("tags", tags);
+          return basic;
+     }
+
      public void setReviews(ArrayList<Review> allReviews)
      {
           // set new reviews and set rating

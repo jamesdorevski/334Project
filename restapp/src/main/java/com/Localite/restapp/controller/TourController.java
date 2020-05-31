@@ -227,7 +227,7 @@ public class TourController
 
             // setting tour reviewed
             Tour tour = tourRepository.findBy_id(tourID);
-            newReview.setTour(tour);
+            newReview.setTour(tour.getBasicTour());
 
             // adding review to repo
             reviewRepository.insert(newReview);

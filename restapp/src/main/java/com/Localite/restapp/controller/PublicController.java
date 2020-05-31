@@ -34,8 +34,6 @@ public class PublicController
         try
         {
             Account user = accountRepository.findBy_id(userID);
-            BasicDBObject profile = new BasicDBObject();
-
             if(user.getType().equals("tourguide"))
             {
                 // getting tours
@@ -45,7 +43,6 @@ public class PublicController
                 for(int i=0; i<createdTours.size();i++)
                 {
                     ArrayList<Review> tourReviews = reviewRepository.getByTourID(new ObjectId(createdTours.get(i).get_id()));
-                    System.out.println(tourReviews);
 
                     if(tourReviews.size() > 0)// update only if a review exist
                     {
@@ -61,17 +58,15 @@ public class PublicController
                     accountRepository.save(user);
                 }
 
-                profile = user.getProfileUser();
-                profile.put("createdTours", createdTours);
+                result.put("createdTours", createdTours);
             }
             else if(user.getType().equals("tourist"))
             {
                 ArrayList<Review> tourReviews = reviewRepository.getReviewerID(userID.toString());
-                profile = user.getProfileUser();
-                profile.put("tourReviews", tourReviews);
+                result.put("tourReviews", tourReviews);
             }
 
-            result.put("profile", profile);
+            result.put("profile", user.getProfileUser());
             result.put("success", true);
         }
         catch (NullPointerException e)
