@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 @Getter @Setter
 @Document(collection="Users")
-@Component @SessionScope
+@Component
 public class Account
 {
     @Id private ObjectId _id;

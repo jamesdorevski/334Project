@@ -20,7 +20,6 @@ public class AccountController
     private boolean debug = false;
     @Autowired private PasswordEncoder bcrypt;
     @Autowired private AccountRepository accountRepository;
-    @Autowired private Account sessionUser;
 
     @PostMapping("/create")
     public String createUser(@RequestBody Account newAccount) throws Exception
@@ -69,7 +68,6 @@ public class AccountController
                 if (authenticate)
                 {
                     if (debug) System.out.println("User has logged in");
-                    sessionUser = user; // adding user to session??
 
                     result.put("user", user.toString());
                     result.put("success", true);
