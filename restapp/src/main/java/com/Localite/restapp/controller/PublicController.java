@@ -44,7 +44,8 @@ public class PublicController
                 // for each tour update reviews
                 for(int i=0; i<createdTours.size();i++)
                 {
-                    ArrayList<Review> tourReviews = reviewRepository.getByTourID(new ObjectId(createdTours.get(i).get_id()));
+                    ObjectId tourId = createdTours.get(i).get_id();
+                    ArrayList<Review> tourReviews = reviewRepository.getByTourID(tourId);
 
                     if(tourReviews.size() > 0)// update only if a review exist
                     {

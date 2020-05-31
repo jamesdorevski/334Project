@@ -2,12 +2,14 @@ package com.Localite.restapp.controller;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.Localite.restapp.model.*;
 import com.Localite.restapp.repository.ReviewRepository;
 import com.mongodb.BasicDBObject;
 import com.mongodb.internal.client.model.AggregationLevel;
 import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
+import java.util.Random;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -412,4 +414,83 @@ public class TourController
             return result.toString();
         }
     }
+
+    @PostMapping(value = "/generate")
+    public String generateTour(@RequestBody int amountToGenerate)
+    {
+        Random random = new Random();
+        JSONObject result = new JSONObject();
+        try
+        {
+            for(int i = 0; i<amountToGenerate; i++)
+            {
+              ArrayList <Account> allTourGuides = accountRepository.findByType("tourguide");
+              ObjectId guideID = allTourGuides.get(i).get_id();
+
+              //create the random variables from lists
+              ArrayList<String> nameP1Options = new ArrayList<>(
+              Arrays.asList("Ride", "Eat", "See", "Pet", "Snuggle", "Photograph"));
+              String nameP1 = nameP1Options.get( random.nextInt(nameP1Options.size()));
+
+              ArrayList<String> nameP2Options = new ArrayList<>(
+              Arrays.asList("Elephant", "City", "Sights", "Culture", "Cusine"));
+              String nameP2 = nameP2Options.get( random.nextInt(nameP2Options.size()));
+
+              //fake cities to match any country
+              ArrayList<String> cityOptions = new ArrayList<>(
+              Arrays.asList("LittleShire", "Bordeauxsville", "Mapleton"));
+              String city = cityOptions.get( random.nextInt(cityOptions.size()));
+
+              ArrayList<String> countryOptions = new ArrayList<>(
+              Arrays.asList("Australia", "France", "Canada"));
+              String country = countryOptions.get( random.nextInt(countryOptions.size()));
+
+              ArrayList<String> descriptionP1Options = new ArrayList<>(
+              Arrays.asList("Try", "Experience", "Get", "Meet"));
+              String descP1 = descriptionP1Options.get( random.nextInt(descriptionP1Options.size()));
+
+              ArrayList<String> descriptionP2Options = new ArrayList<>(
+              Arrays.asList("Flip", "Memory", "Tan", "Local", "Brew"));
+              String descP2 = descriptionP2Options.get( random.nextInt(descriptionP2Options.size()));
+
+              //start generating a tour using generated variables
+              ObjectId _id = new ObjectId();
+              BasicDBObject tourGuide = (accountRepository.findBy_id(guideID).getBasicUser());
+              String name = (nameP1 + " the " + nameP2);
+              BasicDBObject location = new BasicDBObject();
+                location.append("city", city);
+                location.append("country", country);
+              Long startTour = new Long("1590800400000");
+              Long endTour =  new Long("1590811200000");
+              String description = (descP1 + " a " + descP2);
+              BasicDBObject basePrices = new BasicDBObject(); // adult, child and infant
+              basePrices.append("adult", random.nextInt(30)) ;
+              basePrices.append("child", random.nextInt(20)) ;
+              basePrices.append("infant",random.nextInt(10)) ;
+              int capacity = random.nextInt(100); // number of people
+              boolean maxLimit = (random.nextInt(30) % 2) == 0 ? true : false; // boolean for retrieval
+              ArrayList<String> tags = new ArrayList<>();
+              ArrayList<Review> allReviews = new ArrayList<>();
+
+              //create a tour
+              Tour generatedTour = new Tour(tourGuide, name, location, startTour, endTour, description, basePrices, capacity, tags);
+              createTour(guideID, generatedTour);
+
+              result.put("message", "Tour generated");
+              result.put("success", true);
+            }
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Tour generation unsuccessful");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+
 }
