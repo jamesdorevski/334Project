@@ -83,9 +83,8 @@ class MyBookingsComponent extends Component {
         />
         {this.state.user && (
           <div
-            style={{ textAlign: "left", padding: "10px" }}
+            style={{ textAlign: "left", padding: "10px", backgroundColor: "transparent" }}
             className="container"
-            background-color="transparent"
           >
             <Container fluid>
               <Row>

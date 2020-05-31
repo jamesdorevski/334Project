@@ -2,6 +2,12 @@
     margin-left: 20px;
 }
 
+.modalPaper {
+    width: 75%;
+    margin: auto;
+    padding-bottom: 1.5rem;
+}
+
 .guestGroup {
     padding: 11px 22px 11px;
     display: grid;
@@ -19,6 +25,16 @@
     font: inherit;
     overflow: visible;
 }
+
+.dates__textField {
+    position: relative;
+    height: 100%;
+    width: 120px;
+    text-align: left;
+    font: inherit;
+    overflow: visible;
+}
+
 .submitButton {
     position: relative;
     height: 40px;
