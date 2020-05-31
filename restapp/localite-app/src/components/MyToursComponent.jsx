@@ -7,6 +7,7 @@ import Carousel from "react-multi-carousel";
 import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
+import LeaveReviewComponent from "./LeaveReviewComponent"
 
 class MyToursComponent extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class MyToursComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
-          this.setState({ user: response.data.user });
+          this.setState({ user: response.data.profile });
         } else {
           this.props.history.push("/");
         }
@@ -139,6 +140,7 @@ class MyToursComponent extends Component {
                 </Carousel>
               </Row>
             </Container>
+            <LeaveReviewComponent/>
           </div>
         )}
       </>

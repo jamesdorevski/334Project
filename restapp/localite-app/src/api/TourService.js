@@ -16,6 +16,10 @@ class TourService {
     return tags
   }
 
+  getTour(id){
+    return axios.get(API_URL + `${id}`);
+  }
+
   createTour(guideID, name, description, location, maxCapacity, tags){
     console.log(name, description, location, maxCapacity, tags)
 

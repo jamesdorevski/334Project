@@ -23,7 +23,7 @@ export default function TourComponent(props) {
   const classes = useStyles();
 
   return (
-    <div key={props.tour._id} className={classes.root}>
+    <div key={props.tour._id} className={classes.root} onClick={() => window.alert(props.tour._id)}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>

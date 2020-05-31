@@ -44,7 +44,7 @@ class MyBookingsComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
-          this.setState({ user: response.data.user });
+          this.setState({ user: response.data.profile });
         } else {
           this.props.history.push("/");
         }

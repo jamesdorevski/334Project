@@ -47,11 +47,11 @@ class ProfileComponent extends Component {
     PublicService.getUserByID(id).then(
       (response) => {
         console.log(response);
-        if (response.data.success) {
-          this.setState({ user: response.data.profile });
-        } else {
-          this.props.history.push("/");
-        }
+        // if (response.data.success) {
+        //   this.setState({ user: response.data.profile });
+        // } else {
+        //   this.props.history.push("/");
+        // }
       },
       (error) => {
         this.props.history.push("/");
