@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import AccountService from "../../api/AccountService";
+import {Modal} from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +29,7 @@ function getSteps() {
     return ['Tour details', 'Payment details', 'Confirm booking'];
 }
 
-export const BookTourComponent = () => {
+export const BookTourComponent = (props) => {
 
     //placeholder
     const tour = {
@@ -100,194 +101,205 @@ export const BookTourComponent = () => {
     };
 
     const handleSubmit = () => {
+        const params = {
+
+        }
         //TODO send booking details here and rerender to My Bookings?
         setActiveStep(0);
     };
 
     return (
-        <Paper variant="outlined" className="modalPaper">
-
-            <div className={classes.root}>
-                <Stepper activeStep={activeStep}>
-                    {steps.map((label, index) => {
-                        const stepProps = {};
-                        const labelProps = {};
-                        return (
-                            <Step key={label} {...stepProps}>
-                                <StepLabel {...labelProps}>{label}</StepLabel>
-                            </Step>
-                        );
-                    })}
-                </Stepper>
-                <div>
-                    {activeStep === steps.length ? (
-                        <div>
-                            <Typography className={classes.instructions}>
-                                YAY YOU'RE BOOKED ONTO TOUR :O
-                            </Typography>
-                        </div>
-                    ) : (
-                        <div className={classes.instructions}>
-                            {activeStep === 0 && (
-                                <div>
-                                    <h3 className="font-weight-bold pl-0 my-4">
-                                        <strong>Tour Details</strong>
-                                    </h3>
-                                    <Grid container spacing={3}>
-                                        <Grid item xs={12} md={4}>
-                                            <TextField label="First Name" className="mt-3"
-                                                       value={firstName}
-                                                       onChange={handleFirstNameChange}/>
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-
-                                            <TextField label="Last Name" className="mt-3"
-                                                       value={lastName}
-                                                       onChange={handleLastNameChange}/>
-
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-
-                                            <TextField
-                                                className="dates__textField"
-                                                id="standard-select-number"
-                                                select
-                                                label="Guests"
-                                                value={guests}
-                                                onChange={handleGuestsChange}
-                                            >
-                                                {tourCapacity.map((option) => (
-                                                    <MenuItem key={option} value={option}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-                                            <TextField
-                                                className="dates__textField"
-                                                id="standard-select"
-                                                select
-                                                label="Tour Date"
-                                                value={tourDate}
-                                                onChange={handleTourDateChange}
-                                            >
-                                                {tour.tourDates.map((option) => (
-                                                    <MenuItem key={option} value={option}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-                                            <Typography variant="subtitle1">Total Cost:
-                                                $ {tour.tourPrice * guests}</Typography>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            )}
-
-                            {activeStep === 1 && (
-                                <div>
-                                    <h3 className="font-weight-bold pl-0 my-4">
-                                        <strong>Payment Details</strong>
-                                    </h3>
-                                    <Grid container spacing={3}>
-                                        <Grid item xs={12} md={4}>
-                                            <TextField label="Card Number" className="mt-3"
-                                                       value={cardNumber}
-                                                       onChange={handleCardNumberChange}/>
-                                        </Grid>
-                                        <Grid >
-                                            <TextField
-                                                className="dates__textField"
-                                                id="standard-select"
-                                                select
-                                                label="Exp Month"
-                                                value={expiryMonth}
-                                                onChange={handleCardExpiryMonthChange}
-                                            >
-                                                {months.map((option) => (
-                                                    <MenuItem key={option} value={option}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-                                            <TextField
-                                                className="dates__textField"
-                                                id="standard-select"
-                                                select
-                                                label="Exp Year"
-                                                value={expiryYear}
-                                                onChange={handleCardExpiryYearChange}
-                                            >
-                                                {years.map((option) => (
-                                                    <MenuItem key={option} value={option}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-                                            <TextField label="CCV" className="mt-3"
-                                                       value={ccv}
-                                                       onChange={handleCardCCVChange}/>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            )}
-
-                            {activeStep === 2 && (
-                                <div>
-                                    <h3 className="font-weight-bold pl-0 my-4">
-                                        <strong>Confirm Booking Details</strong>
-                                    </h3>
-                                    <Grid container>
-                                        <Grid item xs={12} md={4}>
-                                            <Typography variant={"body1"}>Tour Name: {tour.name}</Typography>
-                                            <Typography variant={"body2"}>{tour.tourDescription}</Typography>
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-                                            <Typography variant={"body2"}>Tourists: {guests}</Typography>
-                                        </Grid>
-                                        <Grid item xs={12} md={4}>
-                                            <Typography variant={"body2"}>Date: {tourDate}</Typography>
-                                            <Typography variant={"body2"}>Total Cost: ${tour.tourPrice * guests}</Typography>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-
-                            )}
-
+        <Modal show={props.open} onHide={props.onHide}>
+            <Modal.Body style={{padding: "30px"}}>
+                <div className={classes.root}>
+                    <Stepper activeStep={activeStep}>
+                        {steps.map((label, index) => {
+                            const stepProps = {};
+                            const labelProps = {};
+                            return (
+                                <Step key={label} {...stepProps}>
+                                    <StepLabel {...labelProps}>{label}</StepLabel>
+                                </Step>
+                            );
+                        })}
+                    </Stepper>
+                    <div>
+                        {activeStep === steps.length ? (
                             <div>
-                                <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                                    Back
-                                </Button>
-                                {activeStep === steps.length - 1 ?
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleSubmit}
-                                        className={classes.button}
-                                    >
-                                        Book Now
-                                    </Button> :
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                        className={classes.button}
-                                    >
-                                        Next
-                                    </Button>
-                                }
+                                <Typography className={classes.instructions}>
+                                    YAY YOU'RE BOOKED ONTO TOUR :O
+                                </Typography>
                             </div>
-                        </div>
-                    )}
+                        ) : (
+                            <div className={classes.instructions}>
+                                {activeStep === 0 && (
+                                    <div className="bookTourStep">
+                                        <h3 className="font-weight-bold pl-0 my-4">
+                                            <strong>Tour Details</strong>
+                                        </h3>
+                                        <Grid container spacing={3}>
+                                            <Grid item xs={12} md={6}>
+                                                <TextField label="First Name" className="mt-3"
+                                                           value={firstName}
+                                                           onChange={handleFirstNameChange}/>
+                                            </Grid>
+                                            <Grid item xs={12} md={6}>
+
+                                                <TextField label="Last Name" className="mt-3"
+                                                           value={lastName}
+                                                           onChange={handleLastNameChange}/>
+
+                                            </Grid>
+                                            <Grid item xs={12} md={4}>
+
+                                                <TextField
+                                                    className="dates__textField"
+                                                    id="standard-select-number"
+                                                    select
+                                                    label="Guests"
+                                                    value={guests}
+                                                    onChange={handleGuestsChange}
+                                                >
+                                                    {tourCapacity.map((option) => (
+                                                        <MenuItem key={option} value={option}>
+                                                            {option}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </Grid>
+                                            <Grid item xs={12} md={4}>
+                                                <TextField
+                                                    className="dates__textField"
+                                                    id="standard-select"
+                                                    select
+                                                    label="Tour Date"
+                                                    value={tourDate}
+                                                    onChange={handleTourDateChange}
+                                                >
+                                                    {tour.tourDates.map((option) => (
+                                                        <MenuItem key={option} value={option}>
+                                                            {option}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </Grid>
+                                            <Grid item xs={12} md={12}>
+                                                <Typography variant="subtitle1">Total Cost:
+                                                    $ {tour.tourPrice * guests}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                )}
+
+                                {activeStep === 1 && (
+                                    <div className="bookTourStep">
+                                        <h3 className="font-weight-bold pl-0 my-4">
+                                            <strong>Payment Details</strong>
+                                        </h3>
+                                        <Grid container spacing={3}>
+                                            <Grid item xs={12} md={12}>
+                                                <TextField label="Card Number" className="mt-3"
+                                                           value={cardNumber}
+                                                           onChange={handleCardNumberChange}/>
+                                            </Grid>
+                                            <Grid item xs={12} md={12}>
+                                                <TextField
+                                                    className="dates__textField"
+                                                    id="standard-select"
+                                                    select
+                                                    label="Exp Month"
+                                                    value={expiryMonth}
+                                                    onChange={handleCardExpiryMonthChange}
+                                                >
+                                                    {months.map((option) => (
+                                                        <MenuItem key={option} value={option}>
+                                                            {option}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                                <TextField
+                                                    className="dates__textField"
+                                                    id="standard-select"
+                                                    select
+                                                    label="Exp Year"
+                                                    value={expiryYear}
+                                                    onChange={handleCardExpiryYearChange}
+                                                >
+                                                    {years.map((option) => (
+                                                        <MenuItem key={option} value={option}>
+                                                            {option}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+
+                                            </Grid>
+                                            <Grid item xs={12} md={4}>
+                                                <TextField label="CCV" className="mt-3"
+                                                           value={ccv}
+                                                           onChange={handleCardCCVChange}/>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                )}
+
+                                {activeStep === 2 && (
+                                    <div className="bookTourStep">
+                                        <h3 className="font-weight-bold pl-0 my-4">
+                                            <strong>Confirm Booking Details</strong>
+                                        </h3>
+                                        <Grid container>
+                                            <Grid item xs={12} md={12}>
+                                                <Typography variant={"body1"}>Tour
+                                                    Name: {tour.name || props.tourName}</Typography>
+                                            </Grid>
+                                            <Grid item xs={12} md={4}>
+                                                <div>
+                                                    <Typography variant={"body2"}>Tourists: {guests}</Typography>
+                                                </div>
+                                            </Grid>
+                                            <Grid item xs={12} md={4}>
+                                                <Typography variant={"body2"}>Date: {tourDate}</Typography>
+                                                <Typography variant={"body1"}>Total Cost:
+                                                    ${tour.tourPrice * guests}
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+
+                                )}
+
+                                <div>
+                                    {/*<Button onClick={props.onHide} className={classes.button}>*/}
+                                    {/*    Close*/}
+                                    {/*</Button>*/}
+                                    <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                                        Back
+                                    </Button>
+                                    {activeStep === steps.length - 1 ?
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleSubmit}
+                                            className={classes.button}
+                                        >
+                                            Book Now
+                                        </Button> :
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleNext}
+                                            className={classes.button}
+                                        >
+                                            Next
+                                        </Button>
+                                    }
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
-        </Paper>
+            </Modal.Body>
+        </Modal>
 
     );
 }

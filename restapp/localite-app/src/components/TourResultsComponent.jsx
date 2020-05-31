@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 // UNCOMMENT ONCE findTours is written in TourController
-// import qs from 'qs';
-// import axios from "axios";
+import qs from 'qs';
+import axios from "axios";
 import Tour from "./TourComponent"
 import Loader from 'react-loader-spinner'
 import FilterModalComponent from './FilterModalComponent'
@@ -29,8 +29,7 @@ class TourResultsComponent extends Component {
     
     componentDidMount = () => {
 
-        //temporary only - DELETE ME once backend findTours is written (the commented out code implements the passing of params to findTours)
-        const tempList = [
+        const defaultTours = [
             {
                 tourName: "Backpacking in the Blue Mountains",
                 _id: 0,
@@ -72,29 +71,30 @@ class TourResultsComponent extends Component {
             },
         ];
         this.setState({
-            tours: tempList,
+            tours: defaultTours,
             loaded: true,
             loading: false
         });
 
         //UNCOMMENT THE BELOW once backend findTours is written (this code implements the passing of params to findTours)
-        // const params = qs.parse(this.props.location.search.slice(1));
-        // axios.post(`http://localhost:8080/tour/search`, params)
-        //     .then(res => {
-        //         const {data: json} = res;
-        //         this.setState({
-        //             tours: json,
-        //             loaded: true,
-        //             loading: false
-        //         });
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //         this.setState({
-        //             loading: false,
-        //             error: 'Something went wrong loading search results.'
-        //         })
-        //     })
+        const params = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
+        console.log("OBJECT SENDING TO BACKEND " + params.startDate);
+        axios.post(`/tour/search`, params)
+            .then(res => res.data).then( result => {
+                console.log("RESULT " + result.data)
+                this.setState({
+                    tours: result.data,
+                    loaded: true,
+                    loading: false
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    loading: false,
+                    error: 'Something went wrong loading search results.'
+                })
+            })
     };
 
     render() {
@@ -127,7 +127,7 @@ class TourResultsComponent extends Component {
                 className= "rowC"
                     style={{textAlign: "left", paddingLeft: "20px", paddingTop: "20px"}}
                 >
-                    <h4>{this.state.tours.length} tours are available for your dates!</h4>
+                    <h4>{this.state.tours?.length || 0} tours are available for your dates!</h4>
                     <button
                     type="button"
                     className="btn btn-link"
@@ -140,14 +140,19 @@ class TourResultsComponent extends Component {
                 {error && (
                     <p className="text-danger">{error}</p>
                 )}
-                <div>
-                    {this.state.tours.map((tour) => (
-                        <div key={tour._id}>
-                            <Tour tour={tour}/>
-                            <hr/>
-                        </div>
-                    ))}
-                </div>
+
+                {this.state.tours && (
+                    <div>
+                        {this.state.tours.map(tour => (
+                            <div key={tour.id}>
+                                <Tour tour={tour}/>
+                                <hr/>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+
 
                 <FilterModalComponent
           open={this.state.modalOpen}
