@@ -28,6 +28,7 @@ public class Tour
      private int capacity; // number of people
      private boolean maxLimit = false; // boolean for retrieval
      private ArrayList<String> tags;
+     private ArrayList<String> img;
 
      // set only when retriving from db
      private ArrayList<Review> allReviews = new ArrayList<>();
@@ -36,7 +37,7 @@ public class Tour
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
                  Long startTour, Long endTour,
                  String description, BasicDBObject basePrices, int capacity,
-                 ArrayList<String> tags)
+                 ArrayList<String> tags, ArrayList<String> img)
      {
           this.tourGuide = tourGuide;
           this.location = location;
@@ -47,6 +48,7 @@ public class Tour
           this.basePrices = basePrices;
           this.capacity = capacity;
           this.tags = tags;
+          this.img = img;
      }
 
      public int getDurationInHours()
@@ -174,13 +176,14 @@ public class Tour
      public String toString()
      {
           JSONObject tour = new JSONObject();
-          tour.put("_id", _id.toString());
+          tour.put("_id", _id);
           tour.put("tourGuide", tourGuide);
           tour.put("location", location);
           tour.put("name", name);
           tour.put("duration", getDurationInHours());
           tour.put("description", description);
           tour.put("tags", tags);
+          tour.put("img", img);
           tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
           return tour.toString();
