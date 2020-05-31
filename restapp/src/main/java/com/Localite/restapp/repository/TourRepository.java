@@ -17,7 +17,7 @@ public interface TourRepository extends MongoRepository<Tour, String>
 {
     public Tour findBy_id(ObjectId id);
     public void deleteBy_id(ObjectId id);
-
+     public ArrayList<Tour> findAll();
     @Query(value="{'location.city':?0, 'location.country':?1, " +
             "'startTour':{'$gt':?2}, 'endTour':{'$lt':?3}, " +
             "'capacity':{'$gte':?4}, 'maxLimit':false}")

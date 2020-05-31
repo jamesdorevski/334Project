@@ -14,7 +14,7 @@ import java.util.Date;
 @Document(collection="Bookings")
 public class Booking 
 {
-    @Id private String _id;
+    @Id private ObjectId _id;
     private Long dateBooked;
     private BasicDBObject user;
     private BasicDBObject parties;
@@ -23,4 +23,14 @@ public class Booking
     private double totalPrice;
 
     public Booking(){}
+    public Booking(ObjectId _id, Long dateBooked, BasicDBObject user, BasicDBObject parties, Tour tour, String dietaryRequirement, double totalPrice)
+    {
+      this._id = _id;
+      this.dateBooked = dateBooked;
+      this.user = user;
+      this.parties = parties;
+      this.tour = tour;
+      this.dietaryRequirement = dietaryRequirement;
+      this.totalPrice = totalPrice;
+    }
 }
