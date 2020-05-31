@@ -21,6 +21,27 @@ public class MessageController
     @Autowired AccountRepository accountRepository;
     private boolean debug = true;
 
+    @GetMapping("/{userID}")
+    public String getAllConvos(@PathVariable String userID)
+    {
+        JSONObject result = new JSONObject();
+        try
+        {
+            ArrayList<Conversation> allConvos = messageRepository.findConvoWithUserID(userID);
+            result.put("allConvos", allConvos);
+            result.put("success", true);
+        }
+        catch(Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Unable to retrieve conversations");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
     @GetMapping("/conversation/{senderID}/{receiverID}")
     public String getConversation(@PathVariable ObjectId senderID,
                               @PathVariable ObjectId receiverID) throws Exception
