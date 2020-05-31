@@ -366,7 +366,7 @@ const ViewTour = (props) => {
                             <h4>Meet Your Guide</h4>
                             <center>
                                 {/* profile pic */}
-                                <img className="guide-avatar" src={joe}/>
+                                <img className="guide-avatar" src={""}/>
                                 <h5>
                                     {defaultComponentProps.tourGuide.guideName || props?.guideName}
                                 </h5>

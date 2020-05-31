@@ -141,9 +141,9 @@ public class TourController
     }
 
     @PostMapping(value = "/search")
-    public String findTours(@RequestBody JSONObject params) throws Exception
+    public String findTours(@RequestBody String str) throws Exception
     {
-        JSONObject input = params;
+        JSONObject input = new JSONObject(str);
         JSONObject result = new JSONObject();
         try
         {
