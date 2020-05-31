@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Repository
 public interface ReviewRepository extends MongoRepository<Review, String>
 {
-    @Query(value="{'reviewer._id':?0")
+    @Query(value="{'reviewer._id':?0}")
     public ArrayList<Review> getReviewerID(String reviewerID);
 
     @Query(value="{'tour._id':?0}")

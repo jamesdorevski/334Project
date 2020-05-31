@@ -44,8 +44,8 @@ public class PublicController
                 // for each tour update reviews
                 for(int i=0; i<createdTours.size();i++)
                 {
-                    ObjectId tourId = createdTours.get(i).get_id();
-                    ArrayList<Review> tourReviews = reviewRepository.getByTourID(tourId);
+                    ArrayList<Review> tourReviews = reviewRepository.getByTourID(new ObjectId(createdTours.get(i).get_id()));
+                    System.out.println(tourReviews);
 
                     if(tourReviews.size() > 0)// update only if a review exist
                     {
@@ -67,7 +67,6 @@ public class PublicController
             else if(user.getType().equals("tourist"))
             {
                 ArrayList<Review> tourReviews = reviewRepository.getReviewerID(userID.toString());
-
                 profile = user.getProfileUser();
                 profile.put("tourReviews", tourReviews);
             }
@@ -92,46 +91,6 @@ public class PublicController
             return result.toString();
         }
     }
-
-//    @PostMapping(value="/{userID}/addReview/{revieweeID}")
-//    public String addUserReview(@PathVariable ObjectId userID, @PathVariable ObjectId revieweeID,
-//                                @RequestBody Review newReview) throws Exception
-//    {
-//        JSONObject result = new JSONObject();
-//        try
-//        {
-//            // dateCreated
-//            newReview.setDateCreated(System.currentTimeMillis());
-//
-//            // setting reviewer
-//            Account reviewer = accountRepository.findBy_id(userID);
-//            newReview.setReviewer(reviewer.getBasicUser());
-//
-//            // setting reviewee
-//            Account reviewee = accountRepository.findBy_id(revieweeID);
-//            newReview.setReviewee(reviewee.getBasicUser());
-//
-//            // adding review to repo
-//            reviewRepository.insert(newReview);
-//            result.put("success", true);
-//        }
-//        catch (NullPointerException e)
-//        {
-//            if (debug) System.out.println(e);
-//            result.put("message", "Unable to obtain basic reviewer/reviewee");
-//            result.put("success", false);
-//        }
-//        catch (Exception e)
-//        {
-//            if (debug) System.out.println(e);
-//            result.put("message", "Review creation unsuccessful");
-//            result.put("success", false);
-//        }
-//        finally
-//        {
-//            return result.toString();
-//        }
-//    }
 
     // =================== FAQ ===================
     @PostMapping(value="faq/addOne")

@@ -375,180 +375,140 @@ public class TourController
         }
     }
 
-    @GetMapping("/{tourID}/preRefund/{userID}")
-    public String preRefund(@PathVariable("tourID") ObjectId tourID,
-                             @PathVariable("userID") ObjectId userID)
-    {
-        JSONObject result = new JSONObject();
-
-        try
-        {
-
-        }
-        catch(Exception e)
-        {
-
-        }
-        finally
-        {
-            return result.toString();
-        }
-    }
-
-    @PostMapping("/{tourID}/makeRefund/{userID}")
-    public String makeRefund(@PathVariable("tourID") ObjectId tourID,
-                            @PathVariable("userID") ObjectId userID)
-    {
-        JSONObject result = new JSONObject();
-
-        try
-        {
-
-        }
-        catch(Exception e)
-        {
-
-        }
-        finally
-        {
-            return result.toString();
-        }
-    }
-
-    @PostMapping(value = "/generate")
-    public String generateTour(@RequestBody int amountToGenerate)
-    {
-        Random random = new Random();
-        JSONObject result = new JSONObject();
-        try
-        {
-            for(int i = 0; i<amountToGenerate; i++)
-            {
-              ArrayList <Account> allTourGuides = accountRepository.findByType("tourguide");
-              ObjectId guideID = allTourGuides.get(i).get_id();
-
-              //create the random variables from lists
-              ArrayList<String> nameP1Options = new ArrayList<>(
-              Arrays.asList("Ride", "Eat", "See", "Pet", "Snuggle", "Photograph"));
-              String nameP1 = nameP1Options.get( random.nextInt(nameP1Options.size()));
-
-              ArrayList<String> nameP2Options = new ArrayList<>(
-              Arrays.asList("Elephant", "City", "Sights", "Culture", "Cusine"));
-              String nameP2 = nameP2Options.get( random.nextInt(nameP2Options.size()));
-
-              //fake cities to match any country
-              ArrayList<String> cityOptions = new ArrayList<>(
-              Arrays.asList("LittleShire", "Bordeauxsville", "Mapleton"));
-              String city = cityOptions.get( random.nextInt(cityOptions.size()));
-
-              ArrayList<String> countryOptions = new ArrayList<>(
-              Arrays.asList("Australia", "France", "Canada"));
-              String country = countryOptions.get( random.nextInt(countryOptions.size()));
-
-              ArrayList<String> descriptionP1Options = new ArrayList<>(
-              Arrays.asList("Try", "Experience", "Get", "Meet"));
-              String descP1 = descriptionP1Options.get( random.nextInt(descriptionP1Options.size()));
-
-              ArrayList<String> descriptionP2Options = new ArrayList<>(
-              Arrays.asList("Flip", "Memory", "Tan", "Local", "Brew"));
-              String descP2 = descriptionP2Options.get( random.nextInt(descriptionP2Options.size()));
-
-              //start generating a tour using generated variables
-              ObjectId _id = new ObjectId();
-              BasicDBObject tourGuide = (accountRepository.findBy_id(guideID).getBasicUser());
-              String name = (nameP1 + " the " + nameP2);
-              BasicDBObject location = new BasicDBObject();
-                location.append("city", city);
-                location.append("country", country);
-              Long startTour = new Long("1590800400000");
-              Long endTour =  new Long("1590811200000");
-              String description = (descP1 + " a " + descP2);
-              BasicDBObject basePrices = new BasicDBObject(); // adult, child and infant
-              basePrices.append("adult", random.nextInt(30)) ;
-              basePrices.append("child", random.nextInt(20)) ;
-              basePrices.append("infant",random.nextInt(10)) ;
-              int capacity = random.nextInt(100); // number of people
-              boolean maxLimit = (random.nextInt(30) % 2) == 0 ? true : false; // boolean for retrieval
-              ArrayList<String> tags = new ArrayList<>();
-              ArrayList<Review> allReviews = new ArrayList<>();
-
-              //create a tour
-              Tour generatedTour = new Tour(tourGuide, name, location, startTour, endTour, description, basePrices, capacity, tags);
-              createTour(guideID, generatedTour);
-
-              result.put("message", "Tour generated");
-              result.put("success", true);
-            }
-        }
-        catch (Exception e)
-        {
-            if (debug) System.out.println(e);
-            result.put("message", "Tour generation unsuccessful");
-            result.put("success", false);
-        }
-        finally
-        {
-            return result.toString();
-        }
-    }
+//    @PostMapping(value = "/generate")
+//    public String generateTour(@RequestBody int amountToGenerate)
+//    {
+//        Random random = new Random();
+//        JSONObject result = new JSONObject();
+//        try
+//        {
+//            for(int i = 0; i<amountToGenerate; i++)
+//            {
+//              ArrayList <Account> allTourGuides = accountRepository.findByType("tourguide");
+//              ObjectId guideID = allTourGuides.get(i).get_id();
+//
+//              //create the random variables from lists
+//              ArrayList<String> nameP1Options = new ArrayList<>(
+//              Arrays.asList("Ride", "Eat", "See", "Pet", "Snuggle", "Photograph"));
+//              String nameP1 = nameP1Options.get( random.nextInt(nameP1Options.size()));
+//
+//              ArrayList<String> nameP2Options = new ArrayList<>(
+//              Arrays.asList("Elephant", "City", "Sights", "Culture", "Cusine"));
+//              String nameP2 = nameP2Options.get( random.nextInt(nameP2Options.size()));
+//
+//              //fake cities to match any country
+//              ArrayList<String> cityOptions = new ArrayList<>(
+//              Arrays.asList("LittleShire", "Bordeauxsville", "Mapleton"));
+//              String city = cityOptions.get( random.nextInt(cityOptions.size()));
+//
+//              ArrayList<String> countryOptions = new ArrayList<>(
+//              Arrays.asList("Australia", "France", "Canada"));
+//              String country = countryOptions.get( random.nextInt(countryOptions.size()));
+//
+//              ArrayList<String> descriptionP1Options = new ArrayList<>(
+//              Arrays.asList("Try", "Experience", "Get", "Meet"));
+//              String descP1 = descriptionP1Options.get( random.nextInt(descriptionP1Options.size()));
+//
+//              ArrayList<String> descriptionP2Options = new ArrayList<>(
+//              Arrays.asList("Flip", "Memory", "Tan", "Local", "Brew"));
+//              String descP2 = descriptionP2Options.get( random.nextInt(descriptionP2Options.size()));
+//
+//              //start generating a tour using generated variables
+//              ObjectId _id = new ObjectId();
+//              BasicDBObject tourGuide = (accountRepository.findBy_id(guideID).getBasicUser());
+//              String name = (nameP1 + " the " + nameP2);
+//              BasicDBObject location = new BasicDBObject();
+//                location.append("city", city);
+//                location.append("country", country);
+//              Long startTour = new Long("1590800400000");
+//              Long endTour =  new Long("1590811200000");
+//              String description = (descP1 + " a " + descP2);
+//              BasicDBObject basePrices = new BasicDBObject(); // adult, child and infant
+//              basePrices.append("adult", random.nextInt(30)) ;
+//              basePrices.append("child", random.nextInt(20)) ;
+//              basePrices.append("infant",random.nextInt(10)) ;
+//              int capacity = random.nextInt(100); // number of people
+//              boolean maxLimit = (random.nextInt(30) % 2) == 0 ? true : false; // boolean for retrieval
+//              ArrayList<String> tags = new ArrayList<>();
+//              ArrayList<Review> allReviews = new ArrayList<>();
+//
+//              //create a tour
+//              Tour generatedTour = new Tour(tourGuide, name, location, startTour, endTour, description, basePrices, capacity, tags);
+//              createTour(guideID, generatedTour);
+//
+//              result.put("message", "Tour generated");
+//              result.put("success", true);
+//            }
+//        }
+//        catch (Exception e)
+//        {
+//            if (debug) System.out.println(e);
+//            result.put("message", "Tour generation unsuccessful");
+//            result.put("success", false);
+//        }
+//        finally
+//        {
+//            return result.toString();
+//        }
+//    }
 
 
-@PostMapping(value="/generateBooking")
-    public String makeBooking(@RequestBody int amountToGenerate)
-    {
-
-    /*@PathVariable("tourID") ObjectId tourID,
-                              @PathVariable("userID") ObjectId userID,
-                              @RequestBody Booking booking)*/
-
-        Random random = new Random();
-        JSONObject result = new JSONObject();
-        try
-        {
-            for(int i = 0; i<amountToGenerate; i++)
-            {
-              ArrayList <Account> allTourists = accountRepository.findByType("tourist");
-              Account tourist = allTourists.get(random.nextInt(allTourists.size()));
-              ObjectId userId = tourist.get_id();
-              BasicDBObject user = tourist.getBasicUser();
-
-              ObjectId _id = new ObjectId();
-              Long dateBooked = new Long("1590850400000");
-              BasicDBObject parties = new BasicDBObject();
-
-                int partycount = random.nextInt(10);
-              parties.append("adult", partycount);
-                partycount = random.nextInt(10);
-              parties.append("child", partycount);
-                partycount = random.nextInt(10);
-              parties.append("infant", partycount);
-
-              ArrayList <Tour> allTours = tourRepository.findAll();
-              Tour tour = allTours.get(random.nextInt(allTours.size()));
-
-              ObjectId tourId = tour.get_id();
-
-              String dietaryRequirement = "Vegan";
-              double totalPrice = random.nextInt(300);
-
-              //make a booking
-              Booking generatedBooking = new Booking(_id, dateBooked, user, parties, tour, dietaryRequirement, totalPrice);
-
-              makeBooking(tourId, userId, generatedBooking);
-            }
-
-              result.put("message", "Booking generated");
-              result.put("success", true);
-        }
-        catch (Exception e)
-        {
-            if (debug) System.out.println(e);
-            result.put("message", "Booking generation unsuccessful");
-            result.put("success", false);
-        }
-        finally
-        {
-            return result.toString();
-        }
-      }
+//@PostMapping(value="/generateBooking")
+//    public String makeBooking(@RequestBody int amountToGenerate)
+//    {
+//
+//    /*@PathVariable("tourID") ObjectId tourID,
+//                              @PathVariable("userID") ObjectId userID,
+//                              @RequestBody Booking booking)*/
+//
+//        Random random = new Random();
+//        JSONObject result = new JSONObject();
+//        try
+//        {
+//            for(int i = 0; i<amountToGenerate; i++)
+//            {
+//              ArrayList <Account> allTourists = accountRepository.findByType("tourist");
+//              Account tourist = allTourists.get(random.nextInt(allTourists.size()));
+//              ObjectId userId = tourist.get_id();
+//              BasicDBObject user = tourist.getBasicUser();
+//
+//              ObjectId _id = new ObjectId();
+//              Long dateBooked = new Long("1590850400000");
+//              BasicDBObject parties = new BasicDBObject();
+//
+//                int partycount = random.nextInt(10);
+//              parties.append("adult", partycount);
+//                partycount = random.nextInt(10);
+//              parties.append("child", partycount);
+//                partycount = random.nextInt(10);
+//              parties.append("infant", partycount);
+//
+//              ArrayList <Tour> allTours = tourRepository.findAll();
+//              Tour tour = allTours.get(random.nextInt(allTours.size()));
+//
+//              ObjectId tourId = tour.get_id();
+//
+//              String dietaryRequirement = "Vegan";
+//              double totalPrice = random.nextInt(300);
+//
+//              //make a booking
+//              Booking generatedBooking = new Booking(_id, dateBooked, user, parties, tour, dietaryRequirement, totalPrice);
+//
+//              makeBooking(tourId, userId, generatedBooking);
+//            }
+//
+//              result.put("message", "Booking generated");
+//              result.put("success", true);
+//        }
+//        catch (Exception e)
+//        {
+//            if (debug) System.out.println(e);
+//            result.put("message", "Booking generation unsuccessful");
+//            result.put("success", false);
+//        }
+//        finally
+//        {
+//            return result.toString();
+//        }
+//      }
 }

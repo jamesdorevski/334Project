@@ -23,7 +23,6 @@ public class Account
     private String email;
     private String hashbrown;
 
-    private String bio;
     private String phoneNumber;
     private String gender;
     private String img; // https://blahblah.com
@@ -31,11 +30,11 @@ public class Account
 
     // Tourguide
     private String licence;
-    private double ratings;
+    private double ratings = 5.0;
 
-    public Account(){}
+    public Account() {}
 
-    public Account(String type, String firstName, String lastName, String email, String hashbrown, String bio,
+    public Account(String type, String firstName, String lastName, String email, String hashbrown,
                    String phoneNumber, ArrayList<String> languagesSpoken,
                    String gender, String img)
     {
@@ -44,14 +43,10 @@ public class Account
         this.lastName = lastName.trim();
         this.email = email.trim();
         this.hashbrown = hashbrown;
-        this.bio = bio;
         this.phoneNumber = phoneNumber;
         this.languagesSpoken = languagesSpoken;
         this.gender = gender;
         this.img = img;
-
-        if(type.equals("tourguide"))
-            this.ratings = 5.0;
     }
 
     public BasicDBObject getBasicUser() // placed in tours
@@ -72,7 +67,6 @@ public class Account
         profile.put("type", type);
         profile.put("firstName", firstName);
         profile.put("lastName", lastName);
-        profile.put("bio", bio);
         profile.put("gender", gender);
         profile.put("img", img);
         profile.put("languagesSpoken", languagesSpoken);
@@ -119,9 +113,6 @@ public class Account
         if (newInfo.img != null)
             this.img = newInfo.img;
 
-        if (newInfo.bio != null)
-            this.bio = newInfo.bio;
-
         if (newInfo.languagesSpoken != null)
         {
             this.languagesSpoken.clear();
@@ -144,7 +135,6 @@ public class Account
         user.put("email", email);
         user.put("gender", gender);
         user.put("hashbrown", hashbrown);
-        user.put("bio", bio);
         user.put("phoneNumber", phoneNumber);
         user.put("languagesSpoken", languagesSpoken);
         user.put("img", img);

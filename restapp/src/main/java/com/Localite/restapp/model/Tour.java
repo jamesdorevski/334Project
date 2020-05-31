@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Document(collection="Tours")
 public class Tour 
 {
-     @Id private ObjectId _id;
+     @Id private String _id;
      private BasicDBObject tourGuide; // owner of tour
      private String name;
      private BasicDBObject location;
@@ -30,7 +30,7 @@ public class Tour
      private ArrayList<String> tags;
 
      // set only when retriving from db
-     private ArrayList<Review> allReviews;
+     private ArrayList<Review> allReviews = new ArrayList<>();
      private double ratings = 5.0;
 
      public Tour(BasicDBObject tourGuide, String name, BasicDBObject location,
@@ -57,14 +57,7 @@ public class Tour
      public void setReviews(ArrayList<Review> allReviews)
      {
           // set new reviews and set rating
-          if(this.allReviews != null)
-          {
-               this.allReviews.clear();
-               this.allReviews.addAll(allReviews);
-          }
-          else
-               this.allReviews = allReviews;
-
+          this.allReviews = allReviews;
           this.ratings = calcRatings();
      }
 
@@ -168,7 +161,7 @@ public class Tour
      public String toString()
      {
           JSONObject tour = new JSONObject();
-          tour.put("_id", _id);
+          tour.put("_id", _id.toString());
           tour.put("tourGuide", tourGuide);
           tour.put("location", location);
           tour.put("name", name);
