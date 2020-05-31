@@ -21,16 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/BookTour/BookTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/BookTour/BookTourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/viewtour/ViewTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/viewtour/ViewTourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +50,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -183,11 +178,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590920397498" />
-    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1590918920277">
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1590935264312">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590833564957" />
-    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590918920277" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590935264312" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/restapp$LocaliteApplication.ic" NAME="LocaliteApplication Coverage Results" MODIFIED="1590833825948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

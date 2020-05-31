@@ -73,7 +73,7 @@ export const SearchComponent = (props) => {
         const startTimestamp = new Date(startDate._d).getTime();
         const endTimestamp = new Date(endDate._d).getTime();
         const params = {
-            city: 'Wollongong',
+            city: 'Sydney',
             country: 'Australia',
             startDate: startTimestamp,
             endDate: endTimestamp,
