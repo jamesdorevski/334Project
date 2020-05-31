@@ -21,18 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/BookTour/BookTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/BookTour/BookTourComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/components/viewtour/ViewTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/viewtour/ViewTourComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/repository/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/restapp.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Booking.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/BookingRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/repository/BookingRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +43,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="735" />
   </component>
   <component name="ProjectId" id="1cYucOqKUpNdHW1jXyOwawnLcId" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -73,6 +66,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet">
@@ -144,8 +138,12 @@
       <updated>1590522065812</updated>
       <workItem from="1590644573241" duration="3049000" />
       <workItem from="1590802760648" duration="3840000" />
+      <workItem from="1590895678659" duration="15994000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="RECENT_FILTERS">
@@ -181,10 +179,15 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1590833564957">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1590920397498">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590920397498" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1590918920277">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590833564957" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590918920277" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/restapp$LocaliteApplication.ic" NAME="LocaliteApplication Coverage Results" MODIFIED="1590833825948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

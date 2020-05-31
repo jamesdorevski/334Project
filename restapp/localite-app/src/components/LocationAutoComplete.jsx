@@ -20,6 +20,7 @@ export const LocationAutoComplete = (props) => {
     };
 
     const handleSelect = selected => {
+        console.log(selected);
         props.setLocation(selected);
         setIsGeocoding(true);
 

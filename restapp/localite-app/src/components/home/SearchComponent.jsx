@@ -68,13 +68,16 @@ export const SearchComponent = (props) => {
     }
 
     const searchClicked = () => {
+        const numOfParties = Number(infants) + Number(adults) + Number(childrenTourists);
+        console.log("NUM OF PARTIES " + numOfParties);
+        const startTimestamp = new Date(startDate._d).getTime();
+        const endTimestamp = new Date(endDate._d).getTime();
         const params = {
-            location: address,
-            startDate: startDate,
-            endDate: endDate,
-            persons: Number(adults),
-            children: Number(childrenTourists),
-            infants: Number(infants)
+            city: 'Wollongong',
+            country: 'Australia',
+            startDate: startTimestamp,
+            endDate: endTimestamp,
+            numOfParties: numOfParties
         };
         props.history.push(`/search?${qs.stringify(params)}`);
     };

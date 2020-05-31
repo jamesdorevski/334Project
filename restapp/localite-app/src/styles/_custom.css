@@ -1,11 +1,9 @@
 .buttonContainer {
     margin-left: 20px;
 }
-
-.modalPaper {
-    width: 75%;
+.bookTourStep {
     margin: auto;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem;
 }
 
 .guestGroup {
@@ -33,6 +31,25 @@
     text-align: left;
     font: inherit;
     overflow: visible;
+}
+
+.bookTourButton {
+    position: relative;
+    height: 60px;
+    width: 300px;
+    text-align: center;
+    background: 0 0;
+    padding: 8px 16px;
+    font: inherit;
+    font-weight: 900;
+    border: inherit;
+    border-radius: 8px;
+    line-height: normal;
+    overflow: visible;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    background-color: dodgerblue !important;
+    color: white;
 }
 
 .submitButton {
