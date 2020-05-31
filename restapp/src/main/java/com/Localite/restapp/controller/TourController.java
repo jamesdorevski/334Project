@@ -493,4 +493,62 @@ public class TourController
     }
 
 
+@PostMapping(value="/generateBooking")
+    public String makeBooking(@RequestBody int amountToGenerate)
+    {
+
+    /*@PathVariable("tourID") ObjectId tourID,
+                              @PathVariable("userID") ObjectId userID,
+                              @RequestBody Booking booking)*/
+
+        Random random = new Random();
+        JSONObject result = new JSONObject();
+        try
+        {
+            for(int i = 0; i<amountToGenerate; i++)
+            {
+              ArrayList <Account> allTourists = accountRepository.findByType("tourist");
+              Account tourist = allTourists.get(random.nextInt(allTourists.size()));
+              ObjectId userId = tourist.get_id();
+              BasicDBObject user = tourist.getBasicUser();
+
+              ObjectId _id = new ObjectId();
+              Long dateBooked = new Long("1590850400000");
+              BasicDBObject parties = new BasicDBObject();
+
+                int partycount = random.nextInt(10);
+              parties.append("adult", partycount);
+                partycount = random.nextInt(10);
+              parties.append("child", partycount);
+                partycount = random.nextInt(10);
+              parties.append("infant", partycount);
+
+              ArrayList <Tour> allTours = tourRepository.findAll();
+              Tour tour = allTours.get(random.nextInt(allTours.size()));
+
+              ObjectId tourId = tour.get_id();
+
+              String dietaryRequirement = "Vegan";
+              double totalPrice = random.nextInt(300);
+
+              //make a booking
+              Booking generatedBooking = new Booking(_id, dateBooked, user, parties, tour, dietaryRequirement, totalPrice);
+
+              makeBooking(tourId, userId, generatedBooking);
+            }
+
+              result.put("message", "Booking generated");
+              result.put("success", true);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("message", "Booking generation unsuccessful");
+            result.put("success", false);
+        }
+        finally
+        {
+            return result.toString();
+        }
+      }
 }

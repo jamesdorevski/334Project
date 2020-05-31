@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Document(collection="Tours")
 public class Tour 
 {
-     @Id private String _id;
+     @Id private ObjectId _id;
      private BasicDBObject tourGuide; // owner of tour
      private String name;
      private BasicDBObject location;
