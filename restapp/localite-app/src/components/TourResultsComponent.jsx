@@ -77,16 +77,10 @@ class TourResultsComponent extends Component {
 
         const params = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
         console.log("params " + JSON.stringify(params))
-<<<<<<< HEAD
         axios.post("http://localhost:8080/tour/search", params)
             .then(res => {
             console.log("RESULT " + JSON.stringify(res))
             const {data: json} = res
-=======
-        axios.post(`http://localhost:8080/tour/search`, params)
-            .then(res => {
-                const {data: json} = res
->>>>>>> bbe2bc778fe06446c1ee6882f77e98eb0ba9d99c
             console.log("RESULT " + JSON.stringify(json))
             this.setState({
                 tours: json.tours,
