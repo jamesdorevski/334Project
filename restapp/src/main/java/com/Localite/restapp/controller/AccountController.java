@@ -218,7 +218,8 @@ public class AccountController
                 String img = "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg";
 
                 //now we create the account
-                Account newAccount = new Account(type, firstName, lastName, email, hashbrown, phoneNumber, languagesSpoken, gender, img);
+                String bio = "";
+                Account newAccount = new Account(type, firstName, lastName, email, hashbrown, bio, phoneNumber, languagesSpoken, gender, img);
                 newAccount.set_id(_id);
                 createUser(newAccount);
 
