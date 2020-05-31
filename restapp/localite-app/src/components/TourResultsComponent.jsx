@@ -78,16 +78,18 @@ class TourResultsComponent extends Component {
 
         //UNCOMMENT THE BELOW once backend findTours is written (this code implements the passing of params to findTours)
         const params = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
-        console.log("OBJECT SENDING TO BACKEND " + params.startDate);
-        axios.post(`/tour/search`, params)
-            .then(res => res.data).then( result => {
-                console.log("RESULT " + result.data)
-                this.setState({
-                    tours: result.data,
-                    loaded: true,
-                    loading: false
-                });
-            })
+        console.log("params " + JSON.stringify(params))
+        axios.post("http://localhost:8080/tour/search", params)
+            .then(res => {
+            console.log("RESULT " + JSON.stringify(res))
+            const {data: json} = res
+            console.log("RESULT " + JSON.stringify(json))
+            this.setState({
+                tours: json.tours,
+                loaded: true,
+                loading: false
+            });
+        })
             .catch(err => {
                 console.log(err);
                 this.setState({

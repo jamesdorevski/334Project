@@ -21,16 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/BookTour/BookTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/BookTour/BookTourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/LocationAutoComplete.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/TourResultsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/home/SearchComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/components/viewtour/ViewTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/viewtour/ViewTourComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/styles/_custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
