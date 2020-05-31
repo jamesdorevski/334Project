@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-// UNCOMMENT ONCE findTours is written in TourController
 import qs from 'qs';
 import axios from "axios";
 import Tour from "./TourComponent"
@@ -18,15 +17,15 @@ class TourResultsComponent extends Component {
             modalOpen: false
         };
     }
-    
+
     handleClose = () => {
         this.setState({ modalOpen: false });
-      };
-    
-      handleShow = () => {
+    };
+
+    handleShow = () => {
         this.setState({ modalOpen: true });
-      };
-    
+    };
+
     componentDidMount = () => {
 
         const defaultTours = [
@@ -76,13 +75,18 @@ class TourResultsComponent extends Component {
             loading: false
         });
 
-        //UNCOMMENT THE BELOW once backend findTours is written (this code implements the passing of params to findTours)
         const params = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
         console.log("params " + JSON.stringify(params))
+<<<<<<< HEAD
         axios.post("http://localhost:8080/tour/search", params)
             .then(res => {
             console.log("RESULT " + JSON.stringify(res))
             const {data: json} = res
+=======
+        axios.post(`http://localhost:8080/tour/search`, params)
+            .then(res => {
+                const {data: json} = res
+>>>>>>> bbe2bc778fe06446c1ee6882f77e98eb0ba9d99c
             console.log("RESULT " + JSON.stringify(json))
             this.setState({
                 tours: json.tours,
@@ -126,18 +130,18 @@ class TourResultsComponent extends Component {
                     }}
                 />
                 <div
-                className= "rowC"
+                    className= "rowC"
                     style={{textAlign: "left", paddingLeft: "20px", paddingTop: "20px"}}
                 >
                     <h4>{this.state.tours?.length || 0} tours are available for your dates!</h4>
                     <button
-                    type="button"
-                    className="btn btn-link"
-                    style={{ textDecoration: "none" }}
-                    onClick={this.handleShow}
-                  >
-                    FILTERS
-                  </button>
+                        type="button"
+                        className="btn btn-link"
+                        style={{ textDecoration: "none" }}
+                        onClick={this.handleShow}
+                    >
+                        FILTERS
+                    </button>
                 </div>
                 {error && (
                     <p className="text-danger">{error}</p>
@@ -157,10 +161,10 @@ class TourResultsComponent extends Component {
 
 
                 <FilterModalComponent
-          open={this.state.modalOpen}
-          handleClose={this.handleClose}
-          handleShow={this.handleShow}
-        />
+                    open={this.state.modalOpen}
+                    handleClose={this.handleClose}
+                    handleShow={this.handleShow}
+                />
             </>
         );
     }
