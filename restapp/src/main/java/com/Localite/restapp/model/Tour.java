@@ -185,6 +185,8 @@ public class Tour
           tour.put("img", img);
           tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
+          tour.put("ratings", ratings);
+          tour.put("allReviews", allReviews);
           return tour;
      }
 

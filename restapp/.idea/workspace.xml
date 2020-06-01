@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="13ff55d6-0c66-4c48-ab3a-5b1c3219711c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/MessagesComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/MessagesComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ProfileComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/ReviewComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ReviewComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/localite-app/src/components/ViewTourComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/localite-app/src/components/ViewTourComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restapp.iml" beforeDir="false" />
+=======
+>>>>>>> 28a489d979c92207531ba79c52d21553283707e1
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -172,6 +175,7 @@
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="735" extended-state="0" />
     <editor active="true" />
@@ -202,6 +206,72 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+=======
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1590960178596">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590960178596" />
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom" timestamp="1590971183309">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590971183309" />
+    <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
+    <state width="1237" height="2" key="GridCell.Tab.0.center" timestamp="1590971183309">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590971183309" />
+    <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
+    <state width="1237" height="2" key="GridCell.Tab.0.left" timestamp="1590971183309">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590971183309" />
+    <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
+    <state width="1237" height="2" key="GridCell.Tab.0.right" timestamp="1590971183309">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590971183309" />
+    <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
+    <state x="445" y="160" width="552" height="520" key="find.popup" timestamp="1590964267276">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="445" y="160" width="552" height="520" key="find.popup/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590964267276" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590920397498" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1590918920277">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590833564957" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590918920277" />
+>>>>>>> 28a489d979c92207531ba79c52d21553283707e1
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/MessageController.java">

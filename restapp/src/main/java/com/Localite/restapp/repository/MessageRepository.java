@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Repository
 public interface MessageRepository extends MongoRepository<Conversation, String>
 {
-    @Query(value="{'users':{$in:[?0, ?1]}}")
+    @Query(value="{'users':{$eq:[?0, ?1]}}")
     public Conversation findConversationByUsers(BasicDBObject sender, BasicDBObject receiver);
 
     @Query(value="{'users._id':{$in:[?0]}}")
