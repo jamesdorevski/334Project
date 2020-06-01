@@ -233,10 +233,10 @@ public class TourController
 
             // updating tour reviews
             ArrayList<Review> oldReview = tour.getAllReviews();
-            oldReview.add(newReview);
+            oldReview.add(0, newReview);
             tour.setReviews(oldReview);
             tourRepository.save(tour);
-            
+
             // adding review to repo
             reviewRepository.insert(newReview);
             result.put("success", true);
