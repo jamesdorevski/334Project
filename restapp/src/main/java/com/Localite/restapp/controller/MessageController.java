@@ -28,6 +28,20 @@ public class MessageController
         try
         {
             ArrayList<Conversation> allConvos = messageRepository.findConvoWithUserID(userID);
+
+            for (int i=0; i< allConvos.size(); i++)
+            {
+                ArrayList<BasicDBObject> users = allConvos.get(i).getUsers();
+
+                for (int j=0; j<users.size(); j++)
+                {
+                    if(users.get(j).getString("_id").equals(userID))
+                    {
+                        allConvos.get(i).getUsers().remove(j);
+                        break;
+                    }
+                }
+            }
             result.put("allConvos", allConvos);
             result.put("success", true);
         }
