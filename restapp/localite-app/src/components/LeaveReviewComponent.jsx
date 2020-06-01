@@ -63,7 +63,7 @@ class SignUpComponent extends Component {
                   message: response.data.message,
                   success: true,
                 });
-                this.forceUpdate();
+                window.location.reload(false);
               } else {
                 this.setState({
                   success: false,

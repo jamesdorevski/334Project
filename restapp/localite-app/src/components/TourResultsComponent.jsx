@@ -18,6 +18,9 @@ class TourResultsComponent extends Component {
             modalOpen: false
         };
     }
+      goToTour = (tour_id) => {
+        this.props.history.push(`/tours/${tour_id}`)
+      };
     
     handleClose = () => {
         this.setState({ modalOpen: false });
@@ -146,7 +149,7 @@ class TourResultsComponent extends Component {
                     <div>
                         {this.state.tours.map(tour => (
                             <div key={tour.id}>
-                                <Tour tour={tour}/>
+                                <Tour tour={tour} goToTour={this.goToTour}/>
                                 <hr/>
                             </div>
                         ))}
