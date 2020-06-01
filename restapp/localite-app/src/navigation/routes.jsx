@@ -19,10 +19,10 @@ export const Routes =
             '/faq',
         DISPUTES:
             '/disputes',
-        TOURS:
-            '/tours/:id',
         CREATE_TOUR:
             '/tours/:id/create',
+        TOURS:
+            '/tours/:id',
         PROFILE:
             '/account/show/:id',
         MY_BOOKINGS:

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AccountService from "../api/AccountService";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import PublicService from "../api/PublicService";
+import MessageService from "../api/MessageService";
 
 class MessagesComponent extends Component {
   constructor(props) {
@@ -15,12 +16,26 @@ class MessagesComponent extends Component {
 
   componentWillMount() {
     //call backend to load messages for loggedIn user
-    // const loggedIn = AccountService.getCurrentUser();
+    const loggedIn = AccountService.getCurrentUser();
     // let name = "";
     // PublicService.getUserByID("5ec560a17b05e02bc1105411").then((response) => {
     //   name = response.data.user.firstName;
     //   console.log(name);
     // });
+
+    MessageService.getAllConvos(loggedIn._id).then(
+        (response) => {
+          console.log(response);
+          // if (response.data.success) {
+          //   this.setState({ messages: response.data.messages });
+          // } else {
+          //   this.props.history.push("/");
+          // }
+        },
+        (error) => {
+          
+        }
+      );
 
     const hardcoded_messages = [
       {

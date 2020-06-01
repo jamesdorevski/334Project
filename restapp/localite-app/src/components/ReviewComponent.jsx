@@ -78,6 +78,10 @@ export default function ReviewComponent(props) {
           value={Math.round(props.review.ratings)}
         />
                 </div>
+
+                {props.showTourInfo && <Typography>
+                  Tour: {props.review.tour.name}
+                </Typography>}
                 
                 <Typography variant="subtitle2">
                   {props.review.reviewer.firstName} ∙ {monthNames[date.getMonth()] +
