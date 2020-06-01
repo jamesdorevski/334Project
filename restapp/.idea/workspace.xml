@@ -21,9 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5430a216-1d56-4197-923a-8c50605f7c09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/PublicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/samples/female.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/controller/samples/male.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Localite/restapp/model/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/AccountController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/PublicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/controller/TourController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Localite/restapp/model/Tour.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -177,29 +183,30 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590960178596" />
-    <state width="1237" height="386" key="GridCell.Tab.0.bottom" timestamp="1590963819051">
+    <state width="1237" height="45" key="GridCell.Tab.0.bottom" timestamp="1590970553698">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="386" key="GridCell.Tab.0.bottom/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590963819051" />
+    <state width="1237" height="45" key="GridCell.Tab.0.bottom/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590970553698" />
     <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
-    <state width="1237" height="386" key="GridCell.Tab.0.center" timestamp="1590963819051">
+    <state width="1237" height="45" key="GridCell.Tab.0.center" timestamp="1590970553697">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="386" key="GridCell.Tab.0.center/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590963819051" />
+    <state width="1237" height="45" key="GridCell.Tab.0.center/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590970553697" />
     <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
-    <state width="1237" height="386" key="GridCell.Tab.0.left" timestamp="1590963819051">
+    <state width="1237" height="45" key="GridCell.Tab.0.left" timestamp="1590970553697">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="386" key="GridCell.Tab.0.left/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590963819051" />
+    <state width="1237" height="45" key="GridCell.Tab.0.left/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590970553697" />
     <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
-    <state width="1237" height="386" key="GridCell.Tab.0.right" timestamp="1590963819051">
+    <state width="1237" height="45" key="GridCell.Tab.0.right" timestamp="1590970553697">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="386" key="GridCell.Tab.0.right/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590963819051" />
+    <state width="1237" height="45" key="GridCell.Tab.0.right/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590970553697" />
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590858843202" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1590920397498">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="445" y="160" width="552" height="520" key="find.popup" timestamp="1590964267276">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="445" y="160" width="552" height="520" key="find.popup/0.0.1280.680/-785.-1080.1920.1040@0.0.1280.680" timestamp="1590964267276" />
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590920397498" />
     <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1590918920277">
       <screen x="0" y="0" width="1920" height="1040" />

@@ -172,6 +172,22 @@ public class Tour
           }
      }
 
+     public JSONObject getTour()
+     {
+          JSONObject tour = new JSONObject();
+          tour.put("_id", _id);
+          tour.put("tourGuide", tourGuide);
+          tour.put("location", location);
+          tour.put("name", name);
+          tour.put("duration", getDurationInHours());
+          tour.put("description", description);
+          tour.put("tags", tags);
+          tour.put("img", img);
+          tour.put("basePrices", basePrices);
+          tour.put("capacity", capacity);
+          return tour;
+     }
+
      @Override
      public String toString()
      {

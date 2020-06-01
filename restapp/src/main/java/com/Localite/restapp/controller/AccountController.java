@@ -1,8 +1,14 @@
 package com.Localite.restapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
 import java.util.Random;
@@ -180,45 +186,75 @@ public class AccountController
         }
     }
 
-    @PostMapping("/generate")
-    public String generateUser(@RequestBody int amountToGenerate) throws Exception
+    @GetMapping("/generateAccounts")
+    public String generateUser() throws Exception
     {
+        int amountToGenerate = 100;
         JSONObject result = new JSONObject();
         Random rand = new Random();
+        System.out.println("hi");
         for(int i = 0; i < amountToGenerate ; i++)
         {
             try
             {
+                // female names
+                String [] female = new String[0];
+                Resource resource = new ClassPathResource("female.txt");
+                InputStream inputStream = resource.getInputStream();
+                byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
+                String data = new String(bdata, StandardCharsets.UTF_8);
+                female = data.split("\r\n");
+
+                String [] male = new String[0];
+                Resource resource2 = new ClassPathResource("male.txt");
+                InputStream inputStream2 = resource2.getInputStream();
+                byte[] bdata2 = FileCopyUtils.copyToByteArray(inputStream2);
+                String data2 = new String(bdata2, StandardCharsets.UTF_8);
+                male = data2.split("\r\n");
+
                 ObjectId _id = new ObjectId();
                 System.out.println("Creating Account " + i + " of " + amountToGenerate);
                 int randomizedInt = rand.nextInt(100000);
-
-                //email is obviously fake and made unique by adding a generated int. (may be duplicate occasionally)
-                String email = ("fakemail" + String.valueOf(randomizedInt) + "@fake.com");
-                System.out.println(email);
+                int rand2 = rand.nextInt(99);
 
                 //for sake of convenience password is always the same
-                String hashbrown = "password123";
+                String hashbrown = "$2a$10$E.ZsP2lAaMsf728G6D2NSu66B7MRLWKWsIyHkJkwP/ZNkoLxt92Qa";
 
                 //phonenumber is 44 then randomized
                 String phoneNumber = ("44"+ String.valueOf(randomizedInt));
 
                 //50/50 chance items decided by modulo (%) 2 and ternary operator to assign
-                String type = (randomizedInt % 2 == 0) ? "tourist" : "tourguide";
+                String type;
+                if (i < 10) type = "tourguide";
+                else type = "tourist";
+
+                //String type = (randomizedInt % 2 == 0) ? "tourist" : "tourguide";
                 String gender = (randomizedInt % 2 == 0) ? "Male" : "Female"; //more gender options exist but this way is easier for right now
-                String firstName = (gender == "male") ? "Bob" : "Alice";
+
+                // get name
+                String[] fullname = new String[0];
+                if(gender.equals("Male"))
+                    fullname = male[rand2].split(" ");
+                else if(gender.equals("Female"))
+                    fullname = female[rand2].split(" ");
+
+                String firstName = fullname[0];
+                String lastName = fullname[1];
+
+                //email is obviously fake and made unique by adding a generated int. (may be duplicate occasionally)
+                String email = (fullname[0].substring(0, 5) + String.valueOf(randomizedInt) + "@gmail.com");
+                System.out.println(email);
 
                 //these and names can be made unique by picking randomly from an array. For now they're set
                 ArrayList<String> languagesSpoken = new ArrayList<>();
                 languagesSpoken.add("English"); //more later
 
-                String lastName = "Testo";
                 String img = "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg";
 
                 //now we create the account
                 Account newAccount = new Account(type, firstName, lastName, email, hashbrown, phoneNumber, languagesSpoken, gender, img);
-                newAccount.set_id(_id);
-                createUser(newAccount);
+                System.out.println(newAccount);
+                accountRepository.insert(newAccount);
 
                   System.out.println("Account " + i + " generated with id:" + _id);
                 if (debug)
