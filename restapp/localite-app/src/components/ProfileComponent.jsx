@@ -54,12 +54,20 @@ class ProfileComponent extends Component {
         console.log(response);
         if (response.data.success) {
           this.setState({ user: response.data.profile });
-          this.setState({ tours: response.data.createdTours });
-          this.setState({ tourReviews: response.data.tourReviews});
+          if (response.data.profile.type === "tourguide"){
+            this.setState({ tours: response.data.createdTours });
+            
           response.data.createdTours.map((tour) =>
             reviews.push.apply(reviews, tour.allReviews)
           )
           this.setState({ reviewList: reviews });
+          }
+
+          else{
+            this.setState({ tourReviews: response.data.tourReviews});
+          }
+          
+          
         } else {
           this.props.history.push("/");
         }
@@ -376,9 +384,11 @@ class ProfileComponent extends Component {
                       deviceType={this.props.deviceType}
                     >
                       {this.state.tourReviews.map((review) => {
+                        console.log(review)
                         return (
                           <div key={review._id}>
                             <Review
+                            showTourInfo={true}
                               isMoving={this.state.isMoving}
                               review={review}
                             />

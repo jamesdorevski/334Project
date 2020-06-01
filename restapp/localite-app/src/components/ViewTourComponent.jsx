@@ -34,49 +34,49 @@ class ViewTourComponent extends Component {
       (response) => {
         console.log(response);
         if (response.data.success) {
-          // this.setState({ tour: response.data.profile });
+          this.setState({ tour: response.data.tour });
           console.log(response.data.tour)
-          const mockTour = {
-            allReviews: [
-              {
-                dateCreated: 1590956963096,
-                description: "Loved how peaceful it was there",
-                ratings: 4.7,
-                reviewer: {
-                  firstName: "Caroline",
-                  lastName: "Star",
-                  img:
-                    "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
-                  _id: "5ed404ffb5f5a7580ef3c44a",
-                  email: "carols@gmail.com",
-                },
-                title: "Beautiful place",
-                _id: "5ed413a42c8a374b0ea46c82",
-              },
-            ],
-            basePrices: { adult: 14.99, infant: 4.99, child: 9.99 },
-            capacity: 20,
-            description: "Patience is virtue",
-            durationInHours: 4,
-            endTour: 1592197200000,
-            location: { city: "Wollongong", country: "Australia" },
-            maxLimit: false,
-            name: "Nan Tien Temple",
-            ratings: 4.9,
-            startTour: 1592182800000,
-            tags: ["Day-Trip"],
-            tourGuide: {
-              firstName: "Patrick",
-              lastName: "Star",
-              img:
-                "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
-              _id: "5ed4048495e6d618b22d3cf6",
-              email: "pats@gmail.com",
-            },
-            _id: "5ed412c74c83e057c86ea16e",
-          };
+          // const mockTour = {
+          //   allReviews: [
+          //     {
+          //       dateCreated: 1590956963096,
+          //       description: "Loved how peaceful it was there",
+          //       ratings: 4.7,
+          //       reviewer: {
+          //         firstName: "Caroline",
+          //         lastName: "Star",
+          //         img:
+          //           "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
+          //         _id: "5ed404ffb5f5a7580ef3c44a",
+          //         email: "carols@gmail.com",
+          //       },
+          //       title: "Beautiful place",
+          //       _id: "5ed413a42c8a374b0ea46c82",
+          //     },
+          //   ],
+          //   basePrices: { adult: 14.99, infant: 4.99, child: 9.99 },
+          //   capacity: 20,
+          //   description: "Patience is virtue",
+          //   durationInHours: 4,
+          //   endTour: 1592197200000,
+          //   location: { city: "Wollongong", country: "Australia" },
+          //   maxLimit: false,
+          //   name: "Nan Tien Temple",
+          //   ratings: 4.9,
+          //   startTour: 1592182800000,
+          //   tags: ["Day-Trip"],
+          //   tourGuide: {
+          //     firstName: "Patrick",
+          //     lastName: "Star",
+          //     img:
+          //       "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
+          //     _id: "5ed4048495e6d618b22d3cf6",
+          //     email: "pats@gmail.com",
+          //   },
+          //   _id: "5ed412c74c83e057c86ea16e",
+          // };
 
-          this.setState({ tour: mockTour });
+          // this.setState({ tour: mockTour });
         } else {
           this.props.history.push("/");
         }
@@ -105,22 +105,18 @@ class ViewTourComponent extends Component {
           <div>
             <center>
               <Carousel>
-                <Carousel.Item>
+              {this.state.tour.img.map((image) => {
+                    return (
+                      <Carousel.Item>
                   <img
-                    className="d-block w-75"
-                    src={bluemountains_cropped}
-                    style={{ objectFit: "cover" }}
+                    className="d-block w-100"
+                    src={image}
+                    style={{ objectFit: "cover", height: "500px" }}
                     alt="First slide"
                   />
                 </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-75"
-                    src={bluemountains2_cropped}
-                    style={{ objectFit: "cover" }}
-                    alt="Second slide"
-                  />
-                </Carousel.Item>
+                    );
+                  })}
               </Carousel>
               <div style={{ paddingBottom: "10px" }}>
                 <div className="container" align="left">
@@ -174,12 +170,6 @@ class ViewTourComponent extends Component {
                     <div className="col">
                     <center>
                       <h4>Meet Your Guide</h4>
-                      
-                        {/* profile pic */}
-                        {/* <img
-                      style={{width: "300px", height: "250px", objectFit: "cover"}}
-                      src={this.state.tour.tourGuide.img}
-                    /> */}
 
                         <Figure.Image
                           roundedCircle
@@ -225,7 +215,7 @@ class ViewTourComponent extends Component {
                   </div>
 
                   <Button onClick={this.handleShow}>
-                    Book For ${this.state.tour.basePrices.adult}
+                    Book From ${this.state.tour.basePrices.adult}
                   </Button>
 
                   {/* REVIEW SECTION */}
@@ -234,8 +224,8 @@ class ViewTourComponent extends Component {
                       <h2>Tourist Reviews</h2>
                     </div>
                     <div className="row" style={{ paddingBottom: 30 }}>
-                      <h4>
-                        <StarRatingComponent
+                      {/* <h4>
+                      <StarRatingComponent
                           name="star"
                           editing={false}
                           starCount={5}
@@ -243,7 +233,7 @@ class ViewTourComponent extends Component {
                         />
                         {this.state.tour.ratings} (
                         {this.state.tour.allReviews.length})
-                      </h4>
+                      </h4> */}
                     </div>
                   </div>
 
@@ -273,13 +263,13 @@ class ViewTourComponent extends Component {
                 </div>}
                   
 
-                  {this.state.tour.allReviews.map((review) => {
+                  {/* {this.state.tour.allReviews.map((review) => {
                     return (
                       <div key={review._id} >
                         <ReviewComponent review={review} />
                       </div>
                     );
-                  })}
+                  })} */}
 
                   {/* <button className="guide-msg-button" style={{ marginRight: 30 }}>
                 See More Reviews
