@@ -13,6 +13,10 @@ import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 @RestController
@@ -211,4 +215,19 @@ public class PublicController
                 "Wine", "Hiking and Outdoors", "Museums", "Nature and WildLife", "Shopping"};
         return tags;
     }
+
+//    @GetMapping("/names")
+//    public ArrayList<String> getNames() throws Exception
+//    {
+//        ArrayList<String> names = new ArrayList<>();
+//
+//        BufferedReader in = new BufferedReader(new FileReader("/samples/female.txt"));
+//
+//        String str;
+//        while ((str = in.readLine()) != null)
+//        {
+//            names.add(str);
+//        }
+//        return names;
+//    }
 }
