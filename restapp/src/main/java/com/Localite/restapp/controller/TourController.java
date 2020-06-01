@@ -231,6 +231,12 @@ public class TourController
             Tour tour = tourRepository.findBy_id(tourID);
             newReview.setTour(tour.getBasicTour());
 
+            // updating tour reviews
+            ArrayList<Review> oldReview = tour.getAllReviews();
+            oldReview.add(newReview);
+            tour.setReviews(oldReview);
+            tourRepository.save(tour);
+            
             // adding review to repo
             reviewRepository.insert(newReview);
             result.put("success", true);
