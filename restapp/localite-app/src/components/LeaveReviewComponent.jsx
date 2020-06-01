@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import AccountService from "../api/AccountService";
+import TourService from "../api/TourService";
 import StarRatingComponent from "react-star-rating-component";
 
 
@@ -48,10 +48,12 @@ class SignUpComponent extends Component {
 
         onSubmit={(fields, { setSubmitting }) => {
           
-          AccountService.createUser(
+         TourService.addTourReview(
+           this.props.tourID,
+           this.props.userID,
             fields.title,
             fields.description,
-            
+            this.state.rating
           ).then(
             (response) => {
               console.log(response);
@@ -61,6 +63,7 @@ class SignUpComponent extends Component {
                   message: response.data.message,
                   success: true,
                 });
+                this.forceUpdate();
               } else {
                 this.setState({
                   success: false,

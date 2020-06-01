@@ -23,64 +23,71 @@ class MessagesComponent extends Component {
     //   console.log(name);
     // });
 
+    let messageArray = []
     MessageService.getAllConvos(loggedIn._id).then(
         (response) => {
-          console.log(response);
-          // if (response.data.success) {
-          //   this.setState({ messages: response.data.messages });
-          // } else {
-          //   this.props.history.push("/");
-          // }
+          // console.log(response);
+          if (response.data.success) {
+            
+            response.data.allConvos.map((content) => {
+              messageArray.push({"convoID": content.users[0]._id, "id": content.users[0].firstName + " " + content.users[0].lastName, "messages": content.messages})
+            });
+            
+            this.setState({
+                messages: messageArray,
+                chosen: messageArray[0],
+              });
+          }
         },
         (error) => {
           
         }
       );
 
-    const hardcoded_messages = [
-      {
-        //daniel
-        id: "5ec560a17b05e02bc1105411",
-        messages: [
-          {
-            sender: "5ec560a17b05e02bc1105411",
-            message: "Hey, I have a question.",
-          },
-          {
-            sender: "5ecd6001b05e2348c7a6893f",
-            message: "Hey, what's up",
-          },
-          {
-            sender: "5ec560a17b05e02bc1105411",
-            message: "Do your tours include time for travel.",
-          },
-        ],
-      },
+    // const hardcoded_messages = [
+    //   {
+    //     //daniel
+    //     id: "5ec560a17b05e02bc1105411",
+    //     messages: [
+    //       {
+    //         sender: "5ec560a17b05e02bc1105411",
+    //         message: "Hey, I have a question.",
+    //       },
+    //       {
+    //         sender: "5ecd6001b05e2348c7a6893f",
+    //         message: "Hey, what's up",
+    //       },
+    //       {
+    //         sender: "5ec560a17b05e02bc1105411",
+    //         message: "Do your tours include time for travel.",
+    //       },
+    //     ],
+    //   },
 
-      //poppy
-      {
-        id: "5ec560907b05e02bc1105410",
-        messages: [
-          {
-            sender: "5ec560907b05e02bc1105410",
-            message: "Hi Emily, I am interested in your tour.",
-          },
-          {
-            sender: "5ec560907b05e02bc1105410",
-            message: "I was wondering if it's good for kids",
-          },
-          {
-            sender: "5ecd6001b05e2348c7a6893f",
-            message: "Hi yes, they are great for kids.",
-          },
-        ],
-      },
-    ];
+    //   //poppy
+    //   {
+    //     id: "5ec560907b05e02bc1105410",
+    //     messages: [
+    //       {
+    //         sender: "5ec560907b05e02bc1105410",
+    //         message: "Hi Emily, I am interested in your tour.",
+    //       },
+    //       {
+    //         sender: "5ec560907b05e02bc1105410",
+    //         message: "I was wondering if it's good for kids",
+    //       },
+    //       {
+    //         sender: "5ecd6001b05e2348c7a6893f",
+    //         message: "Hi yes, they are great for kids.",
+    //       },
+    //     ],
+    //   },
+    // ];
 
-    this.setState({
-      messages: hardcoded_messages,
-      chosen: hardcoded_messages[0],
-    });
+    // this.setState({
+    //   messages: hardcoded_messages,
+    //   chosen: hardcoded_messages[0],
+    // });
     // AccountService.loadUserMessages(loggedIn._id).then(
     //   (response) => {
     //     console.log(response);
@@ -105,28 +112,31 @@ class MessagesComponent extends Component {
   handleSubmit = (event) => {
     const loggedIn = AccountService.getCurrentUser();
 
-    console.log(this.state.value);
+    // console.log(this.state.value);
     const message = {
-      sender: loggedIn._id,
-      message: this.state.value,
+      sender: {"_id" :loggedIn._id},
+      content: this.state.value,
     };
 
+    // //update messages for other user
+    MessageService.sendMessage(loggedIn._id, this.state.chosen.convoID, this.state.value).then(
+      (response) => {
+        if (response.data.success) {
+          //reload messages from database
+
+        }
+      }
+    )
     this.setState({ value: "" });
 
-    // //update messages for other user
-    // AccountService.addMessage().then(
-    //   (response) => {
-    //     if (response.data.success) {
-    //       //reload messages from database
-    //     }
-    //   }
-    // )
     this.state.chosen.messages.push(message);
     event.preventDefault();
   };
 
   render() {
     const loggedIn = AccountService.getCurrentUser();
+    // console.log(this.state.messages)
+    console.log(this.state.chosen)
 
     return (
       <>
@@ -143,7 +153,7 @@ class MessagesComponent extends Component {
         >
           <h3>Messages</h3>
           <hr />
-          <Container style={{ height: "360px" }}>
+          {this.state.chosen.messages && <Container style={{ height: "360px" }}>
             <Row>
               <Col sm={4} style={{ background: "#f8f9fa", height: "360px" }}>
                 <div class="overflow-auto" style={{ height: "360px" }}>
@@ -172,15 +182,22 @@ class MessagesComponent extends Component {
                 </div>
               </Col>
 
+              {/* {console.log(this.state.chosen.messages)} */}
+
+              
+              {/* {this.state.chosen.messages.map((message) => 
+              <div>{message.content}</div>
+              )} */}
+
               <Col sm={8}>
+                
                 <div
                   class="overflow-auto"
                   style={{ maxHeight: "320px" }}
                 >
                   {this.state.chosen.messages.map((message) => (
                     <>
-                      {/* {message.sender} | {loggedIn._id} */}
-                      {message.sender !== loggedIn._id && (
+                      {message.sender._id !== loggedIn._id && (
                         <div style={{ display: "table" }}>
                           <p
                             style={{
@@ -192,11 +209,11 @@ class MessagesComponent extends Component {
                               borderRadius: "50px 50px 50px 5px"
                             }}
                           >
-                            {message.message}
+                            {message.content}
                           </p>
                         </div>
                       )}
-                      {message.sender === loggedIn._id && (
+                      {message.sender._id === loggedIn._id && (
                         <div style={{ display: "table", marginRight: "0px",
                         marginLeft: "auto"}}>
                           <p
@@ -209,7 +226,7 @@ class MessagesComponent extends Component {
                               borderRadius: "50px 50px 5px 50px"
                             }}
                           >
-                            {message.message}
+                            {message.content}
                           </p>
                         </div>
                       )}
@@ -235,7 +252,7 @@ class MessagesComponent extends Component {
                 </div>
               </Col>
             </Row>
-          </Container>
+          </Container>}
         </div>
       </>
     );

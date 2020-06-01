@@ -15,6 +15,7 @@ import { Button, Figure } from "react-bootstrap";
 import ReviewComponent from "./ReviewComponent";
 import LeaveReviewComponent from "./LeaveReviewComponent";
 import MessageGuideComponent from "./MessageGuideComponent"
+import AccountService from "../api/AccountService"
 
 class ViewTourComponent extends Component {
   constructor(props) {
@@ -99,6 +100,8 @@ class ViewTourComponent extends Component {
   handleMessageClose = () => this.setState({ messageOpen: false });
 
   render() {
+    const loggedIn = AccountService.getCurrentUser()
+
     return (
       <>
         {this.state.tour && (
@@ -206,35 +209,39 @@ class ViewTourComponent extends Component {
                     {this.state.user.languagesSpoken.join(", ")}
                   </p> */}
 
-                      <center>
+{this.state.tour.tourGuide._id !== loggedIn._id && <center>
                         <Button onClick={this.handleMessageOpen}>
                           Message {this.state.tour.tourGuide.firstName}
                         </Button>
-                      </center>
+                      </center>}
                     </div>
                   </div>
 
-                  <Button onClick={this.handleShow}>
+                  {this.state.tour.tourGuide._id !== loggedIn._id && <Button onClick={this.handleShow}>
                     Book From ${this.state.tour.basePrices.adult}
-                  </Button>
+                  </Button>}
 
                   {/* REVIEW SECTION */}
                   <div className="container" align="left">
                     <div className="row">
                       <h2>Tourist Reviews</h2>
                     </div>
-                    <div className="row" style={{ paddingBottom: 30 }}>
-                      {/* <h4>
-                      <StarRatingComponent
+                    <div className="rowC" style={{ paddingBottom: 30 }}>
+                    <h4><StarRatingComponent
                           name="star"
                           editing={false}
                           starCount={5}
                           value={Math.round(this.state.tour.ratings)}
-                        />
+                        /></h4>
+                      <h4>
+                    
                         {this.state.tour.ratings} (
                         {this.state.tour.allReviews.length})
-                      </h4> */}
+              
+                      </h4>
+                      
                     </div>
+                    {this.state.tour.tourGuide._id !== loggedIn._id && <Button onClick={() => this.openReview()}>Leave a Review</Button>}
                   </div>
 
                   {/* <div className="container" align="left" style={{ width: 800 }}>
@@ -256,20 +263,17 @@ class ViewTourComponent extends Component {
                 </p>
               </div> */}
 
-                  <Button onClick={() => this.openReview()}>Leave a Review</Button>
-
                 {this.state.reviewOpen && <div style={{marginLeft: "-320px"}}>
-                <LeaveReviewComponent close={this.closeReview}/>
+                <LeaveReviewComponent tourID={this.state.tour._id} userID={loggedIn._id} close={this.closeReview}/>
                 </div>}
                   
-
-                  {/* {this.state.tour.allReviews.map((review) => {
+                  {this.state.tour.allReviews.map((review) => {
                     return (
                       <div key={review._id} >
                         <ReviewComponent review={review} />
                       </div>
                     );
-                  })} */}
+                  })}
 
                   {/* <button className="guide-msg-button" style={{ marginRight: 30 }}>
                 See More Reviews

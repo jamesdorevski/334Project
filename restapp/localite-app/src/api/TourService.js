@@ -31,6 +31,14 @@ class TourService {
     //   tags: this.convertTags(tags)
     // });
   }
+
+  addTourReview(tourID, userID, title, description, rating){
+    return axios.post(API_URL + `/${tourID}/addReview/${userID}`, {
+      title: title,
+      description: description,
+      ratings: rating
+    });
+  }
 }
 
 export default new TourService();
