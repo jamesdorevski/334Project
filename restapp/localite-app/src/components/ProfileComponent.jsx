@@ -17,7 +17,9 @@ class ProfileComponent extends Component {
     super(props);
     this.state = {
       user: null,
-      reviewList: []
+      tours: [],
+      reviewList: [],
+      tourReviews: []
     };
   }
 
@@ -52,10 +54,12 @@ class ProfileComponent extends Component {
         console.log(response);
         if (response.data.success) {
           this.setState({ user: response.data.profile });
-          // response.data.profile.createdTours.map((tour) =>
-          //   reviews.push.apply(reviews, tour.allReviews)
-          // )
-          // this.setState({ reviewList: reviews });
+          this.setState({ tours: response.data.createdTours });
+          this.setState({ tourReviews: response.data.tourReviews});
+          response.data.createdTours.map((tour) =>
+            reviews.push.apply(reviews, tour.allReviews)
+          )
+          this.setState({ reviewList: reviews });
         } else {
           this.props.history.push("/");
         }
@@ -85,6 +89,10 @@ class ProfileComponent extends Component {
   //   }
   //   return <div>{stars}</div>;
   // }
+
+  goToTour = (tour_id) => {
+    this.props.history.push(`/tours/${tour_id}`)
+  };
 
   render() {
     const id = this.props.match.params.id;
@@ -293,12 +301,13 @@ class ProfileComponent extends Component {
                       containerClass="first-carousel-container container"
                       deviceType={this.props.deviceType}
                     >
-                      {this.state.user.createdTours.map((tour) => {
+                      {this.state.tours.map((tour) => {
                         return (
                           <div key={tour._id}>
                             <CondensedTour
                               isMoving={this.state.isMoving}
                               tour={tour}
+                              goToTour={this.goToTour}
                             />
                           </div>
                         );
@@ -357,7 +366,7 @@ class ProfileComponent extends Component {
                     <h3>{this.state.user.firstName}'s Reviews</h3>
                   </Row>
                   <Row>
-                    {/* <Carousel
+                    <Carousel
                       responsive={responsive}
                       ssr
                       infinite={false}
@@ -366,7 +375,7 @@ class ProfileComponent extends Component {
                       containerClass="first-carousel-container container"
                       deviceType={this.props.deviceType}
                     >
-                      {this.state.user.tourReviews.map((review) => {
+                      {this.state.tourReviews.map((review) => {
                         return (
                           <div key={review._id}>
                             <Review
@@ -376,7 +385,7 @@ class ProfileComponent extends Component {
                           </div>
                         );
                       })}
-                    </Carousel> */}
+                    </Carousel>
                   </Row>
                 </>
               )}

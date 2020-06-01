@@ -60,7 +60,7 @@ export default function ReviewComponent(props) {
                   {props.review.title}
                 </Typography>
                 <Typography variant="subtitle1" style={{paddingLeft: "5px", fontWeight: 300}}>
-                  {props.review.rating}
+                  {props.review.ratings}
                   {/* <img
                     style={{
                       width: "18px",
@@ -75,7 +75,7 @@ export default function ReviewComponent(props) {
                 <StarRatingComponent 
                       editing={false}
           starCount={5}
-          value={Math.round(props.review.rating)}
+          value={Math.round(props.review.ratings)}
         />
                 </div>
                 

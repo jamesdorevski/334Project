@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
 import { Multiselect } from "multiselect-react-dropdown";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 
-import Typography from "@material-ui/core/Typography";
-import PublicService from "../api/PublicService";
 
 class FilterModalComponent extends Component {
   constructor(props) {
@@ -45,24 +43,15 @@ class FilterModalComponent extends Component {
             {({ isSubmitting }) => (
               <Form>
                 <div className="card-body">
-                  <h3>Sending message to: </h3>
+            <h3>Sending message to: {this.props.name}</h3>
                   <div className="form-group">
                 <label htmlFor="message">Message</label>
+                <br/>
                 <Field
                   name="message"
                   type="text"
                   component="textarea"
-                  className={
-                    "form-control" +
-                    (errors.message && touched.message
-                      ? " is-invalid"
-                      : "")
-                  }
-                />
-                <ErrorMessage
-                  name="message"
-                  component="div"
-                  className="invalid-feedback"
+                  style={{width: "450px", height: "200px"}}
                 />
               </div>
 
@@ -73,12 +62,23 @@ class FilterModalComponent extends Component {
                           type="submit"
                           disabled={isSubmitting}
                           className="btn btn-primary"
+                          style={{ margin: "5px" }}
                         >
                           {isSubmitting && (
                             <span className="spinner-border spinner-border-sm mr-1"></span>
                           )}
                           Send Message
                         </button>
+                        <button
+                  type="button"
+                  className="btn btn-danger mr-2"
+                  style={{ margin: "5px" }}
+                  onClick={
+                    this.props.close
+                  }
+                >
+                  Cancel
+                </button>
                       </center>
                     </div>
                   </div>

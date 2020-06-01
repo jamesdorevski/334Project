@@ -14,6 +14,7 @@ class MyToursComponent extends Component {
     super(props);
     this.state = {
       user: null,
+      tours: []
     };
   }
 
@@ -46,6 +47,7 @@ class MyToursComponent extends Component {
         console.log(response);
         if (response.data.success) {
           this.setState({ user: response.data.profile });
+          this.setState({ tours: response.data.createdTours });
         } else {
           this.props.history.push("/");
         }
@@ -93,7 +95,7 @@ class MyToursComponent extends Component {
                 <h3>Upcoming Tours</h3>
               </Row>
               <Row>
-                <Carousel
+                {/* <Carousel
                   responsive={responsive}
                   ssr
                   infinite={false}
@@ -102,7 +104,7 @@ class MyToursComponent extends Component {
                   containerClass="first-carousel-container container"
                   deviceType={this.props.deviceType}
                 >
-                  {this.state.user.createdTours.map((tour) => {
+                  {this.state.tours.map((tour) => {
                     return (
                       <div key={tour._id}>
                         <CondensedTour
@@ -112,13 +114,13 @@ class MyToursComponent extends Component {
                       </div>
                     );
                   })}
-                </Carousel>
+                </Carousel> */}
               </Row>
               <Row>
                 <h3>Past Tours</h3>
               </Row>
               <Row>
-                <Carousel
+                {/* <Carousel
                   responsive={responsive}
                   ssr
                   infinite={false}
@@ -127,7 +129,7 @@ class MyToursComponent extends Component {
                   containerClass="first-carousel-container container"
                   deviceType={this.props.deviceType}
                 >
-                  {this.state.user.createdTours.map((tour) => {
+                  {this.state.tours.map((tour) => {
                     return (
                       <div key={tour._id}>
                         <CondensedTour
@@ -137,10 +139,9 @@ class MyToursComponent extends Component {
                       </div>
                     );
                   })}
-                </Carousel>
+                </Carousel> */}
               </Row>
             </Container>
-            <LeaveReviewComponent/>
           </div>
         )}
       </>

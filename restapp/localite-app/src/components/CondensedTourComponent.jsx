@@ -23,7 +23,7 @@ export default function CondensedTourComponent(props) {
   return (
     <div key={props.tour._id} className={classes.root}>
       <Card className={classes.card}>
-        <CardActionArea>
+        <CardActionArea onClick={() => props.goToTour(props.tour._id)}>
           <img
             className="tour-img"
             alt={props.tour.name}

@@ -26,7 +26,7 @@ import LoginComponent from "./components/LoginComponent";
 import UpdateAccountComponent from "./components/UpdateAccountComponent";
 import CreateTourComponent from "./components/CreateTourComponent";
 import MessagesComponent from "./components/MessagesComponent";
-import ViewTourComponent from "./components/viewtour/ViewTourComponent"
+import ViewTourComponent from "./components/ViewTourComponent"
 
 export const App = () => {
   return (
