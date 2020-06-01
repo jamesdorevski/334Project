@@ -25,7 +25,7 @@ class SignUpComponent extends Component {
 
     return (
       <div
-      style={{ padding: "10px" }}
+      style={{ padding: "10px", maxWidth: "800px", border: "1px solid #ced4da", borderRadius: 15 }}
       className="container"
       background-color="transparent"
     >
@@ -125,9 +125,10 @@ class SignUpComponent extends Component {
               </div>
               <div className="form-group">
               <label htmlFor="description">Rating</label>
+              <br/>
               <StarRatingComponent 
           name="rate1" 
-          starCount={10}
+          starCount={5}
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
         />
@@ -142,9 +143,9 @@ class SignUpComponent extends Component {
               <button
                   type="button"
                   className="btn btn-danger mr-2"
-                  onClick={() => {
-                    this.props.history.push(`/account/${this.state.user._id}`);
-                  }}
+                  onClick={
+                    this.props.close
+                  }
                 >
                   Cancel
                 </button>
