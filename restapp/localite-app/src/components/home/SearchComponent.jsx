@@ -24,17 +24,30 @@ export const SearchComponent = (props) => {
     const [adults, setAdults] = React.useState("1");
     const [childrenTourists, setChildren] = React.useState("0");
     const [infants, setInfants] = React.useState("0");
+    const [buttonDisabled, setButtonDisabled] = useState(true);
 
     const handleAdultsChange = (event) => {
         setAdults(event.target.value);
+
+        if((Number(infants) + Number(adults) + Number(childrenTourists) > 0) && startDate && endDate){
+            setButtonDisabled(false)
+        }
     };
 
     const handleChildrenChange = (event) => {
         setChildren(event.target.value);
+
+        if((Number(infants) + Number(adults) + Number(childrenTourists) > 0) && startDate && endDate){
+            setButtonDisabled(false)
+        }
     };
 
     const handleInfantsChange = (event) => {
         setInfants(event.target.value);
+
+        if((Number(infants) + Number(adults) + Number(childrenTourists) > 0) && startDate && endDate){
+            setButtonDisabled(false)
+        }
     };
 
     const range = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "10+"];
@@ -52,6 +65,10 @@ export const SearchComponent = (props) => {
     const handleDatesChange = ({startDate, endDate}) => {
         setStartDate(startDate);
         setEndDate(endDate);
+
+        if((Number(infants) + Number(adults) + Number(childrenTourists) > 0) && startDate && endDate){
+            setButtonDisabled(false)
+        }
     };
 
     // location state
@@ -59,6 +76,10 @@ export const SearchComponent = (props) => {
 
     const setLocation = selected => {
         setAddress(selected);
+
+        if((Number(infants) + Number(adults) + Number(childrenTourists) > 0) && startDate && endDate){
+            setButtonDisabled(false)
+        }
     };
 
     const locationProps = {
@@ -79,6 +100,7 @@ export const SearchComponent = (props) => {
             endDate: endTimestamp,
             numOfParties: numOfParties
         };
+
         props.history.push(`/search?${qs.stringify(params)}`);
     };
 
@@ -115,6 +137,7 @@ export const SearchComponent = (props) => {
                                         variant="contained"
                                         color="default"
                                         size="small"
+                                        style={{height: "48px", width: "200px"}}
                                         onClick={showGuestSelector()}
                                         startIcon={<GroupAddIcon/>}
                                     >
@@ -179,7 +202,7 @@ export const SearchComponent = (props) => {
 
                                 <Form.Group>
                                     <div className="buttonContainer">
-                                        <Button className="submitButton" size="large" variant="outlined"
+                                        <Button className="submitButton" disabled={buttonDisabled} style={{height: "50px", color: "white"}} size="large" variant="outlined"
                                                 onClick={searchClicked}>
                                             Find a tour
                                         </Button>

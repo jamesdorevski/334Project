@@ -269,7 +269,8 @@ class ProfileComponent extends Component {
                       </p>
                       <div className="rowC">
                         {this.state.user.ratings.toFixed(1)}
-                        <StarRatingComponent 
+                        <StarRatingComponent
+                        name="rating"
                       editing={false}
           starCount={5}
           value={Math.round(this.state.user.rating)}

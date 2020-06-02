@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
-import { Multiselect } from "multiselect-react-dropdown";
+import MessageService from "../api/MessageService"
 import { Formik, Form, Field } from "formik";
 
 
@@ -24,20 +24,18 @@ class FilterModalComponent extends Component {
               message: "",
             }}
             onSubmit={({ fields, setSubmitting }) => {
-              setSubmitting(false);
-              // AccountService.loginUser(email, password).then(
-              //   (response) => {
-              //     console.log(response);
-              //     setSubmitting(false);
-              //     if (response.data.success) {
-              //       setSubmitting(false);
-              //     } else {
-              //     }
-              //   },
-              //   (error) => {
-              //     setSubmitting(false);
-              //   }
-              // );
+              
+              MessageService.sendMessage(this.props.loggedInID, this.props.guideID, fields.message).then(
+                (response) => {
+                  setSubmitting(false);
+                  if (response.data.success) {
+                    //success message
+          
+                  } else {
+                    //error message
+                  }
+                }
+              )
             }}
           >
             {({ isSubmitting }) => (

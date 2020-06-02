@@ -343,7 +343,11 @@ class ViewTourComponent extends Component {
               <MessageGuideComponent
               open={this.state.messageOpen}
               close={this.handleMessageClose}
-              name={this.state.tour.tourGuide.firstName}/>
+              name={this.state.tour.tourGuide.firstName}
+              guideID={this.state.tour.tourGuide._id}
+              loggedInID={loggedIn._id}
+              />
+              
               }
             </center>
           </div>

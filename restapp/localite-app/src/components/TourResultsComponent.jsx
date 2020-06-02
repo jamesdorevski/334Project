@@ -18,10 +18,11 @@ class TourResultsComponent extends Component {
             modalOpen: false
         };
     }
-      goToTour = (tour_id) => {
+    goToTour = (tour_id) => {
         this.props.history.push(`/tours/${tour_id}`)
       };
     
+      
     handleClose = () => {
         this.setState({ modalOpen: false });
       };
@@ -29,6 +30,8 @@ class TourResultsComponent extends Component {
       handleShow = () => {
         this.setState({ modalOpen: true });
       };
+
+    
     
     componentDidMount = () => {
 
@@ -131,7 +134,8 @@ class TourResultsComponent extends Component {
                 className= "rowC"
                     style={{textAlign: "left", paddingLeft: "20px", paddingTop: "20px"}}
                 >
-                    <h4>{this.state.tours?.length || 0} tours are available for your dates!</h4>
+                    {this.state.tours?.length > 0 && <h4>{this.state.tours?.length} tours are available for your dates!</h4>}
+                    {this.state.tours?.length === 0 && <h4>No tours are available for your dates.</h4>}
                     <button
                     type="button"
                     className="btn btn-link"
