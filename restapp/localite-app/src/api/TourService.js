@@ -48,7 +48,7 @@ class TourService {
     return axios.post(API_URL + `/${tourID}/makeBooking/${userID}`, {
       dateBooked: dateBooked,
       user: user,
-      numOfParties: numOfParties,
+      numOfParties: {adult:2, child:2, infant:0},
       tour: tour,
       dietaryRequirement: dietaryRequirement,
       totalPrice: totalPrice
