@@ -7,6 +7,10 @@ import plane from "../images/plane.jpg";
 
 
 class HomeComponent extends Component {
+
+    goToTour = (tour_id) => {
+        this.props.history.push(`/tours/${tour_id}`)
+    }
     render() {
         return (
             <>
@@ -19,7 +23,7 @@ class HomeComponent extends Component {
                 </header>
                 <ExploreComponent/>
                 <WorksComponent/>
-                <PopularComponent/>
+                <PopularComponent goToTour={this.goToTour}/>
             </>
         );
     }

@@ -77,7 +77,7 @@ text-decoration: none;
 .rowC{display:flex; flex-direction:row;}
 
 .tour-img {
-  width: 300px;
+  width: 250px;
   height: 250px;
   object-fit: cover;
 }

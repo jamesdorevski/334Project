@@ -60,9 +60,11 @@ public class Tour
      {
           BasicDBObject basic = new BasicDBObject();
           basic.put("_id", _id);
+          basic.put("allReviews", allReviews);
           basic.put("tourGuide", tourGuide);
           basic.put("location", location);
           basic.put("name", name);
+          basic.put("img", img);
           basic.put("duration", getDurationInHours());
           basic.put("description", description);
           basic.put("tags", tags);

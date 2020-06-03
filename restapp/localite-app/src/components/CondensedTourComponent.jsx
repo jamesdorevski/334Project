@@ -23,40 +23,24 @@ export default function CondensedTourComponent(props) {
 
   return (
     <div key={props.tour._id} className={classes.root}>
-      {/* <Card className={classes.card}>
-        <CardActionArea onClick={() => props.goToTour(props.tour._id)}>
-          <img
-            className="tour-img"
-            alt={props.tour.name}
-            src={props.tour.img}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.tour.name}
-            </Typography>
-            <Typography gutterBottom variant="body2" color="textSecondary">
-              {props.tour.tags.join(", ")}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card> */}
+      { props.tour &&
       <Card className={classes.root}>
       <CardActionArea>
       <img
             alt={props.tour.name}
-            src={props.tour.img}
+            src={props.tour.img[0]}
+            style={{height: "250px", objectFit: "cover"}}
           />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+      {props.tour.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {props.tour.description.substring(0, 150)}...
           </Typography>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </Card>}
     </div>
   );
 }

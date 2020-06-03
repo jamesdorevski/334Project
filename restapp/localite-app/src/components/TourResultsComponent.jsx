@@ -21,6 +21,10 @@ class TourResultsComponent extends Component {
     goToTour = (tour_id) => {
         this.props.history.push(`/tours/${tour_id}`)
       };
+
+      goToProfile = (guide_id) => {
+        this.props.history.push(`/account/show/${guide_id}`)
+      };
     
       
     handleClose = () => {
@@ -35,52 +39,52 @@ class TourResultsComponent extends Component {
     
     componentDidMount = () => {
 
-        const defaultTours = [
-            {
-                tourName: "Backpacking in the Blue Mountains",
-                _id: 0,
-                tourGuide: {
-                    firstName: "James",
-                    img: require("../images/james.jpg"),
-                    rating: 4.7,
-                },
-                description: "Description of Backpacking in the Blue Mountains lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-                basePrice: 90,
-                img: require("../images/mountains.jpg"),
-                tags: ["Outdoors", "Day Trip"],
-            },
-            {
-                tourName: "Food Tour of Sydney",
-                _id: 1,
-                tourGuide: {
-                    firstName: "Josh",
-                    img: require("../images/josh.jpg"),
-                    rating: 4.5,
-                },
-                description: "Description of Food Tour of Sydney lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-                basePrice: 85,
-                img: require("../images/foodtour.jpg"),
-                tags: ["Food", "Kid-friendly", "Private Tours Available"],
-            },
-            {
-                tourName: "Day Hike - Sydney Harbour National Park",
-                _id: 2,
-                tourGuide: {
-                    firstName: "Andrea",
-                    img: require("../images/andrea.jpg"),
-                    rating: 4.8,
-                },
-                description: "Description of Day Hike - Sydney Harbour National Park lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-                basePrice: 50,
-                img: require("../images/sydney-harbour.jpg"),
-                tags: ["Outdoors", "Day Trip"],
-            },
-        ];
-        this.setState({
-            tours: defaultTours,
-            loaded: true,
-            loading: false
-        });
+        // const defaultTours = [
+        //     {
+        //         tourName: "Backpacking in the Blue Mountains",
+        //         _id: 0,
+        //         tourGuide: {
+        //             firstName: "James",
+        //             img: require("../images/james.jpg"),
+        //             rating: 4.7,
+        //         },
+        //         description: "Description of Backpacking in the Blue Mountains lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        //         basePrice: 90,
+        //         img: require("../images/mountains.jpg"),
+        //         tags: ["Outdoors", "Day Trip"],
+        //     },
+        //     {
+        //         tourName: "Food Tour of Sydney",
+        //         _id: 1,
+        //         tourGuide: {
+        //             firstName: "Josh",
+        //             img: require("../images/josh.jpg"),
+        //             rating: 4.5,
+        //         },
+        //         description: "Description of Food Tour of Sydney lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        //         basePrice: 85,
+        //         img: require("../images/foodtour.jpg"),
+        //         tags: ["Food", "Kid-friendly", "Private Tours Available"],
+        //     },
+        //     {
+        //         tourName: "Day Hike - Sydney Harbour National Park",
+        //         _id: 2,
+        //         tourGuide: {
+        //             firstName: "Andrea",
+        //             img: require("../images/andrea.jpg"),
+        //             rating: 4.8,
+        //         },
+        //         description: "Description of Day Hike - Sydney Harbour National Park lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        //         basePrice: 50,
+        //         img: require("../images/sydney-harbour.jpg"),
+        //         tags: ["Outdoors", "Day Trip"],
+        //     },
+        // ];
+        // this.setState({
+        //     tours: defaultTours,
+        //     loaded: true,
+        //     loading: false
+        // });
 
         //UNCOMMENT THE BELOW once backend findTours is written (this code implements the passing of params to findTours)
         const params = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
@@ -153,7 +157,7 @@ class TourResultsComponent extends Component {
                     <div>
                         {this.state.tours.map(tour => (
                             <div key={tour.id}>
-                                <Tour tour={tour} goToTour={this.goToTour}/>
+                                <Tour tour={tour} goToTour={this.goToTour} goToProfile={this.goToProfile}/>
                                 <hr/>
                             </div>
                         ))}
