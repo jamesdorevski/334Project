@@ -22,6 +22,7 @@ public class Account
     private String lastName;
     private String email;
     private String hashbrown;
+    private String bio = "";
 
     private String phoneNumber;
     private String gender;
@@ -34,7 +35,7 @@ public class Account
 
     public Account() {}
 
-    public Account(String type, String firstName, String lastName, String email, String hashbrown,
+    public Account(String type, String firstName, String lastName, String email, String hashbrown, String bio,
                    String phoneNumber, ArrayList<String> languagesSpoken,
                    String gender, String img)
     {
@@ -43,6 +44,7 @@ public class Account
         this.lastName = lastName.trim();
         this.email = email.trim();
         this.hashbrown = hashbrown;
+        this.bio = bio;
         this.phoneNumber = phoneNumber;
         this.languagesSpoken = languagesSpoken;
         this.gender = gender;
@@ -69,6 +71,7 @@ public class Account
         profile.put("lastName", lastName);
         profile.put("gender", gender);
         profile.put("img", img);
+        profile.put("bio", bio);
         profile.put("languagesSpoken", languagesSpoken);
 
         if(type.equals("tourguide"))
@@ -107,6 +110,9 @@ public class Account
         if (newInfo.phoneNumber != null)
             this.phoneNumber = newInfo.phoneNumber;
 
+        if (newInfo.bio != null)
+            this.bio = newInfo.bio;
+
         if (newInfo.gender != null)
             this.gender = newInfo.gender;
 
@@ -135,6 +141,7 @@ public class Account
         user.put("email", email);
         user.put("gender", gender);
         user.put("hashbrown", hashbrown);
+        user.put("bio", bio);
         user.put("phoneNumber", phoneNumber);
         user.put("languagesSpoken", languagesSpoken);
         user.put("img", img);

@@ -43,7 +43,7 @@ public class TourController
         try
         {
             Tour tour = tourRepository.findBy_id(tourID);
-            result.put("tour", tour.getTour());
+            result.put("tour", tour.getBasicTour());
             result.put("success", true);
         }
         catch (NullPointerException e)
@@ -220,26 +220,35 @@ public class TourController
         JSONObject result = new JSONObject();
         try
         {
-            // setting dateCreated
-            newReview.setDateCreated(System.currentTimeMillis());
+            // check if user has been in review
+            if (bookingRepository.touristInTour(userID.toString()) > 0)
+            {
+                // setting dateCreated
+                newReview.setDateCreated(System.currentTimeMillis());
 
-            // setting reviewer
-            Account reviewer = accountRepository.findBy_id(userID);
-            newReview.setReviewer(reviewer.getBasicUser());
+                // setting reviewer
+                Account reviewer = accountRepository.findBy_id(userID);
+                newReview.setReviewer(reviewer.getBasicUser());
 
-            // setting tour reviewed
-            Tour tour = tourRepository.findBy_id(tourID);
-            newReview.setTour(tour.getBasicTour());
+                // setting tour reviewed
+                Tour tour = tourRepository.findBy_id(tourID);
+                newReview.setTour(tour.getBasicTour());
 
-            // updating tour reviews
-            ArrayList<Review> oldReview = tour.getAllReviews();
-            oldReview.add(0, newReview);
-            tour.setReviews(oldReview);
-            tourRepository.save(tour);
+                // updating tour reviews
+                ArrayList<Review> oldReview = tour.getAllReviews();
+                oldReview.add(0, newReview);
+                tour.setReviews(oldReview);
+                tourRepository.save(tour);
 
-            // adding review to repo
-            reviewRepository.insert(newReview);
-            result.put("success", true);
+                // adding review to repo
+                reviewRepository.insert(newReview);
+                result.put("success", true);
+            }
+            else
+            {
+                result.put("success", false);
+                result.put("message", "You cannot review a tour you did not join");
+            }
         }
         catch (NullPointerException e)
         {
@@ -467,7 +476,7 @@ public class TourController
     }
 
 
-@PostMapping(value="/generateBooking")
+    @PostMapping(value="/generateBooking")
     public String generateBooking(@RequestBody int amountToGenerate)
     {
         Random random = new Random();

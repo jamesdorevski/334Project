@@ -30,4 +30,8 @@ public interface TourRepository extends MongoRepository<Tour, String>
 
     @Query(value="{'tourGuide._id':?0}")
     public ArrayList<Tour> findToursByTourguide(String id);
+
+    @Query(value="{}", fields="{'allReviews':0, 'tour':0}")
+    public ArrayList<Tour> findFirst3();
+
 }

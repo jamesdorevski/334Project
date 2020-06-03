@@ -1,5 +1,9 @@
 package com.Localite.restapp.controller;
 
+import com.Localite.restapp.model.Booking;
+import com.Localite.restapp.model.Tour;
+import com.Localite.restapp.repository.BookingRepository;
+import com.Localite.restapp.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
@@ -26,6 +31,8 @@ public class AccountController
     private boolean debug = false;
     @Autowired private PasswordEncoder bcrypt;
     @Autowired private AccountRepository accountRepository;
+    @Autowired private BookingRepository bookingRepository;
+    @Autowired private TourRepository tourRepository;
 
     @PostMapping("/create")
     public String createUser(@RequestBody Account newAccount) throws Exception
@@ -157,28 +164,59 @@ public class AccountController
         }
     }
 
-    @GetMapping(path="/tourist/{userID}")
+    @GetMapping(path="/profile/{userID}")
     public String getUserProfile(@PathVariable ObjectId userID) throws Exception
     {
         JSONObject result = new JSONObject();
 
         try
         {
-             /*
-             * tourist
-             * - get current bookings
-             * - get past bookings
-             */
+            Account user = accountRepository.findBy_id(userID);
+            Long dateToday = System.currentTimeMillis();
 
-            /*
-             * tourguide
-             * - get current bookings
-             * - get past bookings
-             */
+            if(user.getType().equals("tourguide"))
+            {
+                ArrayList<Tour> currentTours = new ArrayList<Tour>();
+                ArrayList<Tour> pastTours = new ArrayList<Tour>();
+
+                ArrayList<Tour> allTours = tourRepository.findToursByTourguide(userID.toString());
+
+                for(int i=-0; i<allTours.size(); i++)
+                {
+                    if (allTours.get(i).getEndTour() > dateToday) // current
+                        currentTours.add(allTours.get(i));
+                    else
+                        pastTours.add(allTours.get(i));
+                }
+
+                result.put("currentTours", currentTours);
+                result.put("pastTours", pastTours);
+            }
+            else if (user.getType().equals("tourist"))
+            {
+                ArrayList<Booking> currentBookings = new ArrayList<Booking>();
+                ArrayList<Booking> pastBookings = new ArrayList<Booking>();
+
+                ArrayList<Booking> allBookings = bookingRepository.getTouristBookings(userID.toString());
+
+                for(int i=-0; i<allBookings.size(); i++)
+                {
+                    if (allBookings.get(i).getDateBooked() > dateToday) // current
+                        currentBookings.add(allBookings.get(i));
+                    else
+                        pastBookings.add(allBookings.get(i));
+                }
+
+                result.put("currentBookings", currentBookings);
+                result.put("pastBookings", pastBookings);
+            }
+
+            result.put("success", true);
         }
         catch(Exception e)
         {
-
+            result.put("success", false);
+            result.put("message", "Error retrieving user profile");
         }
         finally
         {
@@ -252,7 +290,8 @@ public class AccountController
                 String img = "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg";
 
                 //now we create the account
-                Account newAccount = new Account(type, firstName, lastName, email, hashbrown, phoneNumber, languagesSpoken, gender, img);
+                String bio = "";
+                Account newAccount = new Account(type, firstName, lastName, email, hashbrown, bio, phoneNumber, languagesSpoken, gender, img);
                 System.out.println(newAccount);
                 accountRepository.insert(newAccount);
 

@@ -1,13 +1,7 @@
 package com.Localite.restapp.controller;
 
-import com.Localite.restapp.model.Account;
-import com.Localite.restapp.model.FAQ;
-import com.Localite.restapp.model.Review;
-import com.Localite.restapp.model.Tour;
-import com.Localite.restapp.repository.AccountRepository;
-import com.Localite.restapp.repository.FAQRepository;
-import com.Localite.restapp.repository.ReviewRepository;
-import com.Localite.restapp.repository.TourRepository;
+import com.Localite.restapp.model.*;
+import com.Localite.restapp.repository.*;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -35,6 +29,7 @@ public class PublicController
     @Autowired private AccountRepository accountRepository;
     @Autowired private TourRepository tourRepository;
     @Autowired private ReviewRepository reviewRepository;
+    @Autowired private DisputeRepository disputeRepository;
 
     // =================== General ===================
     @GetMapping(value="user/{userID}")
@@ -220,5 +215,64 @@ public class PublicController
                 "Night-tour", "Day-Trip", "Food",
                 "Wine", "Hiking and Outdoors", "Museums", "Nature and WildLife", "Shopping"};
         return tags;
+    }
+
+    @GetMapping("/threeTours")
+    public String getThreeTours()
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+            ArrayList<Tour> tours = tourRepository.findFirst3();
+            ArrayList<BasicDBObject> threeTours = new ArrayList<>();
+
+            for (int i=0; i<3; i++)
+            {
+                threeTours.add(tours.get(i).getBasicTour());
+            }
+            result.put("tours", threeTours);
+            result.put("success", true);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("success", false);
+            result.put("message", "Error getting 3 tours");
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
+    @PostMapping("/dispute/{userID}/{guideID}")
+    public String makeDispute(@PathVariable ObjectId userID,
+                              @PathVariable ObjectId guideID,
+                              @RequestBody Dispute dispute) throws Exception
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+            BasicDBObject tourist = accountRepository.findBy_id(userID).getBasicUser();
+            BasicDBObject tourguide = accountRepository.findBy_id(guideID).getBasicUser();
+
+            // setting fields
+            dispute.setDateCreated(System.currentTimeMillis());
+            dispute.setTourist(tourist);
+            dispute.setTourguide(tourguide);
+            disputeRepository.insert(dispute);
+        }
+        catch (Exception e)
+        {
+            if (debug) System.out.println(e);
+            result.put("success", false);
+            result.put("message", "Error filing dispute");
+        }
+        finally
+        {
+            return result.toString();
+        }
     }
 }

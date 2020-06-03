@@ -66,6 +66,7 @@ public class Tour
           basic.put("duration", getDurationInHours());
           basic.put("description", description);
           basic.put("tags", tags);
+          basic.put("ratings", ratings);
           return basic;
      }
 
@@ -172,24 +173,6 @@ public class Tour
           }
      }
 
-     public JSONObject getTour()
-     {
-          JSONObject tour = new JSONObject();
-          tour.put("_id", _id);
-          tour.put("tourGuide", tourGuide);
-          tour.put("location", location);
-          tour.put("name", name);
-          tour.put("duration", getDurationInHours());
-          tour.put("description", description);
-          tour.put("tags", tags);
-          tour.put("img", img);
-          tour.put("basePrices", basePrices);
-          tour.put("capacity", capacity);
-          tour.put("ratings", ratings);
-          tour.put("allReviews", allReviews);
-          return tour;
-     }
-
      @Override
      public String toString()
      {
@@ -204,6 +187,8 @@ public class Tour
           tour.put("img", img);
           tour.put("basePrices", basePrices);
           tour.put("capacity", capacity);
+          tour.put("ratings", ratings);
+          tour.put("allReviews", allReviews);
           return tour.toString();
      }
 }
