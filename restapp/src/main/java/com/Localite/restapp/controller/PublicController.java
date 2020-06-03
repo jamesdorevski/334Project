@@ -47,7 +47,7 @@ public class PublicController
                 // for each tour update reviews
                 for(int i=0; i<createdTours.size();i++)
                 {
-                    if(createdTours.get(i).getImg().size() > 0)
+                    if(createdTours.get(i).getImg() != null)
                     {
                         ArrayList<Review> tourReviews = reviewRepository.getByTourID(createdTours.get(i).get_id());
 
