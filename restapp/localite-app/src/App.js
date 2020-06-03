@@ -26,7 +26,9 @@ import LoginComponent from "./components/LoginComponent";
 import UpdateAccountComponent from "./components/UpdateAccountComponent";
 import CreateTourComponent from "./components/CreateTourComponent";
 import MessagesComponent from "./components/MessagesComponent";
-import ViewTourComponent from "./components/ViewTourComponent"
+import ViewTourComponent from "./components/ViewTourComponent";
+import ViewBookingsAsGuideComponent from "./components/ViewBookingsAsGuideComponent";
+import ViewBookingsAsTouristComponent from "./components/ViewBookingsAsTouristComponent";
 
 export const App = () => {
   return (
@@ -45,7 +47,9 @@ export const App = () => {
               <Route path={Routes.ABOUT} component={AboutUsComponent} />
               <Route path={Routes.FAQ} component={FAQComponent} />
               <Route path={Routes.DISPUTES} component={DisputeResolutionComponent} />
-              <Route exact path={Routes.TOURS} component={ViewTourComponent} />
+              <Route path={Routes.TOURS} component={ViewTourComponent} />
+              <Route path={Routes.TOURIST_BOOKINGS} component={ViewBookingsAsTouristComponent}/>
+              <Route path={Routes.GUIDE_BOOKINGS} component={ViewBookingsAsGuideComponent}/>
               <AuthenticatedRoute path={Routes.CREATE_TOUR} component={CreateTourComponent} />
               <Route path={Routes.PROFILE} component={ProfileComponent} />
               <AuthenticatedRoute path={Routes.MY_BOOKINGS} component={MyBookingsComponent} />
