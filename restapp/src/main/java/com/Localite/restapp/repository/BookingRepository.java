@@ -21,8 +21,8 @@ public interface BookingRepository extends MongoRepository<Booking, String>
     @Query(value="{'tour._id':?0}", count=true)
     public ArrayList<Booking> getTourBookings(ObjectId tourID);
 
-    @Query(value="{'user._id':?0}", count=true)
-    public int touristInTour(String touristID);
+    @Query(value="{'user._id':?0, 'tour._id':?1}", count=true)
+    public int touristInTour(String touristID, ObjectId tourID);
 
     @Query(value="{'user._id':?0}")
     public ArrayList<Booking> getTouristBookings(String userID);

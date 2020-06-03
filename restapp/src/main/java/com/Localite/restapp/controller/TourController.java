@@ -212,6 +212,33 @@ public class TourController
             return result.toString();
         }
     }
+
+    @GetMapping(value="/reviewCheck/{userID}/{tourID}")
+    public String reviewCheck(@PathVariable String userID,
+                              @PathVariable ObjectId tourID) throws Exception
+    {
+        JSONObject result = new JSONObject();
+
+        try
+        {
+            if (bookingRepository.touristInTour(userID, tourID) > 0)
+                result.put("review", true);
+            else
+                result.put("review", false);
+
+            result.put("success", true);
+        }
+        catch (Exception e)
+        {
+            result.put("success", false);
+            result.put("message", "Unable to check if user has reviewed tour");
+        }
+        finally
+        {
+            return result.toString();
+        }
+    }
+
     @PostMapping(value="/{tourID}/addReview/{userID}")
     public String addTourReview(@PathVariable ObjectId userID,
                                 @PathVariable ObjectId tourID,
@@ -221,7 +248,7 @@ public class TourController
         try
         {
             // check if user has been in review
-            if (bookingRepository.touristInTour(userID.toString()) > 0)
+            if (bookingRepository.touristInTour(userID.toString(), tourID) > 0)
             {
                 // setting dateCreated
                 newReview.setDateCreated(System.currentTimeMillis());
