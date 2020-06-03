@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+// import TextField from "@material-ui/core/TextField";
+// import Autocomplete from "@material-ui/lab/Autocomplete";
 import Paper from "@material-ui/core/Paper";
 
 export const LocationAutoComplete = (props) => {
@@ -55,7 +55,7 @@ export const LocationAutoComplete = (props) => {
                 {({getInputProps, suggestions, getSuggestionItemProps}) => {
                     return (
                         <div className="Location__search-bar-container" >
-                            <input style={{height: "40px", width: "350px"}} {...getInputProps()} placeholder="Where are you going?"/>
+                            <input style={{height: "50px", width: "350px", borderRadius: 5}} {...getInputProps()} placeholder="Where are you going?"/>
                             <Paper className="Location__autocomplete-container">
                                 {isGeocoding && <div>Loading...</div>}
                                 {suggestions.map(suggestion => (
