@@ -31,7 +31,7 @@ class ViewTourComponent extends Component {
 
   componentWillMount() {
     window.scrollTo(0, 0);
-    
+
     const id = this.props.match.params.id;
     const user = AccountService.getCurrentUser()
 
@@ -82,7 +82,7 @@ class ViewTourComponent extends Component {
         {this.state.tour && (
           <div>
             <center>
-              <Carousel>
+              { this.state.tour.img && <Carousel>
               {this.state.tour.img.map((image) => {
                     return (
                       <Carousel.Item>
@@ -95,7 +95,7 @@ class ViewTourComponent extends Component {
                 </Carousel.Item>
                     );
                   })}
-              </Carousel>
+              </Carousel>}
               <div style={{ paddingBottom: "10px" }}>
                 <div className="container" align="left">
                   <div className="row">
@@ -211,7 +211,7 @@ class ViewTourComponent extends Component {
                         /></h4>
                       <h4>
                     
-                        {this.state.tour.ratings} (
+                        {this.state.tour.ratings.toFixed(1)} (
                         {this.state.tour.allReviews.length})
               
                       </h4>

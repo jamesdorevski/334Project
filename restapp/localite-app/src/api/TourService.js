@@ -43,6 +43,17 @@ class TourService {
       ratings: rating
     });
   }
+
+  makeBooking(tourID, userID, dateBooked, user, numOfParties, tour, dietaryRequirement, totalPrice){
+    return axios.post(API_URL + `/${tourID}/makeBooking/${userID}`, {
+      dateBooked: dateBooked,
+      user: user,
+      numOfParties: numOfParties,
+      tour: tour,
+      dietaryRequirement: dietaryRequirement,
+      totalPrice: totalPrice
+    });
+  }
 }
 
 export default new TourService();

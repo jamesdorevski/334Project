@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import AccountService from "../../api/AccountService";
 import {Modal} from "react-bootstrap";
+import TourService from "../../api/TourService"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,7 +38,7 @@ export const BookTourComponent = (props) => {
         tourDescription: 'This tour is the tourist tour that ever toured',
         tourPrice: 45.00,
         capacity: 4,
-        tourDates: ['Mon 15 Jun', 'Mon 22 Jun', 'Mon 29 Jun'],
+        tourDates: ['Thurs 4 Jun', 'Fri 5 Jun', 'Mon 29 Jun'],
     }
 
     const currentUser = AccountService.getCurrentUser();
@@ -100,12 +101,24 @@ export const BookTourComponent = (props) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (tour) => {
         const params = {
 
         }
-        //TODO send booking details here and rerender to My Bookings?
-        setActiveStep(0);
+
+        TourService.makeBooking(tour._id, currentUser._id, new Date().getTime(), currentUser, guests, tour, "", tour.basePrices.adult * guests).then(
+            (response) => {
+              console.log(response);
+              if (response.data.success) {
+                //success message w confirmation number
+              } else {
+                //error
+              }
+            },
+            (error) => {
+              //error
+            }
+          );
     };
 
     return (
@@ -185,7 +198,7 @@ export const BookTourComponent = (props) => {
                                             </Grid>
                                             <Grid item xs={12} md={12}>
                                                 <Typography variant="subtitle1">Total Cost:
-                                                    $ {tour.tourPrice * guests}</Typography>
+                                                    $ {props.tour.basePrices.adult * guests}</Typography>
                                             </Grid>
                                         </Grid>
                                     </div>
@@ -250,7 +263,7 @@ export const BookTourComponent = (props) => {
                                         <Grid container>
                                             <Grid item xs={12} md={12}>
                                                 <Typography variant={"body1"}>Tour
-                                                    Name: {tour.name || props.tourName}</Typography>
+                                                    Name: {props.tour.name}</Typography>
                                             </Grid>
                                             <Grid item xs={12} md={4}>
                                                 <div>
@@ -260,7 +273,7 @@ export const BookTourComponent = (props) => {
                                             <Grid item xs={12} md={4}>
                                                 <Typography variant={"body2"}>Date: {tourDate}</Typography>
                                                 <Typography variant={"body1"}>Total Cost:
-                                                    ${tour.tourPrice * guests}
+                                                    ${props.tour.basePrices.adult * guests}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -279,7 +292,7 @@ export const BookTourComponent = (props) => {
                                         <Button
                                             variant="contained"
                                             color="primary"
-                                            onClick={handleSubmit}
+                                            onClick={handleSubmit(props.tour)}
                                             className={classes.button}
                                         >
                                             Book Now

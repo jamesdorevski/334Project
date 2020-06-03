@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
-import PublicService from "../api/PublicService";
 import MobileDetect from "mobile-detect";
 //new
 import Carousel from "react-multi-carousel";
-import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
-import LeaveReviewComponent from "./LeaveReviewComponent"
+import AccountService from "../api/AccountService";
+import ViewBookingsAsGuideComponent from "./ViewBookingsAsGuideComponent"
 
 class MyToursComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      tours: []
+      currentTours: [],
+      pastTours: []
     };
   }
 
@@ -42,12 +41,12 @@ class MyToursComponent extends Component {
   componentWillMount() {
     const id = this.props.match.params.id;
 
-    PublicService.getUserByID(id).then(
+    AccountService.getUserProfile(id).then(
       (response) => {
         console.log(response);
         if (response.data.success) {
-          this.setState({ user: response.data.profile });
-          this.setState({ tours: response.data.createdTours });
+          this.setState({currentTours: response.data.currentTours,
+          pastTours: response.data.pastTours})
         } else {
           this.props.history.push("/");
         }
@@ -62,7 +61,7 @@ class MyToursComponent extends Component {
     const responsive = {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 2,
+        items: 3,
         slidesToSlide: 3,
       },
       tablet: {
@@ -84,7 +83,7 @@ class MyToursComponent extends Component {
             margin: "-2px",
           }}
         />
-        {this.state.user && (
+        
           <div
             style={{ textAlign: "left", padding: "10px" }}
             className="container"
@@ -95,7 +94,8 @@ class MyToursComponent extends Component {
                 <h3>Upcoming Tours</h3>
               </Row>
               <Row>
-                {/* <Carousel
+                <h5>June 20, 2020</h5>
+              <Carousel
                   responsive={responsive}
                   ssr
                   infinite={false}
@@ -104,23 +104,39 @@ class MyToursComponent extends Component {
                   containerClass="first-carousel-container container"
                   deviceType={this.props.deviceType}
                 >
-                  {this.state.tours.map((tour) => {
+                  {this.state.currentTours.map((tour) => {
                     return (
                       <div key={tour._id}>
-                        <CondensedTour
-                          isMoving={this.state.isMoving}
-                          tour={tour}
-                        />
+                        <ViewBookingsAsGuideComponent tour={tour}/>
                       </div>
                     );
                   })}
-                </Carousel> */}
+                </Carousel>
+                <h5>June 31, 2020</h5>
+              <Carousel
+                  responsive={responsive}
+                  ssr
+                  infinite={false}
+                  beforeChange={() => this.setState({ isMoving: true })}
+                  afterChange={() => this.setState({ isMoving: false })}
+                  containerClass="first-carousel-container container"
+                  deviceType={this.props.deviceType}
+                >
+                  {this.state.currentTours.map((tour) => {
+                    return (
+                      <div key={tour._id}>
+                        <ViewBookingsAsGuideComponent tour={tour}/>
+                      </div>
+                    );
+                  })}
+                </Carousel>
               </Row>
               <Row>
                 <h3>Past Tours</h3>
               </Row>
               <Row>
-                {/* <Carousel
+              <h5>May 15, 2020</h5>
+              <Carousel
                   responsive={responsive}
                   ssr
                   infinite={false}
@@ -129,21 +145,17 @@ class MyToursComponent extends Component {
                   containerClass="first-carousel-container container"
                   deviceType={this.props.deviceType}
                 >
-                  {this.state.tours.map((tour) => {
+                  {this.state.currentTours.map((tour) => {
                     return (
                       <div key={tour._id}>
-                        <CondensedTour
-                          isMoving={this.state.isMoving}
-                          tour={tour}
-                        />
+                        <ViewBookingsAsGuideComponent tour={tour}/>
                       </div>
                     );
                   })}
-                </Carousel> */}
+                </Carousel>
               </Row>
             </Container>
           </div>
-        )}
       </>
     );
   }

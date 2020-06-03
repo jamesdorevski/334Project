@@ -68,6 +68,10 @@ class AccountService {
     });
   }
 
+  getUserProfile(id){
+    return axios.get(API_URL + `profile/${id}`);
+  }
+
   deleteUser(id) {
     // return {"success": false, "message": "Network Error"}
     return axios.delete(API_URL + `delete/${id}`);

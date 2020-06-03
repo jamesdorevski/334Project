@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import { Container, Row} from "react-bootstrap";
-import PublicService from "../api/PublicService";
+import AccountService from "../api/AccountService";
 import MobileDetect from "mobile-detect";
 //new
 import Carousel from "react-multi-carousel";
 import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
+import { isThisSecond } from "date-fns/esm";
+import ViewBookingsAsTouristComponent from "./ViewBookingsAsTouristComponent";
+import MessageGuideComponent from "./MessageGuideComponent"
 
 class MyBookingsComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      currentBookings: [],
+      pastBookings: []
     };
   }
 
@@ -40,11 +44,12 @@ class MyBookingsComponent extends Component {
   componentWillMount() {
     const id = this.props.match.params.id;
 
-    PublicService.getUserByID(id).then(
+    AccountService.getUserProfile(id).then(
       (response) => {
         console.log(response);
         if (response.data.success) {
-          this.setState({ user: response.data.profile });
+          this.setState({currentBookings: response.data.currentBookings,
+          pastBookings: response.data.pastBookings})
         } else {
           this.props.history.push("/");
         }
@@ -55,7 +60,12 @@ class MyBookingsComponent extends Component {
     );
   }
 
+  goToTour = (tour_id) => {
+    this.props.history.push(`/tours/${tour_id}`)
+  };
+
   render() {
+    
     const responsive = {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -81,7 +91,7 @@ class MyBookingsComponent extends Component {
             margin: "-2px",
           }}
         />
-        {this.state.user && (
+        
           <div
             style={{ textAlign: "left", padding: "10px", backgroundColor: "transparent" }}
             className="container"
@@ -100,13 +110,10 @@ class MyBookingsComponent extends Component {
                   containerClass="first-carousel-container container"
                   deviceType={this.props.deviceType}
                 >
-                  {this.state.user.createdTours.map((tour) => {
+                  {this.state.currentBookings.map((booking) => {
                     return (
-                      <div key={tour._id}>
-                        <CondensedTour
-                          isMoving={this.state.isMoving}
-                          tour={tour}
-                        />
+                      <div key={booking._id}>
+                        <ViewBookingsAsTouristComponent/>
                       </div>
                     );
                   })}
@@ -116,7 +123,7 @@ class MyBookingsComponent extends Component {
                 <h3>Past Bookings</h3>
               </Row>
               <Row>
-                <Carousel
+              <Carousel
                   responsive={responsive}
                   ssr
                   infinite={false}
@@ -125,21 +132,18 @@ class MyBookingsComponent extends Component {
                   containerClass="first-carousel-container container"
                   deviceType={this.props.deviceType}
                 >
-                  {this.state.user.createdTours.map((tour) => {
+                  {this.state.pastBookings.map((booking) => {
                     return (
-                      <div key={tour._id}>
-                        <CondensedTour
-                          isMoving={this.state.isMoving}
-                          tour={tour}
-                        />
+                      <div key={booking._id}>
+                        <ViewBookingsAsTouristComponent booking={booking} goToTour={this.goToTour}/>
                       </div>
                     );
                   })}
                 </Carousel>
               </Row>
             </Container>
+            
           </div>
-        )}
       </>
     );
   }

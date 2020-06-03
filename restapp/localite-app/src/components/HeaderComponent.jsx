@@ -105,11 +105,11 @@ class HeaderComponent extends Component {
                         <Dropdown.Item
                           onClick={() => {
                             this.props.history.push(
-                              `/account/${user._id}/bookings`
+                              `/account/${user._id}/tours`
                             );
                           }}
                         >
-                          My Bookings
+                          My Tours
                         </Dropdown.Item>
                       )}
 
@@ -117,11 +117,11 @@ class HeaderComponent extends Component {
                         <Dropdown.Item
                           onClick={() =>
                             this.props.history.push(
-                              `/account/${user._id}/tours`
+                              `/account/${user._id}/bookings`
                             )
                           }
                         >
-                          My Tours
+                          My Bookings
                         </Dropdown.Item>
                       )}
 

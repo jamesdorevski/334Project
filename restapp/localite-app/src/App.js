@@ -45,10 +45,9 @@ export const App = () => {
               <Route path={Routes.SIGN_UP} component={SignUpComponent} />
               <Route path={Routes.ABOUT} component={AboutUsComponent} />
               <Route path={Routes.FAQ} component={FAQComponent} />
-              <Route path={Routes.DISPUTES} component={DisputeResolutionComponent} />
               <Route path={Routes.TOURS} component={ViewTourComponent} />
-              <Route path={Routes.TOURIST_BOOKINGS} component={ViewBookingsAsTouristComponent}/>
-              <Route path={Routes.GUIDE_BOOKINGS} component={ViewBookingsAsGuideComponent}/>
+              {/* <Route path={Routes.TOURIST_BOOKINGS} component={ViewBookingsAsTouristComponent}/>
+              <Route path={Routes.GUIDE_BOOKINGS} component={ViewBookingsAsGuideComponent}/> */}
               <Route exact path={Routes.TOURS} component={ViewTourComponent} />
               <AuthenticatedRoute path={Routes.CREATE_TOUR} component={CreateTourComponent} />
               <Route path={Routes.PROFILE} component={ProfileComponent} />

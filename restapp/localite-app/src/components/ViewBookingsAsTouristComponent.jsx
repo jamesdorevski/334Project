@@ -1,71 +1,102 @@
 import React, { Component, useState } from "react";
 import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
-import bluemountains_cropped from "../images/bluemountains_cropped.png";
-import forest from "../images/forest.jpg";
+import { Button } from "react-bootstrap";
+import AccountService from "../api/AccountService";
+import MessageGuideComponent from "./MessageGuideComponent";
 
 class ViewBookingsAsTouristComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messageOpen: false,
+    };
+  }
+
+  handleMessageOpen = () => this.setState({ messageOpen: true });
+  handleMessageClose = () => this.setState({ messageOpen: false });
+
+  getTotalGuests = (parties) => {
+    return parties.adult + parties.child + parties.infant;
+  };
+
   render() {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const loggedIn = AccountService.getCurrentUser();
+
+    const date = new Date(this.props.booking.dateBooked);
     return (
       <>
-        <div style={{ paddingBottom: 100 }}>
-          <div className="container" align="left">
-            <div class="row" style={{ paddingBottom: 50 }}>
-              <h1>Upcoming Bookings</h1>
-            </div>
-            <div class="row">
-              <CardGroup>
-                <Card style={{ width:500 }}>
-                  {/* tour title */}
-                  <Card.Header as="h5">Blue Mountains Hiking Trip</Card.Header>
-                  {/* take first tour image if u want */}
-                  <Card.Img className="card-img-top3" variant="top" src={bluemountains_cropped} />
-                  <Card.Body>
-                    {/* tour date */}
-                    <Card.Title>18 June 2020</Card.Title>
-                    <Card.Text>
-                      <b>Confirmation #94iakn</b><br/>
-                      <b>Tour Guide:</b> John Smith<br/>
-                      <b>Number of Guests:</b> 3<br />
-                      <b>Price:</b> $34<br/>
-                    </Card.Text>
+        <Card style={{ width: 500 }}>
+          {/* tour title */}
+          <Card.Header as="h5">{this.props.booking.tour.name}</Card.Header>
+          <Card.Body>
+            {/* tour date */}
+            <Card.Title>
+              {monthNames[date.getMonth()] +
+                " " +
+                date.getDate().toString() +
+                ", " +
+                date.getFullYear().toString()}
+            </Card.Title>
+            <Card.Text>
+              <b>Confirmation #94iakn</b>
+              <br />
+              <b>Tour Guide:</b> {this.props.booking.tour.tourGuide.firstName}
+              <br />
+              <b>Number of Guests: </b>
+              {this.getTotalGuests(this.props.booking.parties)}
+              <br />
+              <b>Price:</b> ${this.props.booking.totalPrice}
+              <br />
+              <b>Dietary Restrictions: </b>
+              {this.props.booking.dietaryRequirement}
+              <br />
+            </Card.Text>
+            <Button
+              style={{
+                backgroundColor: "transparent",
+                color: "grey",
+                border: "transparent",
+              }}
+              onClick={() => this.props.goToTour(this.props.booking.tour._id)}
+            >
+              VIEW TOUR
+            </Button>
 
-                    <Card.Link class="view-booking-btn" href="#">
-                      VIEW TOUR
-                    </Card.Link>
-                    <Card.Link class="view-booking-btn" href="#">
-                      CONTACT GUIDE
-                    </Card.Link>
-                  </Card.Body>
-                </Card>
+            <Button
+              style={{
+                backgroundColor: "transparent",
+                color: "grey",
+                border: "transparent",
+              }}
+              onClick={() => this.handleMessageOpen()}
+            >
+              MESSAGE GUIDE
+            </Button>
+          </Card.Body>
+        </Card>
 
-                <Card style={{ width:500 }}>
-                  {/* tour title */}
-                  <Card.Header as="h5">Forest Hike</Card.Header>
-                  {/* take first tour image if u want */}
-                  <Card.Img className="card-img-top3" variant="top" src={forest} />
-                  <Card.Body>
-                    {/* tour date */}
-                    <Card.Title>24 June 2020</Card.Title>
-                    <Card.Text>
-                      <b>Confirmation #Fa8zs</b><br/>
-                      <b>Tour Guide:</b> Joe Shmoe<br/>
-                      <b>Number of Guests:</b> 10<br />
-                      <b>Price:</b> $18<br/>
-                    </Card.Text>
-
-                    <Card.Link class="view-booking-btn" href="#">
-                      VIEW TOUR
-                    </Card.Link>
-                    <Card.Link class="view-booking-btn" href="#">
-                      CONTACT GUIDE
-                    </Card.Link>
-                  </Card.Body>
-                </Card>
-              </CardGroup>
-            </div>
-          </div>
-        </div>
+        <MessageGuideComponent
+          open={this.state.messageOpen}
+          close={this.handleMessageClose}
+          name={this.props.booking.tour.tourGuide.firstName}
+          guideID={this.props.booking.tour.tourGuide._id}
+          loggedInID={loggedIn._id}
+        />
       </>
     );
   }
