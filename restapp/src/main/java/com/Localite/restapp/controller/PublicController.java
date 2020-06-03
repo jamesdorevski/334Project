@@ -47,13 +47,18 @@ public class PublicController
                 // for each tour update reviews
                 for(int i=0; i<createdTours.size();i++)
                 {
-                    ArrayList<Review> tourReviews = reviewRepository.getByTourID(createdTours.get(i).get_id());
-
-                    if(tourReviews.size() > 0)// update only if a review exist
+                    if(createdTours.get(i).getImg().size() > 0)
                     {
-                        createdTours.get(i).setReviews(tourReviews);
-                        tourRepository.save(createdTours.get(i));
+                        ArrayList<Review> tourReviews = reviewRepository.getByTourID(createdTours.get(i).get_id());
+
+                        if(tourReviews.size() > 0)// update only if a review exist
+                        {
+                            createdTours.get(i).setReviews(tourReviews);
+                            tourRepository.save(createdTours.get(i));
+                        }
                     }
+                    else
+                        createdTours.remove(i);
                 }
 
                 // calculating average tour ratings for tourguide if tour exists

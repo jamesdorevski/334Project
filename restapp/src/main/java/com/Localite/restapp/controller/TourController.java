@@ -152,6 +152,12 @@ public class TourController
             ArrayList<Tour>tours = tourRepository.findTours(input.getString("city"), input.getString("country"),
                                    input.getLong("startDate"), input.getLong("endDate"),
                                     input.getInt("numOfParties"));
+
+            for (int i=0; i<tours.size(); i++)
+            {
+                if(tours.get(i).getImg().size() <=0)
+                    tours.remove(i);
+            }
             result.put("tours", tours);
             result.put("success", true);
         }
