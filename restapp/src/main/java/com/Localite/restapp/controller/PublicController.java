@@ -49,13 +49,18 @@ public class PublicController
                 {
                     if(createdTours.get(i).getImg() != null)
                     {
-                        ArrayList<Review> tourReviews = reviewRepository.getByTourID(createdTours.get(i).get_id());
-
-                        if(tourReviews.size() > 0)// update only if a review exist
+                        if(createdTours.get(i).getImg().size() > 0)
                         {
-                            createdTours.get(i).setReviews(tourReviews);
-                            tourRepository.save(createdTours.get(i));
+                            ArrayList<Review> tourReviews = reviewRepository.getByTourID(createdTours.get(i).get_id());
+
+                            if(tourReviews.size() > 0)// update only if a review exist
+                            {
+                                createdTours.get(i).setReviews(tourReviews);
+                                tourRepository.save(createdTours.get(i));
+                            }
                         }
+                        else
+                            createdTours.remove(i);
                     }
                     else
                         createdTours.remove(i);
@@ -268,6 +273,9 @@ public class PublicController
             dispute.setTourist(tourist);
             dispute.setTourguide(tourguide);
             disputeRepository.insert(dispute);
+
+            result.put("success", true);
+            result.put("disputeNumb", dispute.get_id());
         }
         catch (Exception e)
         {

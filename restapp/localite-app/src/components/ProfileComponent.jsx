@@ -9,7 +9,8 @@ import Carousel from "react-multi-carousel";
 import CondensedTour from "./CondensedTourComponent";
 import "../style.css";
 import "react-multi-carousel/lib/styles.css";
-import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from "react-star-rating-component";
+import DisputeResolutionModalComponent from "./DisputeResolutionModalComponent";
 //https://www.npmjs.com/package/react-star-rating-component
 
 class ProfileComponent extends Component {
@@ -19,7 +20,8 @@ class ProfileComponent extends Component {
       user: null,
       tours: [],
       reviewList: [],
-      tourReviews: []
+      tourReviews: [],
+      open: false
     };
   }
 
@@ -45,29 +47,38 @@ class ProfileComponent extends Component {
   state = { isMoving: false };
 
   componentWillMount() {
+    window.scrollTo(0, 0);
+
     const id = this.props.match.params.id;
 
     let reviews = [];
-    
+    let filteredTours = [];
+
     PublicService.getUserByID(id).then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         if (response.data.success) {
           this.setState({ user: response.data.profile });
-          if (response.data.profile.type === "tourguide"){
-            this.setState({ tours: response.data.createdTours });
-            
-          response.data.createdTours.map((tour) =>
-            reviews.push.apply(reviews, tour.allReviews)
-          )
-          this.setState({ reviewList: reviews });
-          }
+          if (response.data.profile.type === "tourguide") {
+            // this.setState({ tours: response.data.createdTours });
+            response.data.createdTours.map((tour) =>
+              reviews.push.apply(reviews, tour.allReviews)
+            );
 
-          else{
-            this.setState({ tourReviews: response.data.tourReviews});
+            response.data.createdTours.map((tour) => {
+              if (tour.img) {
+                if (tour.img.length > 0) {
+                  filteredTours.push(tour);
+                  console.log(filteredTours)
+                }
+              }
+            });
+
+            this.setState({tours: filteredTours})
+            this.setState({ reviewList: reviews });
+          } else {
+            this.setState({ tourReviews: response.data.tourReviews });
           }
-          
-          
         } else {
           this.props.history.push("/");
         }
@@ -99,14 +110,17 @@ class ProfileComponent extends Component {
   // }
 
   goToTour = (tour_id) => {
-    this.props.history.push(`/tours/${tour_id}`)
+    this.props.history.push(`/tours/${tour_id}`);
   };
+
+  handleClose = () => this.setState({ open: false });
+  handleShow = () => this.setState({ open: true });
 
   render() {
     const id = this.props.match.params.id;
     const loggedIn = AccountService.getCurrentUser();
-    console.log(this.state.reviewList)
-   
+    console.log(this.state.tours)
+
     const responsive = {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -270,13 +284,12 @@ class ProfileComponent extends Component {
                       <div className="rowC">
                         {this.state.user.ratings.toFixed(1)}
                         <StarRatingComponent
-                        name="rating"
-                      editing={false}
-          starCount={5}
-          value={Math.round(this.state.user.rating)}
-        />
+                          name="rating"
+                          editing={false}
+                          starCount={5}
+                          value={Math.round(this.state.user.ratings)}
+                        />
                       </div>
-                      
                     </>
                   )}
                   <p>
@@ -291,6 +304,7 @@ class ProfileComponent extends Component {
                       Edit Profile
                     </Link>
                   )}
+                  {loggedIn && id !== loggedIn._id && <Button size="sm" onClick={this.handleShow}>File a dispute</Button>}
                 </Col>
               </Row>
               <hr />
@@ -329,7 +343,11 @@ class ProfileComponent extends Component {
                       <Button
                         style={{ marginRight: 20, marginLeft: "auto" }}
                         size="sm"
-                        onClick={() => this.props.history.push(`/tours/${loggedIn._id}/create`)}
+                        onClick={() =>
+                          this.props.history.push(
+                            `/tours/${loggedIn._id}/create`
+                          )
+                        }
                       >
                         Create New Tour
                       </Button>
@@ -385,11 +403,11 @@ class ProfileComponent extends Component {
                       deviceType={this.props.deviceType}
                     >
                       {this.state.tourReviews.map((review) => {
-                        console.log(review)
+                        // console.log(review)
                         return (
                           <div key={review._id}>
                             <Review
-                            showTourInfo={true}
+                              showTourInfo={true}
                               isMoving={this.state.isMoving}
                               review={review}
                             />
@@ -401,8 +419,10 @@ class ProfileComponent extends Component {
                 </>
               )}
             </Container>
-          </div>
+            <DisputeResolutionModalComponent open={this.state.open} userID={loggedIn._id} guideID={this.state.user._id} close={this.handleClose} onHide={this.handleClose} against={this.state.user}/>
+          </div>  
         )}
+        
       </>
     );
   }

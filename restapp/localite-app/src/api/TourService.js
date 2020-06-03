@@ -21,15 +21,19 @@ class TourService {
   }
 
   createTour(guideID, name, description, location, maxCapacity, tags){
-    console.log(name, description, location, maxCapacity, tags)
+    // console.log(name, description, location, maxCapacity, tags)
 
-    // return axios.post(API_URL + `create/${guideID}`, {
-    //   name: name,
-    //   description: description,
-    //   location: location,
-    //   capacity: maxCapacity,
-    //   tags: this.convertTags(tags)
-    // });
+    return axios.post(API_URL + `create/${guideID}`, {
+      name: name,
+      description: description,
+      location: location,
+      capacity: maxCapacity,
+      tags: this.convertTags(tags)
+    });
+  }
+
+  checkReview(userID, tourID){
+    return axios.get(API_URL + `/reviewCheck/${userID}/${tourID}`)
   }
 
   addTourReview(tourID, userID, title, description, rating){

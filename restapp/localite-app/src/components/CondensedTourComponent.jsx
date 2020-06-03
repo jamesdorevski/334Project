@@ -22,14 +22,13 @@ export default function CondensedTourComponent(props) {
   const classes = useStyles();
 
   return (
-    <div key={props.tour._id} className={classes.root}>
-      { props.tour &&
+    <div key={props.tour._id} className={classes.root} style={{margin: "20px"}}>
       <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={() => props.goToTour(props.tour._id)}>
       <img
             alt={props.tour.name}
             src={props.tour.img[0]}
-            style={{height: "250px", objectFit: "cover"}}
+            style={{height: "250px", width: "600px", objectFit: "cover"}}
           />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -40,7 +39,7 @@ export default function CondensedTourComponent(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-    </Card>}
+    </Card>
     </div>
   );
 }
