@@ -182,6 +182,7 @@ class ViewTourComponent extends Component {
                             height: "200px",
                             objectFit: "cover",
                           }}
+                          onClick={() => this.props.history.push(`/account/show/${this.state.tour.tourGuide._id}`)}
                           src={this.state.tour.tourGuide.img}
                         />
                         <div className="rowC">

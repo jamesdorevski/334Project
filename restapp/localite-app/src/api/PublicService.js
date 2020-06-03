@@ -23,6 +23,10 @@ getLanguages(){
     return axios.get(API_URL + "tour/tags")
   }
 
+  threeTours() {
+    return axios.get(API_URL + "threeTours")
+  }
+
 }
 
 export default new PublicService();

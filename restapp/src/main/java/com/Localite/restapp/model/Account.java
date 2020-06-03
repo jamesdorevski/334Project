@@ -58,6 +58,7 @@ public class Account
         simple.put("firstName", firstName);
         simple.put("lastName", lastName);
         simple.put("email", email);
+        simple.put("ratings", ratings);
         simple.put("img", img);
         return simple;
     }
