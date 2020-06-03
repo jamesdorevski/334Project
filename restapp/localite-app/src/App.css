@@ -166,3 +166,18 @@ text-decoration: none;
     transform: rotate(360deg);
   }
 }
+
+.view-booking-btn {
+  text-transform: uppercase;
+  color: grey;
+  font-weight: bold;
+  size: 12px;
+  padding: 20px;
+}
+
+.card-img-top3 {
+  background-size: cover;
+  height: 300px;
+  width: 500px;
+  background-repeat: no-repeat;
+}
