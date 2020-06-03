@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8080/";
 class PublicService {
 
   getUserByID(id){
-    return axios.get(API_URL + `/user/${id}`).then((response) => {
+    return axios.get(API_URL + `user/${id}`).then((response) => {
       // console.log(response)
       return response;
     })
@@ -25,6 +25,12 @@ getLanguages(){
 
   threeTours() {
     return axios.get(API_URL + "threeTours")
+  }
+
+  fileDispute(userID, guideID, description) {
+    return axios.post(API_URL + `/dispute/${userID}/${guideID}`, {
+      description: description
+    });
   }
 
 }

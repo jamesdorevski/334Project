@@ -24,12 +24,16 @@ class ViewTourComponent extends Component {
       tour: null,
       open: false,
       reviewOpen: false,
-      messageOpen: false
+      messageOpen: false,
+      canLeaveReview: false
     };
   }
 
   componentWillMount() {
+    window.scrollTo(0, 0);
+    
     const id = this.props.match.params.id;
+    const user = AccountService.getCurrentUser()
 
     TourService.getTour(id).then(
       (response) => {
@@ -37,47 +41,16 @@ class ViewTourComponent extends Component {
         if (response.data.success) {
           this.setState({ tour: response.data.tour });
           console.log(response.data.tour)
-          // const mockTour = {
-          //   allReviews: [
-          //     {
-          //       dateCreated: 1590956963096,
-          //       description: "Loved how peaceful it was there",
-          //       ratings: 4.7,
-          //       reviewer: {
-          //         firstName: "Caroline",
-          //         lastName: "Star",
-          //         img:
-          //           "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
-          //         _id: "5ed404ffb5f5a7580ef3c44a",
-          //         email: "carols@gmail.com",
-          //       },
-          //       title: "Beautiful place",
-          //       _id: "5ed413a42c8a374b0ea46c82",
-          //     },
-          //   ],
-          //   basePrices: { adult: 14.99, infant: 4.99, child: 9.99 },
-          //   capacity: 20,
-          //   description: "Patience is virtue",
-          //   durationInHours: 4,
-          //   endTour: 1592197200000,
-          //   location: { city: "Wollongong", country: "Australia" },
-          //   maxLimit: false,
-          //   name: "Nan Tien Temple",
-          //   ratings: 4.9,
-          //   startTour: 1592182800000,
-          //   tags: ["Day-Trip"],
-          //   tourGuide: {
-          //     firstName: "Patrick",
-          //     lastName: "Star",
-          //     img:
-          //       "https://vippuppies.com/wp-content/uploads/2019/06/deberly-IMG_3786.jpg",
-          //     _id: "5ed4048495e6d618b22d3cf6",
-          //     email: "pats@gmail.com",
-          //   },
-          //   _id: "5ed412c74c83e057c86ea16e",
-          // };
 
-          // this.setState({ tour: mockTour });
+          TourService.checkReview(user._id, this.state.tour._id).then(
+            (response) => {
+              if (response.data.success) {
+                this.setState({ canLeaveReview: response.data.review });
+                
+              } 
+            }
+          );      
+          
         } else {
           this.props.history.push("/");
         }
@@ -86,6 +59,8 @@ class ViewTourComponent extends Component {
         this.props.history.push("/");
       }
     );
+
+    
   }
 
   handleClose = () => this.setState({ open: false });
@@ -187,7 +162,7 @@ class ViewTourComponent extends Component {
                         />
                         <div className="rowC">
                           <h5>{this.state.tour.tourGuide.firstName}</h5>
-                          <p>{this.state.tour.tourGuide.ratings}</p>
+                          <p style={{paddingLeft: "5px"}}>{this.state.tour.tourGuide.ratings}</p>
                           <StarRatingComponent
                             name="star"
                             editing={false}
@@ -242,27 +217,9 @@ class ViewTourComponent extends Component {
                       </h4>
                       
                     </div>
-                    {this.state.tour.tourGuide._id !== loggedIn._id && <Button onClick={() => this.openReview()}>Leave a Review</Button>}
+                    {this.state.tour.tourGuide._id !== loggedIn._id && this.state.canLeaveReview && <Button onClick={() => this.openReview()}>Leave a Review</Button>}
                   </div>
 
-                  {/* <div className="container" align="left" style={{ width: 800 }}>
-                <img className="user-review" src={brittney} />
-                <h5 className="review-title">Amazing trip!</h5>
-                ★ ★ ★ ★ ★<br />
-                <b>Brittney</b> • February 8, 2020
-                <br />
-                <p className="user-review-txt">
-                  We had a great time with Joe. My wife and two kids lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                  nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id
-                  est laborum.
-                </p>
-              </div> */}
 
                 {this.state.reviewOpen && <div style={{marginLeft: "-320px"}}>
                 <LeaveReviewComponent tourID={this.state.tour._id} userID={loggedIn._id} close={this.closeReview}/>

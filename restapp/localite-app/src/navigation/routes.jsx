@@ -17,8 +17,6 @@ export const Routes =
             '/about',
         FAQ:
             '/faq',
-        DISPUTES:
-            '/disputes',
         CREATE_TOUR:
             '/tours/:id/create',
         TOURS:

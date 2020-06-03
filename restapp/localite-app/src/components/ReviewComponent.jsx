@@ -60,16 +60,7 @@ export default function ReviewComponent(props) {
                   {props.review.title}
                 </Typography>
                 <Typography variant="subtitle1" style={{paddingLeft: "5px", fontWeight: 300}}>
-                  {props.review.ratings}
-                  {/* <img
-                    style={{
-                      width: "18px",
-                      height: "18px",
-                      marginBottom: "5px",
-                    }}
-                    src={require("../images/star.png")}
-                    alt="star"
-                  /> */}
+                  {props.review.ratings.toFixed(1)}
                   
                 </Typography>
                 <StarRatingComponent 

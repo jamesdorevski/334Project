@@ -34,11 +34,6 @@ class FooterComponent extends Component {
                       FAQ
                     </a>
                   </li>
-                  <li>
-                    <a style={{ fontSize: "16px" }} href="/disputes">
-                      Dispute Resolution
-                    </a>
-                  </li>
                 </ul>
               </div>
               <div className="col-md-2 mb-md-0 mb-3">

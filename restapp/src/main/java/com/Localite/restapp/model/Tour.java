@@ -69,6 +69,7 @@ public class Tour
           basic.put("description", description);
           basic.put("tags", tags);
           basic.put("ratings", ratings);
+          basic.put("basePrices", basePrices);
           return basic;
      }
 

@@ -16,7 +16,6 @@ import FooterComponent from "./components/FooterComponent.jsx";
 import SignUpComponent from "./components/SignUpComponent.jsx";
 import AboutUsComponent from "./components/AboutUsComponent.jsx";
 import FAQComponent from "./components/FAQComponent.jsx";
-import DisputeResolutionComponent from "./components/DisputeResolutionComponent.jsx";
 import BecomeAGuideComponent from "./components/BecomeAGuideComponent.jsx";
 import AccountComponent from "./components/AccountComponent";
 import MyBookingsComponent from "./components/MyBookingsComponent";
@@ -50,6 +49,7 @@ export const App = () => {
               <Route path={Routes.TOURS} component={ViewTourComponent} />
               <Route path={Routes.TOURIST_BOOKINGS} component={ViewBookingsAsTouristComponent}/>
               <Route path={Routes.GUIDE_BOOKINGS} component={ViewBookingsAsGuideComponent}/>
+              <Route exact path={Routes.TOURS} component={ViewTourComponent} />
               <AuthenticatedRoute path={Routes.CREATE_TOUR} component={CreateTourComponent} />
               <Route path={Routes.PROFILE} component={ProfileComponent} />
               <AuthenticatedRoute path={Routes.MY_BOOKINGS} component={MyBookingsComponent} />

@@ -155,7 +155,7 @@ public class TourController
 
             for (int i=0; i<tours.size(); i++)
             {
-                if(tours.get(i).getImg() != null)
+                if(tours.get(i).getImg() == null)
                     tours.remove(i);
             }
             result.put("tours", tours);
