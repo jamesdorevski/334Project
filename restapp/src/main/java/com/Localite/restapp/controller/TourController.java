@@ -386,7 +386,7 @@ public class TourController
     @PostMapping(value = "/generateTour")
     public String generateTour()
     {
-        int amountToGenerate = 1;
+        int amountToGenerate = 1000;
         Random random = new Random();
         JSONObject result = new JSONObject();
         try
@@ -474,7 +474,7 @@ public class TourController
         JSONObject result = new JSONObject();
         try
         {
-            for(int i = 0; i<amountToGenerate; i++)
+            for(int i = 0; i<amountToGenerate*100; i++)
             {
               ArrayList <Account> allTourists = accountRepository.findByType("tourist");
               Account tourist = allTourists.get(random.nextInt(allTourists.size()));
@@ -485,11 +485,11 @@ public class TourController
               Long dateBooked = new Long("1590850400000");
               BasicDBObject parties = new BasicDBObject();
 
-                int partycount = random.nextInt(10);
+                int partycount = random.nextInt(5);
               parties.append("adult", partycount);
-                partycount = random.nextInt(10);
+                partycount = random.nextInt(5);
               parties.append("child", partycount);
-                partycount = random.nextInt(10);
+                partycount = random.nextInt(5);
               parties.append("infant", partycount);
 
               ArrayList <Tour> allTours = tourRepository.findAll();
@@ -497,13 +497,27 @@ public class TourController
 
               String tourId = tour.get_id();
 
-              String dietaryRequirement = "Vegan";
+              ArrayList<String> dietaryRequirementList = new ArrayList<>(
+              Arrays.asList("Vegan", "Vegetarian", "Gluten-Free", "Low-Fodmap",
+                            "Dairy-Free", "Allergy: Nut", "Allergy: Kiwi", "Allergy: Berry",
+                            "Halal", "Kosher", "Pescatarian", "Low-Salt", "Allergy: Egg",
+                            "No-Alcohol", "Wheat-Free", "Allergy: Onion", "No-Soy", "No-Fish",
+                            "Allergy: Shellfish", "No-Corn", "Low-Sugar"));
+
+              String dietaryRequirement = "";
+              dietaryRequirement += dietaryRequirementList.get(random.nextInt(dietaryRequirementList.size()));
+              int requirements = random.nextInt(3);
+              for(int j = 0; j < requirements; j++)
+              {
+                dietaryRequirement += ", ";
+                dietaryRequirement += dietaryRequirementList.get(random.nextInt(dietaryRequirementList.size()));
+              }
               double totalPrice = random.nextInt(300);
 
               //make a booking
               Booking generatedBooking = new Booking(_id, dateBooked, user, parties, tour, dietaryRequirement, totalPrice);
 
-              makeBooking(new ObjectId(tourId), userId, generatedBooking);
+              System.out.println(makeBooking(new ObjectId(tourId), userId, generatedBooking));
             }
 
               result.put("message", "Booking generated");

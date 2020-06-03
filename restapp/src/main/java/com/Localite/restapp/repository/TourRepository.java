@@ -30,4 +30,7 @@ public interface TourRepository extends MongoRepository<Tour, String>
 
     @Query(value="{'tourGuide._id':?0}")
     public ArrayList<Tour> findToursByTourguide(String id);
+
+    @Query(value="{'maxLimit':?0}", fields="{'_id':1}")
+    public ArrayList<BasicDBObject> findByMaxLimit(boolean limit);
 }
