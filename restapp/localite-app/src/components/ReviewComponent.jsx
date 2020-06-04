@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import { Figure } from "react-bootstrap";
-import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from "react-star-rating-component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +36,7 @@ export default function ReviewComponent(props) {
     "December",
   ];
 
-  const date = new Date(props.review.dateCreated)
+  const date = new Date(props.review.dateCreated);
 
   return (
     <div key={props.review._id} className={classes.root}>
@@ -49,6 +49,7 @@ export default function ReviewComponent(props) {
                 fluid
                 style={{ objectFit: "cover", width: "80px", height: "80px" }}
                 src={props.review.reviewer.img}
+                onClick={() => props.goToReviewer(props.review.reviewer._id)}
               />
             </ButtonBase>
           </Grid>
@@ -56,30 +57,34 @@ export default function ReviewComponent(props) {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <div className="rowC">
-                <Typography variant="subtitle1" style={{fontWeight: 600}}>
-                  {props.review.title}
-                </Typography>
-                <Typography variant="subtitle1" style={{paddingLeft: "5px", fontWeight: 300}}>
-                  {props.review.ratings.toFixed(1)}
-                  
-                </Typography>
-                <StarRatingComponent 
-                      editing={false}
-          starCount={5}
-          value={Math.round(props.review.ratings)}
-        />
+                  <Typography variant="subtitle1" style={{ fontWeight: 600 }}>
+                    {props.review.title}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    style={{ paddingLeft: "5px", fontWeight: 300 }}
+                  >
+                    {props.review.ratings.toFixed(1)}
+                  </Typography>
+                  <StarRatingComponent
+                    name="star"
+                    editing={false}
+                    starCount={5}
+                    value={Math.round(props.review.ratings)}
+                  />
                 </div>
 
-                {props.showTourInfo && <Typography>
-                  Tour: {props.review.tour.name}
-                </Typography>}
-                
+                {props.showTourInfo && (
+                  <Typography>Tour: {props.review.tour.name}</Typography>
+                )}
+
                 <Typography variant="subtitle2">
-                  {props.review.reviewer.firstName} ∙ {monthNames[date.getMonth()] +
-        " " +
-        date.getDate().toString() +
-        ", " +
-        date.getFullYear().toString()}
+                  {props.review.reviewer.firstName} ∙{" "}
+                  {monthNames[date.getMonth()] +
+                    " " +
+                    date.getDate().toString() +
+                    ", " +
+                    date.getFullYear().toString()}
                 </Typography>
                 <Typography zerominwidth="true" variant="body2" gutterBottom>
                   {props.review.description}

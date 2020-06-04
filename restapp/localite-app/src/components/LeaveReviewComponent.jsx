@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import TourService from "../api/TourService";
 import StarRatingComponent from "react-star-rating-component";
 
-
 class SignUpComponent extends Component {
   constructor(props) {
     super(props);
@@ -12,102 +11,101 @@ class SignUpComponent extends Component {
     this.state = {
       message: "",
       success: false,
-      rating: 1
+      rating: 1,
     };
   }
 
   onStarClick(nextValue, prevValue, name) {
-    this.setState({rating: nextValue});
+    this.setState({ rating: nextValue });
   }
 
-
   render() {
-
     return (
       <div
-      style={{ padding: "10px", maxWidth: "800px", border: "1px solid #ced4da", borderRadius: 15 }}
-      className="container"
-      background-color="transparent"
-    >
-      <Formik
-        initialValues={{
-          title: "",
-          lastName: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-          phoneNumber: ""
+        style={{
+          padding: "10px",
+          maxWidth: "800px",
+          border: "1px solid #ced4da",
+          borderRadius: 15,
         }}
+        className="container"
+        background-color="transparent"
+      >
+        <Formik
+          initialValues={{
+            title: "",
+            lastName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            phoneNumber: "",
+          }}
+          validationSchema={Yup.object().shape({
+            title: Yup.string()
+              .max(40, "Review title cannot exceed 40 characters")
+              .required("Review title is required"),
+            description: Yup.string().required("Description is required"),
+          })}
+          onSubmit={(fields, { setSubmitting }) => {
+            TourService.addTourReview(
+              this.props.tourID,
+              this.props.userID,
+              fields.title,
+              fields.description,
+              this.state.rating
+            ).then(
+              (response) => {
+                console.log(response);
+                setSubmitting(false);
+                if (response.data.success) {
+                  this.setState({
+                    message: response.data.message,
+                    success: true,
+                  });
+                  window.location.reload(false);
+                } else {
+                  this.setState({
+                    success: false,
+                    message: "Unable to leave review: " + response.data.message,
+                  });
+                }
+              },
+              (error) => {
+                setSubmitting(false);
 
-        validationSchema={Yup.object().shape({
-          title: Yup.string()
-          .max(40, "Review title cannot exceed 40 characters")
-          .required("Review title is required"),
-          description: Yup.string().required("Description is required"),  
-        })}
+                const resMessage =
+                  (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                  error.message ||
+                  error.toString();
 
-        onSubmit={(fields, { setSubmitting }) => {
-          
-         TourService.addTourReview(
-           this.props.tourID,
-           this.props.userID,
-            fields.title,
-            fields.description,
-            this.state.rating
-          ).then(
-            (response) => {
-              console.log(response);
-              setSubmitting(false);
-              if (response.data.success) {
-                this.setState({
-                  message: response.data.message,
-                  success: true,
-                });
-                window.location.reload(false);
-              } else {
                 this.setState({
                   success: false,
-                  message: "Unable to leave review: " + response.data.message,
+                  message: resMessage,
                 });
               }
-            },
-            (error) => {
-              setSubmitting(false);
-
-              const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
-
-              this.setState({
-                success: false,
-                message: resMessage,
-              });
-            }
-          );
-        }}
-        
-        render={({ errors, touched, isSubmitting }) => (
-          <Form>
-            <div className="form-group">
-              <label htmlFor="title">Review Title</label>
-              <Field
-                name="title"
-                type="title"
-                className={
-                  "form-control" +
-                  (errors.firstName && touched.firstName ? " is-invalid" : "")
-                }
-              />
-              <ErrorMessage
-                name="firstName"
-                component="div"
-                className="invalid-feedback"
-              />
-            </div>
-            <div className="form-group">
+            );
+          }}
+          render={({ errors, touched, isSubmitting }) => (
+            <Form>
+              <div className="form-group">
+                <label htmlFor="title">Review Title</label>
+                <Field
+                  name="title"
+                  type="title"
+                  className={
+                    "form-control" +
+                    (errors.firstName && touched.firstName ? " is-invalid" : "")
+                  }
+                />
+                <ErrorMessage
+                  name="firstName"
+                  component="div"
+                  className="invalid-feedback"
+                />
+              </div>
+              <div className="form-group">
                 <label htmlFor="description">Description</label>
                 <Field
                   name="description"
@@ -127,49 +125,51 @@ class SignUpComponent extends Component {
                 />
               </div>
               <div className="form-group">
-              <label htmlFor="description">Rating</label>
-              <br/>
-              <StarRatingComponent 
-          name="rate1" 
-          starCount={5}
-          value={this.state.rating}
-          onStarClick={this.onStarClick.bind(this)}
-        />
+                <label htmlFor="description">Rating</label>
+                <br />
+                <StarRatingComponent
+                  name="rate1"
+                  starCount={5}
+                  value={this.state.rating}
+                  onStarClick={this.onStarClick.bind(this)}
+                />
               </div>
-            <div className="form-group">
-              <button type="submit" disabled={isSubmitting} className="btn btn-primary mr-2">
-              {isSubmitting && (
-                      <span className="spinner-border spinner-border-sm mr-1"></span>
-                    )}
-                Leave Review
-              </button>
-              <button
+              <div className="form-group">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn btn-primary mr-2"
+                >
+                  {isSubmitting && (
+                    <span className="spinner-border spinner-border-sm mr-1"></span>
+                  )}
+                  Leave Review
+                </button>
+                <button
                   type="button"
                   className="btn btn-danger mr-2"
-                  onClick={
-                    this.props.close
-                  }
+                  onClick={this.props.close}
                 >
                   Cancel
                 </button>
-            </div>
-            {this.state.message && (
-              <div className="form-group">
-                <div
-                  className={
-                    this.state.success
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
-                </div>
               </div>
-            )}
-          </Form>
-        )}
-      />
+              {this.state.message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      this.state.success
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {this.state.message}
+                  </div>
+                </div>
+              )}
+            </Form>
+          )}
+        />
       </div>
     );
   }

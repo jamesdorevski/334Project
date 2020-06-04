@@ -132,7 +132,9 @@ class AccountComponent extends Component {
 
             <Button
               style={{ margin: "5px" }}
-              onClick={() => this.props.history.push(`/account/${user._id}/update`)}
+              onClick={() =>
+                this.props.history.push(`/account/${user._id}/update`)
+              }
             >
               Update Account Info
             </Button>

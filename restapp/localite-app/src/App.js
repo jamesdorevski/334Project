@@ -21,13 +21,10 @@ import AccountComponent from "./components/AccountComponent";
 import MyBookingsComponent from "./components/MyBookingsComponent";
 import MyToursComponent from "./components/MyToursComponent";
 import ProfileComponent from "./components/ProfileComponent";
-import LoginComponent from "./components/LoginComponent";
 import UpdateAccountComponent from "./components/UpdateAccountComponent";
 import CreateTourComponent from "./components/CreateTourComponent";
 import MessagesComponent from "./components/MessagesComponent";
 import ViewTourComponent from "./components/ViewTourComponent";
-import ViewBookingsAsGuideComponent from "./components/ViewBookingsAsGuideComponent";
-import ViewBookingsAsTouristComponent from "./components/ViewBookingsAsTouristComponent";
 
 export const App = () => {
   return (
@@ -37,17 +34,13 @@ export const App = () => {
           <div id="page-container">
             <HeaderComponent />
             <Switch>
-              {/*<Route render={() => <Redirect to={{pathname: "/"}} />} />*/}
               <Route path={Routes.HOME} component={HomeComponent} />
-              <Route path={Routes.LOGIN} component={LoginComponent} />
               <Route path={Routes.SEARCH} component={TourResultsComponent} />
               <Route path={Routes.SIGN_UP_GUIDE} component={BecomeAGuideComponent} />
               <Route path={Routes.SIGN_UP} component={SignUpComponent} />
               <Route path={Routes.ABOUT} component={AboutUsComponent} />
               <Route path={Routes.FAQ} component={FAQComponent} />
               <Route path={Routes.TOURS} component={ViewTourComponent} />
-              {/* <Route path={Routes.TOURIST_BOOKINGS} component={ViewBookingsAsTouristComponent}/>
-              <Route path={Routes.GUIDE_BOOKINGS} component={ViewBookingsAsGuideComponent}/> */}
               <Route exact path={Routes.TOURS} component={ViewTourComponent} />
               <AuthenticatedRoute path={Routes.CREATE_TOUR} component={CreateTourComponent} />
               <Route path={Routes.PROFILE} component={ProfileComponent} />

@@ -10,16 +10,13 @@ class AccountService {
         password,
       })
       .then((response) => {
-        // console.log(response.data)
 
         if (response.data.success) {
-          // console.log(response.data.user)
-          // console.log(JSON.parse(response.data.user))
-          sessionStorage.setItem("user", (response.data.user));
-          sessionStorage.setItem("currentView", "tourist")
+          sessionStorage.setItem("user", response.data.user);
+          sessionStorage.setItem("currentView", "tourist");
         }
 
-      return response;
+        return response;
       });
   }
 
@@ -28,22 +25,27 @@ class AccountService {
     sessionStorage.removeItem("currentView");
   }
 
-  convertLangs(languagesSpokenArray){
-    var languages = []
+  convertLangs(languagesSpokenArray) {
+    var languages = [];
 
     for (var l in languagesSpokenArray) {
-      languages.push(languagesSpokenArray[l].lang)
+      languages.push(languagesSpokenArray[l].lang);
     }
 
-    return languages
+    return languages;
   }
 
-  createUser(type, firstName, lastName, email, password, gender, phoneNumber, languagesSpoken) {
-    // console.log(gender)
-    // console.log(languagesSpoken)
-
-    // return ({"data":{"success": false, "message": "test"}})
-
+  createUser(
+    type,
+    firstName,
+    lastName,
+    email,
+    password,
+    gender,
+    phoneNumber,
+    languagesSpoken
+  ) {
+  
     return axios.post(API_URL + "create", {
       type: type,
       firstName: firstName,
@@ -56,7 +58,17 @@ class AccountService {
     });
   }
 
-  updateUser(id, firstName, lastName, email, password, gender, phoneNumber, languagesSpoken){
+  updateUser(
+    id,
+    firstName,
+    lastName,
+    email,
+    password,
+    gender,
+    phoneNumber,
+    languagesSpoken
+  ) {
+
     return axios.post(API_URL + `update/${id}`, {
       firstName: firstName,
       lastName: lastName,
@@ -68,12 +80,11 @@ class AccountService {
     });
   }
 
-  getUserProfile(id){
+  getUserProfile(id) {
     return axios.get(API_URL + `profile/${id}`);
   }
 
   deleteUser(id) {
-    // return {"success": false, "message": "Network Error"}
     return axios.delete(API_URL + `delete/${id}`);
   }
 

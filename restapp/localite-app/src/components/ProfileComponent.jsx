@@ -46,7 +46,7 @@ class ProfileComponent extends Component {
 
   state = { isMoving: false };
 
-  componentWillMount() {
+  componentDidMount() {
     window.scrollTo(0, 0);
 
     const id = this.props.match.params.id;
@@ -89,28 +89,12 @@ class ProfileComponent extends Component {
     );
   }
 
-  // reviewStars(num) {
-  //   let stars = [];
-  //   for (let i = 0; i < num; i++) {
-  //     stars.push(
-  //       <img
-  //         key={i}
-  //         style={{
-  //           width: "18px",
-  //           height: "18px",
-  //           marginBottom: "5px",
-  //           marginLeft: "5px",
-  //         }}
-  //         src={require("../images/star.png")}
-  //         alt="star"
-  //       />
-  //     );
-  //   }
-  //   return <div>{stars}</div>;
-  // }
-
   goToTour = (tour_id) => {
     this.props.history.push(`/tours/${tour_id}`);
+  };
+
+  goToReviewer = (user_id) => {
+    this.props.history.push(`/account/show/${user_id}`);
   };
 
   handleClose = () => this.setState({ open: false });
@@ -119,7 +103,6 @@ class ProfileComponent extends Component {
   render() {
     const id = this.props.match.params.id;
     const loggedIn = AccountService.getCurrentUser();
-    console.log(this.state.tours)
 
     const responsive = {
       desktop: {
@@ -138,114 +121,6 @@ class ProfileComponent extends Component {
         slidesToSlide: 1,
       },
     };
-
-    //TEMP: this will be pulled from backend
-    // const reviews = [
-    //   {
-    //     _id: "523tkwneofwr2r5823",
-    //     title: "Great tour!",
-    //     reviewer: { firstName: "Karen", img: require("../images/profile.jpg") },
-    //     dateCreated:
-    //       monthNames[date.getMonth()] +
-    //       " " +
-    //       date.getDate().toString() +
-    //       ", " +
-    //       date.getFullYear().toString(),
-    //     description:
-    //       "Such a fun class. the information about propagating different types of plants was so helpful. now i'm off to turn my current plant family into a bigger one!",
-    //   },
-    //   {
-    //     _id: "523tkwneofwr2r5824",
-    //     title: "Had a great time with my family",
-    //     reviewer: {
-    //       firstName: "Josiah",
-    //       img: require("../images/profile.jpg"),
-    //     },
-    //     dateCreated:
-    //       monthNames[date.getMonth()] +
-    //       " " +
-    //       date.getDate().toString() +
-    //       ", " +
-    //       date.getFullYear().toString(),
-    //     description:
-    //       "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
-    //   },
-    //   {
-    //     _id: "523tkwneofwr2r5825",
-    //     title: "Loved it!",
-    //     reviewer: {
-    //       firstName: "Maggie",
-    //       img: require("../images/profile.jpg"),
-    //     },
-    //     dateCreated:
-    //       monthNames[date.getMonth()] +
-    //       " " +
-    //       date.getDate().toString() +
-    //       ", " +
-    //       date.getFullYear().toString(),
-    //     description:
-    //       "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
-    //   },
-    //   {
-    //     _id: "523tkwneofwr2r5826",
-    //     title: "Loved the tour",
-    //     reviewer: {
-    //       firstName: "Patrick",
-    //       img: require("../images/profile.jpg"),
-    //     },
-    //     dateCreated:
-    //       monthNames[date.getMonth()] +
-    //       " " +
-    //       date.getDate().toString() +
-    //       ", " +
-    //       date.getFullYear().toString(),
-    //     description:
-    //       "Educational, immersive, fun. Whether you're a rookie plant parent or expert, you'll have a great time and find some pointers to take away.",
-    //   },
-    // ];
-
-    //TEMP
-    // const tempTours = [
-    //   {
-    //     tourName: "Backpacking in the Blue Mountains",
-    //     _id: 0,
-    //     tourGuide: {
-    //       firstName: "James",
-    //       img: require("../images/james.jpg"),
-    //       rating: 4.7,
-    //     },
-    //     description: "Description of Backpacking in the Blue Mountains",
-    //     basePrice: 90,
-    //     img: require("../images/mountains.jpg"),
-    //     tags: ["Outdoors", "Day Trip"],
-    //   },
-    //   {
-    //     tourName: "Food Tour of Sydney",
-    //     _id: 1,
-    //     tourGuide: {
-    //       firstName: "Josh",
-    //       img: require("../images/josh.jpg"),
-    //       rating: 4.5,
-    //     },
-    //     description: "Description of Food Tour of Sydney",
-    //     basePrice: 85,
-    //     img: require("../images/foodtour.jpg"),
-    //     tags: ["Food", "Kid-friendly", "Private Tours Available"],
-    //   },
-    //   {
-    //     tourName: "Day Hike - Sydney Harbour National Park",
-    //     _id: 2,
-    //     tourGuide: {
-    //       firstName: "Andrea",
-    //       img: require("../images/andrea.jpg"),
-    //       rating: 4.8,
-    //     },
-    //     description: "Description of Day Hike - Sydney Harbour National Park",
-    //     basePrice: 50,
-    //     img: require("../images/sydney-harbour.jpg"),
-    //     tags: ["Outdoors", "Day Trip"],
-    //   },
-    // ];
 
     return (
       <>
@@ -378,6 +253,7 @@ class ProfileComponent extends Component {
                             <Review
                               isMoving={this.state.isMoving}
                               review={review}
+                              goToReviewer={this.goToReviewer}
                             />
                           </div>
                         );
@@ -403,13 +279,13 @@ class ProfileComponent extends Component {
                       deviceType={this.props.deviceType}
                     >
                       {this.state.tourReviews.map((review) => {
-                        // console.log(review)
                         return (
                           <div key={review._id}>
                             <Review
                               showTourInfo={true}
                               isMoving={this.state.isMoving}
                               review={review}
+                              goToReviewer={this.goToReviewer}
                             />
                           </div>
                         );
@@ -419,7 +295,7 @@ class ProfileComponent extends Component {
                 </>
               )}
             </Container>
-            <DisputeResolutionModalComponent open={this.state.open} userID={loggedIn._id} guideID={this.state.user._id} close={this.handleClose} onHide={this.handleClose} against={this.state.user}/>
+            <DisputeResolutionModalComponent open={this.state.open} userID={loggedIn?._id} guideID={this.state.user._id} close={this.handleClose} onHide={this.handleClose} against={this.state.user}/>
           </div>  
         )}
         

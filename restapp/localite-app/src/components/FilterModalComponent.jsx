@@ -5,50 +5,49 @@ import { Formik, Form } from "formik";
 import StarRatingComponent from "react-star-rating-component";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import PublicService from "../api/PublicService";
+import PublicService from "../api/PublicService"
+import TourService from "../api/TourService"
 
 class FilterModalComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value5: {
-        min: 3,
-        max: 7,
-      },
       tags: [],
       selectedValues: [],
       start: 1,
       end: 200,
       price: [1, 100],
       selectedRating: null,
+      minRating: 1,
     };
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
     let dict = [];
+    let tagList = [];
     PublicService.getTourTags().then((response) => {
+      console.log(response);
       if (response) {
-        // console.log(response.data)
-        response.data.map((tagName) =>
-          dict.push({
-            tag: tagName,
-          })
-        );
-        this.setState({ tags: dict });
+        tagList = response.data;
       }
     });
+
+    tagList.map((tagName) =>
+      dict.push({
+        tag: tagName,
+      })
+    );
+    this.setState({ tags: dict });
   }
 
   onSelect = (selectedList, selectedItem) => {
     this.setState({ selectedValues: selectedList });
-    // console.log(this.state.selectedValues)
   };
 
   onRemove = (selectedList, removedItem) => {
     this.setState({ selectedValues: selectedList });
-    // console.log(this.state.selectedValues)
   };
 
   handleChange = (event, newValue) => {
@@ -86,21 +85,25 @@ class FilterModalComponent extends Component {
             initialValues={{
               tags: this.state.selectedValues,
             }}
-            onSubmit={({ fields, setSubmitting }) => {
+            onSubmit={({ setSubmitting }) => {
               setSubmitting(false);
-              // AccountService.loginUser(email, password).then(
-              //   (response) => {
-              //     console.log(response);
-              //     setSubmitting(false);
-              //     if (response.data.success) {
-              //       setSubmitting(false);
-              //     } else {
-              //     }
-              //   },
-              //   (error) => {
-              //     setSubmitting(false);
-              //   }
-              // );
+              TourService.filterTours(
+                this.state.selectedValues,
+                this.state.price[0],
+                this.state.price[1],
+                this.state.minRating
+              ).then(
+                (response) => {
+                  setSubmitting(false);
+                  if (response.data.success) {
+                    //set tours in TourResultsComponent
+                  } else {
+                  }
+                },
+                (error) => {
+                  setSubmitting(false);
+                }
+              );
             }}
           >
             {({ isSubmitting }) => (
@@ -165,7 +168,6 @@ class FilterModalComponent extends Component {
                             onClick={() => this.selectRating}
                           >
                             <StarRatingComponent
-                              name={n.toString()}
                               editing={false}
                               starCount={5}
                               value={n}

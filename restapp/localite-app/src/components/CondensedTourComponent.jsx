@@ -4,7 +4,6 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,24 +21,28 @@ export default function CondensedTourComponent(props) {
   const classes = useStyles();
 
   return (
-    <div key={props.tour._id} className={classes.root} style={{margin: "20px"}}>
+    <div
+      key={props.tour._id}
+      className={classes.root}
+      style={{ margin: "20px" }}
+    >
       <Card className={classes.root}>
-      <CardActionArea onClick={() => props.goToTour(props.tour._id)}>
-      <img
+        <CardActionArea onClick={() => props.goToTour(props.tour._id)}>
+          <img
             alt={props.tour.name}
             src={props.tour.img[0]}
-            style={{height: "250px", width: "600px", objectFit: "cover"}}
+            style={{ height: "250px", width: "600px", objectFit: "cover" }}
           />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-      {props.tour.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.tour.description.substring(0, 150)}...
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.tour.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.tour.description.substring(0, 150)}...
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     </div>
   );
 }

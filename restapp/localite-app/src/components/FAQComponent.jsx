@@ -13,16 +13,6 @@ class FAQComponent extends Component {
   }
 
   componentWillMount = () => {
-    // //will pull questions from backend
-    // const static_questions = [
-    //   {"question": "Question lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-    //     "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
-    //   {"question": "Question lorem ipsum dolor sit amet, consectetur?",
-    //     "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
-    //   {"question": "Question lorem ipsum dolor sit amet, consectetur adipiscing?",
-    //   "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."},
-    // ];
-
     PublicService.getFAQ().then(
       (response) => {
         console.log(response);

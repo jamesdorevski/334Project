@@ -28,17 +28,15 @@ export default function TourComponent(props) {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase onClick={() => props.goToTour(props.tour._id)}>
-              <img className="tour-img" alt={props.tour.name} src={props.tour.img[0]} />
+              <img
+                className="tour-img"
+                alt={props.tour.name}
+                src={props.tour.img[0]}
+              />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
-            <Grid
-              item
-              xs
-              container
-              direction="column"
-              spacing={2}
-            >
+            <Grid item xs container direction="column" spacing={2}>
               <Grid item xs style={{ width: "330px" }}>
                 <Typography
                   style={{ fontWeight: 600 }}
@@ -47,16 +45,13 @@ export default function TourComponent(props) {
                 >
                   {props.tour.tourName}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  style={{textAlign: "left"}}
-                >
+                <Typography variant="body2" style={{ textAlign: "left" }}>
                   {props.tour.description.substring(0, 300)}...
                 </Typography>
                 {props.tour.tags.map((tag) => (
                   <div
                     key={tag}
-                    style={{marginTop: "30px", float: "left"}}
+                    style={{ marginTop: "30px", float: "left" }}
                     className="tour-tag"
                   >
                     <Typography
@@ -73,7 +68,11 @@ export default function TourComponent(props) {
               <ButtonBase>
                 <Figure.Image
                   roundedCircle
-                  style={{width: "100px", height: "100px", objectFit: "cover"}}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                  }}
                   src={props.tour.tourGuide.img}
                   onClick={() => props.goToProfile(props.tour.tourGuide._id)}
                 />
@@ -84,13 +83,23 @@ export default function TourComponent(props) {
                 style={{ marginBottom: "-10px", paddingLeft: "5px" }}
               >
                 {props.tour.tourGuide.firstName} {props.tour.tourGuide.ratings}
-                <StarRatingComponent name="star" editing={false} starCount={1} value={1} />
+                <StarRatingComponent
+                  name="star"
+                  editing={false}
+                  starCount={1}
+                  value={1}
+                />
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Starting at ${props.tour.basePrices.adult}.
               </Typography>
 
-              <Button onClick={() => props.goToTour(props.tour._id)} style={{ margin: "5px", marginTop: "30px" }}>Book</Button>
+              <Button
+                onClick={() => props.goToTour(props.tour._id)}
+                style={{ margin: "5px", marginTop: "30px" }}
+              >
+                Book
+              </Button>
             </Grid>
           </Grid>
         </Grid>

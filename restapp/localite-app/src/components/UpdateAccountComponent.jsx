@@ -32,7 +32,6 @@ class UpdateAccountComponent extends Component {
     let temp = [];
     PublicService.getLanguages().then((response) => {
       if (response) {
-        // console.log(response.data)
         response.data.map((language) =>
           temp.push({
             lang: language,
@@ -45,26 +44,13 @@ class UpdateAccountComponent extends Component {
 
   onSelect = (selectedList, selectedItem) => {
     this.setState({ selectedValues: selectedList });
-    // console.log(this.state.selectedValues);
   };
 
   onRemove = (selectedList, removedItem) => {
     this.setState({ selectedValues: selectedList });
-    // console.log(this.state.selectedValues)
   };
 
   render() {
-    // console.log(this.state.user);
-
-    // const genders = [
-    //   { label: "Male", value: "Male" },
-    //   { label: "Female", value: "Female" },
-    //   { label: "Trans male", value: "Trans male" },
-    //   { label: "Trans female", value: "Trans female" },
-    //   { label: "Genderqueer/Nonbinary", value: "Genderqueer/Nonbinary" },
-    //   { label: "Other/Prefer not to say", value: "Other/Prefer not to say" },
-    // ];
-
     return (
       <div
         style={{ textAlign: "left", padding: "10px" }}
@@ -127,7 +113,6 @@ class UpdateAccountComponent extends Component {
               ),
           })}
           onSubmit={(fields, { setSubmitting }) => {
-            // find a way to pass fields as an object so we can extract the params in AuthService
             AccountService.updateUser(
               fields.firstName,
               fields.lastName,
@@ -296,19 +281,6 @@ class UpdateAccountComponent extends Component {
                       label="Other/Prefer not to say"
                     />
                   )}
-                  {/* TRIED DOING THIS BUT DIDN'T WORK - WILL TRY AGAIN LATER
-                  <option value="" label={this.state.user.gender} />
-                  {genders.map((gender) => {
-                    //   <option key={gender.label} value={gender.value}>
-                    //   {gender.value}
-                    // </option>
-                    if (this.state.user.gender != gender.label)
-                      return (
-                        <option key={gender.label} value={gender.value}>
-                          {gender.value}
-                        </option>
-                      );
-                  })} */}
                 </Field>
                 <ErrorMessage
                   name="gender"

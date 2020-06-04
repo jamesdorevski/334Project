@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AccountService from "../api/AccountService";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import PublicService from "../api/PublicService";
 import MessageService from "../api/MessageService";
 
 class MessagesComponent extends Component {
@@ -17,90 +16,27 @@ class MessagesComponent extends Component {
   componentWillMount() {
     //call backend to load messages for loggedIn user
     const loggedIn = AccountService.getCurrentUser();
-    // let name = "";
-    // PublicService.getUserByID("5ec560a17b05e02bc1105411").then((response) => {
-    //   name = response.data.user.firstName;
-    //   console.log(name);
-    // });
 
-    let messageArray = []
+    let messageArray = [];
     MessageService.getAllConvos(loggedIn._id).then(
-        (response) => {
-          // console.log(response);
-          if (response.data.success) {
-            
-            response.data.allConvos.map((content) => {
-              messageArray.push({"convoID": content.users[0]._id, "id": content.users[0].firstName + " " + content.users[0].lastName, "messages": content.messages})
+      (response) => {
+        if (response.data.success) {
+          response.data.allConvos.map((content) => {
+            messageArray.push({
+              convoID: content.users[0]._id,
+              id: content.users[0].firstName + " " + content.users[0].lastName,
+              messages: content.messages,
             });
-            
-            this.setState({
-                messages: messageArray,
-                chosen: messageArray[0],
-              });
-          }
-        },
-        (error) => {
-          
+          });
+
+          this.setState({
+            messages: messageArray,
+            chosen: messageArray[0],
+          });
         }
-      );
-
-    // const hardcoded_messages = [
-    //   {
-    //     //daniel
-    //     id: "5ec560a17b05e02bc1105411",
-    //     messages: [
-    //       {
-    //         sender: "5ec560a17b05e02bc1105411",
-    //         message: "Hey, I have a question.",
-    //       },
-    //       {
-    //         sender: "5ecd6001b05e2348c7a6893f",
-    //         message: "Hey, what's up",
-    //       },
-    //       {
-    //         sender: "5ec560a17b05e02bc1105411",
-    //         message: "Do your tours include time for travel.",
-    //       },
-    //     ],
-    //   },
-
-    //   //poppy
-    //   {
-    //     id: "5ec560907b05e02bc1105410",
-    //     messages: [
-    //       {
-    //         sender: "5ec560907b05e02bc1105410",
-    //         message: "Hi Emily, I am interested in your tour.",
-    //       },
-    //       {
-    //         sender: "5ec560907b05e02bc1105410",
-    //         message: "I was wondering if it's good for kids",
-    //       },
-    //       {
-    //         sender: "5ecd6001b05e2348c7a6893f",
-    //         message: "Hi yes, they are great for kids.",
-    //       },
-    //     ],
-    //   },
-    // ];
-
-    // this.setState({
-    //   messages: hardcoded_messages,
-    //   chosen: hardcoded_messages[0],
-    // });
-    // AccountService.loadUserMessages(loggedIn._id).then(
-    //   (response) => {
-    //     console.log(response);
-    //     if (response.data.success) {
-    //       this.setState({ messages: response.data.messages });
-    //     } else {
-    //       this.props.history.push("/");
-    //     }
-    //   },
-    //   (error) => {
-    //     this.props.history.push("/");
-    //   }
-    // );
+      },
+      (error) => {}
+    );
   }
 
   handleChange = (event) => {
@@ -114,19 +50,20 @@ class MessagesComponent extends Component {
 
     // console.log(this.state.value);
     const message = {
-      sender: {"_id" :loggedIn._id},
+      sender: { _id: loggedIn._id },
       content: this.state.value,
     };
 
     // //update messages for other user
-    MessageService.sendMessage(loggedIn._id, this.state.chosen.convoID, this.state.value).then(
-      (response) => {
-        if (response.data.success) {
-          //reload messages from database
-
-        }
+    MessageService.sendMessage(
+      loggedIn._id,
+      this.state.chosen.convoID,
+      this.state.value
+    ).then((response) => {
+      if (response.data.success) {
+        //reload messages from database
       }
-    )
+    });
     this.setState({ value: "" });
 
     this.state.chosen.messages.push(message);
@@ -135,8 +72,7 @@ class MessagesComponent extends Component {
 
   render() {
     const loggedIn = AccountService.getCurrentUser();
-    // console.log(this.state.messages)
-    console.log(this.state.chosen)
+    console.log(this.state.chosen);
 
     return (
       <>
@@ -153,106 +89,102 @@ class MessagesComponent extends Component {
         >
           <h3>Messages</h3>
           <hr />
-          {this.state.chosen.messages && <Container style={{ height: "360px" }}>
-            <Row>
-              <Col sm={4} style={{ background: "#f8f9fa", height: "360px" }}>
-                <div class="overflow-auto" style={{ height: "360px" }}>
-                  {this.state.messages.map((user) => (
-                    <div key={user.id}>
-                      {user.id === this.state.chosen.id && (
-                        <Button
-                          onClick={() => this.setState({ chosen: user })}
-                          variant="dark"
-                          style={{ width: "100%", borderRadius: 0 }}
-                        >
-                          {user.id}
-                        </Button>
-                      )}
-                      {user.id !== this.state.chosen.id && (
-                        <Button
-                          onClick={() => this.setState({ chosen: user })}
-                          variant="light"
-                          style={{ width: "100%", borderRadius: 0 }}
-                        >
-                          {user.id}
-                        </Button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </Col>
+          {this.state.chosen.messages && (
+            <Container style={{ height: "360px" }}>
+              <Row>
+                <Col sm={4} style={{ background: "#f8f9fa", height: "360px" }}>
+                  <div class="overflow-auto" style={{ height: "360px" }}>
+                    {this.state.messages.map((user) => (
+                      <div key={user.id}>
+                        {user.id === this.state.chosen.id && (
+                          <Button
+                            onClick={() => this.setState({ chosen: user })}
+                            variant="dark"
+                            style={{ width: "100%", borderRadius: 0 }}
+                          >
+                            {user.id}
+                          </Button>
+                        )}
+                        {user.id !== this.state.chosen.id && (
+                          <Button
+                            onClick={() => this.setState({ chosen: user })}
+                            variant="light"
+                            style={{ width: "100%", borderRadius: 0 }}
+                          >
+                            {user.id}
+                          </Button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </Col>
 
-              {/* {console.log(this.state.chosen.messages)} */}
-
-              
-              {/* {this.state.chosen.messages.map((message) => 
-              <div>{message.content}</div>
-              )} */}
-
-              <Col sm={8}>
-                
-                <div
-                  class="overflow-auto"
-                  style={{ maxHeight: "320px" }}
-                >
-                  {this.state.chosen.messages.map((message) => (
-                    <>
-                      {message.sender._id !== loggedIn._id && (
-                        <div style={{ display: "table" }}>
-                          <p
+                <Col sm={8}>
+                  <div class="overflow-auto" style={{ maxHeight: "320px" }}>
+                    {this.state.chosen.messages.map((message) => (
+                      <>
+                        {message.sender._id !== loggedIn._id && (
+                          <div style={{ display: "table" }}>
+                            <p
+                              style={{
+                                background: "grey",
+                                overflowWrap: "break-word",
+                                maxWidth: "600px",
+                                padding: "10px",
+                                marginBottom: "10px",
+                                borderRadius: "50px 50px 50px 5px",
+                              }}
+                            >
+                              {message.content}
+                            </p>
+                          </div>
+                        )}
+                        {message.sender._id === loggedIn._id && (
+                          <div
                             style={{
-                              background: "grey",
-                              overflowWrap: "break-word",
-                              maxWidth: "600px",
-                              padding: "10px",
-                              marginBottom: "10px",
-                              borderRadius: "50px 50px 50px 5px"
+                              display: "table",
+                              marginRight: "0px",
+                              marginLeft: "auto",
                             }}
                           >
-                            {message.content}
-                          </p>
-                        </div>
-                      )}
-                      {message.sender._id === loggedIn._id && (
-                        <div style={{ display: "table", marginRight: "0px",
-                        marginLeft: "auto"}}>
-                          <p
-                            style={{
-                              background: "#fc6008",
-                              overflowWrap: "break-word",
-                              maxWidth: "600px",
-                              padding: "10px",
-                              marginBottom: "10px",
-                              borderRadius: "50px 50px 5px 50px"
-                            }}
-                          >
-                            {message.content}
-                          </p>
-                        </div>
-                      )}
-                    </>
-                  ))}
-                </div>
+                            <p
+                              style={{
+                                background: "#fc6008",
+                                overflowWrap: "break-word",
+                                maxWidth: "600px",
+                                padding: "10px",
+                                marginBottom: "10px",
+                                borderRadius: "50px 50px 5px 50px",
+                              }}
+                            >
+                              {message.content}
+                            </p>
+                          </div>
+                        )}
+                      </>
+                    ))}
+                  </div>
 
-                <div style={{ bottom: 0, position: "absolute" }}>
-                  <input
-                    name="text"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    style={{ width: "560px", height: "45px" }}
-                  />
-                  <Button
-                    type="button"
-                    class="btn btn-primary btn-sm"
-                    disabled={!this.state.value}
-                    onClick={this.handleSubmit}
-                  >
-                    Send Message
-                  </Button>
-                </div>
-              </Col>
-            </Row>
-          </Container>}
+                  <div style={{ bottom: 0, position: "absolute" }}>
+                    <input
+                      name="text"
+                      value={this.state.value}
+                      onChange={this.handleChange}
+                      style={{ width: "560px", height: "45px" }}
+                    />
+                    <Button
+                      type="button"
+                      class="btn btn-primary btn-sm"
+                      disabled={!this.state.value}
+                      onClick={this.handleSubmit}
+                    >
+                      Send Message
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          )}
         </div>
       </>
     );
