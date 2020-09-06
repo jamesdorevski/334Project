@@ -4,7 +4,7 @@
 Localite is a full-stack CRUD application created during the Autumn 2020 semester for CSCI334 - Software Design. Localite allows tourist users to find and book tours, and for tourists to provide tours. This application was built using a React js frontend with a Java Spring backend.
 
 ## User Interface
-#### Homepage
+### Homepage
 ![Localite Homepage](https://drive.google.com/uc?export=view&id=1_lTQfxhO-nDPQGjL_6F-LnnHykoQ7bmi)
 <br/>
 
@@ -31,3 +31,6 @@ Localite is a full-stack CRUD application created during the Autumn 2020 semeste
 ### Message Feature
 ![Message Feature](https://drive.google.com/uc?export=view&id=1EAxicIHluPgNdYeuJ71yCJNdM8lSQ1Lj)
 <br/>
+
+### FAQ
+![FAQ](https://drive.google.com/uc?export=view&id=1p0dmfAv62vgxt4VkRRecax7o-VHLsPLc)
